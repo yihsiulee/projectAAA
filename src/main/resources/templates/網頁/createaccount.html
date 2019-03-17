@@ -11,6 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
@@ -25,11 +26,11 @@
 		<!-- Nav -->
 			<nav id="nav">
 				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="haveclass.html">Post</a></li>
-					<li><a href="techpage.html">Check</a></li>
-					<li><a href="topic month.html">My Account</a></li>
-					<li><a href="qa.html">Q&A</a></li>
+					<li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
+					<li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
+					<li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
+					<li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
+					<li><a class="fa fa-question-circle"href="qa.html">&nbsp;&nbsp;Q&A</a></li>
 				</ul>
 			</nav>
 
@@ -45,21 +46,23 @@
 					<h4>基本資料</h4>
 					<div class="table-wrapper">
 						<table class="alt">
-							<thead>
+							<!--<thead>
 								<tr>
 									<th></th>
 									<th></th>
 									<th></th>
 								</tr>
-							</thead>
+							</thead>-->
 							<tbody>
 								<tr>
 									<td style="text-align: center;">您的姓名</td>
 									<td>
+										<form>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="name" id="name" value="" placeholder="姓名"/>
 
 										</div>
+										</form>
 									</td>
 								</tr>
 
@@ -67,10 +70,12 @@
 								<tr>
 									<td style="text-align: center;">您的身分證字號</td>
 									<td>
+										<form>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="account" id="account" value="" placeholder="身分證字號"/>
 
 										</div>
+										</form>
 									</td>
 								</tr>
 
@@ -78,27 +83,31 @@
 								<tr>
 									<td style="text-align: center;">您的密碼</td>
 									<td>
+										<form>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="name" id="password" value="" placeholder="密碼"/>
 										</div>
+										</form>
 									</td>
 								</tr>
 
 								<tr>
 									<td style="text-align: center;">再次輸入您的密碼</td>
+									<form>
 									<td>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="name" id="password" value="" placeholder="再次輸入密碼"/>
-										</div>
+										</div></form>
 									</td>
 								</tr>
 
 								<tr>
+									<form>
 									<td style="text-align: center;">手機號碼</td>
 									<td>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="phone" id="phone" value="" placeholder="電話號碼"/>
-										</div>
+										</div></form>
 									</td>
 								</tr>
 
@@ -106,22 +115,24 @@
 								<tr>
 									<td style="text-align: center;">性別</td>
 									<td>
+										<form>
 										<div class="4u$ 12u$(xsmall)">
 											<input type="radio" name="gender" id="male" checked>
 											<label for="male">男</label>
 
 											<input type="radio" name="gender" id="female">
 											<label for="female" >女</label>
-										</div>
+										</div></form>
 									</td>
 
 
 								<tr>
 									<td style="text-align: center;">您的生日</td>
 									<td>
+										<form>
 										<div class="4u 12u$(xsmall)">
 											<input type="date" name="birthday" id="birthday" />
-										</div>
+										</div></form>
 									</td>
 								</tr>
 							</tbody>
@@ -132,15 +143,16 @@
 					<h4>簡單經歷</h4>
 					<div class="table-wrapper">
 						<table class="alt">
-							<thead>
+							<!--<thead>
 								<tr></tr>
 									<th></th>
 									<th></th>
 									<th></th>
 								<tr>
-							</thead>
+							</thead>-->
 							<tbody>
 								<tr>
+									<form>
 									<td style="text-align: center;">您的學歷</td>
 									<td>
 										<div class="12u$">
@@ -152,12 +164,12 @@
 												<option value="3">博士</option>
 										</div>
 										</div>
-									</td>
+									</td></form>
 								</tr>
 
 								<tr>
 									<td style="text-align: center;">專精領域</td>
-									<td>
+									<form><td>
 										<div class="12u$">
 										<div class="select-wrapper">
 											<select name="study" id="study" />
@@ -177,21 +189,20 @@
 
 										</div>
 										</div>
-									</td>
+									</td></form>
 
 
 								</tr>
 
 								<tr>
+									<form>
 									<td style="text-align: center;">特殊事蹟</td>
 									<td>
 										<div class="12u$">
 											<textarea name="message" id="message" placeholder="請輸入" rows="3"></textarea>
-
-
-
 										</div>
-
+									</td>
+									</form>
 
 								</tr>
 							</tbody>

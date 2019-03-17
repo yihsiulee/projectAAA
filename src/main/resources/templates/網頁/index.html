@@ -11,6 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
@@ -25,17 +26,19 @@
 		<!-- Nav -->
 			<nav id="nav">
 				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="haveclass.html">Post</a></li>
-					<li><a href="techpage.html">Check</a></li>
-					<li><a href="topic month.html">My Account</a></li>
-					<li><a href="qa.html">Q&A</a></li>
+					<li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
+					<li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
+					<li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
+					<li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
+					<li><a class="fa fa-question-circle"href="qa.html">&nbsp;&nbsp;Q&A</a></li>
 				</ul>
 			</nav>
 
 		<!-- Banner -->
 			<section id="banner">
-				<i class="icon fa-diamond"></i>
+				<i class="fa fa-check-square-o fa-5x" aria-hidden="true"></i>
+
+
 				<h2>Paper Check</h2>
 				<p>Review Paper Platform </p>
 				<ul class="actions">
@@ -65,7 +68,7 @@
 						<span class="image"><img src="images/sharing.jpg" alt="" /></span>
 						<div class="content">
 							<h2>Post it</h2>
-							<p>發表你的想法讓學術更強大</p>
+							<p>發表你的想法讓學術界更強大</p>
 							<ul class="actions">
 								<li>
 									<a href="techpage.html" class="button alt">我來發文啦！</a>
@@ -86,7 +89,8 @@
 					</header>
 						<div class="table-wrapper">
 							<table>
-								<!--<%
+								
+								<!--<caption>文章列表</caption><%
 								for i=0 to 9
 									response.write "<TR>"
 									for j=0 to 3
@@ -97,16 +101,21 @@
 								%>-->
 								<thead >
 									<tr>
-										<th>文章名稱</th>
-										<th>作者</th>
-										<th>期限</th>
+										<th style="text-align: center;">文章名稱</th>
+										<th style="text-align: center;">作者</th>
+										<th style="text-align: center;">期限</th>
 										<th></th>
 								</thead>
 								<tbody>
 									<tr>
+
+										{%for post in posts%}
+
 										<td>{id=article}</td>
 										<td>{id=author}</td>
 										<td>{id=time}</td>
+										
+										{% endfor %}
 										<td>
 											<div>
 												<a class="button">我要審文</a>

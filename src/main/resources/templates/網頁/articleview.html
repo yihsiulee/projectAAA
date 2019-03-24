@@ -15,10 +15,10 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
-	<body class="landing">
+	<body>
 
 		<!-- Header -->
-			<header id="header" class="alt">
+			<header id="header">
 				<h1><a href="index.html">Paper Check!</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
@@ -34,106 +34,77 @@
 				</ul>
 			</nav>
 
-		<!-- Banner -->
-			<section id="banner">
-				<i class="fa fa-check-square-o fa-5x" aria-hidden="true"></i>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<h2>文章進度</h2>
+						<p>{th:articlenanme}</p>
+					</header>
+					<div class="table-wrapp"  >
+						<table class="alt" >
+							<thead></thead>
+							<tbody >
+								<tr>
+									<td align="center"><h4>文章名稱：</h4></td>
+									<td colspan="2">{th:articlename}</td>
+								</tr>
+								<tr>
+									<td align="center"><h4>發表時間：</h4></td>
+									<td colspan="2">{th:posttime}</td>
+								</tr>
+								<tr>
+									<td align="center"><h4>原始檔案：</h4></td>
+									<td colspan="2"> <label class="button">
+										<a href="https://www.wfublog.com/2016/01/font-awesome-cheat-sheet.html" style="color: white">
+										<i class="fa fa-cloud-download">下載檔案</i>
+										</a>
+									</label></td>
+								</tr>
+								<tr>
+									<td rowspan="4" align="center"><h4>審核回覆：</h4></td>
+									<td align="center"><h5>審核人：</h5></td>
+									<td align="center"><h5>評論內容:</td>
+								</tr>
+								<tr>
+									<td>審核1{th:name}</td>
+									<td><label class="button">
+										<a href="https://www.wfublog.com/2016/01/font-awesome-cheat-sheet.html" style="color: white">
+										<i class="fa fa-cloud-download">下載檔案</i>
+										</a>
+									</label></td>
+								</tr>
+								<tr>
+									<td>審核2</td>
+									<td><label class="button">
+										<a href="https://www.wfublog.com/2016/01/font-awesome-cheat-sheet.html" style="color: white">
+										<i class="fa fa-cloud-download">下載檔案</i>
+										</a>
+									</label></td>
+								</tr>
+								<tr>
+									<td>審核3</td>
+									<td><label class="button">
+										<a href="https://www.wfublog.com/2016/01/font-awesome-cheat-sheet.html" style="color: white">
+										<i class="fa fa-cloud-download">下載檔案</i>
+										</a>
+									</label></td>
+								</tr>
 
 
-				<h2>Paper Check</h2>
-				<p>Review Paper Platform </p>
-				<ul class="actions">
-					<li><a href="login.html" class="button big special">Log-In</a></li>
-					<li><a href="createaccount.html" class="button big">Sign-Up</a>
-					</li>
-				</ul>
-			</section>
 
-		<!-- One -->
-			<section id="one" class="wrapper style1">
-				<div class="inner">
+							</tbody>
+						</table>
+					</div>
+
 					
-					<article class="feature left">
-						<span class="image"><img src="images/learning.jpg" alt="" /></span>
-						<div class="content">
-							<h2> Check it!</h2>
-							<p>貢獻心力一起為學術奮鬥</p>
-							<ul class="actions">
-								<li>
-									<a href="haveclass.html" class="button alt">我來審稿啦！</a>
-								</li>
-							</ul>
-						</div>
-					</article>
-					<article class="feature right">
-						<span class="image"><img src="images/sharing.jpg" alt="" /></span>
-						<div class="content">
-							<h2>Post it</h2>
-							<p>發表你的想法讓學術界更強大</p>
-							<ul class="actions">
-								<li>
-									<a href="techpage.html" class="button alt">我來發文啦！</a>
-								</li>
-							</ul>
-						</div>
-					</article>
+					
+
+
 				</div>
 			</section>
-
-
-			<!--Two-->
-
-			<section id="two" class="wrapper special">
-				<div class="inner">
-					<header class="major narrow">
-						<h2>文章列表</h2>
-					</header>
-						<div class="table-wrapper">
-							<table>
-								
-								<!--<caption>文章列表</caption><%
-								for i=0 to 9
-									response.write "<TR>"
-									for j=0 to 3
-										response.write "<TD>" &i &"," &j &"</TD>"
-									next
-  									response.write "</TR>"
-								next
-								%>-->
-								<thead >
-									<tr>
-										<th style="text-align: center;">文章名稱</th>
-										<th style="text-align: center;">作者</th>
-										<th style="text-align: center;">期限</th>
-										<th></th>
-								</thead>
-								<tbody>
-									<tr>
-
-										{%for post in posts%}
-
-										<td>{id=articlename}</td>
-										<td>{id=name}</td>
-										<td>{id=deadline}</td>
-										
-										{% endfor %}
-										<td>
-											<div>
-												<a class="button">我要審文</a>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-								
-							</table>
-						</div>
-					
-				
-
-				
-			</section>
-
-
-
 
 		<!-- Footer -->
 			<footer id="footer">

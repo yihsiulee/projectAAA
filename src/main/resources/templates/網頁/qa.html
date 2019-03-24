@@ -5,6 +5,7 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
+
 	<head>
 		<title>Paper Check</title>
 		<meta charset="utf-8" />
@@ -17,11 +18,37 @@
 	</head>
 	<body>
 
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+					<script type="text/javascript">
+						jQuery(function($){
+							$("p.Question").css({cursor:"pointer"}).click(function(){
+									$(this).next().toggle("normal");
+								});
+						});
+		</script>
+
+
+		<style type="text/css">
+			#QandA .Question{ /*標題的CSS定義*/
+				width: 100%;border-bottom: 1px #aaa dotted;
+			}
+			#QandA .Answer{ /*內文的CSS定義*/
+				display: none;width: 100%;padding: 10px 0px;background: #2f474b;opacity: 0.8;border-bottom: 1px #aaa dotted;color: white;
+			}
+			#QandA:hover{ /*滑鼠移至區塊變色*/
+				background: #efefef;
+			}
+		</style>
+
+
+
 		<!-- Header -->
 			<header id="header">
 				<h1><a href="index.html">Paper Check!</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
+
+			
 
 		<!-- Nav -->
 			<nav id="nav">
@@ -40,97 +67,47 @@
 				<div class="container">
 
 					<header class="major special">
-						<h2>上傳論文</h2>
+						<h2>Q&A常見問題集</h2>
 					</header>
 
-			
-					
-						<form>
-							<div class="row uniform 50%">
-						
-						<div class="6u 12u$">
-							<h4>論文名稱：</h4>
-							<input type="text" name="name" id="name" value="" placeholder="論文名稱" />
-						</div>
-						<br>
-						
-						<div class="6u 12u$">
-							<h4>論文領域：</h4>
-							<div class="select-wrapper">
-								<select name="study" id="study">
-									<option value="">-領域-</option>
-									<option value="1">醫學</option>
-									<option value="2">生物</option>
-									<option value="3">商科</option>
-									<option value="4">農業</option>
-									<option value="5">社會</option>
-									<option value="6">資訊</option>
-									<option value="7">工程</option>
-									<option value="8">文學</option>
-									<option value="9">音樂</option>
-									<option value="10">外文</option>
-									<option value="11">歷史</option>
-									<option value="12">地理</option>
-								</select>
+					<div id="QandA">
+						<p class="Question">Question - 1</p>
+							<div class="Answer">
+						<p>Answer - 1</p>
 							</div>
-						</div>
-						<br>
-						
-						<div class="6u 12u$">
-							<h4>上傳檔案：</h4>
-							<input type="file" name="">
-							<label class="button">
-							<input style="display:none;" type="file">
-								<i class="fa fa-file-text-o">上傳檔案</i>
-								
-						</label>
-							<p>{顯示上傳完成檔案名（未排除）	}</p>
-						</div>
+					</div>
 
-						<br>
-						
-						<div class="6u 12u$(xsmall)">
-							<h4>字數統計</h4>
-							<input type="number" min="0" placeholder="字數統計" />
-						</div>
-						
-						<div class="6u$ 12u$(xsmall)">
-							<h4>公式數量</h4>
-							<input type="number" min="0" placeholder="公式數量" />
-						</div>
-						<br>
-						<div class="12u 12u$(xsmall)" style="text-align: right;">
-							<h4>所費代幣:{th:tokenspend}</h4>
-							{% if token"<"spendtoken;print<sub>代幣不足!</sub>%}
-						</div>	
 
-						<br>
-						<div class="12u$ 12u$(xsmall)">
-							<input type="checkbox" id="checked">
-							<label for="checked" style="font-weight: bold">我已詳細確認文章為我個人所寫，引用他人文章之處有進行標示</label>
-						</div>
+					<div id="QandA">
+						<p class="Question">Question - 2</p>
+							<div class="Answer">
+						<p>Answer - 2</p>
+							</div>
+					</div>
 
-						<br>
-						<div class="12u 12u$(xsmall)" style="text-align: right;">
-							<i class="button special">送出</i>
-							<i class="button">重新填寫</i>
-						</div>
-							
+				<div id="QandA">
+						<p class="Question">Question - 3</p>
+							<div class="Answer">
+						<p>Answer - 3</p>
+							</div>
+					</div>
 
-						</div>
+				<div id="QandA">
+						<p class="Question">Question - 4</p>
+							<div class="Answer">
+						<p>Answer - 4</p>
+							</div>
+					</div>
 
-							
-
-						</div>
-						</div>
-						</form>
-					
-
+				<div id="QandA">
+						<p class="Question">Question - 5</p>
+							<div class="Answer">
+						<p>Answer - 5</p>
+							</div>
 					</div>
 				</div>
+
 			</section>
-
-
 
 		<!-- Footer -->
 			<footer id="footer">

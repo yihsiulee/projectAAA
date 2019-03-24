@@ -60,7 +60,7 @@
 											<h4 style="text-align: center;">論文名稱：</h4>
 										</td>
 										<td colspan="3">
-											<input type="text" name="name" id="name" value="" placeholder="論文名稱" />
+											<input type="text" name="articlename" id="articlename" value="" placeholder="論文名稱" />
 										</td>
 									</div></tr>
 
@@ -70,7 +70,7 @@
 										</td>
 										<td colspan="3">
 											<div class="select-wrapper">
-											<select name="study" id="study">
+											<select name="articlestudy" id="articlestudy">
 												<option value="">-領域-</option>
 												<option value="1">醫學</option>
 												<option value="2">生物</option>
@@ -94,7 +94,7 @@
 											<h4 style="text-align: center;">上傳檔案：</h4>
 										</td>
 										<td colspan="3">
-											<input type="file" name="">
+											<input type="file" name="uploadfile">
 											<label class="button">
 											<input style="display:none; " type="file">
 												<i class="fa fa-file-text-o">上傳檔案</i>
@@ -109,13 +109,13 @@
 											<h4 style="text-align: center;">字數統計：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" placeholder="字數統計" style="width: 80%" />
+											<input type="number" min="0" id="textnumber"placeholder="字數統計" style="width: 80%" />
 										</td>
 										<td>
 											<h4 style="text-align: center;">公式數量：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" placeholder="公式數量" style="width: 80%" />
+											<input type="number" min="0" id="formulanumber"placeholder="公式數量" style="width: 80%" />
 										</td>
 
 									</div></tr>
@@ -129,14 +129,15 @@
 
 						<br>
 						<div class="12u$ 12u$(xsmall)">
-							<input type="checkbox" id="checked">
+							<input type="checkbox" id="myself">
 							<label for="checked" style="font-weight: bold">我已詳細確認文章為我個人所寫，引用他人文章之處有進行標示</label>
 						</div>
 
 						<br>
 						<div class="12u 12u$(xsmall)" style="text-align: right;">
+							<i class="button alt">重新填寫</i>
 							<i class="button special">送出</i>
-							<i class="button">重新填寫</i>
+							
 						</div>
 							
 

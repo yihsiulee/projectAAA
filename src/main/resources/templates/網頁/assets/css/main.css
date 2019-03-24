@@ -4243,3 +4243,29 @@
 			}
 
 		}
+
+
+
+
+/*Q&A*/
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+					<script type="text/javascript">
+						jQuery(function($){
+							$("p.Question").css({cursor:"pointer"}).click(function(){
+									$(this).next().toggle("normal");
+								});
+						});
+		</script>
+
+
+		<style type="text/css">
+			#QandA .Question{ /*標題的CSS定義*/
+				width: 100%;border-bottom: 1px #aaa dotted;
+			}
+			#QandA .Answer{ /*內文的CSS定義*/
+				display: none;width: 100%;padding: 10px 0px;background: #efefef;border-bottom: 1px #aaa dotted;
+			}
+			#QandA:hover{ /*滑鼠移至區塊變色*/
+				background: #ebf6f7;
+			}
+		</style>		

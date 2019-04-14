@@ -4,42 +4,21 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<title>Paper Check</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
 	<body>
 
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-					<script type="text/javascript">
-						jQuery(function($){
-							$("p.Question").css({cursor:"pointer"}).click(function(){
-									$(this).next().toggle("normal");
-								});
-						});
-		</script>
-
-
-		<style type="text/css">
-			#QandA .Question{ /*標題的CSS定義*/
-				width: 100%;border-bottom: 1px #aaa dotted;
-			}
-			#QandA .Answer{ /*內文的CSS定義*/
-				display: none;width: 100%;padding: 10px 0px;background: #2f474b;opacity: 0.8;border-bottom: 1px #aaa dotted;color: white;
-			}
-			#QandA:hover{ /*滑鼠移至區塊變色*/
-				background: #efefef;
-			}
-		</style>
-
+		
 
 
 		<!-- Header -->
@@ -69,7 +48,7 @@
 					<header class="major special">
 						<h2>Q&A常見問題集</h2>
 					</header>
-
+<!-- 動態版 -->
 					<div id="QandA">
 						<p class="Question">Question - 1</p>
 							<div class="Answer">
@@ -85,29 +64,33 @@
 							</div>
 					</div>
 
-				<div id="QandA">
+					<div id="QandA">
 						<p class="Question">Question - 3</p>
 							<div class="Answer">
 						<p>Answer - 3</p>
 							</div>
 					</div>
 
-				<div id="QandA">
-						<p class="Question">Question - 4</p>
-							<div class="Answer">
-						<p>Answer - 4</p>
-							</div>
-					</div>
+				
+<!-- 加減版 -->
 
-				<div id="QandA">
-						<p class="Question">Question - 5</p>
-							<div class="Answer">
-						<p>Answer - 5</p>
-							</div>
-					</div>
-				</div>
+	<button class="accordion">Section 1</button>
+		<div class="panel">
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		</div>
 
-			</section>
+	<button class="accordion">Section 2</button>
+		<div class="panel">
+ 		 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		</div>
+
+	<button class="accordion">Section 3</button>
+		<div class="panel">
+ 		 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		</div>
+
+</div>
+</section>
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -135,11 +118,39 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
+			<script th:src="@{/assets/js/jquery.min.js}"></script>
+			<script th:src="@{/assets/js/skel.min.js}"></script>
+			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<script th:src="@{/assets/js/main.js}"></script>
+<!-- 動態版 -->
+			<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+						jQuery(function($){
+							$("p.Question").css({cursor:"pointer"}).click(function(){
+									$(this).next().toggle("normal");
+								});
+						});
+		</script>
+<!-- 加減版 -->
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
 
 	</body>
 </html>

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 
 @Controller
-public class CustomerController {
+public class MemberController {
     @Resource
     private MemberService memberService;
     @RequestMapping(value = "/regist")

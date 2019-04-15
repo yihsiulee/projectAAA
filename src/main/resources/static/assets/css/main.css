@@ -4247,25 +4247,107 @@
 
 
 
-/*Q&A*/
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-					<script type="text/javascript">
-						jQuery(function($){
-							$("p.Question").css({cursor:"pointer"}).click(function(){
-									$(this).next().toggle("normal");
-								});
-						});
-		</script>
-
-
-		<style type="text/css">
+/*Q&A動態版*/
 			#QandA .Question{ /*標題的CSS定義*/
-				width: 100%;border-bottom: 1px #aaa dotted;
+				width: 100%;
+				border-bottom: 1px #aaa dotted;
 			}
 			#QandA .Answer{ /*內文的CSS定義*/
-				display: none;width: 100%;padding: 10px 0px;background: #efefef;border-bottom: 1px #aaa dotted;
+				display:none;
+				width: 100%;
+				padding: 10px 0px;
+				background: #2f474b;
+				opacity: 0.8;
+				border-bottom: 1px #aaa dotted;
+				color: white;
 			}
 			#QandA:hover{ /*滑鼠移至區塊變色*/
-				background: #ebf6f7;
+				background: #efefef;
 			}
-		</style>		
+
+
+/*Q&A加減版*/
+			.accordion {
+  				background-color: #1E2832;
+  				color: #444;
+  				cursor: pointer;
+  				padding: 30px;
+  				width: 90%;
+  				position: relative;left:5%;
+  				border: none;
+  				text-align: left;
+  				outline: none;
+  				font-size: 15px;
+  				transition: 0.4s;
+  				text-align: left;
+  				border-radius: 0px;
+
+			}
+
+			.active, .accordion:hover {
+  				background-color: #ccc;
+
+			}
+
+			.accordion:after {
+ 				content: '\002B';
+  				color: #777;
+  				font-weight: bold;
+  				float: right;
+  				margin-left: 5px;
+
+			}
+
+			.active:after {
+  				content: "\2212";
+			}
+
+			.panel {
+  				padding: 0 18px;
+  				background-color: white;
+  				max-height: 0;
+  				overflow: hidden;
+  				transition: max-height 0.2s ease-out;
+  				 width: 90%;
+  				position: relative;left:5%;
+			}
+
+/*TAB*/
+	/* Style the tab */
+			.tab {
+  				overflow: hidden;
+  				border: 1px solid #ccc;
+  				background-color: #1E2832;
+			}
+
+	/* Style the buttons inside the tab */
+			.tab button {
+  				background-color: inherit;
+  				float: left;
+  				border: none;
+  				outline: none;
+  				cursor: pointer;
+  				padding: 14px 16px;
+  				transition: 0.3s;
+  				font-size: 17px;
+  				border-radius: 0px;
+
+			}
+
+	/* Change background color of buttons on hover */
+			.tab button:hover {
+  				background-color: #ddd;
+			}
+
+	/* Create an active/current tablink class */
+			.tab button.actives {
+  				background-color: #ccc;
+			}
+
+	/* Style the tab content */
+			.tabcontent {
+  				display: none;
+  				padding: 6px 12px;
+  				border: 1px solid #ccc;
+  				border-top: none;
+			}

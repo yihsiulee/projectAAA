@@ -4,13 +4,13 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Paper Check</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
@@ -49,24 +49,10 @@
 					<br>
 					<form>
 
-						<textarea cols="50" rows="5" id="uploadtext" style="text-align: left; ">輸入內容...
+						<textarea cols="50" rows="5" id="reviewtext" style="text-align: left; ">輸入內容...
 						</textarea>
-						<br>
-					<li><p>上傳檔案：
-						<label class="button">
-							<input style="display:none; " type="file" id="uploadfile">
-							<i class="fa fa-cloud-upload">上傳檔案</i>
-								
-						</label>
-					</p></li>
 
-					<li>下載檔案：
-						<label class="button">
-							<a href="https://www.wfublog.com/2016/01/font-awesome-cheat-sheet.html" style="color: white">
-							<i class="fa fa-cloud-download">下載檔案</i>
-							</a>
-						</label>
-					</li>
+					<br>	
 
 					<div style="float: right;">
 						<a class="button alt">重新填寫</a>
@@ -107,11 +93,11 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
+			<script th:src="@{/assets/js/jquery.min.js}"></script>
+			<script th:src="@{/assets/js/skel.min.js}"></script>
+			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<script th:src="@{/assets/js/main.js}"></script>
 
 	</body>
 </html>

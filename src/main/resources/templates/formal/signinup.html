@@ -5,7 +5,6 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-
 	<head>
 		<title>Paper Check</title>
 		<meta charset="utf-8" />
@@ -18,16 +17,11 @@
 	</head>
 	<body>
 
-		
-
-
 		<!-- Header -->
 			<header id="header">
 				<h1><a href="index.html">Paper Check!</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
-
-			
 
 		<!-- Nav -->
 			<nav id="nav">
@@ -46,51 +40,17 @@
 				<div class="container">
 
 					<header class="major special">
-						<h2>Q&A常見問題集</h2>
+						<h2>登入|註冊</h2>
+						<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
 					</header>
-<!-- 動態版 -->
-					<div id="QandA">
-						<p class="Question">Question - 1</p>
-							<div class="Answer">
-						<p>Answer - 1</p>
-							</div>
-					</div>
 
+					<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
+					<p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.</p>
+					<p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
+					<p>Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.</p>
 
-					<div id="QandA">
-						<p class="Question">Question - 2</p>
-							<div class="Answer">
-						<p>Answer - 2</p>
-							</div>
-					</div>
-
-					<div id="QandA">
-						<p class="Question">Question - 3</p>
-							<div class="Answer">
-						<p>Answer - 3</p>
-							</div>
-					</div>
-
-				
-<!-- 加減版 -->
-
-	<button class="accordion">Section 1</button>
-		<div class="panel">
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
-
-	<button class="accordion">Section 2</button>
-		<div class="panel">
- 		 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
-
-	<button class="accordion">Section 3</button>
-		<div class="panel">
- 		 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
-
-</div>
-</section>
+				</div>
+			</section>
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -123,34 +83,6 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-<!-- 動態版 -->
-			<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script type="text/javascript">
-						jQuery(function($){
-							$("p.Question").css({cursor:"pointer"}).click(function(){
-									$(this).next().toggle("normal");
-								});
-						});
-		</script>
-<!-- 加減版 -->
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
-</script>
-
-
 
 	</body>
 </html>

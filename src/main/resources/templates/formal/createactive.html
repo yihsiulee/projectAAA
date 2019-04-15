@@ -12,10 +12,18 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+		<link rel="stylesheet" th:href="@{/jqueryui/style.css">
+
+		<!-- th要加嗎？ -->
+		<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+		<!-- th要加嗎？ -->
+
+		  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
-		
+	<body>
+
 		<!-- Header -->
 			<header id="header">
 				<h1><a href="index.html">Paper Check!</a></h1>
@@ -39,14 +47,11 @@
 				<div class="container">
 
 					<header class="major special">
-						<h2>上傳論文</h2>
+						<h2>舉辦活動</h2>
 					</header>
 
-			
-					
-						<form>
-							<!--<div class="row uniform 50%">
-							</div>-->
+					<form>
+
 						<div class="table">
 							<table class="alt">
 								<thead>
@@ -56,80 +61,69 @@
 								<tbody>
 									<tr><div class="6u 12u$">
 										<td>
-											<h4 style="text-align: center;">論文名稱：</h4>
+											<h4 style="text-align: center;">活動名稱：</h4>
 										</td>
 										<td colspan="3">
-											<input type="text" name="articlename" id="articlename" value="" placeholder="論文名稱" />
+											<input type="text" name="articlename" id="articlename" value="" placeholder="活動名稱" />
 										</td>
 									</div></tr>
 
-									<tr><div class="6u 12u$">
-										<td>
-											<h4 style="text-align: center;">論文領域：</h4>
-										</td>
-										<td colspan="3">
-											<div class="select-wrapper">
-											<select name="articlestudy" id="articlestudy">
-												<option value="">-領域-</option>
-												<option value="1">醫學</option>
-												<option value="2">生物</option>
-												<option value="3">商科</option>
-												<option value="4">農業</option>
-												<option value="5">社會</option>
-												<option value="6">資訊</option>
-												<option value="7">工程</option>
-												<option value="8">文學</option>
-												<option value="9">音樂</option>
-												<option value="10">外文</option>
-												<option value="11">歷史</option>
-												<option value="12">地理</option>
-											</select>
-											</div>											
-										</td>
-									</div></tr>
 
 									<tr><div class="6u 12u$">
 										<td>
-											<h4 style="text-align: center;">上傳檔案：</h4>
+											<h4 style="text-align: center;">活動內容：</h4>
+										</td>
+										<td colspan="3">
+											<textarea type="text" name="articlename" id="articlename" value="" placeholder="活動內容" rows="3" ></textarea> 
+										</td>
+									</div></tr>
+
+
+									<tr><div class="6u 12u$">
+										<td>
+											<h4 style="text-align: center;">活動時間：</h4>
+										</td>
+										<td colspan="3"><div class="2u 12u$">
+											<input type="text" id="activitystart" name="activitystart" placeholder="開始時間" /></div>
+											<div class="2u$ 12u$">
+											<input type="text" id="activityend" name="activityend" placeholder="	結束時間" /></div>
+										</td>
+									</div></tr>
+
+
+									<tr><div class="6u 12u$">
+										<td>
+											<h4 style="text-align: center;">上傳圖片：</h4>
 										</td>
 										<td colspan="3">
 											
 											<label for="file-uploads" class="button">
 												<i class="fa fa-file-text-o"></i>上傳檔案
 											</label>
-											<input id="file-uploads" style="display:none;" type="file">
+											<input id="file-uploads" style="display:none;" type="file" name="activityimg">
 										</td>
 									</div></tr>
 
+
+
 									<tr><div class="6u 12u$(xsmall)" >
 										<td>
-											<h4 style="text-align: center;">字數統計：</h4>
+											<h4 style="text-align: center;">文章數量：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" id="textnumber"placeholder="字數統計" style="width: 80%" />
+											<input type="number" min="0" id="textnumber"placeholder="文章數量：" style="width: 80%" />
 										</td>
 										<td>
-											<h4 style="text-align: center;">公式數量：</h4>
+											<h4 style="text-align: center;">參與人數：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" id="formulanumber"placeholder="公式數量" style="width: 80%" />
+											<input type="number" min="0" id="formulanumber"placeholder="參與人數：" style="width: 80%" />
 										</td>
 
 									</div></tr>
 								</tbody>
 							</table>
 
-<!-- 						<div class="12u 12u$(xsmall)" style="text-align: right;">
-							<h4>所費代幣:{th:tokenspend}</h4>
-							{% if token"<"spendtoken;print<sub>代幣不足!</sub>%}
-						</div> -->	
-
-						<br>
-						<div class="12u$ 12u$(xsmall)">
-							<input type="checkbox" id="myself" name="myself" required>
-							<label for="myself" style="font-weight: bold">我已詳細確認文章為我個人所寫，引用他人文章之處有進行標示</label>
-						</div>
-						
 
 						<br>
 						<div class="12u 12u$(xsmall)" style="text-align: right;">
@@ -143,11 +137,11 @@
 						</form>
 					
 
-					</div>
-				
+
+					
+
+				</div>
 			</section>
-
-
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -180,14 +174,44 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-			<script type="text/javascript">
-					$('#file-uploads').change(function() {
-  						var i = $(this).prev('label').clone();
-  						var file = $('#file-uploads')[0].files[0].name;
-  						$(this).prev('label').text(file);
-						});
-			</script>
-			
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  			<script>
+  $( function() {
+    var dateFormat = "mm/dd/yy",
+      from = $( "#activitystart" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          changeYear:true,
+          numberOfMonths: 2
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#activityend" ).datepicker({
+        defaultDate: "+1w",
+        // changeMonth: true,
+        numberOfMonths: 2
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  } );
+  </script>
+
+
 
 	</body>
 </html>

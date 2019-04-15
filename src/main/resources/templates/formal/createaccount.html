@@ -4,14 +4,15 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Paper Check</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
@@ -95,6 +96,15 @@
 										</div></form>
 									</td>
 								</tr>
+								<tr>
+									<form>
+									<td align="center"><h4>電子信箱:</h4></td>
+									<td>
+										<div class="8u 12u$(xsmall)">
+											<input type="email" name="email" id="email" value="" placeholder="電子信箱"/>
+										</div></form>
+									</td>
+								</tr>
 
 								<tr>
 									<form>
@@ -125,8 +135,8 @@
 									<td align="center"><h4>生日:</h4></td>
 									<td>
 										<form>
-										<div class="4u 12u$(xsmall)">
-											<input type="date" name="birthday" id="birthday" />
+										<div class="6u 12u$(xsmall)">
+											<input type="text" id="datepicker">
 										</div></form>
 									</td>
 								</tr>
@@ -157,7 +167,7 @@
 												<option value="1">學士</option>
 												<option value="2">碩士</option>
 												<option value="3">博士</option>
-										</div>
+                                            </select>							</div>
 										</div>
 									</td></form>
 								</tr>
@@ -209,7 +219,7 @@
 							<i class="button alt">重新填寫</i>
 							<i class="button special">送出</i>
 							
-						</div>			</section>
+                    </div>		</div>			</section>
 
 
 		<!-- Footer -->
@@ -238,11 +248,21 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
+			<script th:src="@{/assets/js/jquery.min.js}"></script>
+			<script th:src="@{/assets/js/skel.min.js}"></script>
+			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<script th:src="@{/assets/js/main.js}"></script>
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  			<script>
+  				$( function() {
+    				$( "#datepicker" ).datepicker({
+      					changeMonth: true,
+      					changeYear: true,
+    				});
+  				} );
+  			</script>
 
 	</body>
 </html>

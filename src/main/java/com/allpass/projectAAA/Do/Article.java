@@ -10,7 +10,7 @@ import java.io.File;
 public class Article {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer articleId;
+    private Long articleId;
     private String articleName;
     private String postTime;
     private String deadline;
@@ -52,7 +52,7 @@ public class Article {
         return uploadFile;
     }
 
-    public Integer getArticleId() {
+    public Long getArticleId() {
         return articleId;
     }
 
@@ -76,7 +76,7 @@ public class Article {
         this.articleName = articleName;
     }
 
-    public void setArticleName(Integer articleId) {
+    public void setArticleName(Long articleId) {
         this.articleId = articleId;
     }
 

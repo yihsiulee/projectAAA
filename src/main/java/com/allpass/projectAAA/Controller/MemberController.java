@@ -19,7 +19,7 @@ public class MemberController {
     private MemberService memberService;
     @RequestMapping(value = "/regist")
     public String getAddCustomerView(){
-        return "createaccount";
+        return "memberRegist";
     }
     @PostMapping(value = "/addMember",params = {"name","idCardNumber","password1","password2","email","phone","gender","birthday","educational","study","special"})
     public ModelAndView addCustomer(@RequestParam("name")String name,
@@ -43,7 +43,7 @@ public class MemberController {
             member.setEmail(email);
 
             memberService.addMember(member);
-            ModelAndView modelAndView = new ModelAndView("login");
+            ModelAndView modelAndView = new ModelAndView("memberLogin");
 //        modelAndView.addObject("user", firtname);
             return modelAndView;
         }else {

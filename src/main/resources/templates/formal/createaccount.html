@@ -56,7 +56,7 @@
 											<input type="text" name="name" id="name" value="" placeholder="姓名"/>
 
 										</div>
-									</td>
+										</form>						</td>
 								</tr>
 
 
@@ -76,7 +76,7 @@
 									<td>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="name" id="password" value="" placeholder="密碼"/>
-										</div>										</form>
+										</div>
 									</td>
 								</tr>
 
@@ -85,7 +85,7 @@
 									<td>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="name" id="password" value="" placeholder="再次輸入密碼"/>
-										</div></form>
+										</div>					</td></tr></table></form>	</div></form>
 									</td>
 								</tr>
 								<tr>
@@ -251,6 +251,8 @@
     				$( "#datepicker" ).datepicker({
       					changeMonth: true,
       					changeYear: true,
+						yearRange:"1910:2030",
+						shortYearCutoff:+0
     				});
   				} );
   			</script>

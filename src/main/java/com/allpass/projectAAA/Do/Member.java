@@ -17,6 +17,7 @@ public class Member {
     private Integer study;
     private String special;
     private Float tokenBalance;
+    private String phoneNumber;
 
 //    public Member(
 //            String id,
@@ -80,6 +81,10 @@ public class Member {
     public String getEmail() {
         return email;
     }
+
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public String getPhoneNumber() { return phoneNumber; }
 
     public void setIdCardNumber(String idCardNumber) {
         this.idCardNumber = idCardNumber;

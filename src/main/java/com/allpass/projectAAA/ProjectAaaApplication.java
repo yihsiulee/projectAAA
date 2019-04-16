@@ -2,10 +2,15 @@ package com.allpass.projectAAA;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ViewResolver;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Controller
 @SpringBootApplication
@@ -59,8 +64,22 @@ public class ProjectAaaApplication {
 
 
 	public static void main(String[] args) {
+        DatabaseServer.startH2Server();
 		SpringApplication.run(ProjectAaaApplication.class, args);
 	}
-
+//	@Bean
+//	public ViewResolver viewResolver() {
+//		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+//		templateResolver.setTemplateMode("XHTML");
+//		templateResolver.setPrefix("formal/");
+//		templateResolver.setSuffix(".html");
+//
+//		SpringTemplateEngine engine = new SpringTemplateEngine();
+//		engine.setTemplateResolver(templateResolver);
+//
+//		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+//		viewResolver.setTemplateEngine(engine);
+//		return viewResolver;
+//	}
 }
 

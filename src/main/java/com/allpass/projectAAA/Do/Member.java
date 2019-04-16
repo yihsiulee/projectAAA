@@ -25,6 +25,7 @@ public class Member {
 //            String idCardNumber,
 //            String password,
 //            String email,
+//            String phoneNumber,
 //            Integer gender,
 //            String birthday,
 //            Integer educational,
@@ -35,6 +36,7 @@ public class Member {
 //        this.idCardNumber=idCardNumber;
 //        this.password=password;
 //        this.email=email;
+//        this.phoneNumber=phoneNumber;
 //        this.gender=gender;
 //        this.birthday=birthday;
 //        this.educational=educational;

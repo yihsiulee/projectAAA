@@ -57,7 +57,8 @@
 											<input type="text" name="name" id="name" value="" placeholder="姓名" required/>
 
 										</div>
-										</form>						</td>
+										</form>
+                                    </td>
 								</tr>
 
 
@@ -65,18 +66,17 @@
 									<td align="center"><h4>身分證字號:</h4></td>
 									<td>
 										<div class="8u 12u$(xsmall)">
-											<input type="text" name="account" id="id" value="" placeholder="身分證字號" required/>
+											<input type="text" name="idCardNumber" id="id" value="" placeholder="身分證字號" required/>
 
 										</div>
 									</td>
 								</tr>
 
-
 								<tr>
 									<td align="center"><h4>密碼:</h4></td>
 									<td>
 										<div class="8u 12u$(xsmall)">
-											<input type="text" name="name" id="password1" value="" placeholder="密碼" required/>
+											<input type="text" name="password1" id="password1" value="" placeholder="密碼" required/>
 										</div>
 									</td>
 								</tr>
@@ -85,7 +85,7 @@
 									<td align="center"><h4>再次輸入密碼:</h4></td>
 									<td>
 										<div class="8u 12u$(xsmall)">
-											<input type="text" name="name" id="password2" value="" placeholder="再次輸入密碼" required/>
+											<input type="text" name="password2" id="password2" value="" placeholder="再次輸入密碼" required/>
 										</div>
 									</td>
 								</tr>
@@ -114,10 +114,10 @@
 									<td>
 
 										<div class="4u$ 12u$(xsmall)">
-											<input type="radio" name="gender" id="male" checked>
+											<input type="radio" name="gender" id="male" value=0 checked>
 											<label for="male">男</label>
 
-											<input type="radio" name="gender" id="female">
+											<input type="radio" name="gender" id="female" value=1>
 											<label for="female" >女</label>
 										</div>
 									</td>
@@ -128,7 +128,7 @@
 									<td>
 
 										<div class="6u 12u$(xsmall)">
-											<input type="text" id="datepicker" required>
+											<input type="text" name="birthday" id="datepicker" required>
 										</div>
 									</td>
 								</tr>

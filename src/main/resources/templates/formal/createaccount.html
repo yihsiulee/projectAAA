@@ -45,6 +45,7 @@
 						<p>歡迎加入我們！一起讓論文審稿變得很好玩！</p>
 					</header>
 					<caption><li><h3>基本資料</h3></li></caption>
+					<form action="/member/addMember" method="post">
 					<div class="table-wrapper">
 						<table class="alt">
 							<thead>
@@ -54,12 +55,9 @@
 								<tr>
 									<td align="center"><h4>您的姓名:</h4></td>
 									<td>
-										<form>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="name" id="name" value="" placeholder="姓名"/>
-
 										</div>
-										</form>
 									</td>
 								</tr>
 
@@ -67,12 +65,11 @@
 								<tr>
 									<td align="center"><h4>身分證字號:</h4></td>
 									<td>
-										<form>
-										<div class="8u 12u$(xsmall)">
-											<input type="text" name="account" id="id" value="" placeholder="身分證字號"/>
 
+										<div class="8u 12u$(xsmall)">
+											<input type="text" name="idCardNumber" id="idCardNumber" value="" placeholder="身分證字號"/>
 										</div>
-										</form>
+
 									</td>
 								</tr>
 
@@ -80,39 +77,37 @@
 								<tr>
 									<td align="center"><h4>密碼:</h4></td>
 									<td>
-										<form>
+
 										<div class="8u 12u$(xsmall)">
-											<input type="text" name="name" id="password" value="" placeholder="密碼"/>
-										</div>										</form>
+											<input type="text" name="password1" id="password1" value="" placeholder="密碼"/>
+										</div>
 									</td>
 								</tr>
 
 								<tr>
 									<td align="center"><h4>再次輸入密碼:</h4></td>
-									<form>
 									<td>
 										<div class="8u 12u$(xsmall)">
-											<input type="text" name="name" id="password" value="" placeholder="再次輸入密碼"/>
-										</div></form>
+											<input type="text" name="password2" id="password2" value="" placeholder="再次輸入密碼"/>
+										</div>
 									</td>
 								</tr>
 								<tr>
-									<form>
+
 									<td align="center"><h4>電子信箱:</h4></td>
 									<td>
 										<div class="8u 12u$(xsmall)">
 											<input type="email" name="email" id="email" value="" placeholder="電子信箱"/>
-										</div></form>
+										</div>
 									</td>
 								</tr>
 
 								<tr>
-									<form>
 									<td align="center"><h4>手機號碼:</h4></td>
 									<td>
 										<div class="8u 12u$(xsmall)">
 											<input type="text" name="phone" id="phone" value="" placeholder="電話號碼"/>
-										</div></form>
+										</div>
 									</td>
 								</tr>
 
@@ -120,24 +115,22 @@
 								<tr>
 									<td align="center"><h4>性別:</h4></td>
 									<td>
-										<form>
 										<div class="4u$ 12u$(xsmall)">
-											<input type="radio" name="gender" id="male" checked>
+											<input type="radio" name="gender" id="male" value=0 checked>
 											<label for="male">男</label>
 
-											<input type="radio" name="gender" id="female">
+											<input type="radio" name="gender" id="female" value=1>
 											<label for="female" >女</label>
-										</div></form>
+										</div>
 									</td>
 
 
 								<tr>
 									<td align="center"><h4>生日:</h4></td>
 									<td>
-										<form>
 										<div class="6u 12u$(xsmall)">
-											<input type="text" id="datepicker">
-										</div></form>
+											<input type="text" name="birthday"id="datepicker">
+										</div>
 									</td>
 								</tr>
 							</tbody>
@@ -157,58 +150,52 @@
 							</thead>-->
 							<tbody>
 								<tr>
-									<form>
 									<td align="center"><h4>學歷:</h4></td>
 									<td>
 										<div class="12u$">
 										<div class="select-wrapper">
 											<select name="educational" id="educational">
-												<option value="">-學歷-</option>
-												<option value="1">學士</option>
-												<option value="2">碩士</option>
-												<option value="3">博士</option>
+												<option value=0>-學歷-</option>
+												<option value=1>學士</option>
+												<option value=2>碩士</option>
+												<option value=3>博士</option>
                                             </select>							</div>
 										</div>
-									</td></form>
+									</td>
 								</tr>
 
 								<tr>
 									<td align="center"><h4>專精領域:</h4></td>
-									<form><td>
+									<td>
 										<div class="12u$">
 										<div class="select-wrapper">
 											<select name="study" id="study" />
-												<option value="">-領域-</option>
-												<option value="1">醫學</option>
-												<option value="2">生物</option>
-												<option value="3">商科</option>
-												<option value="4">農業</option>
-												<option value="5">社會</option>
-												<option value="6">資訊</option>
-												<option value="7">工程</option>
-												<option value="8">文學</option>
-												<option value="9">音樂</option>
-												<option value="10">外文</option>
-												<option value="11">歷史</option>
-												<option value="12">地理</option>
+												<option value=0>-領域-</option>
+												<option value=1>醫學</option>
+												<option value=2>生物</option>
+												<option value=3>商科</option>
+												<option value=4>農業</option>
+												<option value=5>社會</option>
+												<option value=6>資訊</option>
+												<option value=7>工程</option>
+												<option value=8>文學</option>
+												<option value=9>音樂</option>
+												<option value=10>外文</option>
+												<option value=11>歷史</option>
+												<option value=12>地理</option>
 
 										</div>
 										</div>
-									</td></form>
-
-
+									</td>
 								</tr>
 
 								<tr>
-									<form>
 									<td align="center"><h4>特殊事蹟:</h4></td>
 									<td>
 										<div class="12u$">
 											<textarea name="special" id="special" placeholder="請輸入" rows="3"></textarea>
 										</div>
 									</td>
-									</form>
-
 								</tr>
 							</tbody>
 						</table>
@@ -216,11 +203,16 @@
 
 
 					<div class="12u 12u$(xsmall)" style="text-align: right;">
-							<i class="button alt">重新填寫</i>
-							<i class="button special">送出</i>
-							
-                    </div>		</div>			</section>
+						<input class="button alt" type="reset" value="重新填寫">
+						<input class="button special" type="submit" value="送出">
+<!--							<button class="button alt">重新填寫</button>-->
+<!--							<button class="button special">送出</button>-->
+                    </div>
 
+					</form>
+				</div>
+
+			</section>
 
 		<!-- Footer -->
 			<footer id="footer">

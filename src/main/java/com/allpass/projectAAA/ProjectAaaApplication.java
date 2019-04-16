@@ -2,15 +2,9 @@ package com.allpass.projectAAA;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ViewResolver;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Controller
 @SpringBootApplication
@@ -31,7 +25,7 @@ public class ProjectAaaApplication {
 
 	@RequestMapping("/home")
 	public String home(){
-    	return "home";
+    	return "index";
 	}
 	@RequestMapping("/login")
 	public String login(){

@@ -27,7 +27,7 @@ public class MemberController {
                                     @RequestParam("password1")String password1,
                                     @RequestParam("password2")String password2,
                                     @RequestParam("email")String email,
-                                    @RequestParam("phone")String phone,
+                                    @RequestParam("phoneNumber")String phoneNumber,
                                     @RequestParam("gender")Integer gender,
                                     @RequestParam("birthday")String birthday,
                                     @RequestParam("educational")Integer educational,
@@ -37,10 +37,11 @@ public class MemberController {
         boolean passwordVerfication = MemberVerificationAndValidationUtil.MemberPasswordVerification(password1, password2);
         if (passwordVerfication) {
             member.setId(MemberIdRandomUtil.randomMemberNumber());
-
             member.setName(name);
             member.setIdCardNumber(idCardNumber);
             member.setPassword(password1);
+            member.setEmail(email);
+
             memberService.addMember(member);
             ModelAndView modelAndView = new ModelAndView("login");
 //        modelAndView.addObject("user", firtname);

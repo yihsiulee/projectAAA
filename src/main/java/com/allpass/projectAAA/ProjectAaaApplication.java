@@ -29,7 +29,7 @@ public class ProjectAaaApplication {
 	}
 	@RequestMapping("/login")
 	public String login(){
-		return "login";
+		return "memberLogin";
 	}
 	@RequestMapping("/register")
 	public String register(){

@@ -38,181 +38,187 @@
 
 
 		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="container">
+		<section id="main" class="wrapper">
+			<div class="container">
 
-					<header class="major special">
-						<h2>新創帳號</h2>
-						<p>歡迎加入我們！一起讓論文審稿變得很好玩！</p>
-					</header>
-					<caption><li><h3>基本資料</h3></li></caption>
-					<form action="/member/addMember" method="post" >
-						<div class="table-wrapper">
-						<table class="alt">
-								<tr>
-									<td align="center"><h4>您的姓名:</h4></td>
-									<td>
-										<form>
-										<div class="8u 12u$(xsmall)">
-											<input type="text" name="name" id="name" value="" placeholder="姓名" required/>
+				<header class="major special">
+					<h2>新創帳號</h2>
+					<p>歡迎加入我們！一起讓論文審稿變得很好玩！</p>
+				</header>
+				<caption><li><h3>基本資料</h3></li></caption>
+				<div class="table-wrapper">
+					<table class="alt">
+						<thead>
+						<tr></tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td align="center"><h4><p class="esstential">*</p>您的姓名:</h4></td>
+							<td>
+								<form>
+									<div class="8u 12u$(xsmall)">
+										<input type="text" name="name" id="name" value="" placeholder="姓名"/>
 
-										</div>
-										</form>						</td>
-								</tr>
-
-
-								<tr>
-									<td align="center"><h4>身分證字號:</h4></td>
-									<td>
-										<div class="8u 12u$(xsmall)">
-											<input type="text" name="account" id="id" value="" placeholder="身分證字號" required/>
-
-										</div>
-									</td>
-								</tr>
+									</div>
+								</form>
+							</td>
+						</tr>
 
 
-								<tr>
-									<td align="center"><h4>密碼:</h4></td>
-									<td>
-										<div class="8u 12u$(xsmall)">
-											<input type="text" name="name" id="password1" value="" placeholder="密碼" required/>
-										</div>
-									</td>
-								</tr>
+						<tr>
+							<td align="center"><h4><p class="esstential">*</p>身分證字號:</h4></td>
+							<td>
+								<form>
+									<div class="8u 12u$(xsmall)">
+										<input type="text" name="account" id="id" value="" placeholder="身分證字號"/>
 
-								<tr>
-									<td align="center"><h4>再次輸入密碼:</h4></td>
-									<td>
-										<div class="8u 12u$(xsmall)">
-											<input type="text" name="name" id="password2" value="" placeholder="再次輸入密碼" required/>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td align="center"><h4>電子信箱:</h4></td>
-									<td>
-										<div class="8u 12u$(xsmall)">
-											<input type="email" name="email" id="email" value="" placeholder="電子信箱" required/>
-										</div>
-									</td>
-								</tr>
-
-								<tr>
-
-									<td align="center"><h4>手機號碼:</h4></td>
-									<td>
-										<div class="8u 12u$(xsmall)">
-											<input type="text" name="phoneNumber" id="phoneNumber" value="" placeholder="電話號碼" required/>
-										</div>
-									</td>
-								</tr>
+									</div>
+								</form>
+							</td>
+						</tr>
 
 
-								<tr>
-									<td align="center"><h4>性別:</h4></td>
-									<td>
+						<tr>
+							<td align="center"><h4><p class="esstential">*</p>密碼:</h4></td>
+							<td>
+								<form>
+									<div class="8u 12u$(xsmall)">
+										<input type="text" name="name" id="password" value="" placeholder="密碼"/>
+									</div>										</form>
+							</td>
+						</tr>
 
-										<div class="4u$ 12u$(xsmall)">
-											<input type="radio" name="gender" id="male" checked>
-											<label for="male">男</label>
+						<tr>
+							<td align="center"><h4><p class="esstential">*</p>再次輸入密碼:</h4></td>
+							<form>
+								<td>
+									<div class="8u 12u$(xsmall)">
+										<input type="text" name="name" id="password" value="" placeholder="再次輸入密碼"/>
+									</div></form>
+							</td>
+						</tr>
+						<tr>
+							<form>
+								<td align="center"><h4><p class="esstential">*</p>電子信箱:</h4></td>
+								<td>
+									<div class="8u 12u$(xsmall)">
+										<input type="email" name="email" id="email" value="" placeholder="電子信箱"/>
+									</div></form>
+							</td>
+						</tr>
 
-											<input type="radio" name="gender" id="female">
-											<label for="female" >女</label>
-										</div>
-									</td>
+						<tr>
+							<form>
+								<td align="center"><h4><p class="esstential">*</p>手機號碼:</h4></td>
+								<td>
+									<div class="8u 12u$(xsmall)">
+										<input type="text" name="phone" id="phone" value="" placeholder="電話號碼"/>
+									</div></form>
+							</td>
+						</tr>
 
 
-								<tr>
-									<td align="center"><h4>生日:</h4></td>
-									<td>
+						<tr>
+							<td align="center"><h4><p class="esstential">*</p>性別:</h4></td>
+							<td>
+								<form>
+									<div class="4u$ 12u$(xsmall)">
+										<input type="radio" name="gender" id="male" checked>
+										<label for="male">男</label>
 
-										<div class="6u 12u$(xsmall)">
-											<input type="text" id="datepicker" required>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+										<input type="radio" name="gender" id="female">
+										<label for="female" >女</label>
+									</div></form>
+							</td>
 
 
-					<caption><li><h3>簡單經歷</h3></li></caption>
-					<div class="table-wrapper">
-						<table class="alt">
-							<!--<thead>
-								<tr></tr>
-									<th></th>
-									<th></th>
-									<th></th>
-								<tr>
-							</thead>-->
-							<tbody>
-								<tr>
+						<tr>
+							<td align="center"><h4><p class="esstential">*</p>生日:</h4></td>
+							<td>
+								<form>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" id="datepicker">
+									</div></form>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
 
-									<td align="center"><h4>學歷:</h4></td>
-									<td>
-										<div class="12u$">
+
+				<caption><li><h3>簡單經歷</h3></li></caption>
+				<div class="table-wrapper">
+					<table class="alt">
+						<!--<thead>
+                            <tr></tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            <tr>
+                        </thead>-->
+						<tbody>
+						<tr>
+							<form>
+								<td align="center"><h4><p class="esstential">*</p>學歷:</h4></td>
+								<td>
+									<div class="12u$">
 										<div class="select-wrapper">
-											<select name="educational" id="educational" required>
+											<select name="educational" id="educational">
 												<option value="">-學歷-</option>
 												<option value="1">學士</option>
 												<option value="2">碩士</option>
 												<option value="3">博士</option>
-                                            </select>							</div>
 										</div>
-									</td>
-								</tr>
+									</div>
+								</td></form>
+						</tr>
 
-								<tr>
-									<td align="center"><h4>專精領域:</h4></td>
-									<td>
-										<div class="12u$">
-										<div class="select-wrapper">
-											<select name="study" id="study" required />
-												<option value="">-領域-</option>
-												<option value="1">醫學</option>
-												<option value="2">生物</option>
-												<option value="3">商科</option>
-												<option value="4">農業</option>
-												<option value="5">社會</option>
-												<option value="6">資訊</option>
-												<option value="7">工程</option>
-												<option value="8">文學</option>
-												<option value="9">音樂</option>
-												<option value="10">外文</option>
-												<option value="11">歷史</option>
-												<option value="12">地理</option>
+						<tr>
+							<td align="center"><h4><p class="esstential">*</p>專精領域:</h4></td>
+							<form><td>
+								<div class="12u$">
+									<div class="select-wrapper">
+										<select name="study" id="study" />
+										<option value="">-領域-</option>
+										<option value="1">醫學</option>
+										<option value="2">生物</option>
+										<option value="3">商科</option>
+										<option value="4">農業</option>
+										<option value="5">社會</option>
+										<option value="6">資訊</option>
+										<option value="7">工程</option>
+										<option value="8">文學</option>
+										<option value="9">音樂</option>
+										<option value="10">外文</option>
+										<option value="11">歷史</option>
+										<option value="12">地理</option>
 
-										</div>
-										</div>
-									</td>
-
-
-								</tr>
-
-								<tr>
-
-									<td align="center"><h4>特殊事蹟:</h4></td>
-									<td>
-										<div class="12u$">
-											<textarea name="special" id="special" placeholder="請輸入" rows="3"></textarea>
-										</div>
-									</td>
-
-								</tr>
-							</tbody>
-						</table>
-
-					</div>
+									</div>
+								</div>
+							</td></form>
 
 
-					<div class="12u 12u$(xsmall)" style="text-align: right;">
-						<input class="button alt" type="reset" value="重新填寫">
-						<input class="button special" type="submit" value="送出">
+						</tr>
 
-					</div>
-					</form>
+						<tr>
+							<form>
+								<td align="center"><h4>特殊事蹟:</h4></td>
+								<td>
+									<div class="12u$">
+										<textarea name="special" id="special" placeholder="請輸入" rows="3"></textarea>
+									</div>
+								</td>
+							</form>
+
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<div class="12u 12u$(xsmall)" style="text-align: right;">
+					<i class="button alt">重新填寫</i>
+					<i class="button special">送出</i>
 
 				</div>			</section>
 

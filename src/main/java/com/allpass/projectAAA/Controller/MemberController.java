@@ -18,11 +18,11 @@ public class MemberController {
     @Resource
     private MemberService memberService;
     @RequestMapping(value = "/regist")
-    public String getAddCustomerView(){
+    public String getAddMemberView(){
         return "memberRegist";
     }
     @PostMapping(value = "/addMember",params = {"name","idCardNumber","password1","password2","email","phone","gender","birthday","educational","study","special"})
-    public ModelAndView addCustomer(@RequestParam("name")String name,
+    public ModelAndView addMember(@RequestParam("name")String name,
                                     @RequestParam("idCardNumber")String idCardNumber,
                                     @RequestParam("password1")String password1,
                                     @RequestParam("password2")String password2,

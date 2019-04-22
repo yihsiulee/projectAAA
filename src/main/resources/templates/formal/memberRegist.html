@@ -26,15 +26,16 @@
 			</header>
 
 		<!-- Nav -->
-			<nav id="nav">
-				<ul class="links">
-					<li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
-					<li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
-					<li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
-					<li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
-					<li><a class="fa fa-question-circle"href="qa.html">&nbsp;&nbsp;Q&A</a></li>
-				</ul>
-			</nav>
+		<nav id="nav">
+			<ul class="links">
+				<li>><a class="fa fa-home" th:href="@{/home}">&nbsp;&nbsp;Home</a></li>
+				<li><a class="fa fa-upload" th:href="@{/articlePost.html}">&nbsp;&nbsp;Post</a></li>
+				<li><a class="fa fa-check-circle" th:href="@{/articleFeedback.html}">&nbsp;FeedBack</a></li>
+				<li><a class="fa fa-flag" th:href="@{/activityManagment.html}"> Activity</a></li>
+				<li><a class="fa fa-users" th:href="@{/memberInfo.html}">&nbsp;&nbsp;My Account</a></li>
+				<li><a class="fa fa-question-circle"th:href="@{/qa.html}">&nbsp;&nbsp;Q&A</a></li>
+			</ul>
+		</nav>
 
 
 		<!-- Main -->
@@ -168,6 +169,7 @@
 												<option value="1">學士</option>
 												<option value="2">碩士</option>
 												<option value="3">博士</option>
+											</select>
 										</div>
 									</div>
 								</td></form>
@@ -219,6 +221,7 @@
 				<div class="12u 12u$(xsmall)" style="text-align: right;">
 					<i class="button alt">重新填寫</i>
 					<i class="button special">送出</i>
+				</div>
 
 				</div>			</section>
 

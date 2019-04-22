@@ -10,13 +10,13 @@ import javax.annotation.Resource;
 @Controller
 @RequestMapping(value = "/article")
 public class ArticleController {
-    @Resource
+//    @Resource
 //    private articleService articleService;
-    @RequestMapping(value = "/post")
-    public ModelAndView addArticle(){
-
-    }
-    @PostMapping
-    public String getAddArticleView() { return "articleReview";}
+//    @RequestMapping(value = "/post")
+//    public ModelAndView addArticle(){
+//
+//    }
+//    @PostMapping
+//    public String getAddArticleView() { return "articleReview";}
 
 }

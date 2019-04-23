@@ -31,7 +31,7 @@ public class MemberController {
     }
 
     @PostMapping(value = "/register",params = {"name","idCardNumber","password1","password2","email","gender","birthday","phoneNumber","educational","study","special"})
-    public ModelAndView addCustomer(@RequestParam("name")String name,
+    public ModelAndView register(@RequestParam("name")String name,
                                     @RequestParam("idCardNumber")String idCardNumber,
                                     @RequestParam("password1")String password1,
                                     @RequestParam("password2")String password2,

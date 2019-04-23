@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Paper Check</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+		
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">Paper Check!</a></h1>
+				<a href="#nav">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="nav">
+				<ul class="links">
+					<li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
+					<li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
+					<li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
+					<li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
+					<li><a class="fa fa-question-circle"href="qa.html">&nbsp;&nbsp;Q&A</a></li>
+				</ul>
+			</nav>
+
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<h2>上傳論文</h2>
+					</header>
+
+			
+					
+						<form>
+							<!--<div class="row uniform 50%">
+							</div>-->
+						<div class="table">
+							<table class="alt">
+								<thead>
+									<tr></tr>
+									<tr></tr>
+								</thead>
+								<tbody>
+									<tr><div class="6u 12u$">
+										<td>
+											<h4 style="text-align: center;">論文名稱：</h4>
+										</td>
+										<td colspan="3">
+											<input type="text" name="articlename" id="articlename" value="" placeholder="論文名稱" />
+										</td>
+									</div></tr>
+
+									<tr><div class="6u 12u$">
+										<td>
+											<h4 style="text-align: center;">論文領域：</h4>
+										</td>
+										<td colspan="3">
+											<div class="select-wrapper">
+											<select name="articlestudy" id="articlestudy">
+												<option value="">-領域-</option>
+												<option value="1">醫學</option>
+												<option value="2">生物</option>
+												<option value="3">商科</option>
+												<option value="4">農業</option>
+												<option value="5">社會</option>
+												<option value="6">資訊</option>
+												<option value="7">工程</option>
+												<option value="8">文學</option>
+												<option value="9">音樂</option>
+												<option value="10">外文</option>
+												<option value="11">歷史</option>
+												<option value="12">地理</option>
+											</select>
+											</div>											
+										</td>
+									</div></tr>
+
+									<tr><div class="6u 12u$">
+										<td>
+											<h4 style="text-align: center;">上傳檔案：</h4>
+										</td>
+										<td colspan="3">
+											
+											<label for="file-uploads" class="button">
+												<i class="fa fa-file-text-o"></i>上傳檔案
+											</label>
+											<input id="file-uploads" style="display:none;" type="file">
+										</td>
+									</div></tr>
+
+									<tr><div class="6u 12u$(xsmall)" >
+										<td>
+											<h4 style="text-align: center;">字數統計：</h4>
+										</td>
+										<td>
+											<input type="number" min="0" id="textnumber"placeholder="字數統計" style="width: 80%" />
+										</td>
+										<td>
+											<h4 style="text-align: center;">公式數量：</h4>
+										</td>
+										<td>
+											<input type="number" min="0" id="formulanumber"placeholder="公式數量" style="width: 80%" />
+										</td>
+
+									</div></tr>
+								</tbody>
+							</table>
+
+<!-- 						<div class="12u 12u$(xsmall)" style="text-align: right;">
+							<h4>所費代幣:{th:tokenspend}</h4>
+							{% if token"<"spendtoken;print<sub>代幣不足!</sub>%}
+						</div> -->	
+
+						<br>
+						<div class="12u$ 12u$(xsmall)">
+							<input type="checkbox" id="myself" name="myself" required>
+							<label for="myself" style="font-weight: bold">我已詳細確認文章為我個人所寫，引用他人文章之處有進行標示</label>
+						</div>
+						
+
+						<br>
+						<div class="12u 12u$(xsmall)" style="text-align: right;">
+							<input type="reset" value="重新填寫" class="button alt">
+							<input type="submit" value="送出" class="button special">
+							
+						</div>
+							
+						</div>
+
+						</form>
+					
+
+					</div>
+				
+			</section>
+
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-facebook">
+							<span class="label">Facebook</span>
+						</a></li>
+						<li><a href="#" class="icon fa-twitter">
+							<span class="label">Twitter</span>
+						</a></li>
+						<li><a href="#" class="icon fa-instagram">
+							<span class="label">Instagram</span>
+						</a></li>
+						<li><a href="#" class="icon fa-linkedin">
+							<span class="label">LinkedIn</span>
+						</a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled.</li>
+						<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
+						<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script th:src="@{/assets/js/jquery.min.js}"></script>
+			<script th:src="@{/assets/js/skel.min.js}"></script>
+			<script th:src="@{/assets/js/util.js}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script th:src="@{/assets/js/main.js}"></script>
+			<script type="text/javascript">
+					$('#file-uploads').change(function() {
+  						var i = $(this).prev('label').clone();
+  						var file = $('#file-uploads')[0].files[0].name;
+  						$(this).prev('label').text(file);
+						});
+			</script>
+			
+
+	</body>
+</html>

@@ -1,10 +1,16 @@
 package com.allpass.projectAAA.Do;
 
+
+
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+
+
 @Entity
-public class Member {
+public class  Member {
     @Id
     private String id;
     private String name;
@@ -18,7 +24,6 @@ public class Member {
     private String special;
     private Float tokenBalance;
     private String phoneNumber;
-
 //    public Member(
 //            String id,
 //            String name,
@@ -30,7 +35,8 @@ public class Member {
 //            String birthday,
 //            Integer educational,
 //            Integer study,
-//            Float tokenBalance) {
+//            Float tokenBalance
+//            ) {
 //        this.id=id;
 //        this.name=name;
 //        this.idCardNumber=idCardNumber;
@@ -42,7 +48,10 @@ public class Member {
 //        this.educational=educational;
 //        this.study=study;
 //        this.tokenBalance=tokenBalance;
-//    }
+//   }
+
+
+
 
     public void setId(String id) {
         this.id = id;
@@ -132,5 +141,74 @@ public class Member {
 
     public Float getTokenBalance() {
         return tokenBalance;
+    }
+    enum Gender{
+        Male{
+            @Override
+            public String toString(){
+                return "男";
+            }
+        },Female{
+            @Override
+            public String toString(){
+                return "女";
+            }
+        }
+    }
+    enum Educational{
+        Bachelor{
+            @Override
+            public String toString(){
+                return "學士";
+            }
+        },Master{
+            @Override
+            public String toString(){
+                return "碩士";
+            }
+        },PhD{
+            @Override
+            public String toString(){
+                return "博士";
+            }
+        }
+    }
+    enum Study{
+        Medicine{
+            @Override
+            public String toString(){
+                return "醫學";
+            }
+        },Biology{
+            @Override
+            public String toString(){
+                return "生科";
+            }
+        },Business{
+            @Override
+            public String toString(){
+                return "商科";
+            }
+        },Information{
+            @Override
+            public String toString(){
+                return "資訊";
+            }
+        },Engineer{
+            @Override
+            public String toString(){
+                return "工程";
+            }
+        },Art{
+            @Override
+            public String toString(){
+                return "文藝";
+            }
+        },Society{
+            @Override
+            public String toString(){
+                return "社會科學";
+            }
+        }
     }
 }

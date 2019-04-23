@@ -1,0 +1,9 @@
+package com.allpass.projectAAA.Security;
+
+public class SecurityConstants {
+    public static final String MEMBER_LOGIN_URL="/member/login";
+    public static final String MEMBER_REGISTER_URL="/member/register";
+    public static final String MEMBER_INDEX_URL="/";
+    public static final String H2_CONSOLE="/h2/**";
+    public static final String MEMBER_LOGOUT_URL="/member/logout";
+}

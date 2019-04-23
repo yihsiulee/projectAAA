@@ -1,6 +1,7 @@
 package com.allpass.projectAAA.Controller;
 
 import com.allpass.projectAAA.Do.Member;
+import com.allpass.projectAAA.Security.MemberDetailsServiceImp;
 import com.allpass.projectAAA.Service.MemberService;
 import com.allpass.projectAAA.util.MemberIdRandomUtil;
 import com.allpass.projectAAA.util.MemberVerificationAndValidationUtil;
@@ -17,19 +18,19 @@ import javax.annotation.Resource;
 public class MemberController {
     @Resource
     private MemberService memberService;
+    @Resource
+    private  MemberDetailsServiceImp memberDetailsServiceImp;
 
     @RequestMapping(value = "/login")
-    public String loginPage(){ return "login";}
-
-    @PostMapping(value="/memberVerification")
+    public String loginPage(){ return "memberLogin"; }
 
 
-    @RequestMapping(value = "/regist")
-    public String registPage(){
-        return "createaccount";
+    @RequestMapping(value = "/register")
+    public String registerPage(){
+        return "memberRegister";
     }
 
-    @PostMapping(value = "/addMember",params = {"name","idCardNumber","password1","password2","email","gender","birthday","phoneNumber","educational","study","special"})
+    @PostMapping(value = "/register",params = {"name","idCardNumber","password1","password2","email","gender","birthday","phoneNumber","educational","study","special"})
     public ModelAndView addCustomer(@RequestParam("name")String name,
                                     @RequestParam("idCardNumber")String idCardNumber,
                                     @RequestParam("password1")String password1,
@@ -41,9 +42,12 @@ public class MemberController {
                                     @RequestParam("educational")Integer educational,
                                     @RequestParam("study")Integer study,
                                     @RequestParam("special")String special,
-                                    Member member) {
-        boolean passwordVerfication = MemberVerificationAndValidationUtil.MemberPasswordVerification(password1, password2);
-        if (passwordVerfication && !password1.isEmpty()&& !password2.isEmpty()) {
+                                    Member member
+                                   ) {
+        boolean passwordVerification = MemberVerificationAndValidationUtil.MemberPasswordVerification(password1, password2);
+        boolean idCardNumberVerification=memberService.verifyIdCardNumber(idCardNumber);
+
+        if (idCardNumberVerification && passwordVerification && !password1.isEmpty()&& !password2.isEmpty()) {
             member.setId(MemberIdRandomUtil.randomMemberNumber());
             member.setName(name);
             member.setIdCardNumber(idCardNumber);
@@ -56,20 +60,26 @@ public class MemberController {
             member.setStudy(study);
             member.setSpecial(special);
             memberService.addMember(member);
-            ModelAndView modelAndView = new ModelAndView("login");
+            ModelAndView modelAndView = new ModelAndView("redirect:/member/login");
             return modelAndView;
         }else {
-            ModelAndView modelAndView = new ModelAndView("index");
+            ModelAndView modelAndView = new ModelAndView("redirect:/");
             return modelAndView;
         }
 
     }
 
     @RequestMapping(value = "/forgotPassword")
-    public String forgotPage(){return "forgetpassword";}
+    public String forgotPage(){return "memberForgot";}
 
-//    @PostMapping( value = "/sendPassword")
+//    @PostMapping( value = "/forgotPassword")
+@RequestMapping(value = "/memberInfo")
+public ModelAndView InfoPage(){
 
+    ModelAndView modelAndView = new ModelAndView("memberInfo");
+    modelAndView.addObject("name",memberService.getMemberInfo("ddd"));
+        return modelAndView;
+    }
 
 
 

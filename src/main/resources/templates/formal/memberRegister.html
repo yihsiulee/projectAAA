@@ -46,7 +46,7 @@
 						<p>歡迎加入我們！一起讓論文審稿變得很好玩！</p>
 					</header>
 					<caption><li><h3>基本資料</h3></li></caption>
-					<form action="/member/addMember" method="post" >
+					<form action="/member/register" method="post" >
 						<div class="table-wrapper">
 						<table class="alt">
 								<tr>
@@ -76,7 +76,7 @@
 									<td align="center"><h4>密碼:</h4></td>
 									<td>
 										<div class="8u 12u$(xsmall)">
-											<input type="text" name="password1" id="password1" value="" placeholder="密碼" required/>
+											<input type="password" name="password1" id="password1" value="" placeholder="密碼" required/>
 										</div>
 									</td>
 								</tr>
@@ -85,7 +85,7 @@
 									<td align="center"><h4>再次輸入密碼:</h4></td>
 									<td>
 										<div class="8u 12u$(xsmall)">
-											<input type="text" name="password2" id="password2" value="" placeholder="再次輸入密碼" required/>
+											<input type="password" name="password2" id="password2" value="" placeholder="再次輸入密碼" required/>
 										</div>
 									</td>
 								</tr>
@@ -156,9 +156,9 @@
 										<div class="select-wrapper">
 											<select name="educational" id="educational" required>
 												<option value="">-學歷-</option>
-												<option value="1">學士</option>
-												<option value="2">碩士</option>
-												<option value="3">博士</option>
+												<option value=0>學士</option>
+												<option value=1>碩士</option>
+												<option value=2>博士</option>
                                             </select>							</div>
 										</div>
 									</td>
@@ -171,19 +171,12 @@
 										<div class="select-wrapper">
 											<select name="study" id="study" required />
 												<option value="">-領域-</option>
-												<option value="1">醫學</option>
-												<option value="2">生物</option>
-												<option value="3">商科</option>
-												<option value="4">農業</option>
-												<option value="5">社會</option>
-												<option value="6">資訊</option>
-												<option value="7">工程</option>
-												<option value="8">文學</option>
-												<option value="9">音樂</option>
-												<option value="10">外文</option>
-												<option value="11">歷史</option>
-												<option value="12">地理</option>
-
+												<option value=0>醫學</option>
+												<option value=1>生科</option>
+												<option value=2>商科</option>
+												<option value=3>資訊</option>
+												<option value=4>工程</option>
+												<option value=5>社會科學</option>
 										</div>
 										</div>
 									</td>
@@ -255,8 +248,7 @@
     				$( "#datepicker" ).datepicker({
       					changeMonth: true,
       					changeYear: true,
-						yearRange:"1910:2030",
-						shortYearCutoff:-10
+						yearRange:"1910:2030"
     				});
   				} );
   			</script>

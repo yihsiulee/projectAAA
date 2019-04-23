@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 public class ProjectAaaApplication {
 
-    @RequestMapping("/")
+    @RequestMapping("/aa")
 	public String aa(){
 		return "hello spring boost";
 	}
@@ -23,13 +23,11 @@ public class ProjectAaaApplication {
 		return "test";//放檔案的名字
 	}
 
-	@RequestMapping("/home")
-	public String home(){
-    	return "index";
-	}
+	@RequestMapping("/")
+	public String home(){ return "index"; }
 	@RequestMapping("/login")
 	public String login(){
-		return "login";
+		return "memberLogin";
 	}
 	@RequestMapping("/register")
 	public String register(){
@@ -58,8 +56,9 @@ public class ProjectAaaApplication {
 
 
 	public static void main(String[] args) {
-        DatabaseServer.startH2Server();
+		DatabaseServer.startH2Server();
 		SpringApplication.run(ProjectAaaApplication.class, args);
+
 	}
 //	@Bean
 //	public ViewResolver viewResolver() {

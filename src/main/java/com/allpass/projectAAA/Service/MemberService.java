@@ -5,7 +5,7 @@ import com.allpass.projectAAA.Do.Member;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
+
 
 @Service
 public class MemberService {
@@ -27,12 +27,25 @@ public class MemberService {
 //       customerdao.exists(new Customer());
 //        return true;
 //    }
-    public void  findAllUsername() {
-        ArrayList<String> allUserName = null;
-        for (Member customer : memberDao.findAll()) {
-//            allUserName.add(customer.getFirstName());
-            System.out.println(customer.getName());
-        }
-//
+    public Member getMemberInfo(String id){
+        Member member=memberDao.findById(id).get();
+        return member;
+
     }
+    public boolean verifyIdCardNumber(String idCardNumber){
+        if(memberDao.findByIdCardNumber(idCardNumber)==null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+//    public List<Member> findAll() {
+//        List<Member> allUserName = null;
+//        for (Member member : memberDao.findAll()) {
+////            allUserName.add(customer.getFirstName());
+//          allUserName.add(member);
+//        }
+//        return allUserName;
+//    }
+
 }

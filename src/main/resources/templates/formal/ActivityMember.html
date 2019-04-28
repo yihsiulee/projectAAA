@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Paper Review</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+<body>
+
+
+
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="container">
+
+        <header class="major special">
+            <h2>參與者</h2>
+            <p>{th:activityname}</p>
+        </header>
+
+
+
+        <form>
+            <div class="table-wrapper" style="width:40%;margin-left: auto;margin-right: auto" >
+                <!-- <table class="alt" > -->
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Assign</th>
+                        <th>Name</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td style="width: 20%" >
+                            <label class="containerbox"><input type="checkbox" >
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>{activityparticipant}</td>
+
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" >
+                            <label class="containerbox"><input type="checkbox" >
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>{activityparticipant}</td>
+
+                    </tr>
+                    <tr>
+                        <td style="width: 20%" >
+                            <label class="containerbox"><input type="checkbox" >
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>{activityparticipant}</td>
+
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+
+            <div class="12u 12u$(xsmall)" style="text-align: right;">
+                <input class="button alt" type="reset" value="重新填寫">
+                <input class="button special" type="submit" value="送出">
+
+            </div>
+        </form>
+
+    </div>
+</section>
+
+
+
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

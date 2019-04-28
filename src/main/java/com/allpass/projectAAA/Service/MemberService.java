@@ -1,7 +1,7 @@
 package com.allpass.projectAAA.Service;
 
 import com.allpass.projectAAA.Dao.MemberDao;
-import com.allpass.projectAAA.Do.Member;
+import com.allpass.projectAAA.Model.Member;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,10 +12,10 @@ public class MemberService {
     @Resource
     private MemberDao memberDao;
 
-    public void addMember(Member member){
+    public void save(Member member){
         memberDao.save(member);
     }
-    public void deleteMember(String memberId){
+    public void deleteMember(Long memberId){
         memberDao.deleteById(memberId);
     }
     //    public Customer findByLastName(){
@@ -27,7 +27,7 @@ public class MemberService {
 //       customerdao.exists(new Customer());
 //        return true;
 //    }
-    public Member getMemberInfo(String id){
+    public Member getMemberInfo(Long id){
         Member member=memberDao.findById(id).get();
         return member;
 

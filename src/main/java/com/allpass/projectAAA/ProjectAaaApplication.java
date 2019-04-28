@@ -58,21 +58,7 @@ public class ProjectAaaApplication {
 	public static void main(String[] args) {
 		DatabaseServer.startH2Server();
 		SpringApplication.run(ProjectAaaApplication.class, args);
-
 	}
-//	@Bean
-//	public ViewResolver viewResolver() {
-//		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-//		templateResolver.setTemplateMode("XHTML");
-//		templateResolver.setPrefix("formal/");
-//		templateResolver.setSuffix(".html");
-//
-//		SpringTemplateEngine engine = new SpringTemplateEngine();
-//		engine.setTemplateResolver(templateResolver);
-//
-//		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-//		viewResolver.setTemplateEngine(engine);
-//		return viewResolver;
-//	}
+
 }
 

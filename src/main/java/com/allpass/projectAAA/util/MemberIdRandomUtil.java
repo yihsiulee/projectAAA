@@ -5,12 +5,14 @@ import java.text.SimpleDateFormat;
 public class MemberIdRandomUtil {
     public static SimpleDateFormat date = new SimpleDateFormat("yyyyMMddHHmmssSS");
 
-    public synchronized static String randomMemberNumber(){
+    public synchronized static Long randomMemberNumber(){
         try {
             Thread.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return  date.format(System.currentTimeMillis());
+        Long Id=Long.parseLong(date.format(System.currentTimeMillis()));
+
+        return Id;
     }
 }

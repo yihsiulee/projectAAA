@@ -1,25 +1,29 @@
 package com.allpass.projectAAA.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.File;
+import java.util.Set;
 
 @Entity
 public class Article {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long articleId;
+    @Column(name = "ARTICLE_ID")
+    private Long id;
     private String articleName;
     private String postTime;
-    private String deadline;
-    private String checkedTime;
+//    private String deadline;
+//    private String checkedTime;
     private Integer articleStudy;
     private File uploadFile;
     private Integer textNumber;
     private Integer formulaNumber;
-    private String reviewText;
+    private String articleAddress;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="ACTIVITY_ID_FK")
+    private Activity activity;
+    @OneToMany(mappedBy="article")
+    private Set<ReviewArticle> reviewArticle;
 
 
 //    public Article(
@@ -52,9 +56,9 @@ public class Article {
         return uploadFile;
     }
 
-    public Long getArticleId() {
-        return articleId;
-    }
+    public void setId(Long id) { this.id = id; }
+
+    public Long getId() { return id; }
 
     public void setArticleStudy(Integer articleStudy) {
         this.articleStudy = articleStudy;
@@ -76,29 +80,25 @@ public class Article {
         this.articleName = articleName;
     }
 
-    public void setArticleName(Long articleId) {
-        this.articleId = articleId;
-    }
-
     public String getArticleName() {
         return articleName;
     }
 
-    public void setCheckedTime(String checkedTime) {
-        this.checkedTime = checkedTime;
-    }
+//    public void setCheckedTime(String checkedTime) {
+//        this.checkedTime = checkedTime;
+//    }
+//
+//    public String getCheckedTime() {
+//        return checkedTime;
+//    }
 
-    public String getCheckedTime() {
-        return checkedTime;
-    }
-
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
-    }
-
-    public String getDeadline() {
-        return deadline;
-    }
+//    public void setDeadline(String deadline) {
+//        this.deadline = deadline;
+//    }
+//
+//    public String getDeadline() {
+//        return deadline;
+//    }
 
     public void setPostTime(String postTime) {
         this.postTime = postTime;
@@ -116,11 +116,7 @@ public class Article {
         return formulaNumber;
     }
 
-    public void setReviewText(String reviewText) {
-        this.reviewText = reviewText;
-    }
+    public void setActivity(Activity activity) { this.activity = activity; }
 
-    public String getReviewText() {
-        return reviewText;
-    }
+    public Activity getActivity() { return activity; }
 }

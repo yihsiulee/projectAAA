@@ -2,7 +2,7 @@ package com.allpass.projectAAA.Security;
 
 import com.allpass.projectAAA.Dao.MemberDao;
 import com.allpass.projectAAA.Model.Member;
-import com.allpass.projectAAA.Model.Role;
+import com.allpass.projectAAA.Model.Member_Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -50,7 +50,7 @@ public class MemberDetailsServiceImp implements UserDetailsService {
 //        return userRepository.save(user);
 //    }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Member_Role> roles){
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());

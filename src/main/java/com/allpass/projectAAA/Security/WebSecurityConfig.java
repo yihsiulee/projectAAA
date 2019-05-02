@@ -69,8 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //        return new InMemoryUserDetailsManager(user);
 //    }
-@Bean
-public BCryptPasswordEncoder passwordEncoder(){
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
     return new BCryptPasswordEncoder();
 }
     @Bean

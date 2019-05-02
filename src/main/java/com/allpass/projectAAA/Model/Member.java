@@ -1,17 +1,16 @@
 package com.allpass.projectAAA.Model;
 
 
-
-
-
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "idCardNumber"))
 public class  Member  {
     @Id
+    @Column(name = "MEMBER_ID")
     private Long id;
     private String name;
     private String idCardNumber;
@@ -28,10 +27,15 @@ public class  Member  {
     @JoinTable(
             name = "members_roles",
             joinColumns = @JoinColumn(
-                    name = "member_id", referencedColumnName = "id"),
+                    name = "member_id", referencedColumnName = "MEMBER_ID"),
             inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+                    name = "role_id", referencedColumnName = "ROLE_ID"))
+//    @OneToOne(cascade=CascadeType.ALL)
+//    @JoinColumn(name="MEMBER_ROLE_ID", referencedColumnName="ROLE_ID")
+    private Collection<Member_Role> roles;
+    @ManyToMany(mappedBy = "activityParticipants")
+    private Set<Activity> activity;
+
     public Member(){
 
     }
@@ -75,7 +79,7 @@ public class  Member  {
             Integer educational,
             Integer study,
             Float tokenBalance,
-            Collection<Role> roles
+            Collection<Member_Role> roles
     ) {
         this.id=id;
         this.name=name;
@@ -184,11 +188,11 @@ public class  Member  {
         return tokenBalance;
     }
 
-    public Collection<Role> getRoles() {
+    public Collection<Member_Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Collection<Member_Role> roles) {
         this.roles = roles;
     }
 

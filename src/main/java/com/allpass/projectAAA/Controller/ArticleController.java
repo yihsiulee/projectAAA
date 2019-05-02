@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ArticleController {
 //    @Resource
 //    private articleService articleService;
-//    @RequestMapping(value = "/post")
-//    public ModelAndView addArticle(){
-//
-//    }
+    @RequestMapping(value = "/post")
+    public String addArticle(){ return "articlePost";}
 //    @PostMapping
 //    public String getAddArticleView() { return "articleReview";}
 

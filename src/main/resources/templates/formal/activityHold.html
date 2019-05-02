@@ -26,14 +26,14 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">Paper Check!</a></h1>
+				<h1><a href="\">Paper Check!</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
 
 		<!-- Nav -->
 			<nav id="nav">
 				<ul class="links">
-					<li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
+					<li>><a class="fa fa-home" href="\">&nbsp;&nbsp;Home</a></li>
 					<li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
 					<li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
 					<li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
@@ -50,7 +50,7 @@
 						<h2>舉辦活動</h2>
 					</header>
 
-					<form>
+					<form action="/activity/hold" method="post">
 
 						<div class="table">
 							<table class="alt">
@@ -64,7 +64,7 @@
 											<h4 style="text-align: center;">活動名稱：</h4>
 										</td>
 										<td colspan="3">
-											<input type="text" name="articlename" id="articlename" value="" placeholder="活動名稱" />
+											<input type="text" name="activityName" id="activityName" value="" placeholder="活動名稱" required/>
 										</td>
 									</div></tr>
 
@@ -74,7 +74,7 @@
 											<h4 style="text-align: center;">活動內容：</h4>
 										</td>
 										<td colspan="3">
-											<textarea type="text" name="articlename" id="articlename" value="" placeholder="活動內容" rows="3" ></textarea> 
+											<textarea type="text" name="activityContent" id="activityContent" value="" placeholder="活動內容" rows="3" required></textarea>
 										</td>
 									</div></tr>
 
@@ -84,9 +84,9 @@
 											<h4 style="text-align: center;">活動時間：</h4>
 										</td>
 										<td colspan="3"><div class="2u 12u$">
-											<input type="text" id="activitystart" name="activitystart" placeholder="開始時間" /></div>
+											<input type="text" id="datepicker"  name="activityStart" placeholder="開始時間" required/></div>
 											<div class="2u$ 12u$">
-											<input type="text" id="activityend" name="activityend" placeholder="	結束時間" /></div>
+											<input type="text" id="" required name="activityEnd" placeholder="結束時間" required/></div>
 										</td>
 									</div></tr>
 
@@ -100,7 +100,7 @@
 											<label for="file-uploads" class="button">
 												<i class="fa fa-file-text-o"></i>上傳檔案
 											</label>
-											<input id="file-uploads" style="display:none;" type="file" name="activityimg">
+											<input id="file-uploads" style="display:none;" type="file" name="activityImg">
 										</td>
 									</div></tr>
 
@@ -111,13 +111,13 @@
 											<h4 style="text-align: center;">文章數量：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" id="textnumber"placeholder="文章數量：" style="width: 80%" />
+											<input type="number" min="0" onchange="updateParticipantNumber(this.value)" name="articleNumber" id="articleNumber"placeholder="文章數量：" style="width: 80%" required/>
 										</td>
 										<td>
 											<h4 style="text-align: center;">參與人數：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" id="formulanumber"placeholder="參與人數：" style="width: 80%" />
+											<input type="number" name="participantNumber" id="participantNumber"placeholder="參與人數：" style="width: 80%" required/>
 										</td>
 
 									</div></tr>
@@ -169,6 +169,11 @@
 			</footer>
 
 		<!-- Scripts -->
+		<script>
+			function updateParticipantNumber(value){
+			document.getElementById("participantNumber").value = value*3;
+			}
+		</script>
 			<script th:src="@{/assets/js/jquery.min.js}"></script>
 			<script th:src="@{/assets/js/skel.min.js}"></script>
 			<script th:src="@{/assets/js/util.js}"></script>

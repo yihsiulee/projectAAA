@@ -1,22 +1,19 @@
 package com.allpass.projectAAA.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Role {
+public class Member_Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="ROLE_ID")
     private Long id;
     private String name;
 
-    public Role() {
-    }
+    public Member_Role(){}
 
-    public Role(String name) {
+    public Member_Role(String name) {
         this.name = name;
     }
 

@@ -27,8 +27,8 @@ public class MemberService {
 //       customerdao.exists(new Customer());
 //        return true;
 //    }
-    public Member getMemberInfo(Long id){
-        Member member=memberDao.findById(id).get();
+    public Member getMemberInfo(String idCardNumber){
+        Member member=memberDao.findByIdCardNumber(idCardNumber);
         return member;
 
     }

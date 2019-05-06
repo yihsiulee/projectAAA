@@ -1,12 +1,13 @@
 package com.allpass.projectAAA.Controller;
 
 import com.allpass.projectAAA.Model.Member;
-import com.allpass.projectAAA.Model.Role;
+import com.allpass.projectAAA.Model.Member_Role;
 import com.allpass.projectAAA.Security.MemberDetailsServiceImp;
 import com.allpass.projectAAA.Service.MemberService;
 import com.allpass.projectAAA.util.MemberIdRandomUtil;
 import com.allpass.projectAAA.util.MemberVerificationAndValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 @Controller
 @RequestMapping(value = "/member")
 public class MemberController {
+
     @Resource
     private MemberService memberService;
     @Resource
@@ -58,9 +60,9 @@ public class MemberController {
             Member member = new Member();
             member.setId(MemberIdRandomUtil.randomMemberNumber());
             member.setName(name);
-            member.setIdCardNumber(idCardNumber);
+            member.setIdCardNumber(idCardNumber.toUpperCase());
             member.setPassword(passwordEncoder.encode(password1));
-            member.setRoles(Arrays.asList(new Role("ROLE_USER")));
+            member.setRoles(Arrays.asList(new Member_Role("ROLE_USER")));
             member.setEmail(email);
             member.setPhoneNumber(phoneNumber);
             member.setGender(gender);
@@ -84,12 +86,13 @@ public class MemberController {
     }
 
 //    @PostMapping( value = "/forgotPassword")
-//@RequestMapping(value = "/memberInfo")
-//public ModelAndView InfoPage(){
-//
-//    ModelAndView modelAndView = new ModelAndView("memberInfo");
-//    modelAndView.addObject("name",memberService.getMemberInfo(44444455555555555));
-//        return modelAndView;
-//    }
+@RequestMapping(value = "/memberInfo")
+public ModelAndView InfoPage(Authentication authentication){
+
+    ModelAndView modelAndView = new ModelAndView("memberInfo");
+    modelAndView.addObject("name",memberService.getMemberInfo(authentication.getName()).getName());
+
+    return modelAndView;
+    }
 
 }

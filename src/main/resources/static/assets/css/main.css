@@ -60,7 +60,7 @@
 		margin-right: auto;
 	}
 
-	.container.\31 \3125\25 {
+	.container.\31 \31\25\25 {
 		width: 100%;
 		max-width: 100em;
 		min-width: 80em;
@@ -1761,7 +1761,9 @@
 	}
 
 	a {
-		color: #51BAA4;
+		/*color: #51BAA4;*/
+		color:#000000;
+		text-decoration: none;
 	}
 
 	strong, b {
@@ -4132,7 +4134,7 @@
 /* Footer */
 
 	#footer {
-		background-color: #1E2832;
+		background-color: #000000;
 		color: rgba(255, 255, 255, 0.75);
 		text-align: center;
 	}
@@ -4268,7 +4270,7 @@
   				background-color: #1E2832;
   				color: #444;
   				cursor: pointer;
-  				padding: 30px;
+  				padding: 35px;
   				width: 90%;
   				position: relative;left:5%;
   				border: none;
@@ -4522,3 +4524,50 @@
 				-ms-transform: rotate(45deg);
 				transform: rotate(45deg);
 			}
+
+/*card*/
+				/* Style the counter cards */
+			.card {
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+				padding: 16px;
+				text-align: center;
+				background-color: #f1f1f1;
+				color: #000000;
+			}
+
+			.card:hover {
+				background-color: #787878;
+				opacity: 0.6;
+				color: #ffffff;
+			}
+
+			.card:active {
+				background-color: #787878;
+				opacity: 0.6;
+				box-shadow: 0 5px #666;
+				transform: translateY(4px);
+			}
+
+			/* Remove extra left and right margins, due to padding */
+			.row {
+				margin: 0 -5px;
+
+
+			}
+
+			/* Clear floats after the columns */
+			.row:after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+
+			/* Responsive columns */
+			@media screen and (max-width: 600px) {
+				.column {
+					width: 100%;
+					display: block;
+					margin-bottom: 20px;
+				}
+			}
+

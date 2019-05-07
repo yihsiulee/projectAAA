@@ -19,15 +19,15 @@
 		<!-- th要加嗎？ -->
 
 		  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
 	</head>
 	<body>
 
 		<!-- Header -->
 			<header id="header">
 
-				<h1><a href="index.html">Paper Review!</a></h1>
+				<h1><a th:href="@{/index.html}">Paper Review!</a></h1>
 
 				<a href="#nav">Menu</a>
 			</header>
@@ -221,6 +221,13 @@
     }
   } );
   </script>
+		<script type="text/javascript">
+			$('#file-uploads').change(function() {
+				var i = $(this).prev('label').clone();
+				var file = $('#file-uploads')[0].files[0].name;
+				$(this).prev('label').text(file);
+			});
+		</script>
 
 
 

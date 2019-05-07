@@ -12,14 +12,14 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
 	</head>
 	<body>
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">Paper Review!</a></h1>
+				<h1><a th:href="@{/index.html}">Paper Review!</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
 
@@ -47,6 +47,13 @@
 
 					<li>文章名稱：{th:articlename}</li>
 					<br>
+						<li>文章下載 &nbsp;&nbsp;&nbsp;&nbsp;
+							<label for="file-uploads" class="button">
+								<i class="fa fa-file-text-o"></i>下載檔案
+							</label>
+							<a download href="{th:uploadfile}">
+								<input id="file-uploads" style="display:none;"></a>
+						</li>
 					<form>
 
 						<textarea cols="50" rows="5" id="reviewtext" style="text-align: left; ">輸入內容...

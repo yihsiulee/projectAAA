@@ -1590,7 +1590,7 @@
 
 	body, input, select, textarea {
 		/*font-family: "Raleway", Helvetica, sans-serif;*/
-		font-family: EB+Garamond;
+		font-family: EB+Garamond, sans-serif;
 		font-size: 13pt;
 		font-weight: 400;
 		line-height: 2em;
@@ -3693,8 +3693,7 @@
 					content: "";
 					-moz-osx-font-smoothing: grayscale;
 					-webkit-font-smoothing: antialiased;
-					/*font-family: FontAwesome;*/
-					font-family:EB+Garamond;
+					font-family: FontAwesome;
 					font-style: normal;
 					font-weight: normal;
 					text-transform: none !important;
@@ -4253,11 +4252,11 @@
 
 
 /*Q&A動態版*/
-			#QandA .Question{ /*標題的CSS定義*/
+			#qa .Question{ /*標題的CSS定義*/
 				width: 100%;
 				border-bottom: 1px #aaa dotted;
 			}
-			#QandA .Answer{ /*內文的CSS定義*/
+			#qa .Answer{ /*內文的CSS定義*/
 				display:none;
 				width: 100%;
 				padding: 10px 0px;
@@ -4266,7 +4265,7 @@
 				border-bottom: 1px #aaa dotted;
 				color: white;
 			}
-			#QandA:hover{ /*滑鼠移至區塊變色*/
+			#qa :hover{ /*滑鼠移至區塊變色*/
 				background: #efefef;
 			}
 

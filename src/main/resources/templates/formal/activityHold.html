@@ -12,7 +12,7 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<link rel="stylesheet" th:href="@{/jqueryui/style.css}"/>
+<!--		<link rel="stylesheet" th:href="@{/jqueryui/style.css}"/>-->
 
 		<!-- th要加嗎？ -->
 		<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
@@ -46,12 +46,15 @@
 			<section id="main" class="wrapper">
 				<div class="container">
 
+					<div th:if="${message}">
+						<h2 th:text="${message}"/>
+					</div>
+
 					<header class="major special">
 						<h2>舉辦活動</h2>
 					</header>
 
-					<form action="/activity/hold" method="post">
-
+					<form  method="post" enctype="multipart/form-data" th:action="@{/activity/hold}">
 						<div class="table">
 							<table class="alt">
 								<thead>
@@ -84,9 +87,9 @@
 											<h4 style="text-align: center;">活動時間：</h4>
 										</td>
 										<td colspan="3"><div class="2u 12u$">
-											<input type="text" id="datepicker"  name="activityStart" placeholder="開始時間" required/></div>
+											<input type="date"   name="activityStart" placeholder="開始時間" required></div>
 											<div class="2u$ 12u$">
-											<input type="text" id="" required name="activityEnd" placeholder="結束時間" required/></div>
+											<input type="date"   name="activityEnd" placeholder="結束時間" required></div>
 										</td>
 									</div></tr>
 
@@ -100,46 +103,39 @@
 											<label for="file-uploads" class="button">
 												<i class="fa fa-file-text-o"></i>上傳檔案
 											</label>
-											<input id="file-uploads" style="display:none;" type="file" name="activityImg">
+											<input id="file-uploads"  style="display:none;" type="file" name="activityImg">
+
 										</td>
 									</div></tr>
 
 
 
-									<tr><div class="6u 12u$(xsmall)" >
-										<td>
-											<h4 style="text-align: center;">文章數量：</h4>
-										</td>
-										<td>
-											<input type="number" min="0" onchange="updateParticipantNumber(this.value)" name="articleNumber" id="articleNumber"placeholder="文章數量：" style="width: 80%" required/>
-										</td>
-										<td>
-											<h4 style="text-align: center;">參與人數：</h4>
-										</td>
-										<td>
-											<input type="number" name="participantNumber" id="participantNumber"placeholder="參與人數：" style="width: 80%" required/>
-										</td>
-
-									</div></tr>
+									<tr>
+										<div class="6u 12u$(xsmall)" >
+											<td>
+												<h4 style="text-align: center;">文章數量：</h4>
+											</td>
+											<td>
+												<input type="number" min="0" onchange="updateParticipantNumber(this.value)" name="articleNumber" id="articleNumber"placeholder="文章數量：" style="width: 80%" required/>
+											</td>
+											<td>
+												<h4 style="text-align: center;">參與人數：</h4>
+											</td>
+											<td>
+												<input type="number" name="participantNumber" id="participantNumber"placeholder="參與人數：" style="width: 80%" required />
+											</td>
+										</div>
+									</tr>
 								</tbody>
 							</table>
 
-
-						<br>
-						<div class="12u 12u$(xsmall)" style="text-align: right;">
-							<input type="reset" value="重新填寫" class="button alt">
-							<input type="submit" value="送出" class="button special">
-							
+							<br>
+							<div class="12u 12u$(xsmall)" style="text-align: right;">
+								<input type="reset" value="重新填寫" class="button alt"/>
+								<input type="submit" value="送出" class="button special"/>
+							</div>
 						</div>
-							
-						</div>
-
-						</form>
-					
-
-
-					
-
+					</form>
 				</div>
 			</section>
 
@@ -174,7 +170,8 @@
 			document.getElementById("participantNumber").value = value*3;
 			}
 		</script>
-			<script th:src="@{/assets/js/jquery.min.js}"></script>
+
+		<script th:src="@{/assets/js/jquery.min.js}"></script>
 			<script th:src="@{/assets/js/skel.min.js}"></script>
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->

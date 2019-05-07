@@ -29,7 +29,7 @@ public class  Member  {
             joinColumns = @JoinColumn(
                     name = "member_id", referencedColumnName = "MEMBER_ID"),
             inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "ROLE_ID"))
+                    name = "role_id", referencedColumnName = "MEMBER_ROLE_ID"))
 //    @OneToOne(cascade=CascadeType.ALL)
 //    @JoinColumn(name="MEMBER_ROLE_ID", referencedColumnName="ROLE_ID")
     private Collection<Member_Role> roles;

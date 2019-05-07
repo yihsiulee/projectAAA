@@ -1,6 +1,6 @@
 #FileLock
-#Wed May 01 23:31:20 CST 2019
-server=192.168.1.101\:63751
+#Tue May 07 22:18:19 CST 2019
+server=140.118.142.32\:56751
 hostName=DESKTOP-QM7LFHH
 method=file
-id=16a74057e0e449aadbcda639d4874d3e841d7bb2414
+id=16a92a8cd2f46cbfd324f6af819636c384828bc013a

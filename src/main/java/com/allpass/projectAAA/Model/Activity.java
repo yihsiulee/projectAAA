@@ -2,7 +2,6 @@ package com.allpass.projectAAA.Model;
 
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 
@@ -16,6 +15,8 @@ public class Activity {
     private String activityStart;
     private String activityEnd;
     private String activityContent;
+    private Integer limitedParticipants;
+    private Integer articleNumber;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="founder_member_ID_FK")
     private Member activityFounder;
@@ -89,11 +90,25 @@ public class Activity {
         return activityImg;
     }
 
-    public void setActivityParticipants(Set<Member> activityParticipants) {
-        this.activityParticipants = activityParticipants;
+    public void setActivityParticipants(Set<Member> activityParticipants) { this.activityParticipants = activityParticipants; }
+
+    public Set<Member> getActivityParticipants() {
+        return activityParticipants;
     }
 
-    public Collection<Member> getActivityParticipants() {
-        return activityParticipants;
+    public void setLimitedParticipants(Integer limitedParticipants) {
+        this.limitedParticipants = limitedParticipants;
+    }
+
+    public Integer getLimitedParticipants() {
+        return limitedParticipants;
+    }
+
+    public void setArticleNumber(Integer articleNumber) {
+        this.articleNumber = articleNumber;
+    }
+
+    public Integer getArticleNumber() {
+        return articleNumber;
     }
 }

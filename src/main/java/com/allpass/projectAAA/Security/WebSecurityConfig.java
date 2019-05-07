@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(
+                        SecurityConstants.QA_URL,
                         SecurityConstants.MEMBER_INDEX_URL,
                         SecurityConstants.MEMBER_REGISTER_URL,
                         SecurityConstants.H2_CONSOLE

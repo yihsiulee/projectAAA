@@ -41,17 +41,18 @@ public class MemberController {
     }
 
     @PostMapping(value = "/register", params = {"name", "idCardNumber", "password1", "password2", "email", "gender", "birthday", "phoneNumber", "educational", "study", "special"})
-    public ModelAndView register(@RequestParam("name") String name,
-                                 @RequestParam("idCardNumber") String idCardNumber,
-                                 @RequestParam("password1") String password1,
-                                 @RequestParam("password2") String password2,
-                                 @RequestParam("email") String email,
-                                 @RequestParam("phoneNumber") String phoneNumber,
-                                 @RequestParam("gender") Integer gender,
-                                 @RequestParam("birthday") String birthday,
-                                 @RequestParam("educational") Integer educational,
-                                 @RequestParam("study") Integer study,
-                                 @RequestParam("special") String special
+    public ModelAndView saveMember(
+            @RequestParam("name") String name,
+            @RequestParam("idCardNumber") String idCardNumber,
+            @RequestParam("password1") String password1,
+            @RequestParam("password2") String password2,
+            @RequestParam("email") String email,
+            @RequestParam("phoneNumber") String phoneNumber,
+            @RequestParam("gender") Integer gender,
+            @RequestParam("birthday") String birthday,
+            @RequestParam("educational") Integer educational,
+            @RequestParam("study") Integer study,
+            @RequestParam("special") String special
     ) {
         boolean passwordVerification = MemberVerificationAndValidationUtil.MemberPasswordVerification(password1, password2);
         boolean idCardNumberVerification = memberService.verifyIdCardNumber(idCardNumber);

@@ -8,10 +8,10 @@ public class ReviewArticle {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "REVIEW_ARTICLE_ID")
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="article_id", nullable=false)
     private Article article;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="member_id", nullable=false)
     private Member member;
     private String reviewTime;

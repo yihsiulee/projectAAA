@@ -4,9 +4,10 @@ import com.allpass.projectAAA.Model.Activity;
 import com.allpass.projectAAA.Model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface ActivityDao extends JpaRepository<Activity,Long> {
 
-    Activity findByActivityFounder(Member activityFounder);
-
+    List<Activity> findByActivityFounder(Member activityFounder);
 
 }

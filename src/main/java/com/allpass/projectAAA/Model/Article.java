@@ -1,7 +1,6 @@
 package com.allpass.projectAAA.Model;
 
 import javax.persistence.*;
-import java.io.File;
 import java.util.Set;
 
 @Entity
@@ -15,7 +14,7 @@ public class Article {
 //    private String deadline;
 //    private String checkedTime;
     private Integer articleStudy;
-    private File uploadFile;
+    private String uploadFile;
     private Integer textNumber;
     private Integer formulaNumber;
     private String articleAddress;
@@ -48,11 +47,11 @@ public class Article {
 //        this.uploadFile=uploadFile;
 //    }
 
-    public void setUploadFile(File uploadFile) {
+    public void setUploadFile(String uploadFile) {
         this.uploadFile = uploadFile;
     }
 
-    public File getUploadFile() {
+    public String getUploadFile() {
         return uploadFile;
     }
 

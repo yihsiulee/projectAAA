@@ -7,14 +7,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-		<title>Paper Check</title>
+		<title>Paper Review</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
 	</head>
 	<body>
 
@@ -23,22 +23,22 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1><a href="index.html">Paper Check!</a></h1>
+				<h1><a th:href="@{/index.html}">Paper Review!</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
 
-			
+
 
 		<!-- Nav -->
-			<nav id="nav">
-				<ul class="links">
-					<li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
-					<li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
-					<li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
-					<li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
-					<li><a class="fa fa-question-circle"href="qa.html">&nbsp;&nbsp;Q&A</a></li>
-				</ul>
-			</nav>
+		<nav id="nav">
+			<ul class="links">
+				<li>><a class="fa fa-home" th:href="@{/index.html}">&nbsp;&nbsp;Home</a></li>
+				<li><a class="fa fa-flag" th:href="@{/activityManagement.html}">&nbsp;&nbsp;Activity</a></li>
+				<li><a class="fa fa-file-text" th:href="@{/articlePost.html}">&nbsp;&nbsp;Article</a></li>
+				<li><a class="fa fa-users" th:href="@{/memberInfo.html}">&nbsp;&nbsp;Account</a></li>
+				<li><a class="fa fa-question-circle" th:href="@{/qa.html}">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+			</ul>
+		</nav>
 
 
 		<!-- Main -->
@@ -49,22 +49,21 @@
 						<h2>Q&A常見問題集</h2>
 					</header>
 <!-- 動態版 -->
-					<div id="QandA">
+					<div class="qa">
 						<p class="Question">Question - 1</p>
 							<div class="Answer">
 						<p>Answer - 1</p>
 							</div>
 					</div>
 
-
-					<div id="QandA">
+					<div class="qa">
 						<p class="Question">Question - 2</p>
 							<div class="Answer">
 						<p>Answer - 2</p>
 							</div>
 					</div>
 
-					<div id="QandA">
+					<div class="qa">
 						<p class="Question">Question - 3</p>
 							<div class="Answer">
 						<p>Answer - 3</p>
@@ -72,23 +71,6 @@
 					</div>
 
 				
-<!-- 加減版 -->
-
-	<button class="accordion">Section 1</button>
-		<div class="panel">
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
-
-	<button class="accordion">Section 2</button>
-		<div class="panel">
- 		 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
-
-	<button class="accordion">Section 3</button>
-		<div class="panel">
- 		 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
-
 </div>
 </section>
 
@@ -132,25 +114,6 @@
 								});
 						});
 		</script>
-<!-- 加減版 -->
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
-</script>
-
-
 
 	</body>
 </html>

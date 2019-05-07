@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
     <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
@@ -47,11 +47,11 @@
 <!-- Nav -->
 <nav id="nav">
     <ul class="links">
-        <li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
-        <li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
-        <li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
-        <li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
-        <li><a class="fa fa-question-circle"href="qa.html">&nbsp;&nbsp;Q&A</a></li>
+        <li>><a class="fa fa-home" th:href="@{/index.html}">&nbsp;&nbsp;Home</a></li>
+        <li><a class="fa fa-flag" th:href="@{/activityManagement.html}">&nbsp;&nbsp;Activity</a></li>
+        <li><a class="fa fa-file-text" th:href="@{/articlePost.html}">&nbsp;&nbsp;Article</a></li>
+        <li><a class="fa fa-users" th:href="@{/memberInfo.html}">&nbsp;&nbsp;Account</a></li>
+        <li><a class="fa fa-question-circle" th:href="@{/qa.html}">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
     </ul>
 </nav>
 
@@ -67,11 +67,11 @@
 
 
 
-        <body>
+
 
         <div class="row">
             <div class="column">
-                <div class="card"><a href="activityHold.html">
+                <div class="card"><a th:href="@{/activityHold.html}">
                     <h2>Create Activity</h2>
                     <h2>創&nbsp;辦&nbsp;活&nbsp;動</h2>
                     <p>Some text</p>
@@ -80,7 +80,7 @@
             </div>
 
             <div class="column">
-                <div class="card"><a href="activityCheckTable.html">
+                <div class="card"><a th:href="@{/activityCheckTable.html}">
                     <h2>Accept Assign</h2>
                     <h2>參&nbsp;加&nbsp;活&nbsp;動</h2>
                     <p>Some text</p>
@@ -88,7 +88,7 @@
                 </a></div>
             </div>
             <div class="column">
-                <div class="card"><a href="activityList.html">
+                <div class="card"><a th:href="@{/activityList.html}">
                     <h2>Acrtivity List</h2>
                     <h2>查&nbsp;看&nbsp;現&nbsp;有&nbsp;活&nbsp;動</h2>
                     <p>Some text</p>
@@ -97,7 +97,7 @@
             </div>
 
             <div class="column">
-                <div class="card"><a href="activityManagement.html">
+                <div class="card"><a th:href="@{/activityManagement.html}">
                     <h2>Acrtivity Management</h2>
                     <h2>活&nbsp;動&nbsp;管&nbsp;理</h2>
                     <p>Some text</p>
@@ -137,11 +137,11 @@
 </footer>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/skel.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="assets/js/main.js"></script>
+<script th:src="@{/assets/js/main.js}"></script>
 
 </body>
 </html>

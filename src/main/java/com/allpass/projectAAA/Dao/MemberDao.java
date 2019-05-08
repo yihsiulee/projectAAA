@@ -1,15 +1,15 @@
 package com.allpass.projectAAA.Dao;
 
 
-import com.allpass.projectAAA.Do.Member;
+import com.allpass.projectAAA.Model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface MemberDao extends JpaRepository<Member,Long> {
 
-public interface MemberDao extends JpaRepository<Member,String> {
+    Member findByName(String name);
 
-    List<Member> findByName(String name);
+    Member findByPassword(String password);
 
-    List<Member>findByPassword(String password);
+    Member findByIdCardNumber(String idCardNumber);
 
 }

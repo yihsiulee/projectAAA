@@ -1,21 +1,21 @@
 package com.allpass.projectAAA.Service;
 
 import com.allpass.projectAAA.Dao.MemberDao;
-import com.allpass.projectAAA.Do.Member;
+import com.allpass.projectAAA.Model.Member;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
+
 
 @Service
 public class MemberService {
     @Resource
     private MemberDao memberDao;
 
-    public void addMember(Member member){
+    public void save(Member member){
         memberDao.save(member);
     }
-    public void deleteMember(String memberId){
+    public void deleteMember(Long memberId){
         memberDao.deleteById(memberId);
     }
     //    public Customer findByLastName(){
@@ -27,12 +27,25 @@ public class MemberService {
 //       customerdao.exists(new Customer());
 //        return true;
 //    }
-    public void  findAllUsername() {
-        ArrayList<String> allUserName = null;
-        for (Member customer : memberDao.findAll()) {
-//            allUserName.add(customer.getFirstName());
-            System.out.println(customer.getName());
-        }
-//
+    public Member getMemberInfo(String idCardNumber){
+        Member member=memberDao.findByIdCardNumber(idCardNumber);
+        return member;
+
     }
+    public boolean verifyIdCardNumber(String idCardNumber){
+        if(memberDao.findByIdCardNumber(idCardNumber)==null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+//    public List<Member> findAll() {
+//        List<Member> allUserName = null;
+//        for (Member member : memberDao.findAll()) {
+////            allUserName.add(customer.getFirstName());
+//          allUserName.add(member);
+//        }
+//        return allUserName;
+//    }
+
 }

@@ -10,34 +10,34 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+		<link  rel="stylesheet"   th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
 	</head>
 	<body>
-
+ 
 		<!-- Header -->
 			<header id="header">
-				<h1><a th:href="@{/home}">Paper Review!</a></h1>
+				<h1><a th:href="@{/index.html}">Paper Review!</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
 
 		<!-- Nav -->
-			<nav id="nav">
-				<ul class="links">
-					<li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
-					<li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
-					<li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
-					<li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
-					<li><a class="fa fa-question-circle"href="qa.html">&nbsp;&nbsp;Q&A</a></li>
-				</ul>
-			</nav>
+		<nav id="nav">
+			<ul class="links">
+				<li>><a class="fa fa-home" th:href="@{/index.html}">&nbsp;&nbsp;Home</a></li>
+				<li><a class="fa fa-flag" th:href="@{/activityManagement.html}">&nbsp;&nbsp;Activity</a></li>
+				<li><a class="fa fa-file-text" th:href="@{/articlePost.html}">&nbsp;&nbsp;Article</a></li>
+				<li><a class="fa fa-users" th:href="@{/memberInfo.html}">&nbsp;&nbsp;Account</a></li>
+				<li><a class="fa fa-question-circle" th:href="@{/qa.html}">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+			</ul>
+		</nav>
 
 
 		<!-- Main -->
-			<section id="main" >
-				<!--<section id="main" class="wrapper">-->
+
+				<section id="main" class="wrapper">
 				<div class="container">
 
 					<header class="major special">
@@ -45,36 +45,52 @@
 						<p>你的身分證＆密碼</p>
 					</header>
 
-					
+
 						<!--<div class="row uniform 50%">-->
 						<div style="position: relative;left:35%">
-							<div class="6u 12u$(xsmall)">
-								<li><h3>帳號（身分證字號）</h3></li>
-									<input type="text" name="id" id="id" value="" placeholder="帳號" style="width: 60%" />
+							<div th:if="${param.error}">
+								Invalid username and password.
 							</div>
-							<br>
-									
-							<div class="6u 12u$(xsmall)" >
-								<li><h3>密碼</h3></li>
-								<input type="password" name="password" id="password" value="" placeholder="密碼" style="width: 60%" />
+							<div th:if="${param.logout}">
+								You have been logged out.
 							</div>
+							<form th:action="@{/member/login}" method="post">
+								<div class="6u 12u$(xsmall)">
+									<li><h3>帳號（身分證字號）</h3></li>
+									<input type="text" name="username"  id="username" placeholder="帳號" style="width: 60%" />
+								</div>
+								<br>
+
+								<div class="6u 12u$(xsmall)" >
+									<li><h3>密碼</h3></li>
+									<input type="password" name="password" id="password"  placeholder="密碼" style="width: 60%" />
+								</div>
+								<br>
+								<div class="6u 12u$(xsmall)" >
+									<input type ="submit"  name="login-submit"
+										   id="login-submit" class="special" value="送出" />
+								</div>
+							</form>
 						</div>
 
-						<!--</div>-->
 						<br><br>
 
-								
+
 							<div class="12u$" align="right"  >
 								<ul class="actions">
-									<li><input type="submit" value="送出" class="special" /></li>
-											
-									<li><input type="reset" value="忘記密碼" /></li>
-									<li><input type ="submit" value="新創帳號" class="alt"/></li>
+
+
+									<li><input type="reset" value="忘記密碼"/></li>
+
+									<li>
+
+										<a href="/member/register"><input type ="submit" value="新創帳號" class="alt"/></a>
+									</li>
 								</ul>
 							</div>
-							
-								
-				
+
+
+
                 </div>		</section>
 
 		<!-- Footer -->

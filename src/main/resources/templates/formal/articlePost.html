@@ -12,26 +12,26 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
 	</head>
 		
 		<!-- Header -->
 			<header id="header">
-				<h1><a th:href="@{/home}">Paper Review!</a></h1>
+				<h1><a th:href="@{/index.html}">Paper Review!</a></h1>
 				<a href="#nav">Menu</a>
 			</header>
 
-		<!-- Nav -->
-			<nav id="nav">
-				<ul class="links">
-					<li>><a class="fa fa-home" href="index.html">&nbsp;&nbsp;Home</a></li>
-					<li><a class="fa fa-upload"href="haveclass.html">&nbsp;&nbsp;Post</a></li>
-					<li><a class="fa fa-check-circle" href="techpage.html">&nbsp;&nbsp;Check</a></li>
-					<li><a class="fa fa-users" href="topic month.html">&nbsp;&nbsp;My Account</a></li>
-					<li><a class="fa fa-question-circle"href="qa.html">&nbsp;&nbsp;Q&A</a></li>
-				</ul>
-			</nav>
+	<!-- Nav -->
+	<nav id="nav">
+		<ul class="links">
+			<li>><a class="fa fa-home" th:href="@{/index.html}">&nbsp;&nbsp;Home</a></li>
+			<li><a class="fa fa-flag" th:href="@{/activityManagement.html}">&nbsp;&nbsp;Activity</a></li>
+			<li><a class="fa fa-file-text" th:href="@{/articlePost.html}">&nbsp;&nbsp;Article</a></li>
+			<li><a class="fa fa-users" th:href="@{/memberInfo.html}">&nbsp;&nbsp;Account</a></li>
+			<li><a class="fa fa-question-circle" th:href="@{/qa.html}">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+		</ul>
+	</nav>
 
 
 		<!-- Main -->
@@ -71,18 +71,12 @@
 											<div class="select-wrapper">
 											<select name="articlestudy" id="articlestudy">
 												<option value="">-領域-</option>
-												<option value="1">醫學</option>
-												<option value="2">生物</option>
-												<option value="3">商科</option>
-												<option value="4">農業</option>
-												<option value="5">社會</option>
-												<option value="6">資訊</option>
-												<option value="7">工程</option>
-												<option value="8">文學</option>
-												<option value="9">音樂</option>
-												<option value="10">外文</option>
-												<option value="11">歷史</option>
-												<option value="12">地理</option>
+												<option value=0>醫學</option>
+												<option value=1>生科</option>
+												<option value=2>商科</option>
+												<option value=3>資訊</option>
+												<option value=4>工程</option>
+												<option value=5>社會科學</option>
 											</select>
 											</div>											
 										</td>

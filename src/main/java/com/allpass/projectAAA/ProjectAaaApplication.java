@@ -1,16 +1,20 @@
 package com.allpass.projectAAA;
 
+
+import com.allpass.projectAAA.Properties.ActivityImageFileProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@EnableConfigurationProperties(ActivityImageFileProperties.class)
 @SpringBootApplication
 public class ProjectAaaApplication {
 
-    @RequestMapping("/")
+    @RequestMapping("/aa")
 	public String aa(){
 		return "hello spring boost";
 	}
@@ -23,10 +27,8 @@ public class ProjectAaaApplication {
 		return "test";//放檔案的名字
 	}
 
-	@RequestMapping("/home")
-	public String home(){
-    	return "index";
-	}
+	@RequestMapping("/")
+	public String home(){ return "index"; }
 	@RequestMapping("/login")
 	public String login(){
 		return "memberLogin";
@@ -55,25 +57,20 @@ public class ProjectAaaApplication {
 	public String history(){
 		return "history";
 	}
+	@RequestMapping("/QA")
+	public String QA(){return "qa";}
 
 
 	public static void main(String[] args) {
-        DatabaseServer.startH2Server();
+		DatabaseServer.startH2Server();
 		SpringApplication.run(ProjectAaaApplication.class, args);
 	}
 //	@Bean
-//	public ViewResolver viewResolver() {
-//		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-//		templateResolver.setTemplateMode("XHTML");
-//		templateResolver.setPrefix("formal/");
-//		templateResolver.setSuffix(".html");
-//
-//		SpringTemplateEngine engine = new SpringTemplateEngine();
-//		engine.setTemplateResolver(templateResolver);
-//
-//		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-//		viewResolver.setTemplateEngine(engine);
-//		return viewResolver;
+//	CommandLineRunner init(StorageService storageService) {
+//		return (args) -> {
+//			storageService.deleteAll();
+//			storageService.init();
+//		};
 //	}
 }
 

@@ -53,6 +53,86 @@
 					side: 'right'
 				});
 
+
+		// qa.html
+		$("p.Question")
+			.css({cursor:"pointer"})
+			.click(function(){
+				$(this).next().toggle("normal");
+			});
+		// activityCheckTable.html
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+			acc[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if (panel.style.maxHeight){
+					panel.style.maxHeight = null;
+				} else {
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			});
+		}
+		// activityHold.html articlePost.html 檔案上傳
+		$('#file-uploads').change(function() {
+			var i = $(this).prev('label').clone();
+			var file = $('#file-uploads')[0].files[0].name;
+			$(this).prev('label').text(file);
+		});
+		// activityHold.html participant
+
+
+		// function updateParticipantNumber(value){
+		// 	document.getElementById("participantNumber").value = value*3;
+		// }
+		$('updateParticipantNumber').change()
+			{
+			document.getElementById("participantNumber").value = value * 3;
+			}
+
+		// // activityHold.html datepicker
+		// $( function() {
+		// 	var dateFormat = "mm/dd/yy",
+		// 		from = $( "#activitystart" )
+		// 			.datepicker({
+		// 				defaultDate: "+1w",
+		// 				changeMonth: true,
+		// 				changeYear:true,
+		// 				numberOfMonths: 2
+		// 			})
+		// 			.on( "change", function() {
+		// 				to.datepicker( "option", "minDate", getDate( this ) );
+		// 			}),
+		// 		to = $( "#activityend" ).datepicker({
+		// 			defaultDate: "+1w",
+		// 			// changeMonth: true,
+		// 			numberOfMonths: 2
+		// 		})
+		// 			.on( "change", function() {
+		// 				from.datepicker( "option", "maxDate", getDate( this ) );
+		// 			});
+		//
+		// 	function getDate( element ) {
+		// 		var date;
+		// 		try {
+		// 			date = $.datepicker.parseDate( dateFormat, element.value );
+		// 		} catch( error ) {
+		// 			date = null;
+		// 		}
+		//
+		// 		return date;
+		// 	}
+		// } );
+		// // memberRegister.html datepicker
+		// $( function() {
+		// 	$( "#datepicker" ).datepicker({
+		// 		changeMonth: true,
+		// 		changeYear: true,
+		// 	});
+		// } );
+
 	});
 })(jQuery);
 

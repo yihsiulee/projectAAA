@@ -13,11 +13,7 @@
 		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
 		<link rel="stylesheet" th:href="@{/jqueryui/style.css}"/>
-
-		<!-- th要加嗎？ -->
 		<link rel="stylesheet" href="https://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-		<!-- th要加嗎？ -->
-
 		  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
@@ -86,12 +82,18 @@
 
 									<tr><div class="6u 12u$">
 										<td>
+<!--											<h4 style="text-align: center;">活動時間：</h4>-->
+<!--										</td>-->
+<!--										<td colspan="3"><div class="2u 12u$">-->
+<!--											<input type="text" id="activityStart"  name="activityStart" placeholder="開始時間" required/></div>-->
+<!--											<div class="2u$ 12u$">-->
+<!--											<input type="text" id="activityEnd"  name="activityEnd" placeholder="結束時間" required/></div>-->
 											<h4 style="text-align: center;">活動時間：</h4>
 										</td>
 										<td colspan="3"><div class="2u 12u$">
-											<input type="text" id="datepicker"  name="activityStart" placeholder="開始時間" required/></div>
+											<input type="text" id="activityStart" name="activityStart" placeholder="開始時間" /></div>
 											<div class="2u$ 12u$">
-											<input type="text" id=""  name="activityEnd" placeholder="結束時間" required/></div>
+												<input type="text" id="activityEnd" name="activityEnd" placeholder="結束時間"/></div>
 										</td>
 									</div></tr>
 
@@ -172,13 +174,14 @@
 					</ul>
 				</div>
 			</footer>
+	</body>
 
 		<!-- Scripts -->
-		<script>
-			function updateParticipantNumber(value){
-			document.getElementById("participantNumber").value = value*3;
-			}
-		</script>
+<!--		<script>-->
+<!--			function updateParticipantNumber(value){-->
+<!--			document.getElementById("participantNumber").value = value*3;-->
+<!--			}-->
+<!--		</script>-->
 			<script th:src="@{/assets/js/jquery.min.js}"></script>
 			<script th:src="@{/assets/js/skel.min.js}"></script>
 			<script th:src="@{/assets/js/util.js}"></script>
@@ -189,7 +192,7 @@
   			<script>
   $( function() {
     var dateFormat = "mm/dd/yy",
-      from = $( "#activitystart" )
+      from = $( "#activityStart" )
         .datepicker({
 			defaultDate: "+1w",
 			changeMonth: true,
@@ -200,7 +203,7 @@
         .on( "change", function() {
           to.datepicker( "option", "minDate", getDate( this ) );
         }),
-      to = $( "#activityend" ).datepicker({
+      to = $( "#activityEnd" ).datepicker({
         defaultDate: "+1w",
         // changeMonth: true,
         numberOfMonths: 2
@@ -221,15 +224,6 @@
     }
   } );
   </script>
-		<script type="text/javascript">
-			$('#file-uploads').change(function() {
-				var i = $(this).prev('label').clone();
-				var file = $('#file-uploads')[0].files[0].name;
-				$(this).prev('label').text(file);
-			});
-		</script>
 
 
-
-	</body>
 </html>

@@ -1637,7 +1637,8 @@
 		}
 
 	a {
-		text-decoration: underline;
+		/*text-decoration: underline;*/
+		text-decoration: none;
 	}
 
 		a:hover {
@@ -1766,7 +1767,6 @@
 	a {
 		/*color: #51BAA4;*/
 		color:#000000;
-		text-decoration: none;
 	}
 
 	strong, b {

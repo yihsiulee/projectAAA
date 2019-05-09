@@ -90,10 +90,12 @@
 <!--											<input type="text" id="activityEnd"  name="activityEnd" placeholder="結束時間" required/></div>-->
 											<h4 style="text-align: center;">活動時間：</h4>
 										</td>
-										<td colspan="3"><div class="2u 12u$">
-											<input type="text" id="activityStart" name="activityStart" placeholder="開始時間" /></div>
+										<td colspan="3"><div class="6u 12u$">
+											<!-- <input type="text" id="activityStart" name="activitystart" placeholder="開始時間" /></div>
 											<div class="2u$ 12u$">
-												<input type="text" id="activityEnd" name="activityEnd" placeholder="結束時間"/></div>
+											<input type="text" id="activityEnd" name="activityend" placeholder="	結束時間"/ ></div> -->
+											<input type="text"  class="6u 12u$"name="dateRange" value="起始與結束時間" />
+										</div>
 										</td>
 									</div></tr>
 
@@ -187,43 +189,19 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  			<script>
-  $( function() {
-    var dateFormat = "mm/dd/yy",
-      from = $( "#activityStart" )
-        .datepicker({
-			defaultDate: "+1w",
-			changeMonth: true,
-			changeYear:true,
-			numberOfMonths: 2,
-			yearRange:"null,2030"
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = $( "#activityEnd" ).datepicker({
-        defaultDate: "+1w",
-        // changeMonth: true,
-        numberOfMonths: 2
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-  </script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"  />
+	<script>
+		$(function() {
+			$('input[name="dateRange"]').daterangepicker({
+				opens: 'left'
+			}, function(start, end, label) {
+				console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+			});
+		});
+	</script>
 
 
 </html>

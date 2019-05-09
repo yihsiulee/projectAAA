@@ -12,13 +12,7 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<link rel="stylesheet" th:href="@{/jqueryui/style.css}"/>
-
-		<!-- th要加嗎？ -->
-		<link rel="stylesheet" href="https://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-		<!-- th要加嗎？ -->
-
-		  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/dateRangePicker.css}"/>
 		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
 	</head>
@@ -86,12 +80,8 @@
 
 									<tr><div class="6u 12u$">
 										<td>
-											<h4 style="text-align: center;">活動時間：</h4>
-										</td>
-										<td colspan="3"><div class="2u 12u$">
-											<input type="text" id="datepicker"  name="activityStart" placeholder="開始時間" required/></div>
-											<div class="2u$ 12u$">
-											<input type="text" id=""  name="activityEnd" placeholder="結束時間" required/></div>
+											<input type="text"  class="6u 12u$"name="dateRange" value="起始與結束時間" />
+
 										</td>
 									</div></tr>
 
@@ -172,64 +162,32 @@
 					</ul>
 				</div>
 			</footer>
+	</body>
 
-		<!-- Scripts -->
-		<script>
-			function updateParticipantNumber(value){
-			document.getElementById("participantNumber").value = value*3;
-			}
-		</script>
+
 			<script th:src="@{/assets/js/jquery.min.js}"></script>
 			<script th:src="@{/assets/js/skel.min.js}"></script>
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  			<script>
-  $( function() {
-    var dateFormat = "mm/dd/yy",
-      from = $( "#activitystart" )
-        .datepicker({
-			defaultDate: "+1w",
-			changeMonth: true,
-			changeYear:true,
-			numberOfMonths: 2,
-			yearRange:"null,2030"
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = $( "#activityend" ).datepicker({
-        defaultDate: "+1w",
-        // changeMonth: true,
-        numberOfMonths: 2
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-  </script>
-		<script type="text/javascript">
-			$('#file-uploads').change(function() {
-				var i = $(this).prev('label').clone();
-				var file = $('#file-uploads')[0].files[0].name;
-				$(this).prev('label').text(file);
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"/>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<script>
+		$(function() {
+			$('input[name="dateRange"]').daterangepicker({
+				opens: 'right',
+				autoApply:true,
+			}, function(start, end, label) {
+				console.log( start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
 			});
-		</script>
+		});
+	</script>
+<script>
+	function updateParticipantNumber(value){
+		document.getElementById("participantNumber").value = value*3;
+	}
+</script>
 
 
-
-	</body>
 </html>

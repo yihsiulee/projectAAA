@@ -174,14 +174,7 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-			<script type="text/javascript">
-					$('#file-uploads').change(function() {
-  						var i = $(this).prev('label').clone();
-  						var file = $('#file-uploads')[0].files[0].name;
-  						$(this).prev('label').text(file);
-						});
-			</script>
-			
+
 
 	</body>
 </html>

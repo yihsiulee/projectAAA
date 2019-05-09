@@ -11,8 +11,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/dateRangePicker.css}"/>
+	<!--	<link rel="stylesheet" href="/resources/demos/style.css">-->
 	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
 	<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
 	<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
@@ -128,7 +128,7 @@
 									<td>
 
 										<div class="6u 12u$(xsmall)">
-											<input type="text" name="birthday" id="datepicker" required>
+											<input type="text" name="birthday" value="01/01/1980" />
 										</div>
 									</td>
 								</tr>
@@ -241,17 +241,24 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  			<script>
-  				$( function() {
-    				$( "#datepicker" ).datepicker({
-      					changeMonth: true,
-      					changeYear: true,
-						yearRange:"1910:2030"
-    				});
-  				} );
-  			</script>
+
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"  />
+
+<!--		<script>-->
+<!--			$(function() {-->
+<!--				$('input[name="birthday"]').daterangepicker({-->
+<!--					singleDatePicker: true,-->
+<!--					showDropdowns: true,-->
+<!--					opens:"right",-->
+<!--					minYear: 1910,-->
+<!--					maxYear: parseInt(moment().format('YYYY'),10)-->
+<!--				}, function(start, end, label) {-->
+<!--				});-->
+<!--			});-->
+<!--		</script>-->
 
 	</body>
 </html>

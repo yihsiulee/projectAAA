@@ -29,6 +29,7 @@ public class MemberController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    //直接輸入網址
     @RequestMapping(value = "/login")
     public String loginPage() {
         return "memberLogin";
@@ -40,6 +41,7 @@ public class MemberController {
         return "memberRegister";
     }
 
+    //有傳東西出去
     @PostMapping(value = "/register", params = {"name", "idCardNumber", "password1", "password2", "email", "gender", "birthday", "phoneNumber", "educational", "study", "special"})
     public ModelAndView saveMember(
             @RequestParam("name") String name,

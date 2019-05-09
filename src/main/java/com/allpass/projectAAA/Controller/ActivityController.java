@@ -33,7 +33,10 @@ public class ActivityController {
     public ActivityController(ActivityImageFileService activityImageFileService) {
         this.activityImageFileService = activityImageFileService;
     }
-
+    @RequestMapping(value = "")
+    private String activityPage(){return "activity";}
+    @RequestMapping(value = "/browse")
+    private String activityBrowserPage(){return "activityCheckTable";}
     @RequestMapping(value = "/hold")
     private String activityHoid(){ return "activityHold";}
 //    params = {"activityName", "activityContent", "activityStart", "activityEnd", "activityImg", "articleNumber", "participantNumber"}
@@ -55,7 +58,9 @@ public class ActivityController {
         activity.setActivityEnd(activityEnd);
         System.out.println(activityImg.getOriginalFilename());
         activity.setActivityImg(activityImg.getOriginalFilename());
+        //檔案上傳
         activityImageFileService.store(activityImg);
+
         activity.setArticleNumber(articleNumber);
         activity.setLimitedParticipants(participantNumber);
         activity.setActivityFounder(memberService.getMemberInfo(authentication.getName()));
@@ -99,4 +104,6 @@ public class ActivityController {
        System.out.println(activity_Image);
         return modelAndView;
     }
+//    @RequestMapping(value = "/attend")
+
 }

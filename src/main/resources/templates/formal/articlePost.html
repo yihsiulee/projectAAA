@@ -59,17 +59,17 @@
 											<h4 style="text-align: center;">論文名稱：</h4>
 										</td>
 										<td colspan="3">
-											<input type="text" name="articlename" id="articlename" value="" placeholder="論文名稱" />
+											<input type="text" name="articleName" id="articleName" value="" placeholder="論文名稱" />
 										</td>
 									</div></tr>
 
 									<tr><div class="6u 12u$">
 										<td>
-											<h4 style="text-align: center;">論文領域：</h4>
+											<h4 style="text-align: center;">活動：</h4>
 										</td>
 										<td colspan="3">
 											<div class="select-wrapper">
-											<select name="articlestudy" id="articlestudy">
+											<select name="activityName" id="activityName">
 												<option value="">-領域-</option>
 												<option value=0>醫學</option>
 												<option value=1>生科</option>
@@ -91,7 +91,7 @@
 											<label for="file-uploads" class="button">
 												<i class="fa fa-file-text-o"></i>上傳檔案
 											</label>
-											<input id="file-uploads" style="display:none;" type="file">
+											<input id="file-uploads" style="display:none;" name="uploadFile" type="file">
 										</td>
 									</div></tr>
 
@@ -100,13 +100,13 @@
 											<h4 style="text-align: center;">字數統計：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" id="textnumber"placeholder="字數統計" style="width: 80%" />
+											<input type="number" min="0" id="textNumber" name="textNumber" placeholder="字數統計" style="width: 80%" />
 										</td>
 										<td>
 											<h4 style="text-align: center;">公式數量：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" id="formulanumber"placeholder="公式數量" style="width: 80%" />
+											<input type="number" min="0" id="formulaNumber" name="formulaNumber" placeholder="公式數量" style="width: 80%" />
 										</td>
 
 									</div></tr>

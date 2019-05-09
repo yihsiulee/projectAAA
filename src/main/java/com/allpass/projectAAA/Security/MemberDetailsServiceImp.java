@@ -27,7 +27,7 @@ public class MemberDetailsServiceImp implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String idCardNumber) throws UsernameNotFoundException {
-        Member member = memberDao.findByIdCardNumber(idCardNumber);
+        Member member = findByIdCardNumber(idCardNumber);
         if (member == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }

@@ -2,6 +2,7 @@ package com.allpass.projectAAA;
 
 
 import com.allpass.projectAAA.Properties.ActivityImageFileProperties;
+import com.allpass.projectAAA.Properties.ArticleUploadFileProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@EnableConfigurationProperties(ActivityImageFileProperties.class)
+@EnableConfigurationProperties({ActivityImageFileProperties.class, ArticleUploadFileProperties.class})
 @SpringBootApplication
 public class ProjectAaaApplication {
 

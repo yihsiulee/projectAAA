@@ -81,16 +81,19 @@
 			var file = $('#file-uploads')[0].files[0].name;
 			$(this).prev('label').text(file);
 		});
-		// activityHold.html participant
 
+
+
+		// activityHold.html participant
 
 		// function updateParticipantNumber(value){
 		// 	document.getElementById("participantNumber").value = value*3;
 		// }
-		$('updateParticipantNumber').change()
-			{
-			document.getElementById("participantNumber").value = value * 3;
-			}
+
+
+
+
+
 	});
 })(jQuery);
 

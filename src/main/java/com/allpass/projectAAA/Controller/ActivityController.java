@@ -33,10 +33,29 @@ public class ActivityController {
     public ActivityController(ActivityImageFileService activityImageFileService) {
         this.activityImageFileService = activityImageFileService;
     }
-
+    //活動功能頁面
+    @RequestMapping(value = "")
+    private String activityPage(){return "activity";}
+    //查看能參加活動
+    @RequestMapping(value = "/list")
+    private String activityListPage(ModelAndView modelAndView){
+        modelAndView.setViewName("activityList");
+        List<Activity>activityList=activityService.getActivityList();
+        modelAndView.addObject("activityList",activityList);
+        return "activityList";
+    }
+    //參加活動
+    @PostMapping(value = "/attend")
+    private String attendActivity(
+            @RequestParam("activity_Id")Long activity_Id,
+            Authentication authentication){
+        return "redirect:/activity";
+    }
+    //舉辦活動表單
     @RequestMapping(value = "/hold")
     private String activityHoid(){ return "activityHold";}
 //    params = {"activityName", "activityContent", "activityStart", "activityEnd", "activityImg", "articleNumber", "participantNumber"}
+    //舉辦活動
     @PostMapping(value = "/hold")
     private ModelAndView saveActivity(
             @RequestParam("activityName")String activityName,
@@ -55,6 +74,7 @@ public class ActivityController {
         activity.setActivityEnd(activityEnd);
         System.out.println(activityImg.getOriginalFilename());
         activity.setActivityImg(activityImg.getOriginalFilename());
+        //檔案上傳
         activityImageFileService.store(activityImg);
         activity.setArticleNumber(articleNumber);
         activity.setLimitedParticipants(participantNumber);
@@ -64,6 +84,7 @@ public class ActivityController {
         modelAndView.setViewName("redirect:/");
         return modelAndView;
     }
+    //
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<org.springframework.core.io.Resource> serveFile(@PathVariable String filename) {
@@ -72,7 +93,7 @@ public class ActivityController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
-
+    //
     @RequestMapping(value = "/info")
     private ModelAndView info( Authentication authentication){
         List<Activity> activity=activityService.getActivityInfoByActivityFounder(memberService.getMemberInfo(authentication.getName()));
@@ -99,4 +120,6 @@ public class ActivityController {
        System.out.println(activity_Image);
         return modelAndView;
     }
+
+
 }

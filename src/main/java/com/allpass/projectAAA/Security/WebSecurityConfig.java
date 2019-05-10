@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .csrf().disable()
-                .authorizeRequests()
+                .authorizeRequests() //權限
                 .antMatchers(
                         SecurityConstants.QA_URL,
                         SecurityConstants.MEMBER_INDEX_URL,

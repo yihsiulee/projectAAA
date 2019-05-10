@@ -22,4 +22,9 @@ public class ActivityService {
         return activity;
 
     }
+    public List<Activity> getActivityList(){
+        List<Activity> activityList=activityDao.findAll();
+        return activityList;
+    }
+
 }

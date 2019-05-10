@@ -181,7 +181,7 @@
 			$('input[name="dateRange"]').daterangepicker({
 				opens: 'right',
 				autoApply:true,
-			}, function(start, end, label) {
+			}, function(start, end) {
 				console.log( start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
 			});
 		});
@@ -193,11 +193,11 @@
 	</script>
 	<script>
 	// activityHold.html articlePost.html 檔案上傳
-	$('#file-uploads').change(function() {
-	var i = $(this).prev('label').clone();
-	var file = $('#file -uploads')[0].files[0].name;
-	$(this).prev('label').text(file);
-	});
+		$('#file-uploads').change(function() {
+			var i = $(this).prev('label').clone();
+			var file = $('#file-uploads')[0].files[0].name;
+			$(this).prev('label').text(file);
+		});
 	</script>
 
 </html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Paper Review</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+    <!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
+</head>
+<body>
+
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="container" id=show>
+        <header class="major special">
+            <h2>文章進度</h2>
+            <p>{th:articlenanme}</p>
+        </header>
+        <div>
+            <table class="alt" >
+                <tbody>
+                <tr>
+                    <td>活動名稱</td>
+                    <td>name</td>
+                </tr>
+                <tr>
+                    <td>活動領域</td>
+                    <td>study</td>
+                </tr>
+                <tr>
+                    <td>活動日期</td>
+                    <td>activitydate</td>
+                </tr>
+                <tr>
+                    <td>活動主辦人</td>
+                    <td>activity hold</td>
+                </tr>
+                <tr>
+                    <td>文章數量</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>活動人數</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>活動內容</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/skel.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script th:src="@{/assets/js/main.js}"></script>
+
+</body>
+</html>

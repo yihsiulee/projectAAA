@@ -15,21 +15,22 @@
 		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
 	</head>
-		
-		<!-- Header -->
-			<header id="header">
-				<h1><a th:href="@{/index.html}">Paper Review!</a></h1>
-				<a href="#nav">Menu</a>
-			</header>
+
+	<!-- Header -->
+	<header id="header">
+		<h1><a href="/">Paper Review!</a></h1>
+		<a href="#nav">Menu</a>
+	</header>
+
 
 	<!-- Nav -->
 	<nav id="nav">
 		<ul class="links">
-			<li>><a class="fa fa-home" th:href="@{/index.html}">&nbsp;&nbsp;Home</a></li>
-			<li><a class="fa fa-flag" th:href="@{/activityManagement.html}">&nbsp;&nbsp;Activity</a></li>
-			<li><a class="fa fa-file-text" th:href="@{/articlePost.html}">&nbsp;&nbsp;Article</a></li>
-			<li><a class="fa fa-users" th:href="@{/memberInfo.html}">&nbsp;&nbsp;Account</a></li>
-			<li><a class="fa fa-question-circle" th:href="@{/qa.html}">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+			<li>><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+			<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
+			<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
+			<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
+			<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
 		</ul>
 	</nav>
 

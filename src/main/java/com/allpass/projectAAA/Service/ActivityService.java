@@ -22,9 +22,16 @@ public class ActivityService {
         return activity;
 
     }
+
+    public Activity getActivityById(Long activityId) {
+        Activity activity=activityDao.getOne(activityId);
+        return activity;
+    }
+
     public List<Activity> getActivityList(){
         List<Activity> activityList=activityDao.findAll();
         return activityList;
     }
+
 
 }

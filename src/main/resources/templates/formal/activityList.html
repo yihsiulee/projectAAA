@@ -42,15 +42,16 @@
             <p>看看這裡有什麼適合你的活動吧！</p>
         </header>
 
-        <div class="row">
-            <div class="column">
-                <div class="activity">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" style="width: 100%; height:55%;">
+        <div  class="row">
+            <div  class="column" th:each="activityList:${activityLists}">
+                <div  class="activity">
+                    <img th:src="${activityList.activityImg}" style="width: 100%; height:55%;">
+<!--                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" style="width: 100%; height:55%;">-->
                     <div class="container">
-                        <h2>{activityName}</h2>
-                        <p class="title">{activityHold}</p>
-                        <p>{activityTime}}</p>
-                        <p>{activityContent}</p>
+                        <h2 th:text="${activityList.activityName}"></h2>
+                        <p class="title" th:text="${activityList.activityFounder.name}"></p>
+                        <p th:text="${activityList.activityEnd}"></p>
+                        <p th:text="${activityList.activityContent}"></p>
                         <p><!-- <button class="button.activity">Contact</button> -->
                             <a onclick="document.getElementById('id01').style.display='block'" class=" button alt small">查看</a>
                         <div id="id01" class="w3-modal">
@@ -63,8 +64,8 @@
                         </div>
                         </p>
                         <div>
-                            <a class=" button special small">審核論文</a>
-                            <a  class=" button small">上傳論文</a>
+                            <a th:href="@{attend(id=${activityList.id})}"  class=" button special small">審核論文</a>
+                            <a href="" class=" button small">上傳論文</a>
 
                         </div>
 

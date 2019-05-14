@@ -24,14 +24,16 @@ public class Activity {
     @JoinTable(
             name = "activity_member",
             joinColumns = @JoinColumn(
-                    name = "member_id"),
+                    name = "activity_id", referencedColumnName = "ACTIVITY_ID"),
             inverseJoinColumns = @JoinColumn(
-                    name = "activity_id"))
+                    name = "member_id", referencedColumnName = "MEMBER_ID"))
     private Set<Member> activityParticipants;
     private String activityImg;
 
-    public Activity(){
-
+    public Activity(
+//            String activityName
+    ){
+//        this.activityName=activityName;
     }
 
     public void setId(Long id) {
@@ -111,4 +113,6 @@ public class Activity {
     public Integer getArticleNumber() {
         return articleNumber;
     }
+
+
 }

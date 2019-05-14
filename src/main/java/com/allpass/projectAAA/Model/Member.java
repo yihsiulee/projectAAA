@@ -3,6 +3,7 @@ package com.allpass.projectAAA.Model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -33,8 +34,10 @@ public class  Member  {
 //    @OneToOne(cascade=CascadeType.ALL)
 //    @JoinColumn(name="MEMBER_ROLE_ID", referencedColumnName="ROLE_ID")
     private Collection<Member_Role> roles;
+//    @ManyToMany(mappedBy = "activityParticipants")
+//    private Set<Activity> activity;
     @ManyToMany(mappedBy = "activityParticipants")
-    private Set<Activity> activity;
+    private Set<Activity> activityParticipant;
 
     public Member(){
 
@@ -196,4 +199,21 @@ public class  Member  {
         this.roles = roles;
     }
 
+    public void setActivityParticipant(Set<Activity> activityParticipants) {
+        this.activityParticipant = activityParticipants;
+    }
+
+    public Set<Activity> getActivityParticipant() {
+        return activityParticipant;
+    }
+
+    @Override
+    public int hashCode() {
+        // Objects 有 hash() 方法可以使用
+        // 以下可以簡化為 return Objects.hash(name, number);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.idCardNumber);
+        return hash;
+    }
 }

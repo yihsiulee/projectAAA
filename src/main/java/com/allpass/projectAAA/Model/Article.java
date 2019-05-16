@@ -7,7 +7,7 @@ import java.util.Set;
 public class Article {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "ARTICLE_ID")
+    @Column(name = "articleId")
     private Long id;
     private String articleName;
     private String postTime;

@@ -34,7 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         SecurityConstants.MEMBER_REGISTER_URL,
                         SecurityConstants.H2_CONSOLE
                 ).permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .permitAll()
+                //.authenticated()
                 .and()
                 .formLogin()
                 .successHandler(memberLoginnSuccessHandler)

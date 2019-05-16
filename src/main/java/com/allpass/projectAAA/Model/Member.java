@@ -39,62 +39,62 @@ public class  Member  {
     public Member(){
 
     }
-    public Member(
-            Long id,
-            String name,
-            String idCardNumber,
-            String password,
-            String email,
-            String phoneNumber,
-            Integer gender,
-            String birthday,
-            String special,
-            Integer educational,
-            Integer study,
-            Float tokenBalance
-    ) {
-        this.id=id;
-        this.name=name;
-        this.idCardNumber=idCardNumber;
-        this.password=password;
-        this.email=email;
-        this.phoneNumber=phoneNumber;
-        this.gender=gender;
-        this.birthday=birthday;
-        this.educational=educational;
-        this.study=study;
-        this.tokenBalance=tokenBalance;
-        this.special=special;
-    }
-    public Member(
-            Long id,
-            String name,
-            String idCardNumber,
-            String password,
-            String email,
-            String phoneNumber,
-            Integer gender,
-            String birthday,
-            String special,
-            Integer educational,
-            Integer study,
-            Float tokenBalance,
-            Collection<Member_Role> roles
-    ) {
-        this.id=id;
-        this.name=name;
-        this.idCardNumber=idCardNumber;
-        this.password=password;
-        this.email=email;
-        this.phoneNumber=phoneNumber;
-        this.gender=gender;
-        this.birthday=birthday;
-        this.educational=educational;
-        this.study=study;
-        this.tokenBalance=tokenBalance;
-        this.special=special;
-        this.roles=roles;
-    }
+//    public Member(
+//            Long id,
+//            String name,
+//            String idCardNumber,
+//            String password,
+//            String email,
+//            String phoneNumber,
+//            Integer gender,
+//            String birthday,
+//            String special,
+//            Integer educational,
+//            Integer study,
+//            Float tokenBalance
+//    ) {
+//        this.id=id;
+//        this.name=name;
+//        this.idCardNumber=idCardNumber;
+//        this.password=password;
+//        this.email=email;
+//        this.phoneNumber=phoneNumber;
+//        this.gender=gender;
+//        this.birthday=birthday;
+//        this.educational=educational;
+//        this.study=study;
+//        this.tokenBalance=tokenBalance;
+//        this.special=special;
+//    }
+//    public Member(
+//            Long id,
+//            String name,
+//            String idCardNumber,
+//            String password,
+//            String email,
+//            String phoneNumber,
+//            Integer gender,
+//            String birthday,
+//            String special,
+//            Integer educational,
+//            Integer study,
+//            Float tokenBalance,
+//            Collection<Member_Role> roles
+//    ) {
+//        this.id=id;
+//        this.name=name;
+//        this.idCardNumber=idCardNumber;
+//        this.password=password;
+//        this.email=email;
+//        this.phoneNumber=phoneNumber;
+//        this.gender=gender;
+//        this.birthday=birthday;
+//        this.educational=educational;
+//        this.study=study;
+//        this.tokenBalance=tokenBalance;
+//        this.special=special;
+//        this.roles=roles;
+//    }
 
 
 

@@ -48,7 +48,7 @@
 						<h2>舉辦活動</h2>
 					</header>
 
-					<form action="/activity/hold" method="post">
+					<form action="/activity/hold" enctype="multipart/form-data" method="post">
 
 						<div class="table">
 							<table class="alt">
@@ -172,9 +172,12 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"/>-->
+<!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>-->
+	 <script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+	 <script type="text/javascript" th:src="@{/assets/js/moment.min.js}"></script>
+	 <script type="text/javascript" th:src="@{/assets/js/daterangepicker.min.js}"></script>
+<!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>-->
 	<script>
 		$(function() {
 			$('input[name="dateRange"]').daterangepicker({

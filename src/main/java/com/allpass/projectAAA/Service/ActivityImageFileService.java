@@ -68,11 +68,19 @@ public class ActivityImageFileService implements StorageServiceInterface {
     public List<String> loadActivityImage(List<String> activity) {
         try {
             List<String> imageList = new ArrayList<String>();
-            for (String a : activity) {
-                Files.walk(this.rootLocation, 1)
-                        .filter(path -> path.getFileName().toString().equals(a))
-                        .forEach(item -> imageList.add(item.getFileName().toString()));
-
+            System.out.println(activity.size());
+            for (String a:activity) {
+             if(a!=null){
+                    Files.walk(this.rootLocation, 1)
+                            .filter(item->item.getFileName().toString().equals(a))
+                            .forEach(item->imageList.add(item.getFileName().toString()));
+                // path -> path.getFileName().toString().equals(a)
+                            //.forEach(item -> imageList.add(item.getFileName().toString()));
+                   // continue;
+                }else{
+                    imageList.add("none");
+                    continue;
+                }
             }
             return imageList;
 //            return Files.walk(this.rootLocation, 1)

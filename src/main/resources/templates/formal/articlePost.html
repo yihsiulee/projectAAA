@@ -43,11 +43,12 @@
 						<h2>上傳論文</h2>
 					</header>
 
-			
-					
-						<form>
+
+
+					<form th:action="@{post}"  enctype="multipart/form-data" method="post">
 							<!--<div class="row uniform 50%">
 							</div>-->
+						<input type="hidden" name="activityId" th:value="${activity_Id}" >
 						<div class="table">
 							<table class="alt">
 								<thead>

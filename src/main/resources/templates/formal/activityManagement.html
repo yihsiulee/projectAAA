@@ -44,9 +44,10 @@
             <h2>活動管理</h2>
         </header>
 
-        <div class="table-wrapper">
-            <li th:each="file : ${image}">
-                <img th:src="${file}">
+        <div class="table-wrapper" th:each="activityManagementList : ${activityManagementList}">
+<!--            <li th:each="file : ${image}">-->
+<!--                <img th:src="${file}">-->
+            <p th:text="${activityManagementList.activityName}">
             <table>
                 <thead>
                 <tr>
@@ -65,8 +66,8 @@
                         <button  class="btn success" >審核完成</button>
 
                         <button class="btn info">審稿中</button>
-                        <button class="btn warning">未分配</button>
-                        <button class="btn danger">已上傳</button>
+                        <button class="btn warning">待回復</button>
+                        <button class="btn danger">未分配</button>
                     </td>
                     <td>
 

@@ -1,7 +1,6 @@
 package com.allpass.projectAAA.Model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Article {
@@ -13,6 +12,9 @@ public class Article {
     private String postTime;
 //    private String deadline;
 //    private String checkedTime;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="AUTHOR_MEMBER_ID_FK")
+    private Member Author;
     private Integer articleStudy;
     private String uploadFile;
     private Integer textNumber;
@@ -21,8 +23,8 @@ public class Article {
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ACTIVITY_ID_FK")
     private Activity activity;
-    @OneToMany(mappedBy="article")
-    private Set<ReviewArticle> reviewArticle;
+//    @OneToMany(mappedBy="article")
+//    private Set<ArticleReview> articleReview;
 
 
 //    public Article(
@@ -83,7 +85,15 @@ public class Article {
         return articleName;
     }
 
-//    public void setCheckedTime(String checkedTime) {
+    public void setAuthor(Member author) {
+        Author = author;
+    }
+
+    public Member getAuthor() {
+        return Author;
+    }
+
+    //    public void setCheckedTime(String checkedTime) {
 //        this.checkedTime = checkedTime;
 //    }
 //

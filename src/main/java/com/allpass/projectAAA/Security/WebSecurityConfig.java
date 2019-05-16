@@ -35,8 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         SecurityConstants.H2_CONSOLE
                 ).permitAll()
                 .anyRequest()
-                .permitAll()
-                //.authenticated()
+                .permitAll() //測試版
+                //.authenticated() //正式版
                 .and()
                 .formLogin()
                 .successHandler(memberLoginnSuccessHandler)

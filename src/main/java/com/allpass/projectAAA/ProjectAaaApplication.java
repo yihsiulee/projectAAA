@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@EnableConfigurationProperties({ActivityImageFileProperties.class, ArticleUploadFileProperties.class})
+//@EnableConfigurationProperties({ActivityImageFileProperties.class, ArticleUploadFileProperties.class})
 @SpringBootApplication
 public class ProjectAaaApplication {
 
@@ -50,10 +50,10 @@ public class ProjectAaaApplication {
 	public String result(){
 		return "result";
 	}
-	@RequestMapping("/article")
-	public String article(){
-		return "article";
-	}
+//	@RequestMapping("/article")
+//	public String article(){
+//		return "article";
+//	}
 	@RequestMapping("/history")
 	public String history(){
 		return "history";
@@ -66,12 +66,6 @@ public class ProjectAaaApplication {
 		DatabaseServer.startH2Server();
 		SpringApplication.run(ProjectAaaApplication.class, args);
 	}
-//	@Bean
-//	CommandLineRunner init(StorageService storageService) {
-//		return (args) -> {
-//			storageService.deleteAll();
-//			storageService.init();
-//		};
-//	}
+
 }
 

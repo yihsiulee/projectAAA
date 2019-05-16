@@ -18,9 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/activity")
@@ -39,7 +37,13 @@ public class ActivityController {
     }
     //活動功能頁面
     @RequestMapping(value = "")
-    private String activityPage(){return "activity";}
+    private String activityFuctionPage(
+            Model model,
+            Authentication auth
+    ){
+//        String memberIdCardNumber=auth.getName();
+//        model.addAttribute("memberIdCardNumber",memberIdCardNumber);
+        return "activity";}
 
     //查看能參加活動
     @RequestMapping(value = "/list")
@@ -75,32 +79,35 @@ public class ActivityController {
                 continue;
         }
         model.addAttribute("activityLists",activityList);
-        model.addAttribute("image",activity_Image);
         return "activityList";
     }
 
     //參加活動
-    @GetMapping(value = "/attend")
-    private String attendActivity(
+    @GetMapping(value = "/reviewerAttend")
+    private String reviewerAttend(
             @RequestParam("id")Long id,
             Authentication authentication){
-        String authIdCardNumber=authentication.getName();
-        System.out.println(id);
-        System.out.println(activityService.getActivityById(id).getActivityParticipants().isEmpty());
-        if(activityService.getActivityById(id).getActivityParticipants().isEmpty()){
-            Set<Member> activityParticipants = new HashSet<>();
-            Set<Activity> activity = new HashSet<Activity>();
-            activityParticipants.add(memberService.getMemberInfo(authIdCardNumber));
-            activity.add(activityService.getActivityById(id));
-            memberService.getMemberInfo(authIdCardNumber).setActivityParticipant(activity);
-            activityService.getActivityById(id).setActivityParticipants(activityParticipants);
-            System.out.println(activityService.getActivityById(id).getActivityParticipants().size());
-        }else{
-            System.out.println(activityService.getActivityById(id).getActivityParticipants().size()+"haha");
-            activityService.getActivityById(id).getActivityParticipants().add(memberService.getMemberInfo(authentication.getName()));
-            memberService.getMemberInfo(authIdCardNumber).getActivityParticipant().add(activityService.getActivityById(id));
-        }
-        activityService.getActivityById(id).getActivityParticipants().forEach(item->System.out.println(item.getName()));
+        Member activityParticipant=memberService.getMemberInfo(authentication.getName());
+        System.out.println(activityService.getActivityById(id).getActivityParticipants_Reviewer().size());
+        Activity activityUpdate= activityService.getActivityById(id);
+        activityUpdate.getActivityParticipants_Reviewer().add(activityParticipant);
+        activityService.update(activityUpdate);
+        activityService.getActivityById(id).getActivityParticipants_Reviewer().forEach(item->System.out.println(item.getName()));
+
+//        }
+        return "redirect:/activity";
+    }
+    @GetMapping(value = "/authorAttend")
+    private String authorAttend(
+            @RequestParam("id")Long id,
+            Authentication authentication){
+        Member activityParticipant=memberService.getMemberInfo(authentication.getName());
+        System.out.println(activityService.getActivityById(id).getActivityParticipants_Author().size());
+        Activity activityUpdate= activityService.getActivityById(id);
+        activityUpdate.getActivityParticipants_Author().add(activityParticipant);
+        activityService.update(activityUpdate);
+        activityService.getActivityById(id).getActivityParticipants_Author().forEach(item->System.out.println(item.getName()));
+//        }
         return "redirect:/activity";
     }
 
@@ -122,14 +129,12 @@ public class ActivityController {
             Authentication authentication
     ){
         Activity activity=new Activity();
-        List<String> activityTime = new ArrayList<String>();
-        for (String s : dateRange.split("-")) {
-            activityTime.add(s);
-        }
         activity.setActivityName(activityName);
         activity.setActivityContent(activityContent);
-        activity.setActivityStart(activityTime.get(0));
-        activity.setActivityEnd(activityTime.get(1));
+        activity.setActivityTime(dateRange);
+//        Set<Member> activityParticipants = new HashSet<>();
+//        activityParticipants.add(memberService.getMemberInfo(authentication.getName()));
+//        activity.setActivityParticipants(activityParticipants);
         System.out.println(activityImg.getOriginalFilename());
         if(!activityImg.isEmpty()){
             activity.setActivityImg(activityImg.getOriginalFilename());
@@ -138,7 +143,7 @@ public class ActivityController {
         }
         activity.setArticleNumber(articleNumber);
         activity.setLimitedParticipants(participantNumber);
-        activity.setActivityFounder(memberService.getMemberInfo(authentication.getName()));
+        activity.setActivityOrganizer(memberService.getMemberInfo(authentication.getName()));
         activityService.save(activity);
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("redirect:/");
@@ -146,7 +151,7 @@ public class ActivityController {
     }
 
     //圖片連結
-    @GetMapping("/files/{filename:.+}")
+    @GetMapping("/activityImage/{filename:.+}")
     @ResponseBody
     public ResponseEntity<org.springframework.core.io.Resource> serveFile(@PathVariable String filename) {
         System.out.println(filename);
@@ -154,33 +159,46 @@ public class ActivityController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+    @RequestMapping(value = "/management")
+    private String activityManagementPage(
+            Authentication auth,
+            Model model
+    ){
+        Long memberId;
+        memberId=memberService.getMemberInfo(auth.getName()).getId();
+        if(memberId==null) {
+            return "redirect:/activity";
+        }else{
+            List<Activity> activityManagementList=activityService.getActivityInfoByActivityFounder(memberService.getMemberInfo(auth.getName()));
+
+            model.addAttribute("activityManagementList",activityManagementList);
+            return "activityManagement";
+        }
+
+
+
+    }
 
     //
-    @RequestMapping(value = "/info")
-    private ModelAndView info( Authentication authentication){
-        List<Activity> activity=activityService.getActivityInfoByActivityFounder(memberService.getMemberInfo(authentication.getName()));
-        List<String> img = new ArrayList<String>();
-        for(Activity image:activity){
-            img.add(image.getActivityImg());
-        }
-//        System.out.println(img);
-        List<String> activity_Image = new ArrayList<String>();
-//            for(String image:img){
-//            activity_Image.add(storageService.loadActivityImage(img).map(
-//                    path -> MvcUriComponentsBuilder.fromMethodName(ActivityController.class,
-//                            "serveFile", path.getFileName().toString()).build().toString()));
-//                .collect(Collectors.toList());
+//    @RequestMapping(value = "/info")
+//    private ModelAndView info( Authentication authentication){
+//        List<Activity> activity=activityService.getActivityInfoByActivityFounder(memberService.getMemberInfo(authentication.getName()));
+//        List<String> img = new ArrayList<String>();
+//        for(Activity image:activity){
+//            img.add(image.getActivityImg());
 //        }
-        activityImageFileService.loadActivityImage(img).forEach(
-                path -> activity_Image.add(MvcUriComponentsBuilder.fromMethodName(ActivityController.class,
-                        "serveFile", path).build().toString()));
-
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("activityManagement");
-        modelAndView.addObject("image",activity_Image);
-       System.out.println(activity_Image);
-        return modelAndView;
-    }
+//        System.out.println(img);
+//        List<String> activity_Image = new ArrayList<String>();
+//        activityImageFileService.loadActivityImage(img).forEach(
+//                path -> activity_Image.add(MvcUriComponentsBuilder.fromMethodName(ActivityController.class,
+//                        "serveFile", path).build().toString()));
+//
+//        ModelAndView modelAndView=new ModelAndView();
+//        modelAndView.setViewName("activityManagement");
+//        modelAndView.addObject("image",activity_Image);
+//       System.out.println(activity_Image);
+//        return modelAndView;
+//    }
 
 
 }

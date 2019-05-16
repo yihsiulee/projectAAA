@@ -2,6 +2,7 @@ package com.allpass.projectAAA.Model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -12,22 +13,31 @@ public class Activity {
     @Column(name = "ACTIVITY_ID")
     private Long id;
     private String activityName;
-    private String activityStart;
-    private String activityEnd;
+    private String activityTime;
     private String activityContent;
     private Integer limitedParticipants;
     private Integer articleNumber;
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="founder_member_ID_FK")
-    private Member activityFounder;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="organizer_member_ID_FK")
+    private Member activityOrganizer;
+    @ManyToMany( fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "activity_member",
+            name = "activityReviewer_members",
             joinColumns = @JoinColumn(
-                    name = "activity_id", referencedColumnName = "ACTIVITY_ID"),
+                    name = "activity_id",referencedColumnName = "ACTIVITY_ID"),
             inverseJoinColumns = @JoinColumn(
-                    name = "member_id", referencedColumnName = "MEMBER_ID"))
-    private Set<Member> activityParticipants;
+                    name = "member_id",referencedColumnName = "MEMBER_ID"))
+    private Set<Member> activityParticipants_Reviewer=new HashSet<>();
+    @ManyToMany( fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "activityAuthor_members",
+            joinColumns = @JoinColumn(
+                    name = "activity_id",referencedColumnName = "ACTIVITY_ID"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "member_id",referencedColumnName = "MEMBER_ID"))
+    private Set<Member> activityParticipants_Author=new HashSet<>();
     private String activityImg;
 
     public Activity(
@@ -60,28 +70,16 @@ public class Activity {
         return activityContent;
     }
 
-    public void setActivityStart(String activityStart) {
-        this.activityStart = activityStart;
+    public void setActivityTime(String activityTime) { this.activityTime = activityTime; }
+
+    public String getActivityTime() { return activityTime; }
+
+    public void setActivityOrganizer(Member activityFounder) {
+        this.activityOrganizer = activityFounder;
     }
 
-    public String getActivityStart() {
-        return activityStart;
-    }
-
-    public void setActivityEnd(String activityEnd) {
-        this.activityEnd = activityEnd;
-    }
-
-    public String getActivityEnd() {
-        return activityEnd;
-    }
-
-    public void setActivityFounder(Member activityFounder) {
-        this.activityFounder = activityFounder;
-    }
-
-    public Member getActivityFounder() {
-        return activityFounder;
+    public Member getActivityOrganizer() {
+        return activityOrganizer;
     }
 
     public void setActivityImg(String activityImg) {
@@ -92,11 +90,13 @@ public class Activity {
         return activityImg;
     }
 
-    public void setActivityParticipants(Set<Member> activityParticipants) { this.activityParticipants = activityParticipants; }
+    public void setActivityParticipants_Author(Set<Member> activityParticipants_Author) { this.activityParticipants_Author = activityParticipants_Author; }
 
-    public Set<Member> getActivityParticipants() {
-        return activityParticipants;
-    }
+    public Set<Member> getActivityParticipants_Author() { return activityParticipants_Author; }
+
+    public void setActivityParticipants_Reviewer(Set<Member> activityParticipants_Reviewer) { this.activityParticipants_Reviewer = activityParticipants_Reviewer; }
+
+    public Set<Member> getActivityParticipants_Reviewer() { return activityParticipants_Reviewer; }
 
     public void setLimitedParticipants(Integer limitedParticipants) {
         this.limitedParticipants = limitedParticipants;

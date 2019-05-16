@@ -50,10 +50,10 @@ public class ProjectAaaApplication {
 	public String result(){
 		return "result";
 	}
-	@RequestMapping("/article")
-	public String article(){
-		return "article";
-	}
+//	@RequestMapping("/article")
+//	public String article(){
+//		return "article";
+//	}
 	@RequestMapping("/history")
 	public String history(){
 		return "history";

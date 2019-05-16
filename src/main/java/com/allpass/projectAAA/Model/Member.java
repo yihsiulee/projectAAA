@@ -3,6 +3,7 @@ package com.allpass.projectAAA.Model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -34,10 +35,19 @@ public class  Member  {
 //    @OneToOne(cascade=CascadeType.ALL)
 //    @JoinColumn(name="MEMBER_ROLE_ID", referencedColumnName="ROLE_ID")
     private Collection<Member_Role> roles;
-//    @ManyToMany(mappedBy = "activityParticipants")
-//    private Set<Activity> activity;
-    @ManyToMany(mappedBy = "activityParticipants")
-    private Set<Activity> activityParticipant;
+    @ManyToMany( fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},mappedBy = "activityParticipants_Reviewer")
+//    @JoinTable(
+//            name = "activity_member",
+//            joinColumns = @JoinColumn(
+//                    name = "member_id",referencedColumnName = "MEMBER_ID"),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "activity_id",referencedColumnName = "ACTIVITY_ID"))
+    private Set<Activity> activityParticipant_Reviewer=new HashSet<>();
+    @ManyToMany( fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},mappedBy = "activityParticipants_Author")
+    private Set<Activity> activityParticipant_Author=new HashSet<>();
+
 
     public Member(){
 
@@ -199,13 +209,13 @@ public class  Member  {
         this.roles = roles;
     }
 
-    public void setActivityParticipant(Set<Activity> activityParticipants) {
-        this.activityParticipant = activityParticipants;
-    }
+    public void setActivityParticipant_Reviewer(Set<Activity> activityParticipant_Reviewer) { this.activityParticipant_Reviewer = activityParticipant_Reviewer; }
 
-    public Set<Activity> getActivityParticipant() {
-        return activityParticipant;
-    }
+    public Set<Activity> getActivityParticipant_Reviewer() { return activityParticipant_Reviewer; }
+
+    public void setActivityParticipant_Author(Set<Activity> activityParticipant_Author) { this.activityParticipant_Author = activityParticipant_Author; }
+
+    public Set<Activity> getActivityParticipant_Author() { return activityParticipant_Author; }
 
     @Override
     public int hashCode() {

@@ -1,7 +1,6 @@
 package com.allpass.projectAAA.Model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Article {
@@ -24,8 +23,8 @@ public class Article {
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ACTIVITY_ID_FK")
     private Activity activity;
-    @OneToMany(mappedBy="article")
-    private Set<ReviewArticle> reviewArticle;
+//    @OneToMany(mappedBy="article")
+//    private Set<ArticleReview> articleReview;
 
 
 //    public Article(

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ActivityDao extends JpaRepository<Activity,Long> {
 
-    List<Activity> findByActivityFounder(Member activityFounder);
+    List<Activity> findByActivityOrganizer(Member activityOrganizer);
 
 }

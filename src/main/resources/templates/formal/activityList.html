@@ -80,6 +80,7 @@
 
         <article class="feature left" th:each="activityList:${activityLists}">
 						<span class="image">
+
 							<img th:src="${activityList.activityImg}" alt="" />
 						</span>
             <div class="content">
@@ -100,6 +101,28 @@
                 <a th:href="@{authorAttend(id=${activityList.id})}" class=" button small">上傳論文</a>
             </div>
         </article>
+<!--        <article class="feature left" >-->
+<!--						<span class="image">-->
+<!--							<img src="/"  alt="" />-->
+<!--						</span>-->
+<!--            <div class="content">-->
+<!--                <h2>name</h2>-->
+<!--                <li>time</li>-->
+<!--                <br>-->
+<!--                <a onclick="document.getElementById('id01').style.display='block'" class=" button alt small">查看</a>-->
+<!--                <div id="id02" class="w3-modal">-->
+<!--                    <div class="w3-modal-content">-->
+<!--                        <div class="w3-container">-->
+<!--                            <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" >&times;</span>-->
+<!--                            <iframe src="activityInfo.html#show" style="border:none;width:100%;height:750px"></iframe>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <a  class=" button special small">審核論文</a>-->
+<!--                <a  class=" button small">上傳論文</a>-->
+<!--            </div>-->
+<!--        </article>-->
 
 
 

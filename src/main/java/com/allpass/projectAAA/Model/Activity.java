@@ -38,6 +38,8 @@ public class Activity {
             inverseJoinColumns = @JoinColumn(
                     name = "member_id",referencedColumnName = "MEMBER_ID"))
     private Set<Member> activityParticipants_Author=new HashSet<>();
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
+    private Set<Article> article;
     private String activityImg;
 
     public Activity(
@@ -114,5 +116,7 @@ public class Activity {
         return articleNumber;
     }
 
+    public void setArticle(Set<Article> article) { this.article = article; }
 
+    public Set<Article> getArticle() { return article; }
 }

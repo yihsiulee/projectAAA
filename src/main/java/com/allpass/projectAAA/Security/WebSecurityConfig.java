@@ -32,11 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         SecurityConstants.QA_URL,
                         SecurityConstants.MEMBER_INDEX_URL,
                         SecurityConstants.MEMBER_REGISTER_URL,
-                        SecurityConstants.H2_CONSOLE
+                        SecurityConstants.H2_CONSOLE,
+                        SecurityConstants.ACTIVITY_LIST_URL,
+                        SecurityConstants.ACTIVITY_IMAGE_DOWNLOAD_URL
                 ).permitAll()
                 .anyRequest()
-                .permitAll() //測試版
-                //.authenticated() //正式版
+                //.permitAll() //測試版
+                .authenticated() //正式版
                 .and()
                 .formLogin()
                 .successHandler(memberLoginnSuccessHandler)
@@ -97,6 +99,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/**",
                         "/assets/**",
                         "/images/**",
+                        "/activityImage/**",
+                        "/database/**",
                         "/css/**",
                         "/css/images/**",
                         "/js/**",
@@ -106,6 +110,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/sass/base/**",
                         "/sass/components/**",
                         "/sass/layout/**",
-                        "/sass/libs/**");
+                        "/sass/libs/**"
+                       );
     }
 }

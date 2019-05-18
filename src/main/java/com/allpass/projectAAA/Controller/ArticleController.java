@@ -1,5 +1,6 @@
 package com.allpass.projectAAA.Controller;
 
+import com.allpass.projectAAA.Model.Activity;
 import com.allpass.projectAAA.Model.Article;
 import com.allpass.projectAAA.Service.ActivityService;
 import com.allpass.projectAAA.Service.ArticleService;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/article")
@@ -37,18 +39,22 @@ public class ArticleController {
         return "article";
     }
 
-    //文章上傳頁面
-    @GetMapping(value = "/post")
-    public String UplodArticlePage(Model model,
-                                   @RequestParam("activityId")Long activity_Id){
 
-        model.addAttribute("activity_Id",activity_Id);
+    //文章上傳頁面
+    @RequestMapping(value = "/post")
+    public String UploadArticlePage(Model model,
+                                   Authentication authentication){
+        if(memberService.getMemberInfo(authentication.getName()).getActivityParticipant_Author().isEmpty())
+            return "/article";
+        Set<Activity> activityList=memberService.getMemberInfo(authentication.getName()).getActivityParticipant_Author();
+        activityList.forEach(i->System.out.println(i.getActivityName()));
+        model.addAttribute("activityList",activityList);
         return "articlePost";
     }
 
     //文章上傳
     @PostMapping(value = "/post")
-    public String getAddArticleView(
+    public String UploadArticle(
             @RequestParam("activityId")Long activity_Id,
             @RequestParam("articleName")String articleName,
             @RequestParam("textNumber")Integer textNumber,
@@ -70,7 +76,8 @@ public class ArticleController {
             articleUploadFileService.store(uploadFile);
         }
         articleService.save(article);
-        return "redirect:/";
+        activityService.getActivityById(activity_Id).getActivityParticipants_Author().remove(memberService.getMemberInfo(auth.getName()));
+        return "redirect:/article";
     }
 
     //文章連結
@@ -82,5 +89,6 @@ public class ArticleController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+
 
 }

@@ -61,12 +61,11 @@
                 <tr>
                     <td th:text="${article.articleName}"></td>
                     <td th:text="${article.postTime}"></td>
-                    <td>
-                        <button  class="btn success" >審核完成</button>
-
-                        <button class="btn info">審稿中</button>
-                        <button class="btn warning">待回復</button>
-                        <button class="btn danger">未分配</button>
+                    <td th:switch="${article.articleState}">
+                        <button  class="btn success" th:case="reviewFinish">審核完成</button>
+                        <button class="btn info"  th:case="reviewing">審稿中</button>
+                        <button class="btn warning"  th:case="assign">待回復</button>
+                        <button class="btn danger"  th:case="notAssign">未分配</button>
                     </td>
                     <td>
 
@@ -81,7 +80,9 @@
                             </div>
                         </div>
 
-                        <a th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}" onclick="document.getElementById('id02').style.display='block'" class=" button special small">Assign</a></button>
+                        <a th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}" class=" button special small">Assign</a>
+<!--                           onclick="document.getElementById('id02').style.display='block'" -->
+
                         <div id="id02" class="w3-modal">
                             <div class="w3-modal-content" >
                                 <div class="w3-container"  >

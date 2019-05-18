@@ -1,6 +1,7 @@
 package com.allpass.projectAAA.Controller;
 
 import com.allpass.projectAAA.Model.Activity;
+import com.allpass.projectAAA.Model.Article;
 import com.allpass.projectAAA.Model.ArticleReview;
 import com.allpass.projectAAA.Model.Member;
 import com.allpass.projectAAA.Service.*;
@@ -41,11 +42,8 @@ public class ActivityController {
     //活動功能頁面
     @RequestMapping(value = "")
     private String activityFuctionPage(
-            Model model,
-            Authentication auth
+            Model model
     ){
-//        String memberIdCardNumber=auth.getName();
-//        model.addAttribute("memberIdCardNumber",memberIdCardNumber);
         return "activity";}
 
     //查看能參加活動
@@ -175,8 +173,48 @@ public class ActivityController {
             return "redirect:/activity";
         }else{
             List<Activity> activityManagementList=activityService.getActivityInfoByActivityFounder(memberService.getMemberInfo(auth.getName()));
-            activityManagementList.forEach(item->item.getArticle().forEach(i -> System.out.println(i.getArticleName())));
+
+
+            for(int activityAmount=0;activityAmount<activityManagementList.size();activityAmount++){
+                for(int articleAmount=0;articleAmount<activityManagementList.get(activityAmount).getArticle().size();articleAmount++){
+
+                    List<ArticleReview> articleReviewList = new ArrayList<>();
+                    String articleState="";
+                    List<Article> articleList=articleService.getArticleByActivity(activityManagementList.get(activityAmount));
+
+                    if(!articleList.get(articleAmount).getArticleReviews().isEmpty()) {
+                        articleList.get(articleAmount).getArticleReviews().forEach(i -> System.out.println(i.getId()));
+                        articleList.get(articleAmount).getArticleReviews().forEach(i -> articleReviewList.add(i));
+                        articleState=articleList.get(articleAmount).getArticleState();
+                    }
+
+                    if(!articleReviewList.isEmpty() && articleState.equals("reviewing")){
+                        boolean isArticleReviewComplete=false;
+                        boolean last=true;
+                        for(ArticleReview a:articleReviewList) {
+
+                            if(a.isReviewComplete() && last){
+                                isArticleReviewComplete=true;
+                                last=true;
+                            }else {
+                                last=false;
+                                isArticleReviewComplete=false;
+                            }
+                        }
+                        if(isArticleReviewComplete==true){
+                            articleList.get(articleAmount).setArticleState("reviewFinish");
+                        }else {
+                            articleList.get(articleAmount).setArticleState("reviewing");
+                        }
+
+                    }
+                }
+
+            }
+
+
             model.addAttribute("activityManagementList",activityManagementList);
+
 
             return "activityManagement";
         }
@@ -204,18 +242,23 @@ public class ActivityController {
     ){
         List<String> reviewMember=new ArrayList<>();
         System.out.println(reviewMemberList);
+
         for(String a: reviewMemberList.split(",")){
             reviewMember.add(a);
+        }
+        if(reviewMember.size()<3){
+            return "redirect:/activity/management";
         }
         Activity updateActivity=activityService.getActivityById(activityId);
         for (int i=0;i<reviewMember.size();i++){
             ArticleReview articleReview=new ArticleReview();
             System.out.println(reviewMember.get(i));
             articleReview.setMember(memberService.getMemberInfo(reviewMember.get(i)));
-            updateActivity.getActivityParticipants_Reviewer().remove(memberService.getMemberInfo(reviewMember.get(i)));
-            activityService.save(updateActivity);
+//            updateActivity.getActivityParticipants_Reviewer().remove(memberService.getMemberInfo(reviewMember.get(i)));
+//            activityService.save(updateActivity);
             articleReview.setArticle(articleService.getArticleById(articleId));
             articleReviewService.save(articleReview);
+            articleService.getArticleById(articleId).setArticleState("assign");
         }
 
         return "redirect:/activity/management";

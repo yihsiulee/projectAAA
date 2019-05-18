@@ -12,7 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
+public class MemberLoginSuccessHandler
+// extends SimpleUrlAuthenticationSuccessHandler
+//        implements AuthenticationSuccessHandler {
+//
+//    public MemberLoginSuccessHandler() {
+//        super();
+//        setUseReferer(true);
+//    }
+ implements AuthenticationSuccessHandler {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -33,8 +41,9 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
 //            }
 //        }
 
+
 //        if(admin){
-            response.sendRedirect("/");
+        response.sendRedirect("/");
 //        }else{
 //            response.sendRedirect("/user");
 //        }

@@ -1,6 +1,8 @@
 package com.allpass.projectAAA.Model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Article {
@@ -23,6 +25,9 @@ public class Article {
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ACTIVITY_ID_FK")
     private Activity activity;
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private Set<ArticleReview> articleReviews=new HashSet<>();
+    private String articleState="notAssign";
 //    @OneToMany(mappedBy="article")
 //    private Set<ArticleReview> articleReview;
 
@@ -128,4 +133,12 @@ public class Article {
     public void setActivity(Activity activity) { this.activity = activity; }
 
     public Activity getActivity() { return activity; }
+
+    public void setArticleReviews(Set<ArticleReview> articleReviews) { this.articleReviews = articleReviews; }
+
+    public Set<ArticleReview> getArticleReviews() { return articleReviews; }
+
+    public void setArticleState(String articleState) { this.articleState = articleState; }
+
+    public String getArticleState() { return articleState; }
 }

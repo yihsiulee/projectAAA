@@ -15,8 +15,12 @@ public class ArticleReviewController {
     @Resource
     ArticleReviewService articleReviewService;
 
-    @RequestMapping("")
-    private String articleReviewFuctionPage(){ return "articleReview"; }
+    @RequestMapping("/list")
+    private String articleReviewListPage(){
+        return "articleReviewList";
+    }
+
+
     @RequestMapping("/post")
     private String saveArticleReviewPage(){
         return "articleFeedback";

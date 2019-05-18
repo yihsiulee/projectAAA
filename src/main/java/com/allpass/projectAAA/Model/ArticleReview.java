@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class ArticleReview {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "REVIEW_ARTICLE_ID")
+    @Column(name = "ARTICLE_REVIEW_ID")
     private Long id;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="article_id", nullable=false)
@@ -18,9 +18,12 @@ public class ArticleReview {
     private String reviewText;
     private Integer articleStatus;
     private Long reviewAddress;
+    private boolean reviewComplete=false;
 
 
     public ArticleReview(){ }
+
+    public void setId(Long id) { this.id = id; }
 
     public Long getId() {
         return id;
@@ -73,4 +76,8 @@ public class ArticleReview {
     public Member getMember() {
         return member;
     }
+
+    public void setReviewComplete(boolean reviewComplete) { this.reviewComplete = reviewComplete; }
+
+    public boolean isReviewComplete() { return reviewComplete; }
 }

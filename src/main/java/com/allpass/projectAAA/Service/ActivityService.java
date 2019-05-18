@@ -22,8 +22,8 @@ public class ActivityService {
     }
 
     public List<Activity> getActivityInfoByActivityFounder(Member activityOrganizer){
-        List<Activity> activity=activityDao.findByActivityOrganizer(activityOrganizer);
-        return activity;
+            List<Activity> activity=activityDao.findByActivityOrganizer(activityOrganizer);
+            return activity;
 
     }
 

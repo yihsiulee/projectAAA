@@ -1,7 +1,6 @@
 package com.allpass.projectAAA.Security;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,8 +20,6 @@ import javax.annotation.Resource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private MemberDetailsServiceImp memberDetailsServiceImp;
-    @Autowired
-    private MemberLoginSuccessHandler memberLoginnSuccessHandler;
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
@@ -33,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         SecurityConstants.MEMBER_INDEX_URL,
                         SecurityConstants.MEMBER_REGISTER_URL,
                         SecurityConstants.H2_CONSOLE,
+                        SecurityConstants.ACTIVITY_FUCTIONPAGE_URL,
                         SecurityConstants.ACTIVITY_LIST_URL,
                         SecurityConstants.ACTIVITY_IMAGE_DOWNLOAD_URL
                 ).permitAll()
@@ -41,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated() //正式版
                 .and()
                 .formLogin()
-                .successHandler(memberLoginnSuccessHandler)
+                .successHandler(new MemberLoginSuccessHandler())
                 .loginPage(SecurityConstants.MEMBER_LOGIN_URL)
                 .permitAll()
                 .and()
@@ -52,8 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl(SecurityConstants.MEMBER_LOGIN_URL)
                 .logoutUrl(SecurityConstants.MEMBER_LOGOUT_URL)
                 .permitAll();
-
-
 
         http.headers().frameOptions().disable();
 

@@ -1,10 +1,9 @@
 package com.allpass.projectAAA.Controller;
 
 import com.allpass.projectAAA.Model.Activity;
+import com.allpass.projectAAA.Model.ArticleReview;
 import com.allpass.projectAAA.Model.Member;
-import com.allpass.projectAAA.Service.ActivityImageFileService;
-import com.allpass.projectAAA.Service.ActivityService;
-import com.allpass.projectAAA.Service.MemberService;
+import com.allpass.projectAAA.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +29,10 @@ public class ActivityController {
     private ActivityService activityService;
     @Resource
     private ActivityImageFileService activityImageFileService;
+    @Resource
+    private ArticleReviewService articleReviewService;
+    @Resource
+    private ArticleService articleService;
 
     @Autowired
     public ActivityController(ActivityImageFileService activityImageFileService) {
@@ -73,7 +76,7 @@ public class ActivityController {
         activity_Image.forEach(item->System.out.println(item));
         System.out.println(activityList.size());
         for(int i=0;i<activityList.size();i++){
-            if(!activity_Image.get(i).equals("http://127.0.0.1:8080/activity/files/none"))
+            if(!activity_Image.get(i).equals("http://127.0.0.1:8080/activity/activityImage/none"))
                 activityList.get(i).setActivityImg(activity_Image.get(i));
             else
                 continue;
@@ -164,20 +167,60 @@ public class ActivityController {
             Authentication auth,
             Model model
     ){
-        Long memberId;
-        memberId=memberService.getMemberInfo(auth.getName()).getId();
-        if(memberId==null) {
+        Long memberId = null;
+        if(auth.isAuthenticated()){
+            memberId=memberService.getMemberInfo(auth.getName()).getId();
+        }
+        if(memberId == null) {
             return "redirect:/activity";
         }else{
             List<Activity> activityManagementList=activityService.getActivityInfoByActivityFounder(memberService.getMemberInfo(auth.getName()));
-
+            activityManagementList.forEach(item->item.getArticle().forEach(i -> System.out.println(i.getArticleName())));
             model.addAttribute("activityManagementList",activityManagementList);
+
             return "activityManagement";
         }
 
 
 
     }
+    @GetMapping(value = "/assign")
+    private String assignMissionPage(
+            @RequestParam("articleId")Long articleId,
+            @RequestParam("activityId")Long activityId,
+            Model model
+    ){
+            Activity activity=activityService.getActivityById(activityId);
+            model.addAttribute("articleId",articleId);
+            model.addAttribute("activity",activity);
+            return "activityMember";
+    }
+
+    @PostMapping(value = "/assign")
+    private String assignMission(
+            @RequestParam("articleId")Long articleId,
+            @RequestParam("activityId")Long activityId,
+            @RequestParam("reviewMember")String reviewMemberList
+    ){
+        List<String> reviewMember=new ArrayList<>();
+        System.out.println(reviewMemberList);
+        for(String a: reviewMemberList.split(",")){
+            reviewMember.add(a);
+        }
+        Activity updateActivity=activityService.getActivityById(activityId);
+        for (int i=0;i<reviewMember.size();i++){
+            ArticleReview articleReview=new ArticleReview();
+            System.out.println(reviewMember.get(i));
+            articleReview.setMember(memberService.getMemberInfo(reviewMember.get(i)));
+            updateActivity.getActivityParticipants_Reviewer().remove(memberService.getMemberInfo(reviewMember.get(i)));
+            activityService.save(updateActivity);
+            articleReview.setArticle(articleService.getArticleById(articleId));
+            articleReviewService.save(articleReview);
+        }
+
+        return "redirect:/activity/management";
+    }
+
 
     //
 //    @RequestMapping(value = "/info")

@@ -13,6 +13,8 @@ public class ArticleService {
 
     public void save(Article article) { articleDao.save(article); }
 
+    public Article getArticleById(Long articleId){return articleDao.getOne(articleId);}
+
 
 
 }

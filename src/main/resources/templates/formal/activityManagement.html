@@ -57,11 +57,10 @@
                     <th>功能</th>
                 </tr>
                 </thead>
-                <tbody>
-                {% for article in articles%}
+                <tbody th:each="article:${activityManagementList.getArticle()}">
                 <tr>
-                    <td>{{article.articlename}}</td>
-                    <td>{{article.posttime}}</td>
+                    <td th:text="${article.articleName}"></td>
+                    <td th:text="${article.postTime}"></td>
                     <td>
                         <button  class="btn success" >審核完成</button>
 
@@ -82,7 +81,7 @@
                             </div>
                         </div>
 
-                        <a onclick="document.getElementById('id02').style.display='block'" class=" button special small">Assign</a></button>
+                        <a th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}" onclick="document.getElementById('id02').style.display='block'" class=" button special small">Assign</a></button>
                         <div id="id02" class="w3-modal">
                             <div class="w3-modal-content" >
                                 <div class="w3-container"  >

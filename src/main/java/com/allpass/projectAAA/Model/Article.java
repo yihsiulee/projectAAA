@@ -18,6 +18,7 @@ public class Article {
     private Member Author;
     private Integer articleStudy;
     private String uploadFile;
+    private String fileName;
     private Integer textNumber;
     private Integer formulaNumber;
     private String articleAddress;
@@ -96,6 +97,10 @@ public class Article {
     public Member getAuthor() {
         return Author;
     }
+
+    public void setFileName(String fileName) { this.fileName = fileName; }
+
+    public String getFileName() { return fileName; }
 
     //    public void setCheckedTime(String checkedTime) {
 //        this.checkedTime = checkedTime;

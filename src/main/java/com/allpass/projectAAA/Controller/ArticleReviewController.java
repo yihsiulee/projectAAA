@@ -53,15 +53,13 @@ public class ArticleReviewController {
         String articleFile;
         String articleFileName;
         String articleURL;
-        articleFileName=articleReview.getArticle().getUploadFile();
+        articleFileName=articleReview.getArticle().getFileName();
         articleURL=articleFileService.loadArticle(articleReview.getArticle().getUploadFile());
         articleFile=MvcUriComponentsBuilder.fromMethodName(ArticleReviewController.class,
                 "serveFile", articleURL).build().toString();
-        System.out.println(articleFile);
         articleReview.getArticle().setUploadFile(articleFile);
 
         model.addAttribute("articleReview",articleReview);
-        model.addAttribute("articleFileName",articleFileName);
         return "articleReviewPost";
     }
     @PostMapping("/post")

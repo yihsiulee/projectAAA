@@ -71,11 +71,11 @@
 
                         <a onclick="document.getElementById('id01').style.display='block'" class=" button alt small">Check</a>
                         <div id="id01" class="w3-modal">
-                            <div class="w3-modal-content" >
-                                <div class="w3-container"  >
-                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright" >&times</span>
+                            <div class="w3-modal-content">
+                                <div class="w3-container">
+                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
 
-                                    <iframe src="articleReviewTable.html#show" style="border:none;width:100%;height:600px"></iframe>
+                                    <iframe th:replace="articleReviewTable::#articleReviewTable"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -87,11 +87,7 @@
                                 <div class="w3-container">
                                     <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" >&times;</span>
 
-                                    <iframe th:replace="activityMember::#activityMember" style="border:none;width:100%;height:1000px">
-
-
-
-                                    </iframe>
+                                    <iframe th:replace="activityMember::#activityMember"></iframe>
                                 </div>
                             </div>
                         </div>

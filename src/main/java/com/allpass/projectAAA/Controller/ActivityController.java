@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,8 @@ public class ActivityController {
     private ArticleReviewService articleReviewService;
     @Resource
     private ArticleService articleService;
+    @Resource
+    private ArticleFileService articleFileService;
 
     @Autowired
     public ActivityController(ActivityImageFileService activityImageFileService) {
@@ -70,7 +74,7 @@ public class ActivityController {
 
         activityImageFileService.loadActivityImage(img).forEach(
                 path -> activity_Image.add(MvcUriComponentsBuilder.fromMethodName(ActivityController.class,
-                        "serveFile", path).build().toString()));
+                        "serveImageFile", path).build().toString()));
         activity_Image.forEach(item->System.out.println(item));
         System.out.println(activityList.size());
         for(int i=0;i<activityList.size();i++){
@@ -154,18 +158,30 @@ public class ActivityController {
     //圖片連結
     @GetMapping("/activityImage/{filename:.+}")
     @ResponseBody
-    public ResponseEntity<org.springframework.core.io.Resource> serveFile(@PathVariable String filename) {
+    public ResponseEntity<org.springframework.core.io.Resource> serveImageFile(@PathVariable String filename) {
         System.out.println(filename);
         org.springframework.core.io.Resource file = activityImageFileService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+    //文章連結
+    @GetMapping("/articleUpload/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<org.springframework.core.io.Resource> serveArticleFile(@PathVariable String filename) throws UnsupportedEncodingException {
+        System.out.println(filename);
+        org.springframework.core.io.Resource file = articleFileService.loadAsResource(filename);
+        String fileName= URLEncoder.encode(file.getFilename(),"UTF-16");
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + fileName + "\"").body(file);
+    }
+
     @RequestMapping(value = "/management")
     private String activityManagementPage(
             Authentication auth,
             Model model
     ){
         Long memberId = null;
+        List<String> articleFileName=new ArrayList<>();
         if(auth.isAuthenticated()){
             memberId=memberService.getMemberInfo(auth.getName()).getId();
         }
@@ -180,6 +196,8 @@ public class ActivityController {
 
                     List<ArticleReview> articleReviewList = new ArrayList<>();
                     String articleState="";
+                    String articleFile;
+                    String articleURL;
                     List<Article> articleList=articleService.getArticleByActivity(activityManagementList.get(activityAmount));
 
                     if(!articleList.get(articleAmount).getArticleReviews().isEmpty()) {
@@ -187,6 +205,12 @@ public class ActivityController {
                         articleList.get(articleAmount).getArticleReviews().forEach(i -> articleReviewList.add(i));
                         articleState=articleList.get(articleAmount).getArticleState();
                     }
+
+                    articleFileName.add(articleList.get(articleAmount).getUploadFile());
+                    articleURL=articleFileService.loadArticle(articleList.get(articleAmount).getUploadFile());
+                    articleFile=MvcUriComponentsBuilder.fromMethodName(ActivityController.class,
+                            "serveArticleFile", articleURL).build().toString();
+                    articleList.get(articleAmount).setUploadFile(articleFile);
 
                     if(!articleReviewList.isEmpty() && articleState.equals("reviewing")){
                         boolean isArticleReviewComplete=false;
@@ -214,7 +238,7 @@ public class ActivityController {
 
 
             model.addAttribute("activityManagementList",activityManagementList);
-
+            model.addAttribute("articleFileName",articleFileName);
 
             return "activityManagement";
         }

@@ -71,7 +71,7 @@ public class ArticleController {
         article.setTextNumber(textNumber);
         article.setAuthor(memberService.getMemberInfo(auth.getName()));
         if(!uploadFile.isEmpty()){
-            article.setUploadFile(uploadFile.getOriginalFilename());
+            article.setFileName(uploadFile.getOriginalFilename());
             //檔案上傳
             articleFileService.store(uploadFile);
         }

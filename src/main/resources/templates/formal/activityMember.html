@@ -20,12 +20,12 @@
 
 
 <!-- Main -->
-<section id="main" class="wrapper">
-    <div class="container">
+<section id="main1" class="wrapper">
+    <div id="activityMember"class="container">
 
         <header class="major special">
             <h2>參與者</h2>
-            <p th:text="${activity.activityName}"></p>
+            <p th:text="${activityManagementList.activityName}"></p>
         </header>
 
 
@@ -33,8 +33,8 @@
         <form action="/activity/assign" method="post" >
             <div class="table-wrapper" style="width:40%;margin-left: auto;margin-right: auto" >
                 <!-- <table class="alt" > -->
-                <input type="hidden" name="articleId" th:value="${articleId}" >
-                <input type="hidden" name="activityId" th:value="${activity.id}" >
+                <input type="hidden" name="articleId" th:value="${article.id}" >
+                <input type="hidden" name="activityId" th:value="${activityManagementList.id}" >
                 <table>
                     <thead>
                     <tr>
@@ -45,7 +45,7 @@
                     </thead>
                     <tbody>
 
-                    <tr th:each="member:${activity.getActivityParticipants_Reviewer()}">
+                    <tr th:each="member:${activityManagementList.getActivityParticipants_Reviewer()}">
                         <td style="width: 20%" >
                             <label class="containerbox"><input type="checkbox" name="reviewMember" th:value="${member.idCardNumber}">
                                 <span class="checkmark"></span>

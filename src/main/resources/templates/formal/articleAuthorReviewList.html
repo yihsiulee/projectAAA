@@ -59,7 +59,7 @@
                 <tbody th:each="articleAuthorReviewList:${articleAuthorReviewList}">
                 <tr>
                     <td th:text="${articleAuthorReviewList.getArticle().articleName}"></td>
-                    <td th:text="${articleAuthorReviewList.Activity().activityName}"></td>
+                    <td th:text="${articleAuthorReviewList.getActivity().activityName}"></td>
                     <td>
                     <a class="button special">Review!</a>
                     </td>

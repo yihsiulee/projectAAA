@@ -1,14 +1,13 @@
 package com.allpass.projectAAA.Model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Article {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "ARTICLE_ID")
+    @Column(name = "articleId")
     private Long id;
     private String articleName;
     private String postTime;
@@ -26,7 +25,7 @@ public class Article {
     @JoinColumn(name="ACTIVITY_ID_FK")
     private Activity activity;
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    private Set<ArticleReview> articleReviews=new HashSet<>();
+    private Set<ArticleReview> articleReviews;
     private String articleState="notAssign";
 //    @OneToMany(mappedBy="article")
 //    private Set<ArticleReview> articleReview;

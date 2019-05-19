@@ -12,8 +12,8 @@ import java.util.Set;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "idCardNumber"))
 public class  Member  {
     @Id
-    @Column(name = "MEMBER_ID")
-    private Long id;
+//    @Column(name = "MEMBER_ID")
+    private Long member_id;
     private String name;
     private String idCardNumber;
     private String password;
@@ -47,6 +47,8 @@ public class  Member  {
     @ManyToMany( fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},mappedBy = "activityParticipants_Author")
     private Set<Activity> activityParticipant_Author=new HashSet<>();
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private Set<ArticleReview> articleReviews;
 
 
     public Member(){
@@ -66,7 +68,7 @@ public class  Member  {
             Integer study,
             Float tokenBalance
     ) {
-        this.id=id;
+        this.member_id=id;
         this.name=name;
         this.idCardNumber=idCardNumber;
         this.password=password;
@@ -94,7 +96,7 @@ public class  Member  {
             Float tokenBalance,
             Collection<Member_Role> roles
     ) {
-        this.id=id;
+        this.member_id=id;
         this.name=name;
         this.idCardNumber=idCardNumber;
         this.password=password;
@@ -114,10 +116,10 @@ public class  Member  {
 
 
     public void setId(Long id) {
-        this.id = id;
+        this.member_id = id;
     }
 
-    public Long getId() { return id; }
+    public Long getId() { return member_id; }
 
     public void setName(String name) {
         this.name = name;
@@ -217,12 +219,16 @@ public class  Member  {
 
     public Set<Activity> getActivityParticipant_Author() { return activityParticipant_Author; }
 
+//    public void setArticleReviews(Set<ArticleReview> articleReviews) { this.articleReviews = articleReviews; }
+//
+//    public Set<ArticleReview> getArticleReviews() { return articleReviews; }
+
     @Override
     public int hashCode() {
         // Objects 有 hash() 方法可以使用
         // 以下可以簡化為 return Objects.hash(name, number);
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.member_id);
         hash = 47 * hash + Objects.hashCode(this.idCardNumber);
         return hash;
     }

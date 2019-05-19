@@ -18,16 +18,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 @Service
-public class ArticleUploadFileService implements StorageServiceInterface {
+public class ArticleFileService implements StorageServiceInterface {
 
     private final Path rootLocation;
 
     @Autowired
-    public ArticleUploadFileService(ArticleUploadFileProperties properties) {
+    public ArticleFileService(ArticleUploadFileProperties properties) {
         this.rootLocation = Paths.get(properties.getLocation());
     }
 
@@ -65,16 +63,16 @@ public class ArticleUploadFileService implements StorageServiceInterface {
 
     }
 
-    public List<String> loadActivityImage(List<String> activity) {
+    public String loadArticle(String activity) {
         try {
-            List<String> imageList = new ArrayList<String>();
-            for (String a : activity) {
-                Files.walk(this.rootLocation, 1)
-                        .filter(path -> path.getFileName().toString().equals(a))
-                        .forEach(item -> imageList.add(item.getFileName().toString()));
+            String ArticleFile;
 
-            }
-            return imageList;
+            ArticleFile=Files.walk(this.rootLocation, 1)
+                        .filter(path -> path.getFileName().toString().equals(activity)).findFirst().get().getFileName().toString();
+
+
+
+            return ArticleFile;
 //            return Files.walk(this.rootLocation, 1)
 //                    .filter(path -> !path.equals(this.rootLocation))
 //                    .distinct()

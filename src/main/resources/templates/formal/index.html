@@ -27,7 +27,7 @@
 	<!-- Nav -->
 		<nav id="nav">
 			<ul class="links">
-				<li>><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+				<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
 				<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
 				<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
 				<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
@@ -55,92 +55,64 @@
 					<header class="major narrow">
 						<h2 style="position: relative;left:35%">會議資訊</h2>
 					</header>
-					
-					<article class="feature left">
-						<span class="image"><img src="images/learning.jpg" alt="" /></span>{% activityimg %}
-						<div class="content">
-							<h2> {% activityname %}</h2>
-							<li>時間:{% activitytime %}</li>
-							<ul class="actions">
-								<li>
-									<a href="haveclass.html" class="button alt">我要參加！</a>
-								</li>
-							</ul>
+
+
+					<div class="indexcontainer">
+						<div class="mySlides" style="display: flex !important;">
+							<div class="numbertext">1 / 5</div>
+							<img class="index_img"src="http://s4.gigacircle.com/media/700x300_s4_5416ed99a0b30.jpg" style="width:100%">
 						</div>
-					</article>
-					<article class="feature right">
-						<span class="image"><img src="images/sharing.jpg" alt="" /></span>{% activityimg %}
-						<div class="content">
-							<h2>{% activityname %}</h2>
-							<li>時間：{% activitytime %}</li>
-							<ul class="actions">
-								<li>
-									<a href="techpage.html" class="button alt">我要參加！</a>
-								</li>
-							</ul>
+
+						<div class="mySlides">
+							<div class="numbertext">2 / 5</div>
+							<img class="index_img"src="http://s6.gigacircle.com/media/700x300_s6_9f6bb3a5e9f4c6bec3b4ddc7e315ccea.jpg" style="width:100%">
 						</div>
-					</article>
+
+						<div class="mySlides">
+							<div class="numbertext">3 / 5</div>
+							<img class="index_img"src="http://s4.gigacircle.com/media/700x300_s4_5416ed99a0b30.jpg" style="width:100%">
+						</div>
+
+						<div class="mySlides">
+							<div class="numbertext">4 / 5</div>
+							<img class="index_img"src="http://s6.gigacircle.com/media/700x300_s6_9f6bb3a5e9f4c6bec3b4ddc7e315ccea.jpg" style="width:100%">
+						</div>
+
+						<div class="mySlides">
+							<div class="numbertext">5 / 5</div>
+							<img class="index_img"src="http://3.bp.blogspot.com/-Z8HSwhoAnrQ/UIdtE-W5a8I/AAAAAAAAAYM/7VQ_Az0UdM8/s1600/light.jpeg" style="width:100%">
+						</div>
+
+
+						<a class="prev" onclick="plusSlides(-1)">❮</a>
+						<a class="next" onclick="plusSlides(1)">❯</a>
+
+						<div class="caption-container">
+							<p id="caption"></p>
+						</div>
+
+						<div class="indexrow">
+							<div class="indexcolumn">
+								<img class="demo cursor " src="http://s4.gigacircle.com/media/700x300_s4_5416ed99a0b30.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+							</div>
+							<div class="indexcolumn">
+								<img class="demo cursor " src="http://s6.gigacircle.com/media/700x300_s6_9f6bb3a5e9f4c6bec3b4ddc7e315ccea.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+							</div>
+							<div class="indexcolumn">
+								<img class="demo cursor " src="http://s4.gigacircle.com/media/700x300_s4_5416ed99a0b30.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+							</div>
+							<div class="indexcolumn">
+								<img class="demo cursor " src="http://s6.gigacircle.com/media/700x300_s6_9f6bb3a5e9f4c6bec3b4ddc7e315ccea.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+							</div>
+							<div class="indexcolumn">
+								<img class="demo cursor" src="http://3.bp.blogspot.com/-Z8HSwhoAnrQ/UIdtE-W5a8I/AAAAAAAAAYM/7VQ_Az0UdM8/s1600/light.jpeg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+							</div>
+
+						</div>
+					</div>
+
 				</div>
 			</section>
-
-
-			<!--Two-->
-
-			<!--<section id="two" class="wrapper special">
-				<div class="inner">
-					<header class="major narrow">
-						<h2>最新會議</h2>
-					</header>
- 						<div class="table-wrapper">
-							<table>
-								
-								<caption>文章列表</caption><%
-								for i=0 to 9
-									response.write "<TR>"
-									for j=0 to 3
-										response.write "<TD>" &i &"," &j &"</TD>"
-									next
-  									response.write "</TR>"
-								next
-								%>
-								<thead >
-									<tr>
-										<th style="text-align: center;">文章名稱</th>
-										<th style="text-align: center;">作者</th>
-										<th style="text-align: center;">期限</th>
-										<th></th>
-								</thead>
-								<tbody>
-									<tr>
-
-										{%for post in posts%}
-
-										<td>{id=articlename}</td>
-										<td>{id=name}</td>
-										<td>{id=deadline}</td>
-										
-										{% endfor %}
-										<td>
-											<div>
-												<a class="button">我要審文</a>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-								
-							</table>
-						</div> --> 	
-
-
-						</div>
-					
-				</div>
-
-				
-			</section>
-
-
-
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -173,6 +145,36 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
+			<script>
+				var slideIndex = 1;
+				showSlides(slideIndex);
+
+				function plusSlides(n) {
+					showSlides(slideIndex += n);
+				}
+
+				function currentSlide(n) {
+					showSlides(slideIndex = n);
+				}
+
+				function showSlides(n) {
+					var i;
+					var slides = document.getElementsByClassName("mySlides");
+					var dots = document.getElementsByClassName("demo");
+					var captionText = document.getElementById("caption");
+					if (n > slides.length) {slideIndex = 1}
+					if (n < 1) {slideIndex = slides.length}
+					for (i = 0; i < slides.length; i++) {
+						slides[i].style.display = "none";
+					}
+					for (i = 0; i < dots.length; i++) {
+						dots[i].className = dots[i].className.replace(" active", "");
+					}
+					slides[slideIndex-1].style.display = "flex";
+					dots[slideIndex-1].className += " active";
+					captionText.innerHTML = dots[slideIndex-1].alt;
+				}
+			</script>
 
 	</body>
 </html>

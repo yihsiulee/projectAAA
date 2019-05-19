@@ -27,7 +27,7 @@
 	<!-- Nav -->
 		<nav id="nav">
 			<ul class="links">
-				<li>><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+				<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
 				<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
 				<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
 				<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
@@ -46,18 +46,20 @@
 					</header>
 					<div>
 
-					<li>文章名稱：{th:articlename}</li>
+					<li th:text="'文章名稱：'+${articleReview.getArticle().articleName}"></li>
 					<br>
 						<li>文章下載 &nbsp;&nbsp;&nbsp;&nbsp;
 							<label for="file-uploads" class="button">
-								<i class="fa fa-file-text-o"></i>下載檔案
+								<i class="fa fa-file-text-o"></i>
+								<a th:href="${articleReview.getArticle().uploadFile}" th:text="${articleFileName}"  class="button"></a>
+									<input id="file-uploads" style="display:none;">
 							</label>
-							<a download href="{th:uploadfile}">
-								<input id="file-uploads" style="display:none;"></a>
-						</li>
-					<form>
 
-						<textarea cols="50" rows="5" id="reviewtext" style="text-align: left; ">輸入內容...
+						</li>
+					<form href="/articleReview/post" method="post">
+
+						<input type="hidden" name="articleReviewId" th:value="${articleReview.id}" >
+						<textarea cols="50" rows="5" name="reviewText" id="reviewText" style="text-align: left; ">輸入內容...
 						</textarea>
 
 					<br>	

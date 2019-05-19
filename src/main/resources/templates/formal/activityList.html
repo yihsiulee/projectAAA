@@ -27,7 +27,7 @@
 <!-- Nav -->
 <nav id="nav">
     <ul class="links">
-        <li>><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+        <li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
         <li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
         <li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
         <li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
@@ -47,7 +47,6 @@
 <!--            <div  class="column" th:each="activityList:${activityLists}">-->
 <!--                <div  class="activity" style="height:800px">-->
 <!--                    <img th:src="${activityList.activityImg}" style="width: 100%; height:55%;">-->
-<!--&lt;!&ndash;                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/230px-Cat03.jpg" style="width: 100%; height:55%;">&ndash;&gt;-->
 <!--                    <div class="container">-->
 <!--                        <h2 th:text="${activityList.activityName}"></h2>-->
 <!--                        <p class="title" th:text="${activityList.activityOrganizer.name}"></p>-->
@@ -75,38 +74,18 @@
 
 <!--            </div>-->
 
-<!--            <div class="column">-->
-<!--                <div class="activity">-->
-<!--                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/June_odd-eyed-cat_cropped.jpg" style="width: 100%; height: 55%;">-->
-<!--                    <div class="container">-->
-<!--                        <h2>Mike Ross</h2>-->
-<!--                        <p class="title">Art Director</p>-->
-<!--                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>-->
-<!--                        <p>example@example.com</p>-->
-<!--                        <p><button class="button.activity">Contact</button></p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="column">-->
-<!--                <div class="activity">-->
-<!--                    <img src="/w3images/team3.jpg"  style="width:100%;">-->
-<!--                    <div class="container">-->
-<!--                        <h2>John Doe</h2>-->
-<!--                        <p class="title">Designer</p>-->
-<!--                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>-->
-<!--                        <p>example@example.com</p>-->
-<!--                        <p><button class="button.activity">Contact</button></p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+
+
 <!--        </div>-->
 
         <article class="feature left" th:each="activityList:${activityLists}">
 						<span class="image">
+
 							<img th:src="${activityList.activityImg}" alt="" />
 						</span>
             <div class="content">
                 <h2 th:text="${activityList.activityName}"></h2>
+                <li th:text="${activityList.activityTime}"></li>
                 <li th:text="${activityList.activityOrganizer.name}"></li>
                 <br>
                 <a onclick="document.getElementById('id01').style.display='block'" class=" button alt small">查看</a>
@@ -123,6 +102,31 @@
                 <a th:href="@{authorAttend(id=${activityList.id})}" class=" button small">上傳論文</a>
             </div>
         </article>
+<!--        <article class="feature left" >-->
+<!--						<span class="image">-->
+<!--							<img src="/"  alt="" />-->
+<!--						</span>-->
+<!--            <div class="content">-->
+<!--                <h2>name</h2>-->
+<!--                <li>time</li>-->
+<!--                <br>-->
+<!--                <a onclick="document.getElementById('id01').style.display='block'" class=" button alt small">查看</a>-->
+<!--                <div id="id02" class="w3-modal">-->
+<!--                    <div class="w3-modal-content">-->
+<!--                        <div class="w3-container">-->
+<!--                            <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" >&times;</span>-->
+<!--                            <iframe src="activityInfo.html#show" style="border:none;width:100%;height:750px"></iframe>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <a  class=" button special small">審核論文</a>-->
+<!--                <a  class=" button small">上傳論文</a>-->
+<!--            </div>-->
+<!--        </article>-->
+
+
+
 
 
 

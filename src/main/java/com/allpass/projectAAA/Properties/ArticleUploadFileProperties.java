@@ -1,8 +1,8 @@
 package com.allpass.projectAAA.Properties;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
-@ConfigurationProperties()
+@Configuration()
 public class ArticleUploadFileProperties {
     private String location = "src/main/resources/articleUpload";
 

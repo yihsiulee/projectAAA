@@ -80,15 +80,18 @@
                             </div>
                         </div>
 
-                        <a th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}" class=" button special small">Assign</a>
-<!--                           onclick="document.getElementById('id02').style.display='block'" -->
-
+                        <a   onclick="document.getElementById('id02').style.display='block'" class=" button special small">Assign</a>
+<!--                        th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}"-->
                         <div id="id02" class="w3-modal">
-                            <div class="w3-modal-content" >
-                                <div class="w3-container"  >
+                            <div class="w3-modal-content">
+                                <div class="w3-container">
                                     <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" >&times;</span>
 
-                                    <iframe src="activityMember.html" style="border:none;width:100%;height:600px"></iframe>
+                                    <iframe th:replace="activityMember::#activityMember" style="border:none;width:100%;height:1000px">
+
+
+
+                                    </iframe>
                                 </div>
                             </div>
                         </div>

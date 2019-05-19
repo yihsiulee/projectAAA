@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <!--
-	Retrospect by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+ Retrospect by TEMPLATED
+ templated.co @templatedco
+ Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -37,11 +37,12 @@
 
 
 <!-- Main -->
+<!-- Main -->
 <section id="main" class="wrapper">
     <div class="container">
 
         <header class="major special">
-            <h2>待審核文章列表</h2>
+            <h2>我的文章列表</h2>
 
         </header>
 
@@ -51,22 +52,21 @@
                 <tr>
                     <th>文章名稱</th>
                     <th>活動</th>
-                    <th>繳交審核期限</th>
+
                     <th></th>
                 </tr>
                 </thead>
-                <tbody th:each="articleReviewList:${articleReviewList}">
+                <tbody>
                 <tr>
-                    <td th:text="${articleReviewList.getArticle().articleName}"></td>
-                    <td th:text="${articleReviewList.getArticle().getActivity().ActivityName}"></td>
-                    <td>{articleDeadline}</td>
+                    <td>{articleName}</td>
+                    <td>{activityName}</td>
                     <td>
-                        <a class="button special"th:href="@{post(articleReviewId=${articleReviewList.id})}">Review!</a>
+                        <a class="button special">Review!</a>
                     </td>
                 </tr>
                 </tbody>
             </table>
-        </div>
+
         </div>
 </section>
 

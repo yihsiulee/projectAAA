@@ -231,7 +231,7 @@ public class ActivityController {
             Activity activity=activityService.getActivityById(activityId);
             model.addAttribute("articleId",articleId);
             model.addAttribute("activity",activity);
-            return "activityMember";
+            return "activityManagement";
     }
 
     @PostMapping(value = "/assign")

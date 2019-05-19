@@ -57,8 +57,8 @@
                 </thead>
                 <tbody th:each="articleReviewList:${articleReviewList}">
                 <tr>
-                    <td th:text="${articleReviewList.getArticle().articleName}">{articleName}</td>
-                    <td th:text="${articleReviewList.getArticle().getActivity().ActivityName}">{activityName}</td>
+                    <td th:text="${articleReviewList.getArticle().articleName}"></td>
+                    <td th:text="${articleReviewList.getArticle().getActivity().ActivityName}"></td>
                     <td>{articleDeadline}</td>
                     <td>
                         <button class="special"><a th:href="@{post(articleReviewId=${articleReviewList.id})}">Review!</a></button>

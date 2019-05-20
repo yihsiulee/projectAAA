@@ -15,9 +15,10 @@ public class Article {
 //    private String checkedTime;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="AUTHOR_MEMBER_ID_FK")
-    private Member Author;
+    private Member author;
     private Integer articleStudy;
     private String uploadFile;
+    private String fileName;
     private Integer textNumber;
     private Integer formulaNumber;
     private String articleAddress;
@@ -90,12 +91,16 @@ public class Article {
     }
 
     public void setAuthor(Member author) {
-        Author = author;
+        this.author = author;
     }
 
     public Member getAuthor() {
-        return Author;
+        return author;
     }
+
+    public void setFileName(String fileName) { this.fileName = fileName; }
+
+    public String getFileName() { return fileName; }
 
     //    public void setCheckedTime(String checkedTime) {
 //        this.checkedTime = checkedTime;

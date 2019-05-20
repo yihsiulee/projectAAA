@@ -51,7 +51,7 @@
 						<li>文章下載 &nbsp;&nbsp;&nbsp;&nbsp;
 							<label for="file-uploads" class="button">
 								<i class="fa fa-file-text-o"></i>
-								<a th:href="${articleReview.getArticle().uploadFile}" th:text="${articleFileName}"  class="button"></a>
+								<a th:href="${articleReview.getArticle().uploadFile}" th:text="${articleReview.getArticle().fileName}"  class="button"></a>
 									<input id="file-uploads" style="display:none;">
 							</label>
 

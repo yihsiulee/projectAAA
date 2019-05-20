@@ -5,21 +5,8 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Paper Review</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
-    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-    <!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
-    <!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
-</head>
-<body>
 
-<!-- Main -->
-<section id="main" class="wrapper">
-    <div class="container" id=show>
+    <div class="container" id="activityInfo">
         <header class="major special">
             <h2>活動資訊</h2>
             <p></p>
@@ -33,44 +20,35 @@
 
                 <tr>
                     <td>活動名稱</td>
-                    <td>name</td>
+                    <td th:text="${activityList.activityName}"></td>
                 </tr>
                 <tr>
                     <td>活動領域</td>
-                    <td>study</td>
+                    <td th:text="${activityList.activityName}">study</td>
                 </tr>
                 <tr>
                     <td>活動日期</td>
-                    <td>activitydate</td>
+                    <td th:text="${activityList.activityTime}">activitydate</td>
                 </tr>
                 <tr>
                     <td>活動主辦人</td>
-                    <td>activity hold</td>
+                    <td th:text="${activityList.activityOrganizer.name}">activity hold</td>
                 </tr>
                 <tr>
                     <td>文章數量</td>
-                    <td></td>
+                    <td th:text="${activityList.articleNumber}"></td>
                 </tr>
                 <tr>
                     <td>活動人數</td>
-                    <td></td>
+                    <td th:text="${activityList.limitedParticipants}"></td>
                 </tr>
                 <tr>
                     <td>活動內容</td>
-                    <td></td>
+                    <td th:text="${activityList.activityContent}"></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</section>
 
-<!-- Scripts -->
-<script th:src="@{/assets/js/jquery.min.js}"></script>
-<script th:src="@{/assets/js/skel.min.js}"></script>
-<script th:src="@{/assets/js/util.js}"></script>
-<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-<script th:src="@{/assets/js/main.js}"></script>
-
-</body>
 </html>

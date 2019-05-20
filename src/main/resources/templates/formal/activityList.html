@@ -88,12 +88,12 @@
                 <li th:text="${activityList.activityTime}"></li>
                 <li th:text="${activityList.activityOrganizer.name}"></li>
                 <br>
-                <a onclick="document.getElementById('id01').style.display='block'" class=" button alt small">查看</a>
-                <div id="id01" class="w3-modal">
+                <a th:onclick="'javascript:infoBlock('+${activityList.id}+');'" class=" button alt small">查看</a>
+                <div th:id="${activityList.id}" class="w3-modal">
                     <div class="w3-modal-content">
                         <div class="w3-container">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright" >&times;</span>
-                            <iframe src="activityInfo.html#show" style="border:none;width:100%;height:750px"></iframe>
+                            <span th:onclick="'javascript:infoClose('+${activityList.id}+');'" class="w3-button w3-display-topright" >&times;</span>
+                            <iframe th:replace="activityInfo::#activityInfo"></iframe>
                         </div>
                     </div>
                 </div>
@@ -164,6 +164,14 @@
 <script th:src="@{/assets/js/util.js}"></script>
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script th:src="@{/assets/js/main.js}"></script>
+<script>
+    function infoBlock(activityId){
+    document.getElementById(activityId).style.display='block';
+    }
+    function infoClose(activityId){
+    document.getElementById(activityId).style.display='none';
+    }
+</script>
 
 </body>
 </html>

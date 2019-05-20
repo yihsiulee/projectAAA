@@ -3,6 +3,7 @@ package com.allpass.projectAAA.Service;
 import com.allpass.projectAAA.Dao.ArticleDao;
 import com.allpass.projectAAA.Model.Activity;
 import com.allpass.projectAAA.Model.Article;
+import com.allpass.projectAAA.Model.Member;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +22,10 @@ public class ArticleService {
         List<Article> articleList=articleDao.findByActivity(activity);
         return articleList;
 
+    }
+    public List<Article> getArticleByAuthor(Member member){
+        List<Article> articleList=articleDao.findByAuthor(member);
+        return articleList;
     }
 
 

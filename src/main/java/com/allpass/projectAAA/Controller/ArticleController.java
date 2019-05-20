@@ -45,8 +45,9 @@ public class ArticleController {
     @RequestMapping(value = "/post")
     public String UploadArticlePage(Model model,
                                    Authentication authentication){
-        if(memberService.getMemberInfo(authentication.getName()).getActivityParticipant_Author().isEmpty())
-            return "/article";
+        if(memberService.getMemberInfo(authentication.getName()).getActivityParticipant_Author().isEmpty()){
+            return "redirect:/article";
+        }
         Set<Activity> activityList=memberService.getMemberInfo(authentication.getName()).getActivityParticipant_Author();
         activityList.forEach(i->System.out.println(i.getActivityName()));
         model.addAttribute("activityList",activityList);

@@ -68,24 +68,24 @@
                         <button class="btn danger"  th:case="notAssign">未分配</button>
                     </td>
                     <td>
-
-                        <a onclick="document.getElementById('id01').style.display='block'" class=" button alt small">Check</a>
-                        <div id="id01" class="w3-modal">
+<!--                        <a th:onclick="document.getElementById(/*[[${article.id}]]*/+'check').style.display='block'" class=" button alt small">Check</a>-->
+                        <a th:onclick="'javascript:checkBlock('+${article.id}+');'" class=" button alt small">Check</a>
+                        <div th:id="${article.id}+'check'" class="w3-modal">
                             <div class="w3-modal-content">
                                 <div class="w3-container">
-                                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                    <span th:onclick="'javascript:checkClose('+${article.id}+');'" class="w3-button w3-display-topright">&times;</span>
 
                                     <iframe th:replace="articleReviewTable::#articleReviewTable"></iframe>
                                 </div>
                             </div>
                         </div>
 
-                        <a   onclick="document.getElementById('id02').style.display='block'" class=" button special small">Assign</a>
+                        <a th:onclick="'javascript:assignBlock('+${article.id}+');'" class=" button special small">Assign</a>
 <!--                        th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}"-->
-                        <div id="id02" class="w3-modal">
+                        <div th:id="${article.id}+'assign'" class="w3-modal">
                             <div class="w3-modal-content">
                                 <div class="w3-container">
-                                    <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright" >&times;</span>
+                                    <span th:onclick="'javascript:assignClose('+${article.id}+');'" class="w3-button w3-display-topright" >&times;</span>
 
                                     <iframe th:replace="activityMember::#activityMember"></iframe>
                                 </div>
@@ -151,6 +151,20 @@
 <script th:src="@{/assets/js/util.js}"></script>
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script th:src="@{/assets/js/main.js}"></script>
+<script>
+    function checkBlock(articleId){
+    document.getElementById(articleId+'check').style.display='block';
+    }
+    function checkClose(articleId){
+    document.getElementById(articleId+'check').style.display='none';
+    }
+     function assignBlock(articleId){
+    document.getElementById(articleId+'assign').style.display='block';
+    }
+    function assignClose(articleId){
+    document.getElementById(articleId+'assign').style.display='none';
+    }
+</script>
 
 </body>
 </html>

@@ -15,7 +15,7 @@ public class Article {
 //    private String checkedTime;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="AUTHOR_MEMBER_ID_FK")
-    private Member Author;
+    private Member author;
     private Integer articleStudy;
     private String uploadFile;
     private String fileName;
@@ -91,11 +91,11 @@ public class Article {
     }
 
     public void setAuthor(Member author) {
-        Author = author;
+        this.author = author;
     }
 
     public Member getAuthor() {
-        return Author;
+        return author;
     }
 
     public void setFileName(String fileName) { this.fileName = fileName; }

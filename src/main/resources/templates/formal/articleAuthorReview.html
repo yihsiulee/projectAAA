@@ -42,7 +42,7 @@
 
 					<header class="major special">
 						<h2>文章進度</h2>
-						<p>{th:articlenanme}</p>
+						<p></p>
 					</header>
 					<div class="table-wrapp"  >
 						<table class="alt" >
@@ -50,17 +50,18 @@
 							<tbody>
 								<tr>
 									<td align="center"><h4>文章名稱：</h4></td>
-									<td colspan="2">{th:articlename}</td>
+									<td colspan="2" th:text="${article.articleName}"></td>
 								</tr>
 								<tr>
 									<td align="center"><h4>發表時間：</h4></td>
-									<td colspan="2">{th:posttime}</td>
+									<td colspan="2" th:text="${article.postTime}"></td>
 								</tr>
 								<tr>
 									<td align="center"><h4>原始檔案：</h4></td>
 									<td colspan="2"> <label class="button">
-										<a href="https://www.wfublog.com/2016/01/font-awesome-cheat-sheet.html" style="color: white">
-										<i class="fa fa-cloud-download">下載檔案</i>
+										<i class="fa fa-cloud-download">
+											<a th:href="${article.uploadFile}" th:text="${article.fileName}" style="color:#fff !important;font-family: 'Muli', sans-serif;"></a>
+										</i>
 										</a>
 									</label></td>
 								</tr>
@@ -69,17 +70,9 @@
 									<td align="center"><h5>審核人：</h5></td>
                                     <td align="center"><h5>評論內容:</h5></td>
 								</tr>
-								<tr>
-									<td>審核1{th:name}</td>
-									<td>{th:reviewtext}</td>
-								</tr>
-								<tr>
-									<td>審核2</td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>審核3</td>
-									<td></td>
+								<tr th:each="articleReviews:${article.getArticleReviews()}">
+									<td th:text="${articleReviews.member.name}"></td>
+									<td th:text="${articleReviews.reviewText}"></td>
 								</tr>
 
 

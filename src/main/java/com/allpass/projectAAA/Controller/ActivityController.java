@@ -195,7 +195,7 @@ public class ActivityController {
                 for(int articleAmount=0;articleAmount<activityManagementList.get(activityAmount).getArticle().size();articleAmount++){
 
                     List<ArticleReview> articleReviewList = new ArrayList<>();
-                    String articleState="";
+                    String articleState = "";
                     String articleFile;
                     String articleURL;
                     List<Article> articleList=articleService.getArticleByActivity(activityManagementList.get(activityAmount));
@@ -211,6 +211,7 @@ public class ActivityController {
                     articleFile=MvcUriComponentsBuilder.fromMethodName(ActivityController.class,
                             "serveArticleFile", articleURL).build().toString();
                     articleList.get(articleAmount).setUploadFile(articleFile);
+                    System.out.println(articleFile);
 
                     if(!articleReviewList.isEmpty() && articleState.equals("reviewing")){
                         boolean isArticleReviewComplete=false;

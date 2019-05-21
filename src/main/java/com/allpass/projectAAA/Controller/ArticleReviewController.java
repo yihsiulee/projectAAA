@@ -73,7 +73,7 @@ public class ArticleReviewController {
     ){
         Article article=articleService.getArticleById(articleId);
         String articleURL=articleFileService.loadArticle(article.getUploadFile());
-        String articleFile=MvcUriComponentsBuilder.fromMethodName(ActivityController.class,
+        String articleFile=MvcUriComponentsBuilder.fromMethodName(ArticleReviewController.class,
                 "serveArticleFile", articleURL).build().toString();
         article.setUploadFile(articleFile);
         model.addAttribute("article",article);

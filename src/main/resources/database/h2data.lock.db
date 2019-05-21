@@ -1,6 +1,6 @@
 #FileLock
-#Mon May 20 23:34:26 CST 2019
-hostName=172.20.10.5
-id=16ad5e0dd689af9dbe76e8e9a9ac737d9edbb6e6dfa
+#Wed May 22 01:44:59 CST 2019
+server=140.118.142.109\:61302
+hostName=DESKTOP-QM7LFHH
 method=file
-server=172.20.10.5\:50392
+id=16adb7f0c036ae7bfa414189297624b15dfe2cd7f9b

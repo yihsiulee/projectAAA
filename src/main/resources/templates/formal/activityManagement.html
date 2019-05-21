@@ -53,14 +53,16 @@
                 <tr>
                     <th>文章名稱</th>
                     <th>上傳時間</th>
+                    <th>文章價值</th>
                     <th>狀態</th>
                     <th>功能</th>
                 </tr>
                 </thead>
                 <tbody th:each="article:${activityManagementList.getArticle()}">
-                <tr>
+                <td>
                     <td th:text="${article.articleName}"></td>
                     <td th:text="${article.postTime}"></td>
+                    <td th:text="${artcle.articleValue}"</td>
                     <td th:switch="${article.articleState}">
                         <button  class="btn success" th:case="reviewFinish">審核完成</button>
                         <button class="btn info"  th:case="reviewing">審稿中</button>

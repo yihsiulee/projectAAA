@@ -64,6 +64,7 @@ public class ProjectAaaApplication {
 	public static void main(String[] args) {
 		DatabaseServer.startH2Server();
 		SpringApplication.run(ProjectAaaApplication.class, args);
+
 	}
 //	@Bean
 //	CommandLineRunner init(StorageService storageService) {

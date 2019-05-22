@@ -7,19 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//email
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 //@EnableConfigurationProperties({ActivityImageFileProperties.class, ArticleUploadFileProperties.class})
@@ -32,7 +20,7 @@ public class ProjectAaaApplication {
 	}
 
 	//	使用modle來定義參數的傳遞 傳到html
-	@RequestMapping("/test") //網頁從這個地方進入這個方法（網址la）
+	@RequestMapping("/test") //網頁從這個地方進入這個方法（網址）
 	public String test(Model model) {
 		model.addAttribute("loginName", "admin");
 		model.addAttribute("loginId", "27");

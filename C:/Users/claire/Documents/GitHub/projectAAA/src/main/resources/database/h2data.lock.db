@@ -1,0 +1,6 @@
+#FileLock
+#Fri May 17 00:13:57 CST 2019
+hostName=192.168.1.211
+id=16ac16babe80e3f22a62950d570abb1cf20c6d05a07
+method=file
+server=192.168.1.211\:54929

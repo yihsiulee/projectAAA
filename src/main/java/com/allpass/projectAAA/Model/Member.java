@@ -12,8 +12,8 @@ import java.util.Set;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "idCardNumber"))
 public class  Member  {
     @Id
-//    @Column(name = "MEMBER_ID")
-    private Long member_id;
+    @Column(name = "MEMBER_ID")
+    private Long id;
     private String name;
     private String idCardNumber;
     private String password;
@@ -68,7 +68,7 @@ public class  Member  {
             Integer study,
             Float tokenBalance
     ) {
-        this.member_id=id;
+        this.id=id;
         this.name=name;
         this.idCardNumber=idCardNumber;
         this.password=password;
@@ -96,7 +96,7 @@ public class  Member  {
             Float tokenBalance,
             Collection<Member_Role> roles
     ) {
-        this.member_id=id;
+        this.id=id;
         this.name=name;
         this.idCardNumber=idCardNumber;
         this.password=password;
@@ -116,10 +116,10 @@ public class  Member  {
 
 
     public void setId(Long id) {
-        this.member_id = id;
+        this.id = id;
     }
 
-    public Long getId() { return member_id; }
+    public Long getId() { return id; }
 
     public void setName(String name) {
         this.name = name;
@@ -228,7 +228,7 @@ public class  Member  {
         // Objects 有 hash() 方法可以使用
         // 以下可以簡化為 return Objects.hash(name, number);
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.member_id);
+        hash = 47 * hash + Objects.hashCode(this.id);
         hash = 47 * hash + Objects.hashCode(this.idCardNumber);
         return hash;
     }

@@ -1,7 +1,6 @@
 package com.allpass.projectAAA.Security;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,23 +20,26 @@ import javax.annotation.Resource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private MemberDetailsServiceImp memberDetailsServiceImp;
-    @Autowired
-    private MemberLoginSuccessHandler memberLoginnSuccessHandler;
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .csrf().disable()
-                .authorizeRequests()
+                .authorizeRequests() //權限
                 .antMatchers(
                         SecurityConstants.QA_URL,
                         SecurityConstants.MEMBER_INDEX_URL,
                         SecurityConstants.MEMBER_REGISTER_URL,
-                        SecurityConstants.H2_CONSOLE
+                        SecurityConstants.H2_CONSOLE,
+                        SecurityConstants.ACTIVITY_FUCTIONPAGE_URL,
+                        SecurityConstants.ACTIVITY_LIST_URL,
+                        SecurityConstants.ACTIVITY_IMAGE_DOWNLOAD_URL
                 ).permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                //.permitAll() //測試版
+                .authenticated() //正式版
                 .and()
                 .formLogin()
-                .successHandler(memberLoginnSuccessHandler)
+                .successHandler(new MemberLoginSuccessHandler())
                 .loginPage(SecurityConstants.MEMBER_LOGIN_URL)
                 .permitAll()
                 .and()
@@ -48,8 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl(SecurityConstants.MEMBER_LOGIN_URL)
                 .logoutUrl(SecurityConstants.MEMBER_LOGOUT_URL)
                 .permitAll();
-
-
 
         http.headers().frameOptions().disable();
 
@@ -95,6 +95,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/**",
                         "/assets/**",
                         "/images/**",
+                        "/activityImage/**",
+                        "/database/**",
                         "/css/**",
                         "/css/images/**",
                         "/js/**",
@@ -104,6 +106,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/sass/base/**",
                         "/sass/components/**",
                         "/sass/layout/**",
-                        "/sass/libs/**");
+                        "/sass/libs/**"
+                       );
     }
 }

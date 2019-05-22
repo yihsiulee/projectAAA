@@ -1637,7 +1637,8 @@
 		}
 
 	a {
-		text-decoration: underline;
+		/*text-decoration: underline;*/
+		text-decoration: none;
 	}
 
 		a:hover {
@@ -1766,7 +1767,6 @@
 	a {
 		/*color: #51BAA4;*/
 		color:#000000;
-		text-decoration: none;
 	}
 
 	strong, b {
@@ -4252,11 +4252,11 @@
 
 
 /*Q&A動態版*/
-			#qa .Question{ /*標題的CSS定義*/
+			.qa .Question{ /*標題的CSS定義*/
 				width: 100%;
 				border-bottom: 1px #aaa dotted;
 			}
-			#qa .Answer{ /*內文的CSS定義*/
+			.qa .Answer{ /*內文的CSS定義*/
 				display:none;
 				width: 100%;
 				padding: 10px 0px;
@@ -4265,7 +4265,7 @@
 				border-bottom: 1px #aaa dotted;
 				color: white;
 			}
-			#qa :hover{ /*滑鼠移至區塊變色*/
+			.qa :hover{ /*滑鼠移至區塊變色*/
 				background: #efefef;
 			}
 
@@ -4402,7 +4402,7 @@
 				padding:0;
 				outline:0;
 				width:80%;
-				height:50%
+				height:auto;
 			}
 			.w3-display-topleft{
 				position:absolute;
@@ -4529,9 +4529,107 @@
 				-ms-transform: rotate(45deg);
 				transform: rotate(45deg);
 			}
+/*index*/
+			body {
+				font-family: Arial;
+				margin: 0;
+			}
 
+			* {
+				box-sizing: border-box;
+			}
+
+			.indeximg {
+				vertical-align: middle;
+			}
+
+			/* Position the image container (needed to position the left and right arrows) */
+			.indexcontainer {
+				position: relative;
+				width: 100%;
+			}
+
+			/* Hide the images by default */
+			.mySlides {
+				display: none;
+
+			}
+
+
+			/* Add a pointer when hovering over the thumbnail images */
+			.cursor {
+				cursor: pointer;
+			}
+
+			/* Next & previous buttons */
+			.prev,
+			.next {
+				cursor: pointer;
+				position: absolute;
+				top: 40%;
+				width: auto;
+				padding: 16px;
+				margin-top: -50px;
+				color: white;
+				font-weight: bold;
+				font-size: 20px;
+				border-radius: 0 3px 3px 0;
+				user-select: none;
+				-webkit-user-select: none;
+			}
+
+			/* Position the "next button" to the right */
+			.next {
+				right: 0;
+				border-radius: 3px 0 0 3px;
+			}
+
+			/* On hover, add a black background color with a little bit see-through */
+			.prev:hover,
+			.next:hover {
+				background-color: rgba(0, 0, 0, 0.8);
+			}
+
+			/* Number text (1/3 etc) */
+			.numbertext {
+				color: #f2f2f2;
+				font-size: 12px;
+				padding: 8px 12px;
+				position: absolute;
+				top: 0;
+			}
+
+			/* Container for image text */
+			.caption-container {
+				text-align: center;
+				background-color: #222;
+				padding: 2px 16px;
+				color: white;
+			}
+
+			.indexrow:after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+
+			/* Six columns side by side */
+			.indexcolumn {
+				float: left;
+				width: 20%;
+			}
+
+			/* Add a transparency effect for thumnbail images */
+			.demo {
+				opacity: 0.6;
+			}
+
+			.active,
+			.demo:hover {
+				opacity: 1;
+			}
 /*card*/
-				/* Style the counter cards */
+			/* Style the counter cards */
 			.card {
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 				padding: 16px;

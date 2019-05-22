@@ -39,10 +39,10 @@ public class ActivityImageFileService implements StorageServiceInterface {
                 throw new StorageException("Failed to store empty file " + filename);
             }
             if (filename.contains("..")) {
-                // This is a security check
-                throw new StorageException(
-                        "Cannot store file with relative path outside current directory "
-                                + filename);
+                    // This is a security check
+                    throw new StorageException(
+                            "Cannot store file with relative path outside current directory "
+                                    + filename);
             }
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, this.rootLocation.resolve(filename),
@@ -68,11 +68,19 @@ public class ActivityImageFileService implements StorageServiceInterface {
     public List<String> loadActivityImage(List<String> activity) {
         try {
             List<String> imageList = new ArrayList<String>();
-            for (String a : activity) {
-                Files.walk(this.rootLocation, 1)
-                        .filter(path -> path.getFileName().toString().equals(a))
-                        .forEach(item -> imageList.add(item.getFileName().toString()));
-
+            System.out.println(activity.size());
+            for (String a:activity) {
+             if(a!=null){
+                    Files.walk(this.rootLocation, 1)
+                            .filter(item->item.getFileName().toString().equals(a))
+                            .forEach(item->imageList.add(item.getFileName().toString()));
+                // path -> path.getFileName().toString().equals(a)
+                            //.forEach(item -> imageList.add(item.getFileName().toString()));
+                   // continue;
+                }else{
+                    imageList.add("none");
+                    continue;
+                }
             }
             return imageList;
 //            return Files.walk(this.rootLocation, 1)

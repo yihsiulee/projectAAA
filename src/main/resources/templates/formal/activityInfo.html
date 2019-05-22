@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<!--
+	Retrospect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <div class="container" id="activityInfo">
+        <header class="major special">
+            <h2>活動資訊</h2>
+            <p></p>
+        </header>
+
+        <div>
+            <table class="alt">
+
+                <tbody>
+
+
+                <tr>
+                    <td>活動名稱</td>
+                    <td th:text="${activityList.activityName}"></td>
+                </tr>
+                <tr>
+                    <td>活動領域</td>
+                    <td th:text="${activityList.activityName}">study</td>
+                </tr>
+                <tr>
+                    <td>活動日期</td>
+                    <td th:text="${activityList.activityTime}">activitydate</td>
+                </tr>
+                <tr>
+                    <td>活動主辦人</td>
+                    <td th:text="${activityList.activityOrganizer.name}">activity hold</td>
+                </tr>
+                <tr>
+                    <td>文章數量</td>
+                    <td th:text="${activityList.articleNumber}"></td>
+                </tr>
+                <tr>
+                    <td>活動人數</td>
+                    <td th:text="${activityList.limitedParticipants}"></td>
+                </tr>
+                <tr>
+                    <td>活動內容</td>
+                    <td th:text="${activityList.activityContent}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</html>

@@ -17,9 +17,26 @@ public class ActivityService {
         activityDao.save(activity);
     }
 
-    public List<Activity> getActivityInfoByActivityFounder(Member activityFounder){
-        List<Activity> activity=activityDao.findByActivityFounder(activityFounder);
-        return activity;
+    public void update(Activity activity){
+        activityDao.save(activity);
+    }
+
+    public List<Activity> getActivityInfoByActivityFounder(Member activityOrganizer){
+            List<Activity> activity=activityDao.findByActivityOrganizer(activityOrganizer);
+            return activity;
 
     }
+
+
+    public Activity getActivityById(Long activityId) {
+        Activity activity=activityDao.getOne(activityId);
+        return activity;
+    }
+
+    public List<Activity> getActivityList(){
+        List<Activity> activityList=activityDao.findAll();
+        return activityList;
+    }
+
+
 }

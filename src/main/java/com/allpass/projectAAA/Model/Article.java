@@ -7,22 +7,29 @@ import java.util.Set;
 public class Article {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "ARTICLE_ID")
+    @Column(name = "articleId")
     private Long id;
     private String articleName;
     private String postTime;
 //    private String deadline;
 //    private String checkedTime;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="AUTHOR_MEMBER_ID_FK")
+    private Member author;
     private Integer articleStudy;
     private String uploadFile;
+    private String fileName;
     private Integer textNumber;
     private Integer formulaNumber;
     private String articleAddress;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ACTIVITY_ID_FK")
     private Activity activity;
-    @OneToMany(mappedBy="article")
-    private Set<ReviewArticle> reviewArticle;
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private Set<ArticleReview> articleReviews;
+    private String articleState="notAssign";
+//    @OneToMany(mappedBy="article")
+//    private Set<ArticleReview> articleReview;
 
 
 //    public Article(
@@ -83,7 +90,19 @@ public class Article {
         return articleName;
     }
 
-//    public void setCheckedTime(String checkedTime) {
+    public void setAuthor(Member author) {
+        this.author = author;
+    }
+
+    public Member getAuthor() {
+        return author;
+    }
+
+    public void setFileName(String fileName) { this.fileName = fileName; }
+
+    public String getFileName() { return fileName; }
+
+    //    public void setCheckedTime(String checkedTime) {
 //        this.checkedTime = checkedTime;
 //    }
 //
@@ -118,4 +137,12 @@ public class Article {
     public void setActivity(Activity activity) { this.activity = activity; }
 
     public Activity getActivity() { return activity; }
+
+    public void setArticleReviews(Set<ArticleReview> articleReviews) { this.articleReviews = articleReviews; }
+
+    public Set<ArticleReview> getArticleReviews() { return articleReviews; }
+
+    public void setArticleState(String articleState) { this.articleState = articleState; }
+
+    public String getArticleState() { return articleState; }
 }

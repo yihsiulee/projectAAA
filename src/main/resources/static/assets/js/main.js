@@ -53,6 +53,47 @@
 					side: 'right'
 				});
 
+
+		// // qa.html
+		// $("p.Question")
+		// 	.css({cursor:"pointer"})
+		// 	.click(function(){
+		// 		$(this).next().toggle("normal");
+		// 	});
+		// // activityCheckTable.html
+		// var acc = document.getElementsByClassName("accordion");
+		// var i;
+		//
+		// for (i = 0; i < acc.length; i++) {
+		// 	acc[i].addEventListener("click", function() {
+		// 		this.classList.toggle("active");
+		// 		var panel = this.nextElementSibling;
+		// 		if (panel.style.maxHeight){
+		// 			panel.style.maxHeight = null;
+		// 		} else {
+		// 			panel.style.maxHeight = panel.scrollHeight + "px";
+		// 		}
+		// 	});
+		// }
+		// // activityHold.html articlePost.html 檔案上傳
+		// $('#file-uploads').change(function() {
+		// 	var i = $(this).prev('label').clone();
+		// 	var file = $('#file-uploads')[0].files[0].name;
+		// 	$(this).prev('label').text(file);
+		// });
+
+
+
+		// activityHold.html participant
+
+		// function updateParticipantNumber(value){
+		// 	document.getElementById("participantNumber").value = value*3;
+		// }
+
+
+
+
+
 	});
 })(jQuery);
 

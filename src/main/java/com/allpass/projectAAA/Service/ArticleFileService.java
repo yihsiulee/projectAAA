@@ -7,6 +7,7 @@ import com.allpass.projectAAA.util.StorageFileNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,10 +18,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
-
+@Service
 public class ArticleFileService implements StorageServiceInterface {
 
     private final Path rootLocation;
@@ -64,16 +63,16 @@ public class ArticleFileService implements StorageServiceInterface {
 
     }
 
-    public List<String> loadActivityImage(List<String> activity) {
+    public String loadArticle(String activity) {
         try {
-            List<String> imageList = new ArrayList<String>();
-            for (String a : activity) {
-                Files.walk(this.rootLocation, 1)
-                        .filter(path -> path.getFileName().toString().equals(a))
-                        .forEach(item -> imageList.add(item.getFileName().toString()));
+            String ArticleFile;
 
-            }
-            return imageList;
+            ArticleFile=Files.walk(this.rootLocation, 1)
+                        .filter(path -> path.getFileName().toString().equals(activity)).findFirst().get().getFileName().toString();
+
+
+
+            return ArticleFile;
 //            return Files.walk(this.rootLocation, 1)
 //                    .filter(path -> !path.equals(this.rootLocation))
 //                    .distinct()

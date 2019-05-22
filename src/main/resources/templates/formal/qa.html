@@ -18,25 +18,26 @@
 	</head>
 	<body>
 
-		
-
-
-		<!-- Header -->
-			<header id="header">
-				<h1><a th:href="@{/index.html}">Paper Review!</a></h1>
-				<a href="#nav">Menu</a>
-			</header>
 
 
 
-		<!-- Nav -->
+	<!-- Header -->
+	<header id="header">
+		<h1><a href="/">Paper Review!</a></h1>
+		<a href="#nav">Menu</a>
+	</header>
+
+
+
+
+	<!-- Nav -->
 		<nav id="nav">
 			<ul class="links">
-				<li>><a class="fa fa-home" th:href="@{/index.html}">&nbsp;&nbsp;Home</a></li>
-				<li><a class="fa fa-flag" th:href="@{/activityManagement.html}">&nbsp;&nbsp;Activity</a></li>
-				<li><a class="fa fa-file-text" th:href="@{/articlePost.html}">&nbsp;&nbsp;Article</a></li>
-				<li><a class="fa fa-users" th:href="@{/memberInfo.html}">&nbsp;&nbsp;Account</a></li>
-				<li><a class="fa fa-question-circle" th:href="@{/qa.html}">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+				<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+				<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
+				<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
+				<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
+				<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
 			</ul>
 		</nav>
 
@@ -50,24 +51,30 @@
 					</header>
 <!-- 動態版 -->
 					<div class="qa">
-						<p class="Question">Question - 1</p>
+						<p class="Question">論文幣是什麼</p>
 							<div class="Answer">
-						<p>Answer - 1</p>
+						<p>論文幣（PRV）是Paper Review平台中的代幣，您可藉由審文或是購買獲得，亦可在活動中用以支付為您審稿的會員。</p>
 							</div>
 					</div>
 
 					<div class="qa">
-						<p class="Question">Question - 2</p>
+						<p class="Question">創建活動可以做什麼？</p>
 							<div class="Answer">
 						<p>Answer - 2</p>
 							</div>
 					</div>
 
 					<div class="qa">
-						<p class="Question">Question - 3</p>
+						<p class="Question">我有時間壓力，能先審我的paper嗎？</p>
 							<div class="Answer">
-						<p>Answer - 3</p>
+						<p>您可以提高願意支付的token數量，讓您的論文審查指派排序向前移動。</p>
 							</div>
+					</div>
+					<div id="qa">
+						<p class="Question">我的論文有專利機密，會有外流風險嗎？</p>
+						<div class="Answer">
+							<p>Answer - 4</p>
+						</div>
 					</div>
 
 				
@@ -105,15 +112,32 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-<!-- 動態版 -->
 			<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script type="text/javascript">
-						jQuery(function($){
-							$("p.Question").css({cursor:"pointer"}).click(function(){
-									$(this).next().toggle("normal");
-								});
-						});
-		</script>
+
+
+	<script>
+		// qa.html
+		$("p.Question")
+				.css({cursor:"pointer"})
+				.click(function(){
+					$(this).next().toggle("normal");
+				});
+		// activityCheckTable.html
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+			acc[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if (panel.style.maxHeight){
+					panel.style.maxHeight = null;
+				} else {
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			});
+		}
+	</script>
 
 	</body>
 </html>

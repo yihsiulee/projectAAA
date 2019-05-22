@@ -12,36 +12,29 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
 		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<link rel="stylesheet" th:href="@{/jqueryui/style.css}"/>
-
-		<!-- th要加嗎？ -->
-		<link rel="stylesheet" href="https://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-		<!-- th要加嗎？ -->
-
-		  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/dateRangePicker.css}"/>
 		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
 	</head>
 	<body>
 
-		<!-- Header -->
-			<header id="header">
+	<!-- Header -->
+	<header id="header">
+		<h1><a href="/">Paper Review!</a></h1>
+		<a href="#nav">Menu</a>
+	</header>
 
-				<h1><a th:href="@{/index.html}">Paper Review!</a></h1>
-
-				<a href="#nav">Menu</a>
-			</header>
 
 		<!-- Nav -->
 
 		<!-- Nav -->
 		<nav id="nav">
 			<ul class="links">
-				<li>><a class="fa fa-home" th:href="@{/index.html}">&nbsp;&nbsp;Home</a></li>
-				<li><a class="fa fa-flag" th:href="@{/activityManagement.html}">&nbsp;&nbsp;Activity</a></li>
-				<li><a class="fa fa-file-text" th:href="@{/articlePost.html}">&nbsp;&nbsp;Article</a></li>
-				<li><a class="fa fa-users" th:href="@{/memberInfo.html}">&nbsp;&nbsp;Account</a></li>
-				<li><a class="fa fa-question-circle" th:href="@{/qa.html}">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+				<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+				<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
+				<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
+				<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
+				<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
 			</ul>
 		</nav>
 
@@ -55,7 +48,7 @@
 						<h2>舉辦活動</h2>
 					</header>
 
-					<form action="/activity/hold" method="post">
+					<form action="/activity/hold" enctype="multipart/form-data" method="post">
 
 						<div class="table">
 							<table class="alt">
@@ -88,10 +81,9 @@
 										<td>
 											<h4 style="text-align: center;">活動時間：</h4>
 										</td>
-										<td colspan="3"><div class="2u 12u$">
-											<input type="text" id="datepicker"  name="activityStart" placeholder="開始時間" required/></div>
-											<div class="2u$ 12u$">
-											<input type="text" id=""  name="activityEnd" placeholder="結束時間" required/></div>
+										<td colspan="3">
+											<input type="text"  class="6u 12u$"name="dateRange" value="起始與結束時間" />
+
 										</td>
 									</div></tr>
 
@@ -101,7 +93,7 @@
 											<h4 style="text-align: center;">上傳圖片：</h4>
 										</td>
 										<td colspan="3">
-											
+
 											<label for="file-uploads" class="button">
 												<i class="fa fa-file-text-o"></i>上傳檔案
 											</label>
@@ -134,16 +126,16 @@
 						<div class="12u 12u$(xsmall)" style="text-align: right;">
 							<input type="reset" value="重新填寫" class="button alt">
 							<input type="submit" value="送出" class="button special">
-							
+
 						</div>
-							
+
 						</div>
 
 						</form>
-					
 
 
-					
+
+
 
 				</div>
 			</section>
@@ -172,64 +164,42 @@
 					</ul>
 				</div>
 			</footer>
+	</body>
 
-		<!-- Scripts -->
-		<script>
-			function updateParticipantNumber(value){
-			document.getElementById("participantNumber").value = value*3;
-			}
-		</script>
+
 			<script th:src="@{/assets/js/jquery.min.js}"></script>
 			<script th:src="@{/assets/js/skel.min.js}"></script>
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
-			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  			<script>
-  $( function() {
-    var dateFormat = "mm/dd/yy",
-      from = $( "#activitystart" )
-        .datepicker({
-			defaultDate: "+1w",
-			changeMonth: true,
-			changeYear:true,
-			numberOfMonths: 2,
-			yearRange:"null,2030"
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = $( "#activityend" ).datepicker({
-        defaultDate: "+1w",
-        // changeMonth: true,
-        numberOfMonths: 2
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
-  } );
-  </script>
-		<script type="text/javascript">
-			$('#file-uploads').change(function() {
-				var i = $(this).prev('label').clone();
-				var file = $('#file-uploads')[0].files[0].name;
-				$(this).prev('label').text(file);
+<!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"/>-->
+<!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>-->
+	 <script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+	 <script type="text/javascript" th:src="@{/assets/js/moment.min.js}"></script>
+	 <script type="text/javascript" th:src="@{/assets/js/daterangepicker.min.js}"></script>
+<!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>-->
+	<script>
+		$(function() {
+			$('input[name="dateRange"]').daterangepicker({
+				opens: 'right',
+				autoApply:true,
+			}, function(start, end) {
+				console.log( start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
 			});
-		</script>
+		});
+	</script>
+	<script>
+	function updateParticipantNumber(value){
+		document.getElementById("participantNumber").value = value*3;
+	}
+	</script>
+	<script>
+	// activityHold.html articlePost.html 檔案上傳
+		$('#file-uploads').change(function() {
+			var i = $(this).prev('label').clone();
+			var file = $('#file-uploads')[0].files[0].name;
+			$(this).prev('label').text(file);
+		});
+	</script>
 
-
-
-	</body>
 </html>

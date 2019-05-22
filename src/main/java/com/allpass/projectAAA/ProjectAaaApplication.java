@@ -1,16 +1,16 @@
 package com.allpass.projectAAA;
 
 
-import com.allpass.projectAAA.Properties.ActivityImageFileProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+
 @Controller
-@EnableConfigurationProperties(ActivityImageFileProperties.class)
+//@EnableConfigurationProperties({ActivityImageFileProperties.class, ArticleUploadFileProperties.class})
 @SpringBootApplication
 public class ProjectAaaApplication {
 
@@ -28,7 +28,7 @@ public class ProjectAaaApplication {
 	}
 
 	@RequestMapping("/")
-	public String home(){ return "index"; }
+	public String home(){ return "index.html"; }
 	@RequestMapping("/login")
 	public String login(){
 		return "memberLogin";
@@ -49,10 +49,10 @@ public class ProjectAaaApplication {
 	public String result(){
 		return "result";
 	}
-	@RequestMapping("/article")
-	public String article(){
-		return "article";
-	}
+//	@RequestMapping("/article")
+//	public String article(){
+//		return "article";
+//	}
 	@RequestMapping("/history")
 	public String history(){
 		return "history";
@@ -66,12 +66,6 @@ public class ProjectAaaApplication {
 		SpringApplication.run(ProjectAaaApplication.class, args);
 
 	}
-//	@Bean
-//	CommandLineRunner init(StorageService storageService) {
-//		return (args) -> {
-//			storageService.deleteAll();
-//			storageService.init();
-//		};
-//	}
 }
+
 

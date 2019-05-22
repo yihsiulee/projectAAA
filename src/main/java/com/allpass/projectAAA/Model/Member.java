@@ -3,6 +3,8 @@ package com.allpass.projectAAA.Model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -33,8 +35,21 @@ public class  Member  {
 //    @OneToOne(cascade=CascadeType.ALL)
 //    @JoinColumn(name="MEMBER_ROLE_ID", referencedColumnName="ROLE_ID")
     private Collection<Member_Role> roles;
-    @ManyToMany(mappedBy = "activityParticipants")
-    private Set<Activity> activity;
+    @ManyToMany( fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},mappedBy = "activityParticipants_Reviewer")
+//    @JoinTable(
+//            name = "activity_member",
+//            joinColumns = @JoinColumn(
+//                    name = "member_id",referencedColumnName = "MEMBER_ID"),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "activity_id",referencedColumnName = "ACTIVITY_ID"))
+    private Set<Activity> activityParticipant_Reviewer=new HashSet<>();
+    @ManyToMany( fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},mappedBy = "activityParticipants_Author")
+    private Set<Activity> activityParticipant_Author=new HashSet<>();
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+//    private Set<ArticleReview> articleReviews;
+
 
     public Member(){
 
@@ -196,4 +211,25 @@ public class  Member  {
         this.roles = roles;
     }
 
+    public void setActivityParticipant_Reviewer(Set<Activity> activityParticipant_Reviewer) { this.activityParticipant_Reviewer = activityParticipant_Reviewer; }
+
+    public Set<Activity> getActivityParticipant_Reviewer() { return activityParticipant_Reviewer; }
+
+    public void setActivityParticipant_Author(Set<Activity> activityParticipant_Author) { this.activityParticipant_Author = activityParticipant_Author; }
+
+    public Set<Activity> getActivityParticipant_Author() { return activityParticipant_Author; }
+
+//    public void setArticleReviews(Set<ArticleReview> articleReviews) { this.articleReviews = articleReviews; }
+//
+//    public Set<ArticleReview> getArticleReviews() { return articleReviews; }
+
+    @Override
+    public int hashCode() {
+        // Objects 有 hash() 方法可以使用
+        // 以下可以簡化為 return Objects.hash(name, number);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.idCardNumber);
+        return hash;
+    }
 }

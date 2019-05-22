@@ -65,7 +65,7 @@ contract smartContract{
 
     }
     
-    //接收到文章後call這個 要丟文章hash值進去?
+    //審文人接收到文章後call這個
     function isRecievePost() public {
         require(complete != true);
         require(reviewers[msg.sender].approve == true);

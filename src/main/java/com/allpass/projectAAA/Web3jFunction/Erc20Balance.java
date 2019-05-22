@@ -16,34 +16,36 @@ import java.math.BigInteger;
 
 public class Erc20Balance {
 
-    String ERC20Address ;
+    String myERC20Address ;
     BigInteger balances;
+
     Web3j web3j = new JsonRpc2_0Web3j(new HttpService(),50, Async.defaultExecutorService());//連線上geth
     DeployErc20 erc20 = new DeployErc20() ;
 
-    public void getErc20Address(){
-        ERC20Address= erc20.getERC20Address();
+    public void myGetErc20Address() {
+        myERC20Address= erc20.getERC20Address();
     }
 
-    public BigInteger getBalance(){
+    public BigInteger getBalance(String password, String source, String userAddress) throws Exception {
+        callBalance(password, source, userAddress);
         return balances ;
     }
 
     public void callBalance(String password, String source, String userAddress) throws Exception {
 
-        getErc20Address();
+        myGetErc20Address();
         ContractGasProvider contractGasProvider = new DefaultGasProvider();
         Credentials credentials = WalletUtils.loadCredentials(password, source);
 
         //先讀入ERC20合約
-        ERC20 erc20Load =ERC20.load(ERC20Address, web3j, credentials,contractGasProvider);
+        ERC20 erc20Load =ERC20.load(myERC20Address, web3j, credentials,contractGasProvider);
         //查看合約是否可用
         System.out.println(erc20Load.isValid());
         BigInteger mybalance = erc20Load.balanceOf(userAddress).send();//userAddress應該也能從source抓
         balances = mybalance ;
         System.out.println(balances);
 
-        getBalance();
+
     }
 
 

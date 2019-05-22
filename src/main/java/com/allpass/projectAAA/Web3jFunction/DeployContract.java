@@ -14,11 +14,15 @@ public class DeployContract {
 
     String contractAddress ;
 
-    public String getContractAddress(){
+
+    //call這裡獲得合約地址
+    public String getContractAddress(String password, String source, String ERC20Address) throws Exception {
+        deployContract( password,  source,  ERC20Address);
         return contractAddress;
     }
 
-    public void deployContract(String password, String source, String ERC20Address) throws Exception{
+    // 合約發起人的credentials
+    public void deployContract(String password, String source, String ERC20Address)  throws Exception{
 
 
         Web3j web3j = new JsonRpc2_0Web3j(new HttpService(),50, Async.defaultExecutorService());//連線上geth
@@ -32,7 +36,7 @@ public class DeployContract {
         contractAddress = contract.getContractAddress();//丟進去存著
         System.out.println(contractAddress);
 
-        getContractAddress();
+//        getContractAddress();//回傳合約地址
     }
 
 

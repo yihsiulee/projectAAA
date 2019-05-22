@@ -12,7 +12,7 @@ import java.math.BigInteger;
 
 public class DeployErc20 {
 
-    public String ERC20Address;
+    public String ERC20Address;//存發佈ERC20合約回傳的地址
 
     public void deploy() throws Exception{
         Web3j web3j = new JsonRpc2_0Web3j(new HttpService(),50, Async.defaultExecutorService());//連線上geth

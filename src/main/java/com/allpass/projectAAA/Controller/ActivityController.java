@@ -1,5 +1,7 @@
 package com.allpass.projectAAA.Controller;
 
+import com.allpass.projectAAA.Mail.EmailService;
+import com.allpass.projectAAA.Mail.Mail;
 import com.allpass.projectAAA.Model.Activity;
 import com.allpass.projectAAA.Model.Article;
 import com.allpass.projectAAA.Model.ArticleReview;
@@ -17,10 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/activity")
@@ -38,6 +44,8 @@ public class ActivityController {
     private ArticleService articleService;
     @Resource
     private ArticleFileService articleFileService;
+    @Resource
+    private EmailService emailService;
 
     @Autowired
     public ActivityController(ActivityImageFileService activityImageFileService) {
@@ -264,7 +272,7 @@ public class ActivityController {
             @RequestParam("articleId")Long articleId,
             @RequestParam("activityId")Long activityId,
             @RequestParam("reviewMember")String reviewMemberList
-    ){
+    ) throws IOException, MessagingException {
         List<String> reviewMember=new ArrayList<>();
         System.out.println(reviewMemberList);
 
@@ -278,12 +286,33 @@ public class ActivityController {
         for (int i=0;i<reviewMember.size();i++){
             ArticleReview articleReview=new ArticleReview();
             System.out.println(reviewMember.get(i));
-            articleReview.setMember(memberService.getMemberInfo(reviewMember.get(i)));
+            Member invitingParticipants=memberService.getMemberInfo(reviewMember.get(i));
+            articleReview.setMember(invitingParticipants);
 //            updateActivity.getActivityParticipants_Reviewer().remove(memberService.getMemberInfo(reviewMember.get(i)));
 //            activityService.save(updateActivity);
             articleReview.setArticle(articleService.getArticleById(articleId));
             articleReviewService.save(articleReview);
             articleService.getArticleById(articleId).setArticleState("assign");
+            Mail mail = new Mail();
+            mail.setFrom("no-reply@memorynotfound.com");
+            mail.setTo(invitingParticipants.getEmail());
+            mail.setSubject("<PaperReview!>您收到一篇審文邀請");
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("name", invitingParticipants.getName());
+            model.put("location", "Taipei");
+            model.put("signature", "PaperReview");
+
+            model.put("activityName",articleReview.getArticle().getActivity().getActivityName());
+            model.put("activityHold",articleReview.getArticle().getActivity().getActivityOrganizer().getName());
+            model.put("articleName",articleReview.getArticle().getArticleName());
+            model.put("articleValue",articleReview.getArticle().getArticleValue());
+
+
+
+            mail.setModel(model);
+
+            emailService.sendSimpleMessage(mail);
         }
 
         return "redirect:/activity/management";

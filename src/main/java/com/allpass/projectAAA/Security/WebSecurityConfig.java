@@ -20,6 +20,9 @@ import javax.annotation.Resource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private MemberDetailsServiceImp memberDetailsServiceImp;
+
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http

@@ -50,15 +50,17 @@
 							<tbody>
 								<tr>
 									<td align="center"><h4>文章名稱：</h4></td>
-									<td colspan="2" th:text="${article.articleName}"></td>
+									<td th:text="${article.articleName}"></td>
+									<td align="center"><h4>文章價值：</h4></td>
+									<td th:text="${article.articleValue}"></td>
 								</tr>
 								<tr>
 									<td align="center"><h4>發表時間：</h4></td>
-									<td colspan="2" th:text="${article.postTime}"></td>
+									<td colspan="3" th:text="${article.postTime}"></td>
 								</tr>
 								<tr>
 									<td align="center"><h4>原始檔案：</h4></td>
-									<td colspan="2"> <label class="button">
+									<td colspan="3"> <label class="button">
 										<i class="fa fa-cloud-download">
 											<a th:href="${article.uploadFile}" th:text="${article.fileName}" style="color:#fff !important;font-family: 'Muli', sans-serif;"></a>
 										</i>
@@ -68,11 +70,11 @@
 								<tr>
 									<td rowspan="4" align="center"><h4>審核回覆：</h4></td>
 									<td align="center"><h5>審核人：</h5></td>
-                                    <td align="center"><h5>評論內容:</h5></td>
+                                    <td align="center" colspan="2"><h5>評論內容:</h5></td>
 								</tr>
 								<tr th:each="articleReviews:${article.getArticleReviews()}">
 									<td th:text="${articleReviews.member.name}"></td>
-									<td th:text="${articleReviews.reviewText}"></td>
+									<td colspan="2" th:text="${articleReviews.reviewText}"></td>
 								</tr>
 
 

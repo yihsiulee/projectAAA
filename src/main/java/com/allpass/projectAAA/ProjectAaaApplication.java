@@ -8,11 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-
 @Controller
 //@EnableConfigurationProperties({ActivityImageFileProperties.class, ArticleUploadFileProperties.class})
 @SpringBootApplication
-public class ProjectAaaApplication {
+public class ProjectAaaApplication  {
 
     @RequestMapping("/aa")
 	public String aa(){
@@ -20,7 +19,7 @@ public class ProjectAaaApplication {
 	}
 
 	//	使用modle來定義參數的傳遞 傳到html
-	@RequestMapping("/test") //網頁從這個地方進入這個方法（網址la）
+	@RequestMapping("/test") //網頁從這個地方進入這個方法（網址）
 	public String test(Model model) {
 		model.addAttribute("loginName", "admin");
 		model.addAttribute("loginId", "27");
@@ -28,7 +27,9 @@ public class ProjectAaaApplication {
 	}
 
 	@RequestMapping("/")
-	public String home(){ return "index.html"; }
+	public String home()  {
+    	return "index"; }
+
 	@RequestMapping("/login")
 	public String login(){
 		return "memberLogin";
@@ -61,10 +62,14 @@ public class ProjectAaaApplication {
 	public String QA(){return "qa";}
 
 
+
+
 	public static void main(String[] args) {
-		DatabaseServer.startH2Server();
-		SpringApplication.run(ProjectAaaApplication.class, args);
+////		DatabaseServer.startH2Server();
+SpringApplication.run(ProjectAaaApplication.class, args);
 	}
+
+
 }
 
 

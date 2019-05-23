@@ -62,6 +62,7 @@ public class ArticleController {
             @RequestParam("textNumber")Integer textNumber,
             @RequestParam("formulaNumber")Integer formulaNumber,
             @RequestParam("uploadFile") MultipartFile uploadFile,
+            @RequestParam("articleValue")Double articleValue,
             Authentication auth
     ) {
         Article article=new Article();
@@ -70,6 +71,7 @@ public class ArticleController {
         article.setActivity(activityService.getActivityById(activity_Id));
         article.setFormulaNumber(formulaNumber);
         article.setTextNumber(textNumber);
+        article.setArticleValue(articleValue);
         article.setAuthor(memberService.getMemberInfo(auth.getName()));
         if(!uploadFile.isEmpty()){
             article.setFileName(uploadFile.getOriginalFilename());

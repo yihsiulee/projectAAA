@@ -1,5 +1,4 @@
-package com.allpass.projectAAA.mail;
-
+package com.allpass.projectAAA.Mail;
 
 import java.util.List;
 import java.util.Map;

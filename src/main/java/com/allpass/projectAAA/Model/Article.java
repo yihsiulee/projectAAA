@@ -16,6 +16,7 @@ public class Article {
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="AUTHOR_MEMBER_ID_FK")
     private Member author;
+    private Double articleValue;
     private Integer articleStudy;
     private String uploadFile;
     private String fileName;
@@ -145,4 +146,8 @@ public class Article {
     public void setArticleState(String articleState) { this.articleState = articleState; }
 
     public String getArticleState() { return articleState; }
+
+    public void setArticleValue(Double articleValue) { this.articleValue = articleValue; }
+
+    public Double getArticleValue() { return articleValue; }
 }

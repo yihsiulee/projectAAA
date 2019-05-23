@@ -65,8 +65,8 @@ public class ProjectAaaApplication  {
 
 
 	public static void main(String[] args) {
-////		DatabaseServer.startH2Server();
-SpringApplication.run(ProjectAaaApplication.class, args);
+    	DatabaseServer.startH2Server();
+    	SpringApplication.run(ProjectAaaApplication.class, args);
 	}
 
 

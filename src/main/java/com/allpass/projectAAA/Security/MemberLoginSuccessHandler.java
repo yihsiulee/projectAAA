@@ -43,7 +43,8 @@ public class MemberLoginSuccessHandler
 
 
 //        if(admin){
-        response.sendRedirect("/");
+//        response.sendRedirect("/");
+        response.sendRedirect(request.getHeader("referer"));
 //        }else{
 //            response.sendRedirect("/user");
 //        }

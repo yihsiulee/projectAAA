@@ -29,6 +29,7 @@ public class ProjectAaaApplication {
 
 	@RequestMapping("/")
 	public String home(){ return "index"; }
+
 	@RequestMapping("/login")
 	public String login(){
 		return "memberLogin";
@@ -59,6 +60,8 @@ public class ProjectAaaApplication {
 	}
 	@RequestMapping("/QA")
 	public String QA(){return "qa";}
+
+
 
 
 	public static void main(String[] args) {

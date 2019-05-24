@@ -26,8 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        SimpleUrlAuthenticationSuccessHandler authSuccessHandler = new SimpleUrlAuthenticationSuccessHandler();
-        authSuccessHandler.setUseReferer(true);
+
 
 
 
@@ -50,7 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(new MemberLoginSuccessHandler())
                 .loginPage(SecurityConstants.MEMBER_LOGIN_URL)
-//                .defaultSuccessUrl()
                 .permitAll()
                 .and()
                 .logout()
@@ -92,8 +90,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
-    @Bean
-
 
 
 

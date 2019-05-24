@@ -58,7 +58,7 @@ public class ProjectAaaApplication  {
 	public String history(){
 		return "history";
 	}
-	@RequestMapping("/QA")
+	@RequestMapping("/qa")
 	public String QA(){return "qa";}
 
 

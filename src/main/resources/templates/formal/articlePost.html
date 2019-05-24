@@ -104,18 +104,19 @@
 											<h4 style="text-align: center;">字數統計：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" onchange="updateArticleValue(value)" name="textNumber" id="textNumber"placeholder="字數統計" style="width: 80%" required/>
+											<input type="number" min="0" onchange="updateArticleValue(value)" value=0 name="textNumber" id="textNumber"placeholder="字數統計" style="width: 80%" required/>
 										</td>
 										<td>
 											<h4 style="text-align: center;">公式數量：</h4>
 										</td>
 										<td>
-											<input type="number" min="0" onchange="updateArticleValue(value)" name="formulaNUmber" id="formulaNUmber"placeholder="公式數量：" style="width: 80%" required/>										</td>
+											<input type="number" min="0" onchange="updateArticleValue(value)" value=0 name="formulaNumber" id="formulaNumber"placeholder="公式數量：" style="width: 80%" required/>										</td>
 										<td>
 											<h4 style="text-align: center;">文章價值：</h4>
 										</td>
 										<td>
-											<input type="text" name="articleValue" style="border: none;" id="articleValue"placeholder="文章價值：" style="width: 80%" required/>										</td>
+											<input type="number" name="articleValue" style="border: none;width: 80%" id="articleValue"  required readonly/>
+										</td>
 
 									</div></tr>
 								</tbody>
@@ -191,7 +192,7 @@
 	</script>
 	<script>
 		function updateArticleValue(value){
-			document.getElementById("articleValue").value = textNumber.value*0.75+formulaNUmber.value*10;
+			document.getElementById("articleValue").value = textNumber.value*0.75+formulaNumber.value*10;
 		}
 	</script>
 

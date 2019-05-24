@@ -13,9 +13,7 @@ public class ActivityService {
     @Resource
     private ActivityDao activityDao;
 
-    public void save(Activity activity){
-        activityDao.save(activity);
-    }
+    public void save(Activity activity){ activityDao.save(activity); }
 
     public void update(Activity activity){
         activityDao.save(activity);

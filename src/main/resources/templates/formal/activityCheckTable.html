@@ -44,91 +44,89 @@
             <h2>審文確認列表</h2>
         </header>
         <!-- start -->
-        <button class="accordion">Section 1</button>
+        <div th:each="articleReview:${articleReview}">
+        <button class="accordion"th:text="${articleReview.article.activity.activityName}" ></button>
         <div class="panel">
             <header class="major special">
                 <h2>您收到一篇審文邀請</h2>
                 <h3>請登入網頁前往確認是否參與審文！</h3>
-                <div class="table-wrapp" style="width: 40%;margin-left:auto;margin-right: auto;">
+                <div class="table-wrapp" style="width: 40%;margin-left:auto;margin-right: auto;" >
                     <table class="alt" >
                         <thead></thead>
-                        <tbody >
+                        <tbody>
                         <tr>
                             <td align="center"><h4>活動名稱：</h4></td>
-                            <td>{th:activityname}</td>
+                            <td th:text="${articleReview.article.activity.activityName}"></td>
                         </tr>
                         <tr>
                             <td align="center"><h4>活動主辦人：</h4></td>
-                            <td >{th:activityhold}</td>
+                            <td th:text="${articleReview.article.activity.activityOrganizer.name}"></td>
                         </tr>
                         <tr>
                             <td align="center"><h4>文章名稱：</h4></td>
-                            <td >{th:articlename}</td>
+                            <td th:text="${articleReview.article.articleName}"></td>
                         </tr>
                         <tr>
                             <td align="center"><h4>發表時間：</h4></td>
-                            <td >{th:posttime}</td>
+                            <td th:text="${articleReview.article.postTime}"></td>
                         </tr>
 
 
 
                         </tbody>
                     </table>
-                    <form>
                         <div class="12u 12u$(xsmall)" style="text-align: right;">
-                            <input class="button alt" type="submit" value="確認">
-                            <input class="button special" type="submit" value="拒絕">
-
+                            <a class="button alt"  th:href="@{acceptTask(articleReviewId=${articleReview.id})}">確認</a>
+                            <a class="button special" th:href="@{refuseTask(articleReviewId=${articleReview.id})}">拒絕</a>
                         </div>
-                    </form>
                 </div>
             </header>
 
         </div>
 
-
-
-        <button class="accordion">Section 2</button>
-        <div class="panel">
-            <header class="major special">
-                <h2>您收到一篇審文邀請</h2>
-                <h3>請登入網頁前往確認是否參與審文！</h3>
-                <div class="table-wrapp" style="width:40%;margin-left:auto;margin-right: auto;">
-                    <table class="alt"  >
-                        <thead></thead>
-                        <tbody >
-                        <tr>
-                            <td align="center"><h4>活動名稱：</h4></td>
-                            <td th:text=""></td>
-                        </tr>
-                        <tr>
-                            <td align="center"><h4>活動主辦人：</h4></td>
-                            <td th:text=""></td>
-                        </tr>
-                        <tr>
-                            <td align="center"><h4>文章名稱：</h4></td>
-                            <td th:text=""></td>
-                        </tr>
-                        <tr>
-                            <td align="center"><h4>發表時間：</h4></td>
-                            <td >{th:posttime}</td>
-                        </tr>
-
-
-
-                        </tbody>
-                    </table>
-                    <form>
-                        <div class="12u 12u$(xsmall)" style="text-align: right;">
-                            <input class="button alt" type="submit" value="確認">
-                            <input class="button special" type="submit" value="拒絕">
-
-                        </div>
-                    </form>
-                </div>
-            </header>
-
         </div>
+
+<!--        <button class="accordion">Section 2</button>-->
+<!--        <div class="panel">-->
+<!--            <header class="major special">-->
+<!--                <h2>您收到一篇審文邀請</h2>-->
+<!--                <h3>請登入網頁前往確認是否參與審文！</h3>-->
+<!--                <div class="table-wrapp" style="width:40%;margin-left:auto;margin-right: auto;">-->
+<!--                    <table class="alt"  >-->
+<!--                        <thead></thead>-->
+<!--                        <tbody >-->
+<!--                        <tr>-->
+<!--                            <td align="center"><h4>活動名稱：</h4></td>-->
+<!--                            <td th:text="${articleReview.article.activity.activityName}"></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td align="center"><h4>活動主辦人：</h4></td>-->
+<!--                            <td th:text="${articleReview.article.activity.activityOrganizer.name}"></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td align="center"><h4>文章名稱：</h4></td>-->
+<!--                            <td th:text="${articleReview.article.articleName}"></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td align="center"><h4>發表時間：</h4></td>-->
+<!--                            <td th:text="${articleReview.article.postTime}"></td>-->
+<!--                        </tr>-->
+
+
+
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                    <form>-->
+<!--                        <div class="12u 12u$(xsmall)" style="text-align: right;">-->
+<!--                            <a class="button alt" th:href="@{/article}" >確認</a>-->
+<!--                            <a class="button special" th:href="@{articleReview/refuseTask(articleReviewId=${articleReview.id})}">拒絕</a>-->
+
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+
+
+
 
         <!-- over			 -->
     </div>

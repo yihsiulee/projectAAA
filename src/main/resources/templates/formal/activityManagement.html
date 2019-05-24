@@ -58,18 +58,17 @@
                     <th>功能</th>
                 </tr>
                 </thead>
-                <tbody th:each="article:${activityManagementList.getArticle()}">
-                <td>
+                <tbody  th:each="article:${activityManagementList.getArticle()}">
+
                     <td th:text="${article.articleName}"></td>
                     <td th:text="${article.postTime}"></td>
-                    <td th:text="${artcle.articleValue}"></td>
+                    <td th:text="${article.articleValue}"></td>
                     <td th:switch="${article.articleState}">
                         <button  class="btn success" th:case="reviewFinish">審核完成</button>
                         <button class="btn info"  th:case="reviewing">審稿中</button>
                         <button class="btn warning"  th:case="assign">待回復</button>
                         <button class="btn danger"  th:case="notAssign">未分配</button>
-                    </td>
-                    <td>
+                    <td th:switch="${article.articleState}">
 <!--                        <a th:onclick="document.getElementById(/*[[${article.id}]]*/+'check').style.display='block'" class=" button alt small">Check</a>-->
                         <a th:onclick="'javascript:checkBlock('+${article.id}+');'" class=" button alt small">Check</a>
                         <div th:id="${article.id}+'check'" class="w3-modal">
@@ -82,7 +81,7 @@
                             </div>
                         </div>
 
-                        <a th:onclick="'javascript:assignBlock('+${article.id}+');'" class=" button special small">Assign</a>
+                        <a th:case="notAssign" th:onclick="'javascript:assignBlock('+${article.id}+');'" class=" button special small">Assign</a>
 <!--                        th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}"-->
                         <div th:id="${article.id}+'assign'" class="w3-modal">
                             <div class="w3-modal-content">

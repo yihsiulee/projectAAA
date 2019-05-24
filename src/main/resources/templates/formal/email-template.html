@@ -5,9 +5,10 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+<!--    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />-->
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
-
+<style>
+</style>
 </head>
 <body style="margin: 0; padding: 0;">
 
@@ -27,7 +28,9 @@
             <p th:text="${'文章價值：'+ articleValue}"></p>
 
 
-            <p>謝謝您的參與！</p>
+
+            <a class="button special" th:href="@{http://localhost:8080/articleReview/reviewCheck}">前往確認</a>
+<!--            <p>謝謝您的參與！</p>-->
         </td>
     </tr>
     <tr>

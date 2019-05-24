@@ -15,9 +15,11 @@ import java.util.Set;
 public class ArticleReviewService {
 
     @Resource
-    ArticleReviewDao articleReviewDao;
+    private ArticleReviewDao articleReviewDao;
 
     public void save(ArticleReview articleReview){articleReviewDao.save(articleReview);}
+
+    public void delete(ArticleReview articleReview){articleReviewDao.delete(articleReview);}
 
     public List<ArticleReview> getArticleReviewListByMember(Member member){
         List<ArticleReview>articleReviewList=articleReviewDao.findByMember(member);
@@ -42,6 +44,7 @@ public class ArticleReviewService {
         return articleReview;
 
     }
+
 
 
 

@@ -2,6 +2,7 @@ package com.allpass.projectAAA.Controller;
 
 import com.allpass.projectAAA.Model.Article;
 import com.allpass.projectAAA.Model.ArticleReview;
+import com.allpass.projectAAA.Model.Member;
 import com.allpass.projectAAA.Service.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/articleReview")
@@ -131,8 +133,12 @@ public class ArticleReviewController {
             @RequestParam("articleReviewId")Long articleReviewId
     ){
         ArticleReview articleReview= articleReviewService.getArticleReviewById(articleReviewId);
+        Set<Member> activityParticipants_Reviewer=activityService.getActivityById(articleReview.getArticle().getActivity().getId()).getActivityParticipants_Reviewer();
         articleReview.setAcceptTask(true);
         articleReviewService.save(articleReview);
+        for(Member member:activityParticipants_Reviewer){
+
+        }
         return "redirect:/articleReview/list";
     }
 
@@ -152,7 +158,7 @@ public class ArticleReviewController {
     public ResponseEntity<org.springframework.core.io.Resource> serveArticleFile(@PathVariable String filename) throws UnsupportedEncodingException {
         System.out.println(filename);
         org.springframework.core.io.Resource file = articleFileService.loadAsResource(filename);
-        String fileName=URLEncoder.encode(file.getFilename(),"UTF-8");
+        String fileName=URLEncoder.encode(file.getFilename(),"UTF-16");
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + fileName + "\"").body(file);
     }

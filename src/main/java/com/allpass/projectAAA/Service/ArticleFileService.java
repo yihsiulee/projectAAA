@@ -65,10 +65,12 @@ public class ArticleFileService implements StorageServiceInterface {
 
     public String loadArticle(String article) {
         try {
-            String ArticleFile;
-
-            ArticleFile=Files.walk(this.rootLocation, 1)
-                        .filter(path -> path.getFileName().toString().equals(article)).findFirst().get().getFileName().toString();
+            String ArticleFile=Files.walk(this.rootLocation, 1)
+                    .filter(path -> path.getFileName().toString().equals(article))
+                    .findFirst()
+                    .get()
+                    .getFileName()
+                    .toString();
 
 
 

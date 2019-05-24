@@ -31,7 +31,7 @@ public class ArticleController {
     @Resource
     private ArticleReviewService articleReviewService;
 
-    private  static SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+    private  static SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @RequestMapping(value = "")
     private String articleFuctionPage(){

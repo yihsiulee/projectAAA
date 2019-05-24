@@ -15,10 +15,12 @@ public class Activity {
     private String activityName;
     private String activityTime;
     private String activityContent;
+    private String activityImg;
+    private Integer activityStudy;
     private Integer limitedParticipants;
     private Integer articleNumber;
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="organizer_member_ID_FK")
+    @ManyToOne
+    @JoinColumn(name="organizer_member_ID_FK",nullable=false)
     private Member activityOrganizer;
     @ManyToMany( fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -39,8 +41,10 @@ public class Activity {
                     name = "member_id",referencedColumnName = "MEMBER_ID"))
     private Set<Member> activityParticipants_Author=new HashSet<>();
     @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
-    private Set<Article> article;
-    private String activityImg;
+    private Set<Article> article=new HashSet<>();
+
+
+
 
     public Activity(
 //            String activityName
@@ -91,6 +95,10 @@ public class Activity {
     public String getActivityImg() {
         return activityImg;
     }
+
+    public void setActivityStudy(Integer activityStudy) { this.activityStudy = activityStudy; }
+
+    public Integer getActivityStudy() { return activityStudy; }
 
     public void setActivityParticipants_Author(Set<Member> activityParticipants_Author) { this.activityParticipants_Author = activityParticipants_Author; }
 

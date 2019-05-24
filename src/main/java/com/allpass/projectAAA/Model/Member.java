@@ -12,6 +12,7 @@ import java.util.Set;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "idCardNumber"))
 public class  Member  {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "MEMBER_ID")
     private Long id;
     private String name;
@@ -20,7 +21,7 @@ public class  Member  {
     private String email;
     private Integer gender;
     private String birthday;
-    private Integer educational;
+    private Integer education;
     private Integer study;
     private String special;
     private Float tokenBalance;
@@ -47,6 +48,8 @@ public class  Member  {
     @ManyToMany( fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},mappedBy = "activityParticipants_Author")
     private Set<Activity> activityParticipant_Author=new HashSet<>();
+    @OneToMany(mappedBy="activityOrganizer")
+    private Set<Activity> activityOrganizer;
 //    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 //    private Set<ArticleReview> articleReviews;
 
@@ -54,62 +57,62 @@ public class  Member  {
     public Member(){
 
     }
-    public Member(
-            Long id,
-            String name,
-            String idCardNumber,
-            String password,
-            String email,
-            String phoneNumber,
-            Integer gender,
-            String birthday,
-            String special,
-            Integer educational,
-            Integer study,
-            Float tokenBalance
-    ) {
-        this.id=id;
-        this.name=name;
-        this.idCardNumber=idCardNumber;
-        this.password=password;
-        this.email=email;
-        this.phoneNumber=phoneNumber;
-        this.gender=gender;
-        this.birthday=birthday;
-        this.educational=educational;
-        this.study=study;
-        this.tokenBalance=tokenBalance;
-        this.special=special;
-    }
-    public Member(
-            Long id,
-            String name,
-            String idCardNumber,
-            String password,
-            String email,
-            String phoneNumber,
-            Integer gender,
-            String birthday,
-            String special,
-            Integer educational,
-            Integer study,
-            Float tokenBalance,
-            Collection<Member_Role> roles
-    ) {
-        this.id=id;
-        this.name=name;
-        this.idCardNumber=idCardNumber;
-        this.password=password;
-        this.email=email;
-        this.phoneNumber=phoneNumber;
-        this.gender=gender;
-        this.birthday=birthday;
-        this.educational=educational;
-        this.study=study;
-        this.tokenBalance=tokenBalance;
-        this.special=special;
-        this.roles=roles;
-    }
+//    public Member(
+//            Long id,
+//            String name,
+//            String idCardNumber,
+//            String password,
+//            String email,
+//            String phoneNumber,
+//            Integer gender,
+//            String birthday,
+//            String special,
+//            Integer educational,
+//            Integer study,
+//            Float tokenBalance
+//    ) {
+//        this.id=id;
+//        this.name=name;
+//        this.idCardNumber=idCardNumber;
+//        this.password=password;
+//        this.email=email;
+//        this.phoneNumber=phoneNumber;
+//        this.gender=gender;
+//        this.birthday=birthday;
+//        this.education=educational;
+//        this.study=study;
+//        this.tokenBalance=tokenBalance;
+//        this.special=special;
+//    }
+//    public Member(
+//            Long id,
+//            String name,
+//            String idCardNumber,
+//            String password,
+//            String email,
+//            String phoneNumber,
+//            Integer gender,
+//            String birthday,
+//            String special,
+//            Integer educational,
+//            Integer study,
+//            Float tokenBalance,
+//            Collection<Member_Role> roles
+//    ) {
+//        this.id=id;
+//        this.name=name;
+//        this.idCardNumber=idCardNumber;
+//        this.password=password;
+//        this.email=email;
+//        this.phoneNumber=phoneNumber;
+//        this.gender=gender;
+//        this.birthday=birthday;
+//        this.education=educational;
+//        this.study=study;
+//        this.tokenBalance=tokenBalance;
+//        this.special=special;
+//        this.roles=roles;
+//    }
 
 
 
@@ -179,12 +182,12 @@ public class  Member  {
         return special;
     }
 
-    public void setEducational(Integer educational) {
-        this.educational = educational;
+    public void setEducation(Integer educational) {
+        this.education = educational;
     }
 
-    public Integer getEducational() {
-        return educational;
+    public Integer getEducation() {
+        return education;
     }
 
     public void setStudy(Integer study) {
@@ -219,7 +222,14 @@ public class  Member  {
 
     public Set<Activity> getActivityParticipant_Author() { return activityParticipant_Author; }
 
-//    public void setArticleReviews(Set<ArticleReview> articleReviews) { this.articleReviews = articleReviews; }
+    public void setActivityOrganizer(Set<Activity> activityOrganizer) { this.activityOrganizer = activityOrganizer; }
+
+    public Set<Activity> getActivityOrganizer() { return activityOrganizer; }
+
+    //    public void setActivityOrganizer(Set<Activity> activityOrganizer) { this.activityOrganizer = activityOrganizer; }
+//
+//    public Set<Activity> getActivityOrganizer() { return activityOrganizer; }
+    //    public void setArticleReviews(Set<ArticleReview> articleReviews) { this.articleReviews = articleReviews; }
 //
 //    public Set<ArticleReview> getArticleReviews() { return articleReviews; }
 

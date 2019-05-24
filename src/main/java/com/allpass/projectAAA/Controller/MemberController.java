@@ -4,7 +4,6 @@ import com.allpass.projectAAA.Model.Member;
 import com.allpass.projectAAA.Model.Member_Role;
 import com.allpass.projectAAA.Security.MemberDetailsServiceImp;
 import com.allpass.projectAAA.Service.MemberService;
-import com.allpass.projectAAA.util.MemberIdRandomUtil;
 import com.allpass.projectAAA.util.MemberVerificationAndValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -52,7 +51,7 @@ public class MemberController {
             @RequestParam("phoneNumber") String phoneNumber,
             @RequestParam("gender") Integer gender,
             @RequestParam("birthday") String birthday,
-            @RequestParam("educational") Integer educational,
+            @RequestParam("educational") Integer education,
             @RequestParam("study") Integer study,
             @RequestParam("special") String special
     ) {
@@ -61,7 +60,7 @@ public class MemberController {
 
         if (idCardNumberVerification && passwordVerification) {
             Member member = new Member();
-            member.setId(MemberIdRandomUtil.randomMemberNumber());
+//            member.setId(MemberIdRandomUtil.randomMemberNumber());
             member.setName(name);
             member.setIdCardNumber(idCardNumber.toUpperCase());
             member.setPassword(passwordEncoder.encode(password1));
@@ -70,7 +69,7 @@ public class MemberController {
             member.setPhoneNumber(phoneNumber);
             member.setGender(gender);
             member.setBirthday(birthday);
-            member.setEducational(educational);
+            member.setEducation(education);
             member.setStudy(study);
             member.setSpecial(special);
             memberService.save(member);
@@ -89,7 +88,7 @@ public class MemberController {
     }
 
 //    @PostMapping( value = "/forgotPassword")
-@RequestMapping(value = "/memberInfo")
+@RequestMapping(value = "/Info")
 public ModelAndView InfoPage(Authentication authentication){
 
     ModelAndView modelAndView = new ModelAndView("memberInfo");

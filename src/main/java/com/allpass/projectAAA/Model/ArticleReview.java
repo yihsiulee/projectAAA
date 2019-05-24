@@ -16,9 +16,9 @@ public class ArticleReview {
     private Member member;
     private String reviewTime;
     private String reviewText;
-    private Integer articleStatus;
     private Long reviewAddress;
-    private boolean reviewComplete=false;
+    private Boolean acceptTask=false;
+    private Boolean reviewComplete=false;
 
 
     public ArticleReview(){ }
@@ -43,14 +43,6 @@ public class ArticleReview {
 
     public String getReviewText() {
         return reviewText;
-    }
-
-    public void setArticleStatus(Integer articleStatus) {
-        this.articleStatus = articleStatus;
-    }
-
-    public Integer getArticleStatus() {
-        return articleStatus;
     }
 
     public void setReviewTime(String reviewTime) {
@@ -79,5 +71,9 @@ public class ArticleReview {
 
     public void setReviewComplete(boolean reviewComplete) { this.reviewComplete = reviewComplete; }
 
-    public boolean isReviewComplete() { return reviewComplete; }
+    public Boolean getReviewComplete() { return reviewComplete; }
+
+    public void setAcceptTask(Boolean acceptTask) { this.acceptTask = acceptTask; }
+
+    public Boolean getAcceptTask() { return acceptTask; }
 }

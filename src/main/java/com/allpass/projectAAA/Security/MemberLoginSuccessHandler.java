@@ -22,6 +22,8 @@ public class MemberLoginSuccessHandler
 //    }
  implements AuthenticationSuccessHandler {
 
+
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -34,20 +36,20 @@ public class MemberLoginSuccessHandler
 //        boolean admin = false;
 
         logger.info("AT onAuthenticationSuccess(...) function!");
-
+        response.sendRedirect("/");
+        //        response.sendRedirect(request.getHeader("referer"));
 //        for (GrantedAuthority auth : authentication.getAuthorities()) {
 //            if ("ROLE_ADMIN".equals(auth.getAuthority())){
 //                admin = true;
 //            }
 //        }
+//        response.sendRedirect("/");
 
 
 //        if(admin){
-        response.sendRedirect("/");
-
-//        response.sendRedirect(request.getHeader("referer"));
 //        }else{
 //            response.sendRedirect("/user");
 //        }
     }
+
 }

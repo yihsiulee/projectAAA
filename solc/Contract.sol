@@ -3,7 +3,7 @@ pragma solidity ^0.5.0;
 import "./myERC20.sol";
 
 contract smartContract{
-    address owner ; //活動發起人的address
+    address public owner ; //活動發起人的address
     address tempRev ;
     uint tempToken ;
     bool complete ;//完成的T/F
@@ -46,7 +46,7 @@ contract smartContract{
         thisContrAddr=address(this);
     }
     
-    //審文人同意審文call這個
+    //審文人同意審文 審文人call這個
     function isApprove() public{
         require(complete != true);
         // reviewers[msg.sender] = Reviewer(msg.sender, true, false, false, false);
@@ -56,6 +56,7 @@ contract smartContract{
     
     //活動發起人發送文章時call 把錢丟進這合約 丟多少 給誰(審文人)（要輸入地址） 
     //此時msg.sender是活動發起人
+    //這裡可以改_contractAddress 改成thisContrAddr
     function sendArticle(address _contractAddress, uint _uint, address _addr) public {
         // require(complete != true);
         tempRev = _addr ;

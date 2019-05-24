@@ -2,10 +2,7 @@ package com.allpass.projectAAA.Controller;
 
 import com.allpass.projectAAA.Model.Article;
 import com.allpass.projectAAA.Model.ArticleReview;
-import com.allpass.projectAAA.Service.ArticleFileService;
-import com.allpass.projectAAA.Service.ArticleReviewService;
-import com.allpass.projectAAA.Service.ArticleService;
-import com.allpass.projectAAA.Service.MemberService;
+import com.allpass.projectAAA.Service.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -18,6 +15,7 @@ import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,9 +31,11 @@ public class ArticleReviewController {
     private MemberService memberService;
     @Resource
     private ArticleFileService articleFileService;
+    @Resource
+    private ActivityService activityService;
 
 
-    private  static SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+    private  static SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @RequestMapping(value = "list")
     private String articleReviewListPage(
@@ -90,9 +90,9 @@ public class ArticleReviewController {
         ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
         String articleFile;
         String articleURL;
-        articleURL=articleFileService.loadArticle(articleReview.getArticle().getUploadFile());
+        articleURL=articleFileService.loadArticle(articleReview.getArticle().getFileName());
         articleFile=MvcUriComponentsBuilder.fromMethodName(ArticleReviewController.class,
-                "serveFile", articleURL).build().toString();
+                "serveArticleFile", articleURL).build().toString();
         articleReview.getArticle().setUploadFile(articleFile);
 
         model.addAttribute("articleReview",articleReview);
@@ -111,6 +111,40 @@ public class ArticleReviewController {
         articleReviewService.save(articleReview);
         return "redirect:/";
     }
+    @RequestMapping("/reviewCheck")
+    private String reviewCheck(
+            Authentication auth,
+            Model model
+    ){
+        List<ArticleReview> articleReviews=new ArrayList<>();
+        List<ArticleReview> articleReviewList=articleReviewService.getArticleReviewListByMember(memberService.getMemberInfo(auth.getName()));
+        for (ArticleReview articleReview:articleReviewList){
+            if(articleReview.getAcceptTask()==false)
+                articleReviews.add(articleReview);
+        }
+        model.addAttribute("articleReview",articleReviews);
+
+        return "activityCheckTable";
+    }
+    @GetMapping("/acceptTask")
+    private String acceptTask(
+            @RequestParam("articleReviewId")Long articleReviewId
+    ){
+        ArticleReview articleReview= articleReviewService.getArticleReviewById(articleReviewId);
+        articleReview.setAcceptTask(true);
+        articleReviewService.save(articleReview);
+        return "redirect:/articleReview/list";
+    }
+
+    @GetMapping("/refuseTask")
+    private String refuseTask(
+            @RequestParam("articleReviewId")Long articleReviewId
+    ){
+        ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
+        articleReviewService.delete(articleReview);
+        return "redirect:/activity";
+    }
+
 
     //文章連結
     @GetMapping("/articleUpload/{filename:.+}")
@@ -118,7 +152,7 @@ public class ArticleReviewController {
     public ResponseEntity<org.springframework.core.io.Resource> serveArticleFile(@PathVariable String filename) throws UnsupportedEncodingException {
         System.out.println(filename);
         org.springframework.core.io.Resource file = articleFileService.loadAsResource(filename);
-        String fileName=URLEncoder.encode(file.getFilename(),"UTF-16");
+        String fileName=URLEncoder.encode(file.getFilename(),"UTF-8");
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + fileName + "\"").body(file);
     }

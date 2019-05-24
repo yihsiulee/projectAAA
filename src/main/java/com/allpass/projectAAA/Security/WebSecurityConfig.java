@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(new MemberLoginSuccessHandler())
                 .loginPage(SecurityConstants.MEMBER_LOGIN_URL)
+//                .defaultSuccessUrl()
                 .permitAll()
                 .and()
                 .logout()
@@ -53,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl(SecurityConstants.MEMBER_LOGIN_URL)
                 .logoutUrl(SecurityConstants.MEMBER_LOGOUT_URL)
                 .permitAll();
+
 
         http.headers().frameOptions().disable();
 

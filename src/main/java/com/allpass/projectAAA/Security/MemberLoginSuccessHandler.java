@@ -15,7 +15,7 @@ import java.io.IOException;
 public class MemberLoginSuccessHandler
 // extends SimpleUrlAuthenticationSuccessHandler
 //        implements AuthenticationSuccessHandler {
-//
+
 //    public MemberLoginSuccessHandler() {
 //        super();
 //        setUseReferer(true);
@@ -43,8 +43,9 @@ public class MemberLoginSuccessHandler
 
 
 //        if(admin){
-//        response.sendRedirect("/");
-        response.sendRedirect(request.getHeader("referer"));
+        response.sendRedirect("/");
+
+//        response.sendRedirect(request.getHeader("referer"));
 //        }else{
 //            response.sendRedirect("/user");
 //        }

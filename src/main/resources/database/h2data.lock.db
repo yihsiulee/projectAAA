@@ -1,6 +1,6 @@
 #FileLock
-#Thu May 23 17:48:28 CST 2019
-hostName=ip148-68.wlan.ntust.edu.tw
-id=16ae4177ef891e96b1004adfc500d23634676228fd1
+#Fri May 24 20:28:14 CST 2019
+hostName=192.168.1.211
+id=16ae9cfe796c96d0ef6ae73e971533751533cff07f1
 method=file
-server=140.118.148.68\:53413
+server=192.168.1.211\:49745

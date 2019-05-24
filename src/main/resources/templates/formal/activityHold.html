@@ -59,7 +59,7 @@
 								<tbody>
 									<tr><div class="6u 12u$">
 										<td>
-											<p class="esstential">*</p><h4 style="text-align: center;">活動名稱：</h4>
+											<a class="esstential">*</a><h4 style="text-align: center;">活動名稱：</h4>
 										</td>
 										<td colspan="3">
 											<input type="text" name="activityName" id="activityName" value="" placeholder="活動名稱" required/>
@@ -69,7 +69,7 @@
 
 									<tr><div class="6u 12u$">
 										<td>
-											<p class="esstential">*</p><h4 style="text-align: center;">活動內容：</h4>
+											<a class="esstential">*</a><h4 style="text-align: center;">活動內容：</h4>
 										</td>
 										<td colspan="3">
 											<textarea type="text" name="activityContent" id="activityContent" value="" placeholder="活動內容" rows="3" required></textarea>
@@ -79,15 +79,15 @@
 
 									<tr><div class="6u 12u$">
 										<td>
-											<p class="esstential">*</p><h4 style="text-align: center;">活動時間：</h4>
+											<a class="esstential">*</a><h4 style="text-align: center;">活動時間：</h4>
 										</td>
 										<td colspan="3">
-											<input type="text"  class="6u 12u$"name="dateRange" value="起始與結束時間" />
+											<input type="text"  class="6u 12u$"name="dateRange" />
 
 										</td>
 									</div></tr>
 									<tr>
-										<p class="esstential">*</p><td align="center"><h4>領域:</h4></td>
+										<td align="center"><a class="esstential">*</a><h4>領域:</h4></td>
 										<td colspan="3">
 											<div class="12u$">
 												<div class="select-wrapper">
@@ -109,7 +109,7 @@
 
 									<tr><div class="6u 12u$">
 										<td>
-											<p class="esstential">*</p><h4 style="text-align: center;">上傳圖片：</h4>
+											<a class="esstential">*</a><h4 style="text-align: center;">上傳圖片：</h4>
 										</td>
 										<td colspan="3">
 
@@ -124,7 +124,7 @@
 
 									<tr><div class="6u 12u$(xsmall)" >
 										<td>
-											<p class="esstential">*</p><h4 style="text-align: center;">文章數量：</h4>
+											<a class="esstential">*</a><h4 style="text-align: center;">文章數量：</h4>
 										</td>
 										<td>
 											<input type="number" min="0" onchange="updateParticipantNumber(this.value)" name="articleNumber" id="articleNumber"placeholder="文章數量：" style="width: 80%" required/>
@@ -192,11 +192,11 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
 <!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"/>-->
-<!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>
 	 <script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
 	 <script type="text/javascript" th:src="@{/assets/js/moment.min.js}"></script>
 	 <script type="text/javascript" th:src="@{/assets/js/daterangepicker.min.js}"></script>
-<!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>-->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<script>
 		$(function() {
 			$('input[name="dateRange"]').daterangepicker({

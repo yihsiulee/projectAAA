@@ -66,8 +66,9 @@
                     <td th:switch="${article.articleState}">
                         <button  class="btn success" th:case="reviewFinish">審核完成</button>
                         <button class="btn info"  th:case="reviewing">審稿中</button>
-                        <button class="btn warning"  th:case="assign">待回復</button>
-                        <button class="btn danger"  th:case="notAssign">未分配</button>
+                        <button class="btn warning"  th:case="assign">分配未完成</button>
+                        <button class="btn danger"  th:case="notAssign">待回覆</button>
+                        <button class="btn default" th:case>未指派</button>
                     <td th:switch="${article.articleState}">
 <!--                        <a th:onclick="document.getElementById(/*[[${article.id}]]*/+'check').style.display='block'" class=" button alt small">Check</a>-->
                         <a th:onclick="'javascript:checkBlock('+${article.id}+');'" class=" button alt small">Check</a>

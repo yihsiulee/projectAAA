@@ -4380,7 +4380,7 @@
 			.danger {background-color: #f44336;} /* Red */
 			.danger:hover {background: #da190b;}
 
-			.default {background-color: #e7e7e7; color: black;} /* Gray */
+			.default {background-color: #828282; color: black;} /* Gray */
 			.default:hover {background: #ddd;}
 
 /*狀態鈕動畫與顯示*/

@@ -33,11 +33,13 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(mail.getModel());
 //        String html = templateEngine.process("email-template", context);
-        String html = templateEngine.process("email-template", context);
+        String htmlassign = templateEngine.process("email-assign", context);
+        String htmlrefused = templateEngine.process("email-refused", context);
 
 
         helper.setTo(mail.getTo());
-        helper.setText(html, true);
+        helper.setText(htmlassign, true);
+        helper.setText(htmlrefused,true);
         helper.setSubject(mail.getSubject());
         helper.setFrom(mail.getFrom());
 

@@ -314,6 +314,7 @@ public class ActivityController {
             model.put("activityHold",articleReview.getArticle().getActivity().getActivityOrganizer().getName());
             model.put("articleName",articleReview.getArticle().getArticleName());
             model.put("articleValue",articleReview.getArticle().getArticleValue());
+            model.put("member_id",null);
 //            model.put("articleReviewId",articleReview.getId());
 
 

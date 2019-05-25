@@ -36,8 +36,9 @@ public class MemberLoginSuccessHandler
 //        boolean admin = false;
 
         logger.info("AT onAuthenticationSuccess(...) function!");
+
         response.sendRedirect("/");
-        //        response.sendRedirect(request.getHeader("referer"));
+//                response.sendRedirect(request.getHeader("referer"));
 //        for (GrantedAuthority auth : authentication.getAuthorities()) {
 //            if ("ROLE_ADMIN".equals(auth.getAuthority())){
 //                admin = true;

@@ -22,6 +22,7 @@ public class Article {
     private String fileName;
     private Integer textNumber;
     private Integer formulaNumber;
+    private Integer articleReviewAssignNumber;
     private String articleAddress;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ACTIVITY_ID_FK")

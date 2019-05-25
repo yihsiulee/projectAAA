@@ -1,11 +1,13 @@
 package com.allpass.projectAAA;
 
 
+import com.allpass.projectAAA.Web3jFunc.DeployERC20;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.web3j.crypto.Credentials;
 
 
 @Controller
@@ -64,7 +66,11 @@ public class ProjectAaaApplication  {
 
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		DeployERC20 deployERC20=new DeployERC20();
+//		Credentials credentials=Credentials.create("e34940d6b466ebf176ad5464b6c71e7dd0fd55558b018487afc82388563e3547");
+//		deployERC20.deploy(credentials);
+		System.out.println(deployERC20.getERC20Address());
     	DatabaseServer.startH2Server();
     	SpringApplication.run(ProjectAaaApplication.class, args);
 	}

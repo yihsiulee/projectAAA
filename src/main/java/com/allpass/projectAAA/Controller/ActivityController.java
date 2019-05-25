@@ -7,7 +7,9 @@ import com.allpass.projectAAA.Model.Article;
 import com.allpass.projectAAA.Model.ArticleReview;
 import com.allpass.projectAAA.Model.Member;
 import com.allpass.projectAAA.Service.*;
+import com.allpass.projectAAA.Web3jFunc.SmartCONTRACT;
 import com.allpass.projectAAA.util.Study;
+import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +19,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.web3j.crypto.Credentials;
+import org.web3j.protocol.Web3jService;
+import org.web3j.protocol.http.HttpService;
+import org.web3j.quorum.JsonRpc2_0Quorum;
+import org.web3j.quorum.Quorum;
+import org.web3j.quorum.enclave.Constellation;
+import org.web3j.quorum.enclave.protocol.EnclaveService;
+import org.web3j.quorum.tx.QuorumTransactionManager;
+import org.web3j.tx.TransactionManager;
+import org.web3j.tx.gas.ContractGasProvider;
+import org.web3j.tx.gas.StaticGasProvider;
+import org.web3j.utils.Async;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/activity")
@@ -46,6 +59,13 @@ public class ActivityController {
     private ArticleFileService articleFileService;
     @Resource
     private EmailService emailService;
+
+    private static final String URL = "https://eth.pli.tw/port";
+
+    private static final int PORT = 23002;
+
+    private static final String RPC_URL = URL + "/" + PORT;
+
 
     @Autowired
     public ActivityController(ActivityImageFileService activityImageFileService) {
@@ -89,7 +109,7 @@ public class ActivityController {
         for(int i=0;i<activityList.size();i++){
             if(!activity_Image.get(i).equals("http://127.0.0.1:8080/activity/activityImage/none")){
                 Study study= Study.getStudy(activityList.get(i).getActivityStudy());
-                activity_Study.add(study.getStudyName());
+                activityList.get(i).setActivityStudy(study.getStudyName());
                 activityList.get(i).setActivityImg(activity_Image.get(i));
 
             }
@@ -145,7 +165,7 @@ public class ActivityController {
             @RequestParam("activityImg") MultipartFile activityImg,
             @RequestParam("articleNumber")Integer articleNumber,
             @RequestParam("participantNumber")Integer participantNumber,
-            @RequestParam("activityStudy")Integer ActivityStudy,
+            @RequestParam("activityStudy")String ActivityStudy,
             Authentication authentication
     ){
         Activity activity=new Activity();
@@ -231,9 +251,9 @@ public class ActivityController {
                     if(!articleReviewList.isEmpty() && articleState.equals("reviewing")){
                         boolean isArticleReviewComplete=false;
                         boolean last=true;
-                        for(ArticleReview a:articleReviewList) {
+                            for(ArticleReview articleReview:articleReviewList) {
 
-                            if(a.getReviewComplete() && last){
+                            if(articleReview.getReviewComplete() && last){
                                 isArticleReviewComplete=true;
                                 last=true;
                             }else {
@@ -243,6 +263,28 @@ public class ActivityController {
                         }
                         if(isArticleReviewComplete==true){
                             articleList.get(articleAmount).setArticleState("reviewFinish");
+                            SmartCONTRACT smartCONTRACT=new SmartCONTRACT();
+                            Web3jService web3jService = new HttpService(RPC_URL);
+                            Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+                            EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+                            Constellation constellation = new Constellation(service, web3j);
+                            ContractGasProvider provider = new StaticGasProvider(
+                                    BigInteger.ZERO,
+                                    BigInteger.valueOf(1000000000L)
+                            );
+                            Credentials activityOrganizer=Credentials.create(articleList.get(articleAmount).getActivity().getActivityOrganizer().getBlockchainPrivateKey());
+
+                            //被分配人
+                            // Credentials articleReviewMember=Credentials.create(articleList.get(articleAmount).getActivity().getActivityOrganizer().getBlockchainPrivateKey());
+                            TransactionManager organizerTransactionManager = new QuorumTransactionManager(web3j,
+                                    activityOrganizer,
+                                    "",
+                                    Collections.emptyList(),
+                                    constellation,
+                                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                                    50);
+                            //callIsGiveToken(websj,活動發起人manager,合約地址,articleReviewMember.getAddress())
+//                            smartCONTRACT.callIsGiveToken(web3j,organizerTransactionManager,);
                         }else {
                             articleList.get(articleAmount).setArticleState("reviewing");
                         }
@@ -289,7 +331,7 @@ public class ActivityController {
         if(reviewMember.size()<3){
             return "redirect:/activity/management";
         }
-        Activity updateActivity=activityService.getActivityById(activityId);
+//        Activity updateActivity=activityService.getActivityById(activityId);
         for (int i=0;i<reviewMember.size();i++){
             ArticleReview articleReview=new ArticleReview();
             System.out.println(reviewMember.get(i));

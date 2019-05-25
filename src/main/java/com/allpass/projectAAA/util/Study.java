@@ -2,34 +2,34 @@ package com.allpass.projectAAA.util;
 
 public enum Study {
 
-    Medicine(0,"醫學"),
-    Biology(1,"生科"),
-    Business(2,"商科"),
-    Information(3,"資訊"),
-    Engineer(4,"工程"),
-    Society(5,"社會科學");
+    Medicine("0","醫學"),
+    Biology("1","生科"),
+    Business("2","商科"),
+    Information("3","資訊"),
+    Engineer("4","工程"),
+    Society("5","社會科學");
 
-    private Study(Integer studyInteger,String studyName){
+    private Study(String studyInteger,String studyName){
         this.studyInteger=studyInteger;
         this.studyName=studyName;
     }
-    private Integer studyInteger;
+    private String studyInteger;
     private String studyName;
 
-    public static Study getStudy(int i){
+    public static Study getStudy(String i){
 
         switch(i){
-            case 0:
+            case "0":
                 return Medicine;
-            case 1:
+            case "1":
                 return Biology;
-            case 2:
+            case "2":
                 return Business;
-            case 3:
+            case "3":
                 return Information;
-            case 4:
+            case "4":
                 return Engineer;
-            case 5:
+            case "5":
                 return Society;
             default:
                 return null;
@@ -41,7 +41,7 @@ public enum Study {
         return studyName;
     }
 
-    public Integer getStudyInteger() {
+    public String getStudyInteger() {
         return studyInteger;
     }
 }

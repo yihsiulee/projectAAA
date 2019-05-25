@@ -300,10 +300,10 @@ public class ActivityController {
             articleReview.setArticle(articleService.getArticleById(articleId));
             articleReviewService.save(articleReview);
             articleService.getArticleById(articleId).setArticleState("assign");
-            Mail mail = new Mail();
-            mail.setFrom("no-reply@memorynotfound.com");
-            mail.setTo(invitingParticipants.getEmail());
-            mail.setSubject("<PaperReview!>您收到一篇審文邀請");
+            Mail mailAssign = new Mail();
+            mailAssign.setFrom("no-reply@memorynotfound.com");
+            mailAssign.setTo(invitingParticipants.getEmail());
+            mailAssign.setSubject("<PaperReview!>您收到一篇審文邀請");
 
             Map<String, Object> model = new HashMap<>();
             model.put("name", invitingParticipants.getName());
@@ -314,17 +314,18 @@ public class ActivityController {
             model.put("activityHold",articleReview.getArticle().getActivity().getActivityOrganizer().getName());
             model.put("articleName",articleReview.getArticle().getArticleName());
             model.put("articleValue",articleReview.getArticle().getArticleValue());
-            model.put("member_id",null);
-//            model.put("articleReviewId",articleReview.getId());
 
 
 
-            mail.setModel(model);
+            mailAssign.setModel(model);
 
-            emailService.sendSimpleMessage(mail);
+            emailService.sendSimpleMessageAssign(mailAssign);
         }
 
         return "redirect:/activity/management";
     }
+
+
+
 
 }

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -120,15 +121,18 @@ public class MemberController {
 
     }
 
-    @RequestMapping(value = "/forgotPassword")
-    public String forgotPage() {
-        return "memberForgot";
-    }
-
+//    @RequestMapping(value = "/forgotPassword")
+//    public String forgotPage() {
+//        return "memberForgot";
+//    }
+//
 //    @PostMapping( value = "/forgotPassword")
-@RequestMapping(value = "/Info")
-public ModelAndView InfoPage(Authentication authentication) throws Exception {
-        BigInteger divide=new BigInteger("1000000000000000000");
+    @RequestMapping(value = "/Info")
+    public String InfoPage(
+            Authentication authentication,
+            Model model
+    ) throws Exception {
+
         Member member=memberService.getMemberInfo(authentication.getName());
         List<Article> articles=articleService.getArticleByAuthor(member);
         List<Article> articleList=new ArrayList<>();
@@ -153,7 +157,8 @@ public ModelAndView InfoPage(Authentication authentication) throws Exception {
             }
         }
 
-
+        //區塊練指令
+        BigInteger divide=new BigInteger("1000000000000000000");
         ERC20Balance erc20Balance=new ERC20Balance();
         Web3jService web3jService = new HttpService(RPC_URL);
         Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
@@ -163,20 +168,23 @@ public ModelAndView InfoPage(Authentication authentication) throws Exception {
                 BigInteger.ZERO,
                 BigInteger.valueOf(1000000000L)
         );
-    Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
-
-    TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+        Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+        TransactionManager transactionManager = new QuorumTransactionManager(web3j,
                 credentials,
             "",
             Collections.emptyList(),
             constellation,
             TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
             50);
-        BigInteger memberBalance= erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress());
+
+        BigInteger memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress());
         System.out.println(memberBalance.divide(divide));
-        ModelAndView modelAndView = new ModelAndView("memberInfo");
-        modelAndView.addObject("name",memberService.getMemberInfo(authentication.getName()).getName());
-        return modelAndView;
+
+        model.addAttribute("name",memberService.getMemberInfo(authentication.getName()).getName());
+        model.addAttribute("memberBalance", memberBalance.divide(divide));
+        model.addAttribute("articleList", articleList);
+        model.addAttribute("articleReviewList",articleReviewList);
+        return "memberInfo";
     }
 
 }

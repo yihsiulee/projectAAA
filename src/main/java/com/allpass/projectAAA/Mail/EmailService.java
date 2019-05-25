@@ -22,7 +22,27 @@ public class EmailService {
     private SpringTemplateEngine templateEngine;
 
 
-    public void sendSimpleMessage(Mail mail) throws MessagingException, IOException {
+    public void sendSimpleMessageAssign(Mail mail) throws MessagingException, IOException {
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message,
+                MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+                StandardCharsets.UTF_8.name());
+
+
+        Context context = new Context();
+        context.setVariables(mail.getModel());
+//        String html = templateEngine.process("email-template", context);
+        String htmlassign = templateEngine.process("email-assign", context);
+
+        helper.setTo(mail.getTo());
+        helper.setText(htmlassign, true);
+        helper.setSubject(mail.getSubject());
+        helper.setFrom(mail.getFrom());
+
+        emailSender.send(message);
+    }
+
+    public void sendSimpleMessageRefused(Mail mail) throws MessagingException, IOException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message,
                 MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
@@ -33,11 +53,11 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(mail.getModel());
 //        String html = templateEngine.process("email-template", context);
-        String html = templateEngine.process("email-template", context);
+        String htmlrefused = templateEngine.process("email-refused", context);
 
 
         helper.setTo(mail.getTo());
-        helper.setText(html, true);
+        helper.setText(htmlrefused,true);
         helper.setSubject(mail.getSubject());
         helper.setFrom(mail.getFrom());
 

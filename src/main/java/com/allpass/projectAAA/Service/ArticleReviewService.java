@@ -46,6 +46,10 @@ public class ArticleReviewService {
         return articleReview;
 
     }
+    public ArticleReview getArticleReviewByAcceptMember(Member acceptMember,ArticleReview acceptReview){
+        ArticleReview articleReview=articleReviewDao.findByMember(acceptMember).stream().filter(i->i.getArticle()==acceptReview.getArticle()).findFirst().get();
+        return articleReview;
+    }
 
 
 

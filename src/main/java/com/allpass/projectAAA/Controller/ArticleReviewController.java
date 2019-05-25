@@ -1,5 +1,7 @@
 package com.allpass.projectAAA.Controller;
 
+import com.allpass.projectAAA.Mail.EmailService;
+import com.allpass.projectAAA.Mail.Mail;
 import com.allpass.projectAAA.Model.Article;
 import com.allpass.projectAAA.Model.ArticleReview;
 import com.allpass.projectAAA.Model.Member;
@@ -28,6 +30,8 @@ import org.web3j.tx.gas.StaticGasProvider;
 import org.web3j.utils.Async;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLEncoder;
@@ -48,6 +52,8 @@ public class ArticleReviewController {
     private ArticleFileService articleFileService;
     @Resource
     private ActivityService activityService;
+    @Resource
+    private EmailService emailService;
 
     private static final String URL = "https://eth.pli.tw/port";
 
@@ -119,6 +125,18 @@ public class ArticleReviewController {
         model.addAttribute("articleReview",articleReview);
         return "articleReviewPost";
     }
+    @GetMapping("/saveDraft")
+    private String saveDraft(
+            @RequestParam("articleReviewId")String articleReviewId,
+            @RequestParam("reviewText")String reviewText
+    ){
+        ArticleReview articleReview=articleReviewService.getArticleReviewById(Long.parseLong(articleReviewId));
+        articleReview.setReviewText(reviewText);
+        System.out.println(reviewText);
+        articleReview.setReviewTime(date.format(new Date()));
+        articleReviewService.save(articleReview);
+        return "redirect:/article";
+    }
 
     @PostMapping("/post")
     private String saveArticleReview(
@@ -150,7 +168,7 @@ public class ArticleReviewController {
         smartCONTRACT.callIsReturnReview(web3j,assignedMemberTransactionManager,articleReview.getArticleReviewAddress());
 
         articleReviewService.save(articleReview);
-        return "redirect:/";
+        return "redirect:/article";
     }
     @RequestMapping("/reviewCheck")
     private String reviewCheck(
@@ -172,12 +190,35 @@ public class ArticleReviewController {
             @RequestParam("articleReviewId")Long articleReviewId
     ) throws Exception {
         ArticleReview articleReview= articleReviewService.getArticleReviewById(articleReviewId);
+        String articleReviewAddress=articleReview.getArticleReviewAddress();
         Set<Member> activityParticipants_Reviewer=activityService.getActivityById(articleReview.getArticle().getActivity().getId()).getActivityParticipants_Reviewer();
         articleReview.setAcceptTask(true);
-        for(Member member:activityParticipants_Reviewer){
-            boolean lastmember=false;
+        Article article=articleReview.getArticle();
+//        Article article=articleService.getArticleByActivity(articleReview.getArticle().getActivity()).stream().findFirst().get();
+
+        if(article.getArticleReviewAssignNumber()>0){
+            article.setArticleReviewAssignNumber(article.getArticleReviewAssignNumber()-1);
+            articleService.update(article);
         }
-        DeployCONTRACT deployCONTRACT=new DeployCONTRACT();
+        boolean last= true;
+        boolean isArticleReviewAccept=false;
+        for(Member member:activityParticipants_Reviewer){
+              ArticleReview acceptArticleReview= articleReviewService.getArticleReviewByAcceptMember(member,articleReview);
+            if(acceptArticleReview.getAcceptTask() && last){
+                isArticleReviewAccept=true;
+                last=true;
+            }else {
+                last=false;
+                isArticleReviewAccept=false;
+            }
+        }
+        if(isArticleReviewAccept==true){
+
+            article.setArticleReviewAssignNumber(activityParticipants_Reviewer.size());
+            article.setArticleState("reviewing");
+            articleService.save(article);
+        }
+
         SmartCONTRACT smartCONTRACT=new SmartCONTRACT();
         Web3jService web3jService = new HttpService(RPC_URL);
         Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
@@ -204,16 +245,13 @@ public class ArticleReviewController {
                 TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
                 50);
 
-        String articleReviewAddress=deployCONTRACT.deployContract(web3j,activityOrganizer);
+
         smartCONTRACT.callIsApprove(web3j,assignedMemberTransactionManager,articleReviewAddress);
         BigInteger articleValue=new BigInteger(articleReview.getArticle().getArticleValue()+"000000000000000000");
         smartCONTRACT.callSendArticle(web3j,organizerTransactionManager,articleReviewAddress,articleReviewAddress,articleValue,assignedMember.getAddress());
         smartCONTRACT.callIsRecievePost(web3j,assignedMemberTransactionManager,articleReviewAddress);
-        articleReview.setArticleReviewAddress(articleReviewAddress);
+
         articleReviewService.update(articleReview);
-
-
-
 
         return "redirect:/articleReview/list";
     }
@@ -221,9 +259,29 @@ public class ArticleReviewController {
     @GetMapping("/refuseTask")
     private String refuseTask(
             @RequestParam("articleReviewId")Long articleReviewId
-    ){
+    ) throws IOException, MessagingException {
         ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
+        Article article=articleService.getArticleByActivity(articleReview.getArticle().getActivity()).stream().findFirst().get();
+        article.setArticleReviewAssignNumber(article.getArticleReviewAssignNumber()+1);
+//        articleReview.setAcceptTask(false);
+//        articleReviewService.save(articleReview);
+        articleService.update(article);
         articleReviewService.delete(articleReview);
+
+        //寄信通知活動主辦人
+        Mail mailRefuse = new Mail();
+        mailRefuse.setFrom("no-reply@memorynotfound.com");
+        mailRefuse.setTo(articleReview.getArticle().getActivity().getActivityOrganizer().getEmail());
+        mailRefuse.setSubject("<PaperReview!>您收到一篇審文邀請");
+        Map<String, Object> model = new HashMap<>();
+        model.put("name", articleReview.getArticle().getActivity().getActivityOrganizer().getName());
+        model.put("location", "Taipei");
+        model.put("signature", "PaperReview");
+        model.put("activityName",articleReview.getArticle().getActivity().getActivityName());
+        model.put("articleName",articleReview.getArticle().getArticleName());
+        model.put("memberName",articleReview.getMember());
+        mailRefuse.setModel(model);
+        emailService.sendSimpleMessageRefused(mailRefuse);
         return "redirect:/activity";
     }
 

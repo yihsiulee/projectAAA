@@ -20,7 +20,7 @@ public class Activity {
     private Integer limitedParticipants;
     private Integer articleNumber;
     @ManyToOne
-    @JoinColumn(name="organizer_member_ID_FK",nullable=false)
+    @JoinColumn(name="organizer_member_ID_FK")
     private Member activityOrganizer;
     @ManyToMany( fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})

@@ -17,7 +17,7 @@ public class Article {
     @JoinColumn(name="AUTHOR_MEMBER_ID_FK")
     private Member author;
     private Double articleValue;
-    private Integer articleStudy;
+//    private Integer articleStudy;
     private String uploadFile;
     private String fileName;
     private Integer textNumber;
@@ -68,13 +68,13 @@ public class Article {
 
     public Long getId() { return id; }
 
-    public void setArticleStudy(Integer articleStudy) {
-        this.articleStudy = articleStudy;
-    }
-
-    public Integer getArticleStudy() {
-        return articleStudy;
-    }
+//    public void setArticleStudy(Integer articleStudy) {
+//        this.articleStudy = articleStudy;
+//    }
+//
+//    public Integer getArticleStudy() {
+//        return articleStudy;
+//    }
 
     public void setTextNumber(Integer textNumber) {
         this.textNumber = textNumber;
@@ -135,6 +135,10 @@ public class Article {
     public Integer getFormulaNumber() {
         return formulaNumber;
     }
+
+    public void setArticleReviewAssignNumber(Integer articleReviewAssignNumber) { this.articleReviewAssignNumber = articleReviewAssignNumber; }
+
+    public Integer getArticleReviewAssignNumber() { return articleReviewAssignNumber; }
 
     public void setActivity(Activity activity) { this.activity = activity; }
 

@@ -2738,11 +2738,12 @@
 		}
 
 		.feature .image {
-			width: 48%;
+			width:30%;
 		}
 
 			.feature .image img {
 				max-width: 100%;
+
 			}
 
 		.feature .content {
@@ -2777,6 +2778,7 @@
 
 				.feature .image img {
 					width: 100%;
+
 				}
 
 			.feature .content {

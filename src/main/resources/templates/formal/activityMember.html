@@ -15,6 +15,7 @@
             <p th:text="${activityManagementList.activityName}"></p>
         </header>
 
+        <h4 th:if="${article.articleState} eq 'assignUnfinished'" th:text="'還有'+${article.articleReviewAssignNumber}+'名需要分配'"></h4>
 
 
         <form action="/activity/assign" method="post" >

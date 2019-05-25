@@ -202,9 +202,13 @@
 			$('input[name="dateRange"]').daterangepicker({
 				opens: 'right',
 				autoApply:true,
+				locale: {
+					format: 'YYYY/MM/DD'
+				},
 			}, function(start, end) {
-				console.log( start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+				console.log( start.format('YYYY/MM/DD') + ' to ' + end.format('YYYY/MM/DD'));
 			});
+
 		});
 	</script>
 	<script>

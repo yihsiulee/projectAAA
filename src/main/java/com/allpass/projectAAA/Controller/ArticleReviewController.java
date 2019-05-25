@@ -253,6 +253,21 @@ public class ArticleReviewController {
 
         articleReviewService.update(articleReview);
 
+        //寄信通知活動主辦人
+        Mail mailAcceptConfirm = new Mail();
+        mailAcceptConfirm.setFrom("no-reply@memorynotfound.com");
+        mailAcceptConfirm.setTo(articleReview.getArticle().getActivity().getActivityOrganizer().getEmail());
+        mailAcceptConfirm.setSubject("<PaperReview!>您收到一篇審文邀請");
+        Map<String, Object> model = new HashMap<>();
+        model.put("name", articleReview.getArticle().getActivity().getActivityOrganizer().getName());
+        model.put("location", "Taipei");
+        model.put("signature", "PaperReview");
+        model.put("activityName",articleReview.getArticle().getActivity().getActivityName());
+        model.put("articleName",articleReview.getArticle().getArticleName());
+        model.put("memberName",articleReview.getMember().getName());
+        mailAcceptConfirm.setModel(model);
+        emailService.sendSimpleMessageConfirm(mailAcceptConfirm);
+
         return "redirect:/articleReview/list";
     }
 
@@ -279,7 +294,7 @@ public class ArticleReviewController {
         model.put("signature", "PaperReview");
         model.put("activityName",articleReview.getArticle().getActivity().getActivityName());
         model.put("articleName",articleReview.getArticle().getArticleName());
-        model.put("memberName",articleReview.getMember());
+        model.put("memberName",articleReview.getMember().getName());
         mailRefuse.setModel(model);
         emailService.sendSimpleMessageRefused(mailRefuse);
         return "redirect:/activity";

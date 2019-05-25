@@ -427,30 +427,31 @@ public class ActivityController {
     @GetMapping("/returnArticleReview")
     private String returnArticleReview(
             @RequestParam("articleReviewId")Long articleReviewId
-    ){
+    ) throws IOException, MessagingException {
+        ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
+        articleReview.setReviewComplete(false);
+        articleReviewService.update(articleReview);
 
 
 
         Mail mailReturn = new Mail();
         mailReturn.setFrom("no-reply@memorynotfound.com");
-//        mailReturn.setTo(invitingParticipants.getEmail());
-//        mailReturn.setSubject("<PaperReview!>您收到一篇審文邀請");
-//
-//        Map<String, Object> model = new HashMap<>();
-//        model.put("name", invitingParticipants.getName());
-//        model.put("location", "Taipei");
-//        model.put("signature", "PaperReview");
-//
-//        model.put("activityName",articleReview.getArticle().getActivity().getActivityName());
-//        model.put("activityHold",articleReview.getArticle().getActivity().getActivityOrganizer().getName());
-//        model.put("articleName",articleReview.getArticle().getArticleName());
-//        model.put("articleValue",articleReview.getArticle().getArticleValue());
-//
-//
-//
-//        mailReturn.setModel(model);
-//
-//        emailService.sendSimpleMessageAssign(mailReturn);
+        mailReturn.setTo(articleReview.getMember().getEmail());
+        mailReturn.setSubject("<PaperReview!>您收到一篇審文邀請");
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("name", articleReview.getMember().getName());
+        model.put("location", "Taipei");
+        model.put("signature", "PaperReview");
+
+        model.put("activityName",articleReview.getArticle().getActivity().getActivityName());
+        model.put("articleName",articleReview.getArticle().getArticleName());
+
+
+
+        mailReturn.setModel(model);
+
+        emailService.sendSimpleMessageReturn(mailReturn);
 
 
 

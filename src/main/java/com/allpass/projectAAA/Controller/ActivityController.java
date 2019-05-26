@@ -104,11 +104,10 @@ public class ActivityController {
         activity_Image.forEach(item->System.out.println(item));
         System.out.println(activityList.size());
         for(int i=0;i<activityList.size();i++){
+            Study study= Study.getStudy(activityList.get(i).getActivityStudy());
+            activityList.get(i).setActivityStudy(study.getStudyName());
             if(!activity_Image.get(i).equals("http://127.0.0.1:8080/activity/activityImage/none")){
-                Study study= Study.getStudy(activityList.get(i).getActivityStudy());
-                activityList.get(i).setActivityStudy(study.getStudyName());
                 activityList.get(i).setActivityImg(activity_Image.get(i));
-
             }
             else
                 continue;
@@ -321,6 +320,7 @@ public class ActivityController {
             articleReview.setArticle(articleService.getArticleById(articleId));
 
 
+            SmartCONTRACT smartCONTRACT=new SmartCONTRACT();
             DeployCONTRACT deployCONTRACT=new DeployCONTRACT();
             Web3jService web3jService = new HttpService(RPC_URL);
             Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
@@ -331,7 +331,16 @@ public class ActivityController {
                     BigInteger.valueOf(1000000000L)
             );
             Credentials activityOrganizer=Credentials.create(articleReview.getArticle().getActivity().getActivityOrganizer().getBlockchainPrivateKey());
+            Credentials assignedMember=Credentials.create(articleReview.getMember().getBlockchainPrivateKey());
+            TransactionManager assignedMemberTransactionManager = new QuorumTransactionManager(web3j,
+                    assignedMember,
+                    "",
+                    Collections.emptyList(),
+                    constellation,
+                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                    50);
             String articleReviewAddress=deployCONTRACT.deployContract(web3j,activityOrganizer);
+            smartCONTRACT.callIsApprove(web3j,assignedMemberTransactionManager,articleReviewAddress);
 
             articleReview.setArticleReviewAddress(articleReviewAddress);
             articleReviewService.save(articleReview);

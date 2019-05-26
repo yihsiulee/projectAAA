@@ -99,7 +99,7 @@ public class ArticleReviewController {
             Model model
     ){
         Article article=articleService.getArticleById(articleId);
-        String articleURL=articleFileService.loadArticle(article.getUploadFile());
+        String articleURL=articleFileService.loadArticle(article.getFileName());
         String articleFile=MvcUriComponentsBuilder.fromMethodName(ArticleReviewController.class,
                 "serveArticleFile", articleURL).build().toString();
         article.setUploadFile(articleFile);
@@ -213,7 +213,6 @@ public class ArticleReviewController {
             }
         }
         if(isArticleReviewAccept==true){
-
             article.setArticleReviewAssignNumber(activityParticipants_Reviewer.size());
             article.setArticleState("reviewing");
             articleService.save(article);
@@ -246,8 +245,12 @@ public class ArticleReviewController {
                 50);
 
 
-        smartCONTRACT.callIsApprove(web3j,assignedMemberTransactionManager,articleReviewAddress);
-        BigInteger articleValue=new BigInteger(articleReview.getArticle().getArticleValue()+"000000000000000000");
+
+
+        double articleValueDouble=article.getArticleValue()*100;
+        int articleValueInt=(int)articleValueDouble;
+        BigInteger articleValue=new BigInteger(articleValueInt+"000000000000000000");
+        System.out.println(articleValue);
         smartCONTRACT.callSendArticle(web3j,organizerTransactionManager,articleReviewAddress,articleReviewAddress,articleValue,assignedMember.getAddress());
         smartCONTRACT.callIsRecievePost(web3j,assignedMemberTransactionManager,articleReviewAddress);
 
@@ -278,6 +281,7 @@ public class ArticleReviewController {
         ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
         Article article=articleService.getArticleByActivity(articleReview.getArticle().getActivity()).stream().findFirst().get();
         article.setArticleReviewAssignNumber(article.getArticleReviewAssignNumber()+1);
+        article.setArticleState("assignUnfinished");
 //        articleReview.setAcceptTask(false);
 //        articleReviewService.save(articleReview);
         articleService.update(article);

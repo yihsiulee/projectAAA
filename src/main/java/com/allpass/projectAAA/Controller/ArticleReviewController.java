@@ -146,7 +146,7 @@ public class ArticleReviewController {
         ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
         articleReview.setReviewText(reviewText);
         articleReview.setReviewTime(date.format(new Date()));
-        articleReview.setReviewComplete(true);
+//        articleReview.setReviewComplete(true);
 
         SmartCONTRACT smartCONTRACT=new SmartCONTRACT();
         Web3jService web3jService = new HttpService(RPC_URL);

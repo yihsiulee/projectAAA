@@ -260,28 +260,6 @@ public class ActivityController {
                         }
                         if(isArticleReviewComplete==true){
                             articleList.get(articleAmount).setArticleState("reviewFinish");
-//                            SmartCONTRACT smartCONTRACT=new SmartCONTRACT();
-//                            Web3jService web3jService = new HttpService(RPC_URL);
-//                            Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
-//                            EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
-//                            Constellation constellation = new Constellation(service, web3j);
-//                            ContractGasProvider provider = new StaticGasProvider(
-//                                    BigInteger.ZERO,
-//                                    BigInteger.valueOf(1000000000L)
-//                            );
-//                            Credentials activityOrganizer=Credentials.create(articleList.get(articleAmount).getActivity().getActivityOrganizer().getBlockchainPrivateKey());
-
-                            //被分配人
-                            // Credentials articleReviewMember=Credentials.create(articleList.get(articleAmount).getActivity().getActivityOrganizer().getBlockchainPrivateKey());
-//                            TransactionManager organizerTransactionManager = new QuorumTransactionManager(web3j,
-//                                    activityOrganizer,
-//                                    "",
-//                                    Collections.emptyList(),
-//                                    constellation,
-//                                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
-//                                    50);
-                            //callIsGiveToken(websj,活動發起人manager,合約地址,articleReviewMember.getAddress())
-//                            smartCONTRACT.callIsGiveToken(web3j,organizerTransactionManager,);
                         }
 
                     }
@@ -312,7 +290,7 @@ public class ActivityController {
     }
 
     @PostMapping(value = "/assign")
-    private String assignMission(
+    private String assign(
             @RequestParam("articleId")Long articleId,
             @RequestParam("activityId")Long activityId,
             @RequestParam("reviewMember")String reviewMemberList
@@ -386,6 +364,7 @@ public class ActivityController {
     private String transaction(
             @RequestParam("articleReviewId")Long articleReviewId
     ) throws Exception {
+        ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
         Member articleReviewer=articleReviewService.getArticleReviewById(articleReviewId).getMember();
         Member Organizer=activityService.getActivityById(articleReviewService.getArticleReviewById(articleReviewId).getArticle().getActivity().getId()).getActivityOrganizer();
         String transactionAddress=articleReviewService.getArticleReviewById(articleReviewId).getArticleReviewAddress();
@@ -420,7 +399,8 @@ public class ActivityController {
         smartCONTRACT.callApproveToken(web3j,organizerTransactionManager,transactionAddress,assignedMember.getAddress());
         smartCONTRACT.callTransferFromToken(web3j,assignedMemberTransactionManager,transactionAddress);
 
-
+        articleReview.setReviewComplete(true);
+        articleReviewService.update(articleReview);
 
         return "redirect:/activity/management";
     }
@@ -429,10 +409,6 @@ public class ActivityController {
             @RequestParam("articleReviewId")Long articleReviewId
     ) throws IOException, MessagingException {
         ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
-        articleReview.setReviewComplete(false);
-        articleReviewService.update(articleReview);
-
-
 
         Mail mailReturn = new Mail();
         mailReturn.setFrom("no-reply@memorynotfound.com");

@@ -46,68 +46,96 @@
 
 
 					
-					<li>姓名:</li><p th:text="${name}"></p>
-					<li>代幣金額:{th:tokenbalance}</li>
+					<p th:text="'姓名:'+${name}"></p>
+					<p th:text="'代幣金額:'+${memberBalance}"></p>
 					<br><br>
 
-                               
+                    <button class="accordion">歷史活動</button>
+                    <div class="panel">
+                        <header class="major special">
+                            <div class="table-wrapper" >
+                                <table>
+                                    <caption><h3>歷史活動</h3></caption>
+                                    <thead>
+                                    <tr>
+                                        <th>活動名稱</th>
+                                        <th>舉辦日期</th>
+                                    </tr>
+
+                                    </thead>
+
+
+                                    <tbody th:each="activityList:${activityLists}">
+                                    <tr>
+                                        <td th:text="${activityList.activityName}">活動名稱{th:articlename}</td>
+                                        <td th:text="${activityList.activityTime}">舉辦日期{th:activityTime}</td>
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </header>
+
+                    </div>
+                    <button class="accordion">歷史文章</button>
+                    <div class="panel">
+                        <header class="major special">
                         <div class="table-wrapper" >
                                         <table>
-                                        	<caption><h3>歷史發表</h3></caption>
+                                        	<caption><h3>歷史文章</h3></caption>
                                             <thead>
                                                 <tr>
-                                                    <th>文章</th>
-                                                    <th>日期</th>
+                                                    <th>文章名稱</th>
+                                                    <th>發表日期</th>
                                                 </tr>
 
                                             </thead>
 
-                                            {%for article in articles %}
-                                            <tbody>
+                                           
+                                            <tbody th:each="articleList:${articleList}">
                                                 <tr>
-                                                    <td>發表文章名稱{th:articlename}</td>
-                                                    <td>發表日期{th:posttime}</td>
+                                                    <td th:text="${articleList.articleName}">發表文章名稱{th:articlename}</td>
+                                                    <td th:text="${articleList.postTime}">發表日期{th:posttime}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>發表文章名稱{th:articlename}</td>
-                                                    <td>發表日期{th:posttime}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>發表文章名稱{th:articlename}</td>
-                                                    <td>發表日期{th:posttime}</td>
-                                                </tr>
-                                            </tbody>
-                                            {% endfor %}
-                                        </table>
-                        </div>	
 
-                    
-                        <div class="table-wrapper">
+                                            </tbody>
+
+                                        </table>
+                        </div>
+                        </header>
+
+                    </div>
+
+                    <button class="accordion">歷史審文</button>
+                    <div class="panel">
+                        <header class="major special">
+                    <div class="table-wrapper">
                                         <table>
                                         	<caption><h3>歷史審文</h3></caption>
                                             <thead>
                                                 <tr>
-                                                    <th>文章</th>
-                                                    <th>日期</th>
+                                                    <th>文章名稱</th>
+                                                    <th>回覆日期</th>
                                                 </tr>
                                             </thead>
 
-                                            {%for article in articles %}
-                                            <tbody>
+
+                                            <tbody th:each="articleReviewList:${articleReviewList}">
                                                 <tr>
-                                                    <td>審核文章名稱{th:articlename}</td>
-                                                    <td>審核日期{th:checkedtime}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>審核文章名稱{th:articlename}</td>
-                                                    <td>審核日期{th:checkedtime}</td>
+                                                    <td th:text="${articleReviewList.article.articleName}">審核文章名稱{th:articlename}</td>
+                                                    <td th:text="${articleReviewList.reviewTime}">審核日期{th:checkedtime}</td>
                                                 </tr>
 
+
                                             </tbody>
-                                            {% endfor %}
+
                                         </table>
                         
                     	</div>
+                        </header>
+                    </div>
+
                     
 				</div>
 			</section>

@@ -19,7 +19,7 @@ public class ERC20Balance {
 
     public String ERC20Address(){
         DeployERC20 erc = new DeployERC20();
-        System.out.println(erc.getERC20Address()+"合約地址");
+//        System.out.println(erc.getERC20Address()+"合約地址");
         return erc.getERC20Address();
     }
 

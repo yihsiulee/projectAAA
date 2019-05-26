@@ -57,10 +57,4 @@ public class SmartCONTRACT {
         myContract contract = myContract.load(inputAddress, web3j, manager, BigInteger.valueOf(0), BigInteger.valueOf(20000000));
         contract.transferFromToken().send();
     }
-
-
-
-
-
-
 }

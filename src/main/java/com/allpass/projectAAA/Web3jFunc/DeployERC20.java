@@ -1,7 +1,7 @@
 package com.allpass.projectAAA.Web3jFunc;
 
 import com.allpass.projectAAA.Contract.ERC20;
-import com.allpass.projectAAA.Web3jFunction.key;
+
 import okhttp3.OkHttpClient;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3jService;
@@ -19,7 +19,7 @@ import java.math.BigInteger;
 
 public class DeployERC20 {
 
-    public static String ERC20Address;//存發佈ERC20合約回傳的地址
+    public static String ERC20Address="0x73fde52c2be186b857bf00470311c59b345401c7";//存發佈ERC20合約回傳的地址
 
     private static final String URL = "https://eth.pli.tw/port";
 

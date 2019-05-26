@@ -82,7 +82,7 @@
                             </div>
                         </div>
 
-                        <a th:case="notAssign" th:onclick="'javascript:assignBlock('+${article.id}+');'" class=" button special small">Assign</a>
+                        <a th:if="${article.articleState} eq 'notAssign' or ${article.articleState} eq 'assignUnfinished'" th:onclick="'javascript:assignBlock('+${article.id}+');'" class=" button special small">Assign</a>
 <!--                        th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}"-->
                         <div th:id="${article.id}+'assign'" class="w3-modal">
                             <div class="w3-modal-content">
@@ -94,13 +94,13 @@
                             </div>
                         </div>
 
-                        <a onclick="document.getElementById('id03').style.display='block'" class=" button small">Finish</a>
-                        <div id="id03" class="w3-modal">
+                        <a th:if="${article.articleState} eq 'reviewing' or ${article.articleState} eq 'reviewFinish'"th:onclick="'javascript:finishBlock('+${article.id}+');'" class=" button small">Finish</a>
+                        <div id="${article.id}+'finish'" class="w3-modal">
                             <div class="w3-modal-content" >
                                 <div class="w3-container"  >
-                                    <span onclick="document.getElementById('id03').style.display='none'" class="w3-button w3-display-topright" >&times;</span>
+                                    <span th:onclick="'javascript:finishClose('+${article.id}+');'" class="w3-button w3-display-topright" >&times;</span>
 
-                                    <iframe src="articleReviewFinishTable.html#show" style="border:none;width:100%;height:600px"></iframe>
+                                    <iframe th:replace="articleReviewFinishTable::#articleReviewFinishTable" style="border:none;width:100%;height:600px"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -176,6 +176,12 @@
     }
     function assignClose(articleId){
     document.getElementById(articleId+'assign').style.display='none';
+    }
+    function finishBlock(articleId){
+    document.getElementById(articleId+'finish').style.display='block';
+    }
+    function finishClose(articleId){
+    document.getElementById(articleId+'finish').style.display='none';
     }
 </script>
 

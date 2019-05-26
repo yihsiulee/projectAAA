@@ -11,7 +11,7 @@
 
 <!-- Main -->
 
-<div  id="articleReviewTable" class="container">
+<div  id="articleReviewFinishTable" class="container">
 
     <header class="major special">
         <h2>文章進度</h2>
@@ -48,8 +48,8 @@
                 <td th:text="${articleReviews.member.name}"></td>
                 <td colspan="2" th:text="${articleReviews.reviewText}"></td>
                 <td>
-                    <a class="button alt" style="margin-bottom: 10px">退稿</a>
-                    <a class="button special">轉帳</a>
+                    <a class="button alt" style="margin-bottom: 10px" th:href="@{returnArticleReview(articleReviewId=${articleReviews.id})}">退稿</a>
+                    <a class="button special" th:href="@{transaction(articleReviewId=${articleReviews.id})}">轉帳</a>
 
             </tr>
 

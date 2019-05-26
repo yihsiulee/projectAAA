@@ -18,7 +18,7 @@ import org.web3j.utils.Async;
 import java.math.BigInteger;
 
 public class DeployCONTRACT {
-//    public static String ERC20Address;//存發佈ERC20合約回傳的地址
+    //    public static String ERC20Address;//存發佈ERC20合約回傳的地址
     DeployERC20 de = new DeployERC20();
 
 //    private static final String URL = "https://eth.pli.tw/port";

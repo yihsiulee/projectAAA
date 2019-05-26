@@ -16,11 +16,11 @@ public class Activity {
     private String activityTime;
     private String activityContent;
     private String activityImg;
-    private Integer activityStudy;
+    private String activityStudy;
     private Integer limitedParticipants;
     private Integer articleNumber;
     @ManyToOne
-    @JoinColumn(name="organizer_member_ID_FK",nullable=false)
+    @JoinColumn(name="organizer_member_ID_FK")
     private Member activityOrganizer;
     @ManyToMany( fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -96,9 +96,9 @@ public class Activity {
         return activityImg;
     }
 
-    public void setActivityStudy(Integer activityStudy) { this.activityStudy = activityStudy; }
+    public void setActivityStudy(String activityStudy) { this.activityStudy = activityStudy; }
 
-    public Integer getActivityStudy() { return activityStudy; }
+    public String getActivityStudy() { return activityStudy; }
 
     public void setActivityParticipants_Author(Set<Member> activityParticipants_Author) { this.activityParticipants_Author = activityParticipants_Author; }
 
@@ -127,4 +127,5 @@ public class Activity {
     public void setArticle(Set<Article> article) { this.article = article; }
 
     public Set<Article> getArticle() { return article; }
+
 }

@@ -58,16 +58,16 @@
 						</li>
 					<form href="/articleReview/post" method="post">
 
-						<input type="hidden" name="articleReviewId" th:value="${articleReview.id}" >
-						<textarea cols="50" rows="5" name="reviewText" id="reviewText" style="text-align: left; ">輸入內容...
+						<input type="hidden"  name="articleReviewId" id="articleReviewId"th:value="${articleReview.id}" >
+						<textarea cols="50" rows="5" name="reviewText" id="reviewText" style="text-align: left;" th:text="${articleReview.reviewText}">
 						</textarea>
 
 					<br>	
 
 					<div style="float: right;">
-						<a><input type="reset" class="button alt" value="重新填寫"/></a>
-						<a href="/" class="button">儲存</a>
-						<a><input type="submit" class="button special" value="送出"/></a>
+						<input type="reset" class="button alt" value="重新填寫"/>
+						<a href='#' onclick="this.href='/articleReview/saveDraft?articleReviewId='+document.getElementById('articleReviewId').value+'&reviewText='+document.getElementById('reviewText').value" class="button" id="href">儲存</a>
+						<input type="submit" class="button special" value="上傳"/>
 					</div>
 						
 
@@ -109,6 +109,8 @@
 			<script th:src="@{/assets/js/util.js}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script th:src="@{/assets/js/main.js}"></script>
+
+
 
 	</body>
 </html>

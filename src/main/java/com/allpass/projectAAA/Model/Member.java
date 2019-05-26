@@ -22,10 +22,11 @@ public class  Member  {
     private Integer gender;
     private String birthday;
     private Integer education;
-    private Integer study;
+    private String study;
     private String special;
     private Float tokenBalance;
     private String phoneNumber;
+    private String blockchainPrivateKey;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "members_roles",
@@ -190,11 +191,11 @@ public class  Member  {
         return education;
     }
 
-    public void setStudy(Integer study) {
+    public void setStudy(String study) {
         this.study = study;
     }
 
-    public Integer getStudy() {
+    public String getStudy() {
         return study;
     }
 
@@ -204,6 +205,14 @@ public class  Member  {
 
     public Float getTokenBalance() {
         return tokenBalance;
+    }
+
+    public void setBlockchainPrivateKey(String blockchainPrivateKey) {
+        this.blockchainPrivateKey = blockchainPrivateKey;
+    }
+
+    public String getBlockchainPrivateKey() {
+        return blockchainPrivateKey;
     }
 
     public Collection<Member_Role> getRoles() {

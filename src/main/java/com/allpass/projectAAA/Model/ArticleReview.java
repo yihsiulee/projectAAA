@@ -16,7 +16,7 @@ public class ArticleReview {
     private Member member;
     private String reviewTime;
     private String reviewText;
-    private Long reviewAddress;
+    private String articleReviewAddress;
     private Boolean acceptTask=false;
     private Boolean reviewComplete=false;
 
@@ -53,13 +53,9 @@ public class ArticleReview {
         return reviewTime;
     }
 
-    public void setReviewAddress(Long reviewAddress) {
-        this.reviewAddress = reviewAddress;
-    }
+    public void setArticleReviewAddress(String articleReviewAddress) { this.articleReviewAddress = articleReviewAddress; }
 
-    public Long getReviewAddress() {
-        return reviewAddress;
-    }
+    public String getArticleReviewAddress() { return articleReviewAddress; }
 
     public void setMember(Member member) {
         this.member = member;

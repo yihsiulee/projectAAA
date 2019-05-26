@@ -19,6 +19,8 @@ public class ArticleReviewService {
 
     public void save(ArticleReview articleReview){articleReviewDao.save(articleReview);}
 
+    public void update(ArticleReview articleReview){articleReviewDao.save(articleReview);}
+
     public void delete(ArticleReview articleReview){articleReviewDao.delete(articleReview);}
 
     public List<ArticleReview> getArticleReviewListByMember(Member member){
@@ -43,6 +45,10 @@ public class ArticleReviewService {
         ArticleReview articleReview=articleReviewDao.findByArticle(article);
         return articleReview;
 
+    }
+    public ArticleReview getArticleReviewByAcceptMember(Member acceptMember,ArticleReview acceptReview){
+        ArticleReview articleReview=articleReviewDao.findByMember(acceptMember).stream().filter(i->i.getArticle()==acceptReview.getArticle()).findFirst().get();
+        return articleReview;
     }
 
 

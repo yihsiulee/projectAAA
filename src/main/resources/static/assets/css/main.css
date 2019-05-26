@@ -2667,7 +2667,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #63c1ae;
+				background-color: #91b9bf;
 			}
 
 			input[type="submit"].special:active,
@@ -2675,7 +2675,7 @@
 			input[type="button"].special:active,
 			button.special:active,
 			.button.special:active {
-				background-color: #45ad97;
+				background-color: #91b9bf;
 			}
 
 		input[type="submit"].alt,
@@ -3060,7 +3060,7 @@
 					.wrapper.style1 input[type="button"].special:hover,
 					.wrapper.style1 button.special:hover,
 					.wrapper.style1 .button.special:hover {
-						background-color: #63c1ae;
+						background-color: #91b9bf;
 					}
 
 					.wrapper.style1 input[type="submit"].special:active,
@@ -3068,7 +3068,7 @@
 					.wrapper.style1 input[type="button"].special:active,
 					.wrapper.style1 button.special:active,
 					.wrapper.style1 .button.special:active {
-						background-color: #45ad97;
+						background-color: #91b9bf;
 					}
 
 				.wrapper.style1 input[type="submit"].alt,
@@ -3295,7 +3295,7 @@
 					.wrapper.style2 input[type="button"].special:hover,
 					.wrapper.style2 button.special:hover,
 					.wrapper.style2 .button.special:hover {
-						background-color: #63c1ae;
+						background-color: #91b9bf;
 					}
 
 					.wrapper.style2 input[type="submit"].special:active,
@@ -3303,7 +3303,7 @@
 					.wrapper.style2 input[type="button"].special:active,
 					.wrapper.style2 button.special:active,
 					.wrapper.style2 .button.special:active {
-						background-color: #45ad97;
+						background-color: #91b9bf;
 					}
 
 				.wrapper.style2 input[type="submit"].alt,
@@ -3549,7 +3549,7 @@
 					.wrapper.style3 input[type="button"].special:hover,
 					.wrapper.style3 button.special:hover,
 					.wrapper.style3 .button.special:hover {
-						background-color: #63c1ae;
+						background-color: #91b9bf;
 					}
 
 					.wrapper.style3 input[type="submit"].special:active,
@@ -3557,7 +3557,7 @@
 					.wrapper.style3 input[type="button"].special:active,
 					.wrapper.style3 button.special:active,
 					.wrapper.style3 .button.special:active {
-						background-color: #45ad97;
+						background-color: #91b9bf;
 					}
 
 				.wrapper.style3 input[type="submit"].alt,
@@ -3984,7 +3984,7 @@
 				#banner input[type="button"].special:hover,
 				#banner button.special:hover,
 				#banner .button.special:hover {
-					background-color: #63c1ae;
+					background-color: #91b9bf;
 				}
 
 				#banner input[type="submit"].special:active,
@@ -3992,7 +3992,7 @@
 				#banner input[type="button"].special:active,
 				#banner button.special:active,
 				#banner .button.special:active {
-					background-color: #45ad97;
+					background-color: #91b9bf;
 				}
 
 			#banner input[type="submit"].alt,
@@ -4366,20 +4366,20 @@
 	/*cursor: pointer;*/
 			}
 
-			.success {background-color: #4CAF50;} /* Green */
-			.success:hover {background-color: #46a049;}
+			.success {background-color: #91ad70;} /* Green */
+			/*.success:hover {background-color: #46a049;}*/
 
-			.info {background-color: #2196F3;} /* Blue */
-			.info:hover {background: #0b7dda;}
+			.info {background-color: #7DB9DE;} /* Blue */
+			/*.info:hover {background: #0b7dda;}*/
 
-			.warning {background-color: #ff9800;} /* Orange */
-			.warning:hover {background: #e68a00;}
+			.warning {background-color: #e9A368;} /* Orange */
+			/*.warning:hover {background: #e68a00;}*/
 
-			.danger {background-color: #f44336;} /* Red */
-			.danger:hover {background: #da190b;}
+			.danger {background-color: #b54434;} /* Red */
+			/*.danger:hover {background: #da190b;}*/
 
 			.default {background-color: #828282; color: black;} /* Gray */
-			.default:hover {background: #6d6d6d;}
+			/*.default:hover {background: #6d6d6d;}*/
 
 /*狀態鈕動畫與顯示*/
 			.w3-modal{
@@ -4458,7 +4458,7 @@
 /*必填資料的＊*/
 			.esstential{
 				color: red;
-				display: inline;
+				/*display: inline;*/
 				font-size: 30px
 			}
 /*指派的checkbox*/

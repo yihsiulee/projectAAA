@@ -257,7 +257,7 @@ public class ArticleReviewController {
         Mail mailAcceptConfirm = new Mail();
         mailAcceptConfirm.setFrom("no-reply@memorynotfound.com");
         mailAcceptConfirm.setTo(articleReview.getArticle().getActivity().getActivityOrganizer().getEmail());
-        mailAcceptConfirm.setSubject("<PaperReview!>您收到一篇審文邀請");
+        mailAcceptConfirm.setSubject("<PaperReview!>您的指派被確認了");
         Map<String, Object> model = new HashMap<>();
         model.put("name", articleReview.getArticle().getActivity().getActivityOrganizer().getName());
         model.put("location", "Taipei");
@@ -287,7 +287,7 @@ public class ArticleReviewController {
         Mail mailRefuse = new Mail();
         mailRefuse.setFrom("no-reply@memorynotfound.com");
         mailRefuse.setTo(articleReview.getArticle().getActivity().getActivityOrganizer().getEmail());
-        mailRefuse.setSubject("<PaperReview!>您收到一篇審文邀請");
+        mailRefuse.setSubject("<PaperReview!>您的指派被拒絕了");
         Map<String, Object> model = new HashMap<>();
         model.put("name", articleReview.getArticle().getActivity().getActivityOrganizer().getName());
         model.put("location", "Taipei");

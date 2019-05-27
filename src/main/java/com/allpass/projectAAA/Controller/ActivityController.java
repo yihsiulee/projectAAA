@@ -82,7 +82,7 @@ public class ActivityController {
         List<Activity>activityList=activityService.getActivityList();
 //        activityList.forEach(item->System.out.println(item.getActivityName()));
         List<String> img = new ArrayList<String>();
-        List<String> activity_Study=new ArrayList<>();
+//        List<String> activity_Study=new ArrayList<>();
         List<String> activity_Image = new ArrayList<>();
         for(Activity image:activityList) {
                 img.add(image.getActivityImg());
@@ -112,7 +112,7 @@ public class ActivityController {
             else
                 continue;
         }
-        model.addAttribute("activity_Study",activity_Study);
+//        model.addAttribute("activity_Study",activity_Study);
         model.addAttribute("activityLists",activityList);
         return "activityList";
     }
@@ -126,6 +126,7 @@ public class ActivityController {
 //        System.out.println(activityService.getActivityById(id).getActivityParticipants_Reviewer().size());
         Activity activityUpdate= activityService.getActivityById(id);
         activityUpdate.getActivityParticipants_Reviewer().add(activityParticipant);
+        activityUpdate.setLimitedParticipants(activityUpdate.getLimitedParticipants()-1);
         activityService.update(activityUpdate);
         activityService.getActivityById(id).getActivityParticipants_Reviewer().forEach(item->System.out.println(item.getName()));
 
@@ -139,6 +140,7 @@ public class ActivityController {
         Member activityParticipant=memberService.getMemberInfo(authentication.getName());
         System.out.println(activityService.getActivityById(id).getActivityParticipants_Author().size());
         Activity activityUpdate= activityService.getActivityById(id);
+        activityUpdate.setArticleNumber(activityUpdate.getArticleNumber()-1);
         activityUpdate.getActivityParticipants_Author().add(activityParticipant);
         activityService.update(activityUpdate);
         activityService.getActivityById(id).getActivityParticipants_Author().forEach(item->System.out.println(item.getName()));
@@ -179,7 +181,7 @@ public class ActivityController {
             activityImageFileService.store(activityImg);
         }
         activity.setArticleNumber(articleNumber);
-        activity.setLimitedParticipants(participantNumber);
+        activity.setLimitedParticipants(participantNumber-articleNumber);
         activity.setActivityOrganizer(memberService.getMemberInfo(authentication.getName()));
         activityService.save(activity);
 
@@ -300,7 +302,7 @@ public class ActivityController {
         for(String a: reviewMemberList.split(",")){
             reviewMember.add(a);
         }
-        if(reviewMember.size()<3){
+        if(reviewMember.size()<3 && articleService.getArticleById(articleId).getArticleState().equals("notAssign")){
             return "redirect:/activity/management";
         }
 //        Activity updateActivity=activityService.getActivityById(activityId);

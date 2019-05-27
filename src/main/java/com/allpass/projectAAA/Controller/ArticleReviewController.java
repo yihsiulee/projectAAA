@@ -165,6 +165,7 @@ public class ArticleReviewController {
                 constellation,
                 TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
                 50);
+
         smartCONTRACT.callIsReturnReview(web3j,assignedMemberTransactionManager,articleReview.getArticleReviewAddress());
 
         articleReviewService.save(articleReview);
@@ -218,6 +219,7 @@ public class ArticleReviewController {
             articleService.save(article);
         }
 
+        DeployCONTRACT deployCONTRACT=new DeployCONTRACT();
         SmartCONTRACT smartCONTRACT=new SmartCONTRACT();
         Web3jService web3jService = new HttpService(RPC_URL);
         Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
@@ -249,11 +251,14 @@ public class ArticleReviewController {
 
         double articleValueDouble=article.getArticleValue()*100;
         int articleValueInt=(int)articleValueDouble;
-        BigInteger articleValue=new BigInteger(articleValueInt+"000000000000000000");
+        BigInteger articleValue=new BigInteger(articleValueInt+"0000000000000000");
         System.out.println(articleValue);
+//        String articleReviewAddress=deployCONTRACT.deployContract(web3j,activityOrganizer);
+//        smartCONTRACT.callIsApprove(web3j,assignedMemberTransactionManager,articleReviewAddress);
         smartCONTRACT.callSendArticle(web3j,organizerTransactionManager,articleReviewAddress,articleReviewAddress,articleValue,assignedMember.getAddress());
         smartCONTRACT.callIsRecievePost(web3j,assignedMemberTransactionManager,articleReviewAddress);
 
+//        articleReview.setArticleReviewAddress(articleReviewAddress);
         articleReviewService.update(articleReview);
 
         //寄信通知活動主辦人

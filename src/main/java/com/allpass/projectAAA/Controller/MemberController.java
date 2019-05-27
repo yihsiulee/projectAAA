@@ -34,6 +34,7 @@ import org.web3j.tx.gas.StaticGasProvider;
 import org.web3j.utils.Async;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -164,7 +165,7 @@ public class MemberController {
             }
         }
 
-        //區塊練指令
+        //區塊鏈指令
         BigInteger divide=new BigInteger("1000000000000000000");
         ERC20Balance erc20Balance=new ERC20Balance();
         Web3jService web3jService = new HttpService(RPC_URL);
@@ -184,11 +185,11 @@ public class MemberController {
             TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
             50);
 
-        BigInteger memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress());
-        System.out.println(memberBalance.divide(divide));
+        double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+        System.out.println(memberBalance);
 
         model.addAttribute("name",member.getName());
-        model.addAttribute("memberBalance", memberBalance.divide(divide));
+        model.addAttribute("memberBalance", memberBalance);
         model.addAttribute("articleList", articleList);
         model.addAttribute("articleReviewList",articleReviewList);
         model.addAttribute("activityList",activityList);

@@ -59,7 +59,7 @@
                 <tr>
                     <td th:text="${articleReviewList.getArticle().articleName}"></td>
                     <td th:text="${articleReviewList.getArticle().getActivity().ActivityName}"></td>
-                    <td>{articleDeadline}</td>
+                    <td th:text="${articleReviewList.getArticle().deadline}">{articleDeadline}</td>
                     <td>
                         <a class="button special"th:href="@{post(articleReviewId=${articleReviewList.id})}">Review!</a>
                     </td>

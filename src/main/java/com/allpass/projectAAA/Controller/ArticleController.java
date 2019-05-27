@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.Set;
 
@@ -66,7 +68,10 @@ public class ArticleController {
             Authentication auth
     ) {
         Article article=new Article();
-        article.setPostTime(date.format(new Date()));
+        Date currentDate = new Date();
+        LocalDateTime localDateTime = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        article.setPostTime(date.format(currentDate));
+        article.setDeadline(date.format(currentDate.from(localDateTime.plusDays(7).atZone(ZoneId.systemDefault()).toInstant())));
         article.setArticleName(articleName);
         article.setActivity(activityService.getActivityById(activity_Id));
         article.setFormulaNumber(formulaNumber);

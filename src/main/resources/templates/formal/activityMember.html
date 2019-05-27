@@ -13,9 +13,10 @@
         <header class="major special">
             <h2>參與者</h2>
             <p th:text="${activityManagementList.activityName}"></p>
+            <h4 th:if="${article.articleState} eq 'assignUnfinished'" th:text="'還有'+${article.articleReviewAssignNumber}+'名需要分配'"></h4>
         </header>
 
-        <h4 th:if="${article.articleState} eq 'assignUnfinished'" th:text="'還有'+${article.articleReviewAssignNumber}+'名需要分配'"></h4>
+
 
 
         <form action="/activity/assign" method="post" >

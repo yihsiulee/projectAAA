@@ -21,7 +21,7 @@ public class ArticleReviewService {
 
     public void update(ArticleReview articleReview){articleReviewDao.save(articleReview);}
 
-    public void delete(ArticleReview articleReview){articleReviewDao.delete(articleReview);}
+    public void delete(ArticleReview articleReview){articleReviewDao.deleteById(articleReview.getId());}
 
     public List<ArticleReview> getArticleReviewListByMember(Member member){
         List<ArticleReview>articleReviewList=articleReviewDao.findByMember(member);

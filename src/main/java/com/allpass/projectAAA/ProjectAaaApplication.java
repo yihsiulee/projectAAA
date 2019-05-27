@@ -67,10 +67,10 @@ public class ProjectAaaApplication  {
 
 
 	public static void main(String[] args) throws Exception {
-		DeployERC20 deployERC20=new DeployERC20();
-//		Credentials credentials=Credentials.create("e34940d6b466ebf176ad5464b6c71e7dd0fd55558b018487afc82388563e3547");
+//		DeployERC20 deployERC20=new DeployERC20();
+//		Credentials credentials=Credentials.create("e6177636c6982205afc63e7eaed762821dcee0b1c8d0bec1cc2f9019fe7efda5");
 //		deployERC20.deploy(credentials);
-		System.out.println(deployERC20.getERC20Address());
+//		System.out.println(deployERC20.getERC20Address());
     	DatabaseServer.startH2Server();
     	SpringApplication.run(ProjectAaaApplication.class, args);
 	}

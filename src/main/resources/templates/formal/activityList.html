@@ -78,7 +78,7 @@
 
 <!--        </div>-->
 
-        <article class="feature left" th:each="activityList:${activityLists}">
+        <article class="feature left" th:if="${activityList.limitedParticipants != 0}" th:each="activityList:${activityLists}">
 						<span class="image">
 
 							<img th:src="${activityList.activityImg}" alt="" />
@@ -98,8 +98,8 @@
                     </div>
                 </div>
 
-                <a th:href="@{reviewerAttend(id=${activityList.id})}"  class=" button special small">審核論文</a>
-                <a th:href="@{authorAttend(id=${activityList.id})}" class=" button small">上傳論文</a>
+                <a th:if="${activityList.limitedParticipants != 0}" th:href="@{reviewerAttend(id=${activityList.id})}"  class=" button special small">審核論文</a>
+                <a th:if="${activityList.articleNumber != 0}" th:href="@{authorAttend(id=${activityList.id})}" class=" button small">上傳論文</a>
 
             </div>
         </article>

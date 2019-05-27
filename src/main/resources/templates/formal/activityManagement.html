@@ -66,9 +66,9 @@
                     <td th:switch="${article.articleState}">
                         <button  class="btn success" th:case="reviewFinish">審核完成</button>
                         <button class="btn info"  th:case="reviewing">審稿中</button>
-                        <button class="btn warning"  th:case="assign">分配未完成</button>
-                        <button class="btn danger"  th:case="notAssign">待回覆</button>
-                        <button class="btn default" th:case>未指派</button>
+                        <button class="btn warning"  th:case="assignUnfinished">分配未完成</button>
+                        <button class="btn danger"  th:case="assign">待回覆</button>
+                        <button class="btn default" th:case="notAssign">未指派</button>
                     <td th:switch="${article.articleState}">
 <!--                        <a th:onclick="document.getElementById(/*[[${article.id}]]*/+'check').style.display='block'" class=" button alt small">Check</a>-->
                         <a th:onclick="'javascript:checkBlock('+${article.id}+');'" class=" button alt small">Check</a>
@@ -95,7 +95,7 @@
                         </div>
 
                         <a th:if="${article.articleState} eq 'reviewing' or ${article.articleState} eq 'reviewFinish'"th:onclick="'javascript:finishBlock('+${article.id}+');'" class=" button small">Finish</a>
-                        <div id="${article.id}+'finish'" class="w3-modal">
+                        <div th:id="${article.id}+'finish'" class="w3-modal">
                             <div class="w3-modal-content" >
                                 <div class="w3-container"  >
                                     <span th:onclick="'javascript:finishClose('+${article.id}+');'" class="w3-button w3-display-topright" >&times;</span>

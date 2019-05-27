@@ -19,7 +19,7 @@ import java.math.BigInteger;
 
 public class DeployERC20 {
 
-    public static String ERC20Address="0x73fde52c2be186b857bf00470311c59b345401c7";//存發佈ERC20合約回傳的地址
+    public static String ERC20Address="0xcffe661abefac26cfcf508f8985a529066b8c4af";//存發佈ERC20合約回傳的地址
 
     private static final String URL = "https://eth.pli.tw/port";
 

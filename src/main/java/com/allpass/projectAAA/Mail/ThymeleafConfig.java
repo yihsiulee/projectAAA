@@ -13,8 +13,6 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 @Configuration
 public class ThymeleafConfig {
 
-
-
 //    @Bean
 //    public SpringTemplateEngine springTemplateEngine() {
 //        SpringTemplateEngine templateEngine = new SpringTemplateEngine();

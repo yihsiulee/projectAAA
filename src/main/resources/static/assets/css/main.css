@@ -4503,7 +4503,7 @@
 
 			/* When the checkbox is checked, add a blue background */
 			.containerbox input:checked ~ .checkmark {
-				background-color: #2196F3;
+				background-color: #7DB9DE;
 			}
 
 			/* Create the checkmark/indicator (hidden when not checked) */

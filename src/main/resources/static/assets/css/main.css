@@ -2074,8 +2074,8 @@
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #77969A;
-			box-shadow: 0 0 0 1px #77969A;
+			border-color: #8cc9d1;
+			box-shadow: 0 0 0 1px #8cc9d1;
 		}
 
 	.select-wrapper:before {
@@ -2096,14 +2096,14 @@
 	input[type="checkbox"]:checked + label:before,
 	input[type="radio"]:checked + label:before {
 		background-color: rgba(144, 144, 144, 0.075);
-		border-color: #77969A;
+		border-color: #8cc9d1;
 		color: #25383B;
 	}
 
 	input[type="checkbox"]:focus + label:before,
 	input[type="radio"]:focus + label:before {
-		border-color: #77969A;
-		box-shadow: 0 0 0 1px #77969A;
+		border-color: #8cc9d1;
+		box-shadow: 0 0 0 1px #8cc9d1;
 	}
 
 	::-webkit-input-placeholder {
@@ -2657,7 +2657,7 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #77969A;
+			background-color: #8cc9d1;
 			box-shadow: none;
 			color: #fff !important;
 		}
@@ -2667,7 +2667,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #63c1ae;
+				background-color: #91b9bf;
 			}
 
 			input[type="submit"].special:active,
@@ -2675,7 +2675,7 @@
 			input[type="button"].special:active,
 			button.special:active,
 			.button.special:active {
-				background-color: #45ad97;
+				background-color: #91b9bf;
 			}
 
 		input[type="submit"].alt,
@@ -2684,8 +2684,8 @@
 		button.alt,
 		.button.alt {
 			background-color: transparent;
-			box-shadow: inset 0 0 0 2px #77969A;
-			color: #77969A !important;
+			box-shadow: inset 0 0 0 2px #8cc9d1;
+			color: #8cc9d1 !important;
 		}
 
 			input[type="submit"].alt:hover,
@@ -2872,7 +2872,7 @@
 			}
 
 			.wrapper.style1 a {
-				color: #77969A;
+				color: #8cc9d1;
 			}
 
 			.wrapper.style1 strong, .wrapper.style1 b {
@@ -2923,8 +2923,8 @@
 				.wrapper.style1 input[type="email"]:focus,
 				.wrapper.style1 select:focus,
 				.wrapper.style1 textarea:focus {
-					border-color: #77969A;
-					box-shadow: 0 0 0 1px #77969A;
+					border-color: #8cc9d1;
+					box-shadow: 0 0 0 1px #8cc9d1;
 				}
 
 			.wrapper.style1 .select-wrapper:before {
@@ -2945,14 +2945,14 @@
 			.wrapper.style1 input[type="checkbox"]:checked + label:before,
 			.wrapper.style1 input[type="radio"]:checked + label:before {
 				background-color: #fff;
-				border-color: #77969A;
+				border-color: #8cc9d1;
 				color: #555;
 			}
 
 			.wrapper.style1 input[type="checkbox"]:focus + label:before,
 			.wrapper.style1 input[type="radio"]:focus + label:before {
-				border-color: #77969A;
-				box-shadow: 0 0 0 1px #77969A;
+				border-color: #8cc9d1;
+				box-shadow: 0 0 0 1px #8cc9d1;
 			}
 
 			.wrapper.style1 ::-webkit-input-placeholder {
@@ -3050,7 +3050,7 @@
 				.wrapper.style1 input[type="button"].special,
 				.wrapper.style1 button.special,
 				.wrapper.style1 .button.special {
-					background-color: #77969A;
+					background-color: #8cc9d1;
 					box-shadow: none;
 					color: #fff !important;
 				}
@@ -3060,7 +3060,7 @@
 					.wrapper.style1 input[type="button"].special:hover,
 					.wrapper.style1 button.special:hover,
 					.wrapper.style1 .button.special:hover {
-						background-color: #63c1ae;
+						background-color: #8cc9d1;
 					}
 
 					.wrapper.style1 input[type="submit"].special:active,
@@ -3068,7 +3068,7 @@
 					.wrapper.style1 input[type="button"].special:active,
 					.wrapper.style1 button.special:active,
 					.wrapper.style1 .button.special:active {
-						background-color: #45ad97;
+						background-color: #8cc9d1;
 					}
 
 				.wrapper.style1 input[type="submit"].alt,
@@ -3077,8 +3077,8 @@
 				.wrapper.style1 button.alt,
 				.wrapper.style1 .button.alt {
 					background-color: transparent;
-					box-shadow: inset 0 0 0 2px #77969A;
-					color: #77969A !important;
+					box-shadow: inset 0 0 0 2px #8cc9d1;
+					color: #8cc9d1 !important;
 				}
 
 					.wrapper.style1 input[type="submit"].alt:hover,
@@ -3107,7 +3107,7 @@
 			}
 
 			.wrapper.style2 a {
-				color: #77969A;
+				color: #8cc9d1;
 			}
 
 			.wrapper.style2 strong, .wrapper.style2 b {
@@ -3158,8 +3158,8 @@
 				.wrapper.style2 input[type="email"]:focus,
 				.wrapper.style2 select:focus,
 				.wrapper.style2 textarea:focus {
-					border-color: #77969A;
-					box-shadow: 0 0 0 1px #77969A;
+					border-color: #8cc9d1;
+					box-shadow: 0 0 0 1px #8cc9d1;
 				}
 
 			.wrapper.style2 .select-wrapper:before {
@@ -3180,14 +3180,14 @@
 			.wrapper.style2 input[type="checkbox"]:checked + label:before,
 			.wrapper.style2 input[type="radio"]:checked + label:before {
 				background-color: rgba(255, 255, 255, 0.05);
-				border-color: #77969A;
+				border-color: #8cc9d1;
 				color: #fff;
 			}
 
 			.wrapper.style2 input[type="checkbox"]:focus + label:before,
 			.wrapper.style2 input[type="radio"]:focus + label:before {
-				border-color: #77969A;
-				box-shadow: 0 0 0 1px #77969A;
+				border-color: #8cc9d1;
+				box-shadow: 0 0 0 1px #8cc9d1;
 			}
 
 			.wrapper.style2 ::-webkit-input-placeholder {
@@ -3285,7 +3285,7 @@
 				.wrapper.style2 input[type="button"].special,
 				.wrapper.style2 button.special,
 				.wrapper.style2 .button.special {
-					background-color: #77969A;
+					background-color: #8cc9d1;
 					box-shadow: none;
 					color: #fff !important;
 				}
@@ -3295,7 +3295,7 @@
 					.wrapper.style2 input[type="button"].special:hover,
 					.wrapper.style2 button.special:hover,
 					.wrapper.style2 .button.special:hover {
-						background-color: #63c1ae;
+						background-color: #91b9bf;
 					}
 
 					.wrapper.style2 input[type="submit"].special:active,
@@ -3303,7 +3303,7 @@
 					.wrapper.style2 input[type="button"].special:active,
 					.wrapper.style2 button.special:active,
 					.wrapper.style2 .button.special:active {
-						background-color: #45ad97;
+						background-color: #91b9bf;
 					}
 
 				.wrapper.style2 input[type="submit"].alt,
@@ -3361,7 +3361,7 @@
 			}
 
 			.wrapper.style3 a {
-				color: #77969A;
+				color: #8cc9d1;
 			}
 
 			.wrapper.style3 strong, .wrapper.style3 b {
@@ -3412,8 +3412,8 @@
 				.wrapper.style3 input[type="email"]:focus,
 				.wrapper.style3 select:focus,
 				.wrapper.style3 textarea:focus {
-					border-color: #77969A;
-					box-shadow: 0 0 0 1px #77969A;
+					border-color: #8cc9d1;
+					box-shadow: 0 0 0 1px #8cc9d1;
 				}
 
 			.wrapper.style3 .select-wrapper:before {
@@ -3434,14 +3434,14 @@
 			.wrapper.style3 input[type="checkbox"]:checked + label:before,
 			.wrapper.style3 input[type="radio"]:checked + label:before {
 				background-color: rgba(255, 255, 255, 0.05);
-				border-color: #77969A;
+				border-color: #8cc9d1;
 				color: #fff;
 			}
 
 			.wrapper.style3 input[type="checkbox"]:focus + label:before,
 			.wrapper.style3 input[type="radio"]:focus + label:before {
-				border-color: #77969A;
-				box-shadow: 0 0 0 1px #77969A;
+				border-color: #8cc9d1;
+				box-shadow: 0 0 0 1px #8cc9d1;
 			}
 
 			.wrapper.style3 ::-webkit-input-placeholder {
@@ -3539,7 +3539,7 @@
 				.wrapper.style3 input[type="button"].special,
 				.wrapper.style3 button.special,
 				.wrapper.style3 .button.special {
-					background-color: #77969A;
+					background-color: #8cc9d1;
 					box-shadow: none;
 					color: #fff !important;
 				}
@@ -3549,7 +3549,7 @@
 					.wrapper.style3 input[type="button"].special:hover,
 					.wrapper.style3 button.special:hover,
 					.wrapper.style3 .button.special:hover {
-						background-color: #63c1ae;
+						background-color: #91b9bf;
 					}
 
 					.wrapper.style3 input[type="submit"].special:active,
@@ -3557,7 +3557,7 @@
 					.wrapper.style3 input[type="button"].special:active,
 					.wrapper.style3 button.special:active,
 					.wrapper.style3 .button.special:active {
-						background-color: #45ad97;
+						background-color: #91b9bf;
 					}
 
 				.wrapper.style3 input[type="submit"].alt,
@@ -3901,7 +3901,7 @@
 		background-color: #1E2832;
 		color: rgba(255, 255, 255, 0.75);
 		background-attachment: fixed;
-		background-image: url("images/overlay.png"), url("../../images/banner.jpg");
+		background-image: url("images/overlay.png"), url("../../images/111.jpg");
 		background-size: cover;
 		text-align: center;
 	}
@@ -3911,7 +3911,7 @@
 		}
 
 		#banner a {
-			color: #77969A;
+			color: #8cc9d1;
 		}
 
 		#banner strong, #banner b {
@@ -3974,7 +3974,7 @@
 			#banner input[type="button"].special,
 			#banner button.special,
 			#banner .button.special {
-				background-color: #77969A;
+				background-color: #8cc9d1;
 				box-shadow: none;
 				color: #fff !important;
 			}
@@ -3984,7 +3984,7 @@
 				#banner input[type="button"].special:hover,
 				#banner button.special:hover,
 				#banner .button.special:hover {
-					background-color: #63c1ae;
+					background-color: #91b9bf;
 				}
 
 				#banner input[type="submit"].special:active,
@@ -3992,7 +3992,7 @@
 				#banner input[type="button"].special:active,
 				#banner button.special:active,
 				#banner .button.special:active {
-					background-color: #45ad97;
+					background-color: #91b9bf;
 				}
 
 			#banner input[type="submit"].alt,
@@ -4150,7 +4150,7 @@
 		}
 
 		#footer a {
-			color: #77969A;
+			color: #8cc9d1;
 		}
 
 		#footer strong, #footer b {
@@ -4267,24 +4267,25 @@
 				color: white;
 			}
 			.qa :hover{ /*滑鼠移至區塊變色*/
-				background: #efefef;
+				/*background: #efefef;*/
 			}
 
 
 /*Q&A加減版*/
 			.accordion {
 				background: #4F726C;
-  				cursor: pointer;
-  				padding: 35px;
-  				width: 90%;
-  				position: relative;left:5%;
-  				border: none;
-  				text-align: left;
-  				outline: none;
-  				font-size: 15px;
-  				transition: 0.4s;
-  				text-align: left;
-  				border-radius: 0px;
+				cursor: pointer;
+				padding: 15px 10px 45px 10px;
+				margin-bottom: 15px;
+				width: 90%;
+				position: relative;left:5%;
+				border: none;
+				text-align: left;
+				outline: none;
+				font-size: 15px;
+				transition: 0.4s;
+				text-align: left;
+				border-radius: 0px;
 
 			}
 
@@ -4295,7 +4296,7 @@
 
 			.accordion:after {
  				content: '\002B';
-  				color: #777;
+  				color: #ffffff;
   				font-weight: bold;
   				float: right;
   				margin-left: 5px;
@@ -4366,20 +4367,20 @@
 	/*cursor: pointer;*/
 			}
 
-			.success {background-color: #4CAF50;} /* Green */
-			.success:hover {background-color: #46a049;}
+			.success {background-color: #91ad70;} /* Green */
+			/*.success:hover {background-color: #46a049;}*/
 
-			.info {background-color: #2196F3;} /* Blue */
-			.info:hover {background: #0b7dda;}
+			.info {background-color: #7DB9DE;} /* Blue */
+			/*.info:hover {background: #0b7dda;}*/
 
-			.warning {background-color: #ff9800;} /* Orange */
-			.warning:hover {background: #e68a00;}
+			.warning {background-color: #e9A368;} /* Orange */
+			/*.warning:hover {background: #e68a00;}*/
 
-			.danger {background-color: #f44336;} /* Red */
-			.danger:hover {background: #da190b;}
+			.danger {background-color: #b54434;} /* Red */
+			/*.danger:hover {background: #da190b;}*/
 
 			.default {background-color: #828282; color: black;} /* Gray */
-			.default:hover {background: #6d6d6d;}
+			/*.default:hover {background: #6d6d6d;}*/
 
 /*狀態鈕動畫與顯示*/
 			.w3-modal{
@@ -4458,7 +4459,7 @@
 /*必填資料的＊*/
 			.esstential{
 				color: red;
-				display: inline;
+				/*display: inline;*/
 				font-size: 30px
 			}
 /*指派的checkbox*/

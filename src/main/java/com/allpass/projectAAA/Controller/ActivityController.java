@@ -422,7 +422,7 @@ public class ActivityController {
         Mail mailReturn = new Mail();
         mailReturn.setFrom("no-reply@memorynotfound.com");
         mailReturn.setTo(articleReview.getMember().getEmail());
-        mailReturn.setSubject("<PaperReview!>您收到一篇審文邀請");
+        mailReturn.setSubject("<PaperReview!>您的回覆被退件了");
 
         Map<String, Object> model = new HashMap<>();
         model.put("name", articleReview.getMember().getName());

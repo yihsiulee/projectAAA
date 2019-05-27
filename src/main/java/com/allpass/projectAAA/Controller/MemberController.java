@@ -1,9 +1,6 @@
 package com.allpass.projectAAA.Controller;
 
-import com.allpass.projectAAA.Model.Article;
-import com.allpass.projectAAA.Model.ArticleReview;
-import com.allpass.projectAAA.Model.Member;
-import com.allpass.projectAAA.Model.Member_Role;
+import com.allpass.projectAAA.Model.*;
 import com.allpass.projectAAA.Security.MemberDetailsServiceImp;
 import com.allpass.projectAAA.Service.ActivityService;
 import com.allpass.projectAAA.Service.ArticleReviewService;
@@ -137,7 +134,7 @@ public class MemberController {
         List<Article> articles=articleService.getArticleByAuthor(member);
         List<Article> articleList=new ArrayList<>();
         for(Article article:articles){
-            String[] date=article.getActivity().getActivityTime().split("-");
+            String[] date=article.getActivity().getActivityTime().split("-+\\s");
             System.out.println(date[1]);
             String today=dateFormat.format(new Date());
             if(today.compareTo(date[1])>0){
@@ -147,13 +144,23 @@ public class MemberController {
 
         List<ArticleReview>articleReviews=articleReviewService.getArticleReviewListByMember(member);
         List<ArticleReview>articleReviewList=new ArrayList<>();
-
         for(ArticleReview articleReview:articleReviews){
-            String[] date=articleReview.getArticle().getActivity().getActivityTime().split("-");
+            String[] date=articleReview.getArticle().getActivity().getActivityTime().split("-+\\s");
             System.out.println(date[1]);
             String today=dateFormat.format(new Date());
             if(today.compareTo(date[1])>0){
                 articleReviewList.add(articleReview);
+            }
+        }
+
+        List<Activity>activities=activityService.getActivityInfoByActivityFounder(member);
+        List<Activity>activityList=new ArrayList<>();
+        for(Activity activity:activities){
+            String[] date=activity.getActivityTime().split("-+\\s");
+            String today=dateFormat.format(new Date());
+            if(today.compareTo(date[1])>0){
+                activityList.add(activity);
+                System.out.println(activity.getActivityName());
             }
         }
 
@@ -180,10 +187,11 @@ public class MemberController {
         BigInteger memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress());
         System.out.println(memberBalance.divide(divide));
 
-        model.addAttribute("name",memberService.getMemberInfo(authentication.getName()).getName());
+        model.addAttribute("name",member.getName());
         model.addAttribute("memberBalance", memberBalance.divide(divide));
         model.addAttribute("articleList", articleList);
         model.addAttribute("articleReviewList",articleReviewList);
+        model.addAttribute("activityList",activityList);
         return "memberInfo";
     }
 

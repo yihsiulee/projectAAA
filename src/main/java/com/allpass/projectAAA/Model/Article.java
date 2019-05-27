@@ -11,8 +11,7 @@ public class Article {
     private Long id;
     private String articleName;
     private String postTime;
-//    private String deadline;
-//    private String checkedTime;
+    private String deadline;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="AUTHOR_MEMBER_ID_FK")
     private Member author;
@@ -104,21 +103,10 @@ public class Article {
 
     public String getFileName() { return fileName; }
 
-    //    public void setCheckedTime(String checkedTime) {
-//        this.checkedTime = checkedTime;
-//    }
-//
-//    public String getCheckedTime() {
-//        return checkedTime;
-//    }
 
-//    public void setDeadline(String deadline) {
-//        this.deadline = deadline;
-//    }
-//
-//    public String getDeadline() {
-//        return deadline;
-//    }
+    public void setDeadline(String deadline) { this.deadline = deadline; }
+
+    public String getDeadline() { return deadline; }
 
     public void setPostTime(String postTime) {
         this.postTime = postTime;

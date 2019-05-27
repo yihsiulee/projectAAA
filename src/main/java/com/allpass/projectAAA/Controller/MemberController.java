@@ -138,7 +138,7 @@ public class MemberController {
             String[] date=article.getActivity().getActivityTime().split("-+\\s");
             System.out.println(date[1]);
             String today=dateFormat.format(new Date());
-            if(today.compareTo(date[1])>0){
+            if(today.compareTo(date[1])>0||article.getArticleState().equals("reviewFinish")){
                 articleList.add(article);
             }
         }
@@ -149,7 +149,7 @@ public class MemberController {
             String[] date=articleReview.getArticle().getActivity().getActivityTime().split("-+\\s");
             System.out.println(date[1]);
             String today=dateFormat.format(new Date());
-            if(today.compareTo(date[1])>0){
+            if(today.compareTo(date[1])>0||articleReview.getReviewComplete()){
                 articleReviewList.add(articleReview);
             }
         }

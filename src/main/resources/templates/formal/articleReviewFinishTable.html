@@ -42,7 +42,8 @@
             <tr>
                 <td rowspan="4" align="center"style="width: 150px;"><h4>審核回覆：</h4></td>
                 <td align="center"><h5>審核人：</h5></td>
-                <td align="center" colspan="2"><h5>評論內容:</h5></td>
+                <td align="center" ><h5>評論內容:</h5></td>
+                <td align="center" ><h5>功能：</h5></td>
             </tr>
             <tr th:each="articleReviews:${article.getArticleReviews()}">
                 <td th:text="${articleReviews.member.name}"></td>

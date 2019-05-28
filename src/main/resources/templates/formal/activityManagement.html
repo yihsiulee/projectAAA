@@ -20,9 +20,9 @@
 <!-- Header -->
 <header id="header">
     <h1><a href="/">Paper Review!</a></h1>
-    <a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${tokenBalance}"></a>
-    <a th:if="${isAuth}"  th:text="'PRV:'+${memberName}"></a>
-    <a th:if="${isAuth}"  href="/member/logout">Logout</a>
+    <a th:href="@{member/Info}" th:text="${memberName}"></a>
+    <a th:text="'PRV:'+${tokenBalance}"></a>
+    <a href="/member/logout">Logout</a>
     <a href="#nav">Menu</a>
 </header>
 

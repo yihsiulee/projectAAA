@@ -4547,7 +4547,6 @@
 			/* Position the image container (needed to position the left and right arrows) */
 			.indexcontainer {
 				position: relative;
-				height:30%
 				width: 100%;
 			}
 			/* Hide the images by default */

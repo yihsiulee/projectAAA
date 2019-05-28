@@ -64,8 +64,11 @@
 
 		<div class="indexcontainer">
 			<div class="mySlides" style="display: flex !important;" th:each="activityList,activity:${activityLists}">
-				<div class="numbertext" th:text="${activity.index}+'/5'"></div>
-				<img class="index_img" th:src="${activityList.activityImg}" style="width:100%">
+				<div class="numbertext" th:text="${activity.index + 1}+'/5'"></div>
+				<a style="height:50%;" th:href="@{'activity/list#'+${activityList.id}}">
+					<img class="index_img" th:src="${activityList.activityImg}" style="width:100%;">
+				</a>
+
 			</div>
 
 			<!--						<div class="mySlides">-->
@@ -98,7 +101,7 @@
 
 			<div class="indexrow" >
 				<div class="indexcolumn" th:each="activityList,activity:${activityLists}">
-					<img class="demo cursor " th:src="${activityList.activityImg}" style="width:100%" th:onclick="currentSlide(${activity.index})" alt="The Woods">
+					<img class="demo cursor " th:src="${activityList.activityImg}" style="width:100%" th:onclick="'javascript:currentSlide('+${activity.index+1}+');'">
 				</div>
 				<!--							<div class="indexcolumn">-->
 				<!--								<img class="demo cursor " src="http://s6.gigacircle.com/media/700x300_s6_9f6bb3a5e9f4c6bec3b4ddc7e315ccea.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">-->

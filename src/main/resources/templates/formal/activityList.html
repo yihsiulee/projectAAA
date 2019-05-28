@@ -82,7 +82,7 @@
 
         <!--        </div>-->
 
-        <article class="feature left" th:if="${activityList.limitedParticipants != 0}" th:each="activityList:${activityLists}">
+        <article th:id="${activityList.id}"class="feature left" th:if="${activityList.limitedParticipants != 0}" th:each="activityList:${activityLists}">
 						<span class="image">
 
 							<img th:src="${activityList.activityImg}" alt="" />

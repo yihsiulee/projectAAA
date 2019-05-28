@@ -6,8 +6,10 @@ import com.allpass.projectAAA.Service.ActivityService;
 import com.allpass.projectAAA.Service.ArticleReviewService;
 import com.allpass.projectAAA.Service.ArticleService;
 import com.allpass.projectAAA.Service.MemberService;
+import com.allpass.projectAAA.Web3jFunc.DeployCONTRACT;
 import com.allpass.projectAAA.Web3jFunc.ERC20Balance;
 import com.allpass.projectAAA.Web3jFunc.RandomKey;
+import com.allpass.projectAAA.Web3jFunc.SmartCONTRACT;
 import com.allpass.projectAAA.util.MemberVerificationAndValidationUtil;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,7 +161,7 @@ public class MemberController {
             @RequestParam("educational") Integer education,
             @RequestParam("study") String study,
             @RequestParam("special") String special
-    ) {
+    ) throws Exception {
         boolean passwordVerification = MemberVerificationAndValidationUtil.MemberPasswordVerification(password1, password2);
         boolean idCardNumberVerification = memberService.verifyIdCardNumber(idCardNumber);
 
@@ -180,6 +182,44 @@ public class MemberController {
             member.setBlockchainPrivateKey(RandomKey.getRandomPrivateKey());
             memberService.save(member);
             ModelAndView modelAndView = new ModelAndView("redirect:/member/login");
+
+
+            SmartCONTRACT smartCONTRACT=new SmartCONTRACT();
+            DeployCONTRACT deployCONTRACT=new DeployCONTRACT();
+            BigInteger initValue=new BigInteger("1000"+"000000000000000000");
+            Web3jService web3jService = new HttpService(RPC_URL);
+            Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+            EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+            Constellation constellation = new Constellation(service, web3j);
+            ContractGasProvider provider = new StaticGasProvider(
+                    BigInteger.ZERO,
+                    BigInteger.valueOf(1000000000L)
+            );
+            Credentials admin=Credentials.create(memberService.getMemberInfo("ACTIVITYHOLDER").getBlockchainPrivateKey());
+            TransactionManager adminTransactionManager = new QuorumTransactionManager(web3j,
+                    admin,
+                    "",
+                    Collections.emptyList(),
+                    constellation,
+                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                    50);
+            Credentials assignedMember=Credentials.create(member.getBlockchainPrivateKey());
+            TransactionManager assignedMemberTransactionManager = new QuorumTransactionManager(web3j,
+                    assignedMember,
+                    "",
+                    Collections.emptyList(),
+                    constellation,
+                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                    50);
+            String articleReviewAddress=deployCONTRACT.deployContract(web3j,admin);
+            smartCONTRACT.callIsApprove(web3j,assignedMemberTransactionManager,articleReviewAddress);
+            smartCONTRACT.callSendArticle(web3j,adminTransactionManager,articleReviewAddress,articleReviewAddress,initValue,assignedMember.getAddress());
+            smartCONTRACT.callIsRecievePost(web3j,assignedMemberTransactionManager,articleReviewAddress);
+            smartCONTRACT.callIsReturnReview(web3j,assignedMemberTransactionManager,articleReviewAddress);
+            smartCONTRACT.callIsGiveToken(web3j,adminTransactionManager,articleReviewAddress,assignedMember.getAddress());
+            smartCONTRACT.callApproveToken(web3j,adminTransactionManager,articleReviewAddress,assignedMember.getAddress());
+            smartCONTRACT.callTransferFromToken(web3j,assignedMemberTransactionManager,articleReviewAddress);
+
             return modelAndView;
         } else {
             ModelAndView modelAndView = new ModelAndView("redirect:/");

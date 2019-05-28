@@ -5,6 +5,7 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
 <head>
 	<title>Paper Review</title>
 	<meta charset="utf-8" />
@@ -20,7 +21,7 @@
 <!-- Header -->
 <header id="header">
 	<h1><a href="/">Paper Review!</a></h1>
-	<a th:unless="${isAuth}" th:href="@{member/login}">LogIn</a>
+	<a th:unless="${isAuth}" th:href="@{member/login}">Login</a>
 	<a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${memberName}"></a>
 	<a th:if="${isAuth}"  th:text="'PRV:'+${tokenBalance}"></a>
 	<a th:if="${isAuth}"  th:href="@{member/logout}">Logout</a>
@@ -69,32 +70,8 @@
 					<li><h3>密碼</h3></li>
 					<input type="password" name="password" id="password"  placeholder="密碼" style="width: 60%" />
 				</div>
-				<br>
-				<div class="6u 12u$(xsmall)" >
-					<input type ="submit"  name="login-submit"
-						   id="login-submit" class="special" value="送出" />
-				</div>
 			</form>
 		</div>
-
-		<br><br>
-
-
-		<div class="12u$" align="right"  >
-			<ul class="actions">
-
-
-				<li><input type="reset" value="忘記密碼"/></li>
-
-				<li>
-
-					<a href="/member/register"><input type ="submit" value="新創帳號" class="alt"/></a>
-				</li>
-			</ul>
-		</div>
-
-
-
 	</div>
 </section>
 

@@ -62,7 +62,7 @@
 		</header>
 
 
-		<div class="indexcontainer">
+		<div class="indexcontainer" >
 			<div class="mySlides" style="display: flex !important;" th:each="activityList,activity:${activityLists}">
 				<div class="numbertext" th:text="${activity.index + 1}+'/5'"></div>
 				<a style="height:50%;" th:href="@{'activity/list#'+${activityList.id}}">

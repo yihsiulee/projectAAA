@@ -23,6 +23,7 @@
 	<a th:unless="${isAuth}" th:href="@{member/login}">LogIn</a>
 	<a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${memberName}"></a>
 	<a th:if="${isAuth}"  th:text="'PRV:'+${tokenBalance}"></a>
+	<a th:if="${isAuth}"  th:href="@{member/logout}">Logout</a>
 	<a href="#nav">Menu</a>
 </header>
 
@@ -40,55 +41,6 @@
 
 
 <!-- Main -->
-
-
-<section th:if="${isAuth}"  class="wrapper">
-	<div class="container">
-
-		<header class="major special">
-			<h2>登出</h2>
-		</header>
-
-
-		<!--<div class="row uniform 50%">-->
-		<div style="position: relative;left:35%">
-			<div th:if="${param.error}">
-				Invalid username and password.
-			</div>
-			<div th:if="${param.logout}">
-				You have been logged out.
-			</div>
-			<form th:action="@{/member/logout}" method="post">
-
-				<br>
-				<div class="6u 12u$(xsmall)" >
-					<input type ="submit"  name="login-submit"
-						   id="logout-submit" class="special" value="登出" />
-				</div>
-			</form>
-		</div>
-
-		<br><br>
-
-
-		<div class="12u$" align="right"  >
-			<ul class="actions">
-
-
-				<li><input type="reset" value="忘記密碼"/></li>
-
-				<li>
-
-					<a href="/member/register"><input type ="submit" value="新創帳號" class="alt"/></a>
-				</li>
-			</ul>
-		</div>
-
-
-
-	</div>
-</section>
-
 <section th:unless="${isAuth}" id="main" class="wrapper">
 	<div class="container">
 

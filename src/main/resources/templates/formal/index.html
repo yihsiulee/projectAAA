@@ -22,7 +22,8 @@
 <header id="header">
 	<h1><a href="/">Paper Review!</a></h1>
 	<a th:unless="${isAuth}" th:href="@{member/login}">LogIn</a>
-	<a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${memberName}+'  '+'$'+${tokenBalance}"></a>
+	<a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${memberName}"></a>
+	<a th:if="${isAuth}"  th:text="'PRV:'+${tokenBalance}"></a>
 	<a th:if="${isAuth}"  th:href="@{member/logout}">Logout</a>
 	<a href="#nav">Menu</a>
 </header>

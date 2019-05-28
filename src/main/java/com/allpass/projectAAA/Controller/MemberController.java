@@ -97,12 +97,14 @@ public class MemberController {
             model.addAttribute("isAuth",true);
             model.addAttribute("tokenBalance",memberBalance);
             model.addAttribute("memberName",member.getName());
+            return "memberLogin";
         }else{
             model.addAttribute("isAuth",false);
             model.addAttribute("tokenBalance","");
             model.addAttribute("memberName","");
+            return "redirect:/";
         }
-        return "memberLogin";
+
     }
 
 

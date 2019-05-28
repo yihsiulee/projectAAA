@@ -1,6 +1,6 @@
 #FileLock
-#Tue May 28 23:30:33 CST 2019
+#Wed May 29 00:05:39 CST 2019
 hostName=ip134-181.wlan.ntust.edu.tw
-id=16aff107c308b5465ca40a2517af89f60db24bd2578
+id=16aff309cefac27859b65079470c36408a3d60acc41
 method=file
-server=140.118.134.181\:60825
+server=140.118.134.181\:64205

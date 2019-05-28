@@ -44,7 +44,7 @@
     <a th:unless="${isAuth}" th:href="@{member/login}">LogIn</a>
     <a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${memberName}"></a>
     <a th:if="${isAuth}"  th:text="'PRV:'+${tokenBalance}"></a>
-    <a th:if="${isAuth}"  th:href="@{member/logout}">Logout</a>
+    <a th:if="${isAuth}"  href="/member/logout">Logout</a>
     <a href="#nav">Menu</a>
 </header>
 

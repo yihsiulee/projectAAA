@@ -22,7 +22,7 @@
     <h1><a href="/">Paper Review!</a></h1>
     <a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${tokenBalance}"></a>
     <a th:if="${isAuth}"  th:text="'PRV:'+${memberName}"></a>
-    <a th:if="${isAuth}"  th:href="@{member/logout}">Logout</a>
+    <a th:if="${isAuth}"  href="/member/logout">Logout</a>
     <a href="#nav">Menu</a>
 </header>
 

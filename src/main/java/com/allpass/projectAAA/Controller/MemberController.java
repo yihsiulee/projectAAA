@@ -72,11 +72,11 @@ public class MemberController {
             Authentication auth,
             Model model
     ) throws Exception {
-        if(auth!=null){
-            Member member=memberService.getMemberInfo(auth.getName());
+        if(auth!=null) {
+            Member member = memberService.getMemberInfo(auth.getName());
 
-            BigInteger divide=new BigInteger("1000000000000000000");
-            ERC20Balance erc20Balance=new ERC20Balance();
+            BigInteger divide = new BigInteger("1000000000000000000");
+            ERC20Balance erc20Balance = new ERC20Balance();
             Web3jService web3jService = new HttpService(RPC_URL);
             Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
             EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
@@ -93,18 +93,17 @@ public class MemberController {
                     constellation,
                     TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
                     50);
-            double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
-            model.addAttribute("isAuth",true);
-            model.addAttribute("tokenBalance",memberBalance);
-            model.addAttribute("memberName",member.getName());
-            return "memberLogin";
+            double memberBalance = erc20Balance.mybalance(web3j, transactionManager, credentials.getAddress()).divide(divide).doubleValue();
+            model.addAttribute("isAuth", true);
+            model.addAttribute("tokenBalance", memberBalance);
+            model.addAttribute("memberName", member.getName());
         }else{
-            model.addAttribute("isAuth",false);
-            model.addAttribute("tokenBalance","");
-            model.addAttribute("memberName","");
-            return "redirect:/";
-        }
+                model.addAttribute("isAuth", false);
+                model.addAttribute("tokenBalance", "");
+                model.addAttribute("memberName", "");
+            }
 
+        return "memberLogin";
     }
 
 

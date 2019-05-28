@@ -100,7 +100,6 @@ public class ActivityController {
             model.addAttribute("isAuth",true);
             model.addAttribute("tokenBalance",memberBalance);
             model.addAttribute("memberName",member.getName());
-            return "qa";
         }else{
             model.addAttribute("isAuth",false);
             model.addAttribute("tokenBalance","");

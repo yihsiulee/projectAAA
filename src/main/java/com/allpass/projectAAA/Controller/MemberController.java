@@ -66,13 +66,82 @@ public class MemberController {
 
     //直接輸入網址
     @RequestMapping(value = "/login")
-    public String loginPage() {
+    public String loginPage(
+            Authentication auth,
+            Model model
+    ) throws Exception {
+        if(auth!=null){
+            Member member=memberService.getMemberInfo(auth.getName());
+
+            BigInteger divide=new BigInteger("1000000000000000000");
+            ERC20Balance erc20Balance=new ERC20Balance();
+            Web3jService web3jService = new HttpService(RPC_URL);
+            Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+            EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+            Constellation constellation = new Constellation(service, web3j);
+            ContractGasProvider provider = new StaticGasProvider(
+                    BigInteger.ZERO,
+                    BigInteger.valueOf(1000000000L)
+            );
+            Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+            TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                    credentials,
+                    "",
+                    Collections.emptyList(),
+                    constellation,
+                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                    50);
+            double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+            model.addAttribute("isAuth",true);
+            model.addAttribute("tokenBalance",memberBalance);
+            model.addAttribute("memberName",member.getName());
+        }else{
+            model.addAttribute("isAuth",false);
+            model.addAttribute("tokenBalance","");
+            model.addAttribute("memberName","");
+        }
         return "memberLogin";
     }
 
 
     @RequestMapping(value = "/register")
-    public String registerPage() {
+    public String registerPage(
+            Authentication auth,
+            Model model
+    ) throws Exception {
+        if(auth!=null){
+            Member member=memberService.getMemberInfo(auth.getName());
+
+            BigInteger divide=new BigInteger("1000000000000000000");
+            ERC20Balance erc20Balance=new ERC20Balance();
+            Web3jService web3jService = new HttpService(RPC_URL);
+            Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+            EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+            Constellation constellation = new Constellation(service, web3j);
+            ContractGasProvider provider = new StaticGasProvider(
+                    BigInteger.ZERO,
+                    BigInteger.valueOf(1000000000L)
+            );
+            Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+            TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                    credentials,
+                    "",
+                    Collections.emptyList(),
+                    constellation,
+                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                    50);
+            double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+            model.addAttribute("isAuth",true);
+            model.addAttribute("tokenBalance",memberBalance);
+            model.addAttribute("memberName",member.getName());
+        }else{
+            model.addAttribute("isAuth",false);
+            model.addAttribute("tokenBalance","");
+            model.addAttribute("memberName","");
+        }
+
+
+
         return "memberRegister";
     }
 
@@ -119,7 +188,7 @@ public class MemberController {
 
     }
 
-//    @RequestMapping(value = "/forgotPassword")
+    //    @RequestMapping(value = "/forgotPassword")
 //    public String forgotPage() {
 //        return "memberForgot";
 //    }
@@ -179,15 +248,17 @@ public class MemberController {
         Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
         TransactionManager transactionManager = new QuorumTransactionManager(web3j,
                 credentials,
-            "",
-            Collections.emptyList(),
-            constellation,
-            TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
-            50);
+                "",
+                Collections.emptyList(),
+                constellation,
+                TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                50);
 
         double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
         System.out.println(memberBalance);
 
+        model.addAttribute("tokenBalance",memberBalance);
+        model.addAttribute("memberName",member.getName());
         model.addAttribute("name",member.getName());
         model.addAttribute("memberBalance", memberBalance);
         model.addAttribute("articleList", articleList);

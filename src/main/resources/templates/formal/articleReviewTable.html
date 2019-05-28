@@ -11,55 +11,55 @@
 
 <!-- Main -->
 
-    <div  id="articleReviewTable" class="container">
+<div  id="articleReviewTable" class="container">
 
-        <header class="major special">
-            <h2>文章進度</h2>
-        </header>
-        <div class="table-wrapp"  >
-            <table class="alt" >
-                <thead></thead>
-                <tbody>
-                <tr>
-                    <td align="center" style="width: 150px;" ><h4>文章名稱：</h4></td>
-                    <td th:text="${article.articleName}"></td>
-                    <td align="center"  style="width: 150px;"><h4>文章價值：</h4></td>
-                    <td th:text="${article.articleValue}"></td>
-                </tr>
-                <tr>
-                    <td align="center"style="width: 150px;"><h4>發表時間：</h4></td>
-                    <td colspan="3" th:text="${article.postTime}"></td>
-                </tr>
-                <tr>
-                    <td align="center"style="width: 150px;"><h4>原始檔案：</h4></td>
-                    <td colspan="3"> <label class="button">
-                        <i class="fa fa-cloud-download">
-                            <a th:href="${article.uploadFile}" th:text="${article.fileName}" style="color:#fff !important;font-family: 'Muli', sans-serif;"></a>
-                        </i>
-                        </a>
-                    </label></td>
-                </tr>
-                <tr>
-                    <td rowspan="4" align="center"style="width: 150px;"><h4>審核回覆：</h4></td>
-                    <td align="center"><h5>審核人：</h5></td>
-                    <td align="center" colspan="2"><h5>評論內容:</h5></td>
-                </tr>
-                <tr th:each="articleReviews:${article.getArticleReviews()}">
-                    <td th:text="${articleReviews.member.name}"></td>
-                    <td colspan="2" th:text="${articleReviews.reviewText}"></td>
-                </tr>
-
-
-
-                </tbody>
-            </table>
-        </div>
+    <header class="major special">
+        <h2>文章進度</h2>
+    </header>
+    <div class="table-wrapp"  >
+        <table class="alt" >
+            <thead></thead>
+            <tbody>
+            <tr>
+                <td align="center" style="width: 150px;" ><h4>文章名稱：</h4></td>
+                <td th:text="${article.articleName}"></td>
+                <td align="center"  style="width: 150px;"><h4>文章價值：</h4></td>
+                <td th:text="${article.articleValue}"></td>
+            </tr>
+            <tr>
+                <td align="center"style="width: 150px;"><h4>發表時間：</h4></td>
+                <td colspan="3" th:text="${article.postTime}"></td>
+            </tr>
+            <tr>
+                <td align="center"style="width: 150px;"><h4>原始檔案：</h4></td>
+                <td colspan="3"> <label class="button">
+                    <i class="fa fa-cloud-download">
+                        <a th:href="${article.uploadFile}" th:text="${article.fileName}" style="color:#fff !important;font-family: 'Muli', sans-serif;"></a>
+                    </i>
+                    </a>
+                </label></td>
+            </tr>
+            <tr>
+                <td rowspan="4" align="center"style="width: 150px;"><h4>審核回覆：</h4></td>
+                <td align="center"><h5>審核人：</h5></td>
+                <td align="center" colspan="2"><h5>評論內容:</h5></td>
+            </tr>
+            <tr th:each="articleReviews:${article.getArticleReviews()}">
+                <td th:text="${articleReviews.member.name}"></td>
+                <td colspan="2" th:text="${articleReviews.reviewText}"></td>
+            </tr>
 
 
 
-
-
+            </tbody>
+        </table>
     </div>
+
+
+
+
+
+</div>
 
 
 

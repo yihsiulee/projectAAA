@@ -7,6 +7,7 @@ import com.allpass.projectAAA.Model.ArticleReview;
 import com.allpass.projectAAA.Model.Member;
 import com.allpass.projectAAA.Service.*;
 import com.allpass.projectAAA.Web3jFunc.DeployCONTRACT;
+import com.allpass.projectAAA.Web3jFunc.ERC20Balance;
 import com.allpass.projectAAA.Web3jFunc.SmartCONTRACT;
 import okhttp3.OkHttpClient;
 import org.springframework.http.HttpHeaders;
@@ -68,7 +69,31 @@ public class ArticleReviewController {
     private String articleReviewListPage(
             Authentication auth,
             Model model
-    ){
+    ) throws Exception {
+        Member member=memberService.getMemberInfo(auth.getName());
+        BigInteger divide=new BigInteger("1000000000000000000");
+        ERC20Balance erc20Balance=new ERC20Balance();
+        Web3jService web3jService = new HttpService(RPC_URL);
+        Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+        EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+        Constellation constellation = new Constellation(service, web3j);
+        ContractGasProvider provider = new StaticGasProvider(
+                BigInteger.ZERO,
+                BigInteger.valueOf(1000000000L)
+        );
+        Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+        TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                credentials,
+                "",
+                Collections.emptyList(),
+                constellation,
+                TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                50);
+        double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+        model.addAttribute("tokenBalance",memberBalance);
+        model.addAttribute("memberName",member.getName());
+
+
         List<ArticleReview> articleReviewList=articleReviewService.getArticleReviewListByMember(memberService.getMemberInfo(auth.getName()));
         articleReviewList.forEach(i->System.out.println(i.getArticle().getArticleName()));
         model.addAttribute("articleReviewList",articleReviewList);
@@ -78,9 +103,32 @@ public class ArticleReviewController {
     private String  authorReviewListPage(
             Authentication auth,
             Model model
-    ){
-       List<Article> articleList=articleService.getArticleByAuthor(memberService.getMemberInfo(auth.getName()));
+    ) throws Exception {
+        Member member=memberService.getMemberInfo(auth.getName());
+        BigInteger divide=new BigInteger("1000000000000000000");
+        ERC20Balance erc20Balance=new ERC20Balance();
+        Web3jService web3jService = new HttpService(RPC_URL);
+        Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+        EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+        Constellation constellation = new Constellation(service, web3j);
+        ContractGasProvider provider = new StaticGasProvider(
+                BigInteger.ZERO,
+                BigInteger.valueOf(1000000000L)
+        );
+        Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+        TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                credentials,
+                "",
+                Collections.emptyList(),
+                constellation,
+                TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                50);
+        double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+        model.addAttribute("tokenBalance",memberBalance);
+        model.addAttribute("memberName",member.getName());
 
+
+        List<Article> articleList=articleService.getArticleByAuthor(memberService.getMemberInfo(auth.getName()));
         if(articleList==null){
             return "redirect:/article";
         } else {
@@ -96,8 +144,33 @@ public class ArticleReviewController {
     @GetMapping("authorReview")
     private String authorReviewPage(
             @RequestParam("articleId")Long articleId,
-            Model model
-    ){
+            Model model,
+            Authentication auth
+    ) throws Exception {
+        Member member=memberService.getMemberInfo(auth.getName());
+        BigInteger divide=new BigInteger("1000000000000000000");
+        ERC20Balance erc20Balance=new ERC20Balance();
+        Web3jService web3jService = new HttpService(RPC_URL);
+        Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+        EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+        Constellation constellation = new Constellation(service, web3j);
+        ContractGasProvider provider = new StaticGasProvider(
+                BigInteger.ZERO,
+                BigInteger.valueOf(1000000000L)
+        );
+        Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+        TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                credentials,
+                "",
+                Collections.emptyList(),
+                constellation,
+                TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                50);
+        double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+        model.addAttribute("tokenBalance",memberBalance);
+        model.addAttribute("memberName",member.getName());
+
+
         Article article=articleService.getArticleById(articleId);
         String articleURL=articleFileService.loadArticle(article.getFileName());
         String articleFile=MvcUriComponentsBuilder.fromMethodName(ArticleReviewController.class,
@@ -112,8 +185,33 @@ public class ArticleReviewController {
     @GetMapping("/post")
     private String saveArticleReviewPage(
             @RequestParam("articleReviewId")Long articleReviewId,
-            Model model
-    ){
+            Model model,
+            Authentication auth
+    ) throws Exception {
+        Member member=memberService.getMemberInfo(auth.getName());
+        BigInteger divide=new BigInteger("1000000000000000000");
+        ERC20Balance erc20Balance=new ERC20Balance();
+        Web3jService web3jService = new HttpService(RPC_URL);
+        Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+        EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+        Constellation constellation = new Constellation(service, web3j);
+        ContractGasProvider provider = new StaticGasProvider(
+                BigInteger.ZERO,
+                BigInteger.valueOf(1000000000L)
+        );
+        Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+        TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                credentials,
+                "",
+                Collections.emptyList(),
+                constellation,
+                TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                50);
+        double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+        model.addAttribute("tokenBalance",memberBalance);
+        model.addAttribute("memberName",member.getName());
+
+
         ArticleReview articleReview=articleReviewService.getArticleReviewById(articleReviewId);
         String articleFile;
         String articleURL;
@@ -204,7 +302,7 @@ public class ArticleReviewController {
         boolean last= true;
         boolean isArticleReviewAccept=false;
         for(Member member:activityParticipants_Reviewer){
-              ArticleReview acceptArticleReview= articleReviewService.getArticleReviewByAcceptMember(member,articleReview);
+            ArticleReview acceptArticleReview= articleReviewService.getArticleReviewByAcceptMember(member,articleReview);
             if(acceptArticleReview.getAcceptTask() && last){
                 isArticleReviewAccept=true;
                 last=true;

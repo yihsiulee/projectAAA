@@ -5,112 +5,115 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>Paper Review</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
-		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
-	</head>
-	<body>
+<head>
+	<title>Paper Review</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+	<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
+</head>
+<body>
 
-	<!-- Header -->
-	<header id="header">
-		<h1><a href="/">Paper Review!</a></h1>
-		<a href="#nav">Menu</a>
-	</header>
-
-
-	<!-- Nav -->
-		<nav id="nav">
-			<ul class="links">
-				<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
-				<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
-				<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
-				<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
-				<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
-			</ul>
-		</nav>
+<!-- Header -->
+<header id="header">
+	<h1><a href="/">Paper Review!</a></h1>
+	<a th:href="@{member/Info}" th:text="${memberName}"></a>
+	<a th:text="'PRV:'+${tokenBalance}"></a>
+	<a th:href="@{member/logout}">Logout</a>
+	<a href="#nav">Menu</a>
+</header>
 
 
-		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="container">
+<!-- Nav -->
+<nav id="nav">
+	<ul class="links">
+		<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+		<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
+		<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
+		<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
+		<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+	</ul>
+</nav>
 
-					<header class="major special">
-						<h2>審核頁面</h2>
-						
-					</header>
-					<div>
 
-					<li th:text="'文章名稱：'+${articleReview.getArticle().articleName}"></li>
-					<br>
-						<li>文章下載 &nbsp;&nbsp;&nbsp;&nbsp;
-							<label for="file-uploads" class="button">
-								<i class="fa fa-file-text-o"></i>
-								<a th:href="${articleReview.getArticle().uploadFile}" th:text="${articleReview.getArticle().fileName}"  class="button"></a>
-									<input id="file-uploads" style="display:none;">
-							</label>
+<!-- Main -->
+<section id="main" class="wrapper">
+	<div class="container">
 
-						</li>
-					<form href="/articleReview/post" method="post">
+		<header class="major special">
+			<h2>審核頁面</h2>
 
-						<input type="hidden"  name="articleReviewId" id="articleReviewId"th:value="${articleReview.id}" >
-						<textarea cols="50" rows="5" name="reviewText" id="reviewText" style="text-align: left;" th:text="${articleReview.reviewText}">
+		</header>
+		<div>
+
+			<li th:text="'文章名稱：'+${articleReview.getArticle().articleName}"></li>
+			<br>
+			<li>文章下載 &nbsp;&nbsp;&nbsp;&nbsp;
+				<label for="file-uploads" class="button">
+					<i class="fa fa-file-text-o"></i>
+					<a th:href="${articleReview.getArticle().uploadFile}" th:text="${articleReview.getArticle().fileName}"  class="button"></a>
+					<input id="file-uploads" style="display:none;">
+				</label>
+
+			</li>
+			<form href="/articleReview/post" method="post">
+
+				<input type="hidden"  name="articleReviewId" id="articleReviewId"th:value="${articleReview.id}" >
+				<textarea cols="50" rows="5" name="reviewText" id="reviewText" style="text-align: left;" th:text="${articleReview.reviewText}">
 						</textarea>
 
-					<br>	
+				<br>
 
-					<div style="float: right;">
-						<input type="reset" class="button alt" value="重新填寫"/>
-						<a href='#' onclick="this.href='/articleReview/saveDraft?articleReviewId='+document.getElementById('articleReviewId').value+'&reviewText='+document.getElementById('reviewText').value" class="button" id="href">儲存</a>
-						<input type="submit" class="button special" value="上傳"/>
-					</div>
-						
-
-
-					</form>
-					</div>
-
+				<div style="float: right;">
+					<input type="reset" class="button alt" value="重新填寫"/>
+					<a href='#' onclick="this.href='/articleReview/saveDraft?articleReviewId='+document.getElementById('articleReviewId').value+'&reviewText='+document.getElementById('reviewText').value" class="button" id="href">儲存</a>
+					<input type="submit" class="button special" value="上傳"/>
 				</div>
-			</section>
-
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-facebook">
-							<span class="label">Facebook</span>
-						</a></li>
-						<li><a href="#" class="icon fa-twitter">
-							<span class="label">Twitter</span>
-						</a></li>
-						<li><a href="#" class="icon fa-instagram">
-							<span class="label">Instagram</span>
-						</a></li>
-						<li><a href="#" class="icon fa-linkedin">
-							<span class="label">LinkedIn</span>
-						</a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled.</li>
-						<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
-						<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
-					</ul>
-				</div>
-			</footer>
-
-		<!-- Scripts -->
-			<script th:src="@{/assets/js/jquery.min.js}"></script>
-			<script th:src="@{/assets/js/skel.min.js}"></script>
-			<script th:src="@{/assets/js/util.js}"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script th:src="@{/assets/js/main.js}"></script>
 
 
 
-	</body>
+			</form>
+		</div>
+
+	</div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<ul class="icons">
+			<li><a href="#" class="icon fa-facebook">
+				<span class="label">Facebook</span>
+			</a></li>
+			<li><a href="#" class="icon fa-twitter">
+				<span class="label">Twitter</span>
+			</a></li>
+			<li><a href="#" class="icon fa-instagram">
+				<span class="label">Instagram</span>
+			</a></li>
+			<li><a href="#" class="icon fa-linkedin">
+				<span class="label">LinkedIn</span>
+			</a></li>
+		</ul>
+		<ul class="copyright">
+			<li>&copy; Untitled.</li>
+			<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
+			<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+		</ul>
+	</div>
+</footer>
+
+<!-- Scripts -->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/skel.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script th:src="@{/assets/js/main.js}"></script>
+
+
+
+</body>
 </html>

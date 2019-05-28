@@ -20,6 +20,9 @@
 <!-- Header -->
 <header id="header">
     <h1><a href="/">Paper Review!</a></h1>
+    <a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${tokenBalance}"></a>
+    <a th:if="${isAuth}"  th:text="'PRV:'+${memberName}"></a>
+    <a th:if="${isAuth}"  th:href="@{member/logout}">Logout</a>
     <a href="#nav">Menu</a>
 </header>
 
@@ -45,8 +48,8 @@
         </header>
 
         <div class="table-wrapper" th:each="activityManagementList : ${activityManagementList}">
-<!--            <li th:each="file : ${image}">-->
-<!--                <img th:src="${file}">-->
+            <!--            <li th:each="file : ${image}">-->
+            <!--                <img th:src="${file}">-->
             <p th:text="${activityManagementList.activityName}">
             <table>
                 <thead>
@@ -60,52 +63,52 @@
                 </thead>
                 <tbody  th:each="article:${activityManagementList.getArticle()}">
 
-                    <td th:text="${article.articleName}"></td>
-                    <td th:text="${article.postTime}"></td>
-                    <td th:text="${article.articleValue}"></td>
-                    <td th:switch="${article.articleState}">
-                        <button  class="btn success" th:case="reviewFinish">審核完成</button>
-                        <button class="btn info"  th:case="reviewing">審稿中</button>
-                        <button class="btn warning"  th:case="assignUnfinished">分配未完成</button>
-                        <button class="btn danger"  th:case="assign">待回覆</button>
-                        <button class="btn default" th:case="notAssign">未指派</button>
-                    <td th:switch="${article.articleState}">
-<!--                        <a th:onclick="document.getElementById(/*[[${article.id}]]*/+'check').style.display='block'" class=" button alt small">Check</a>-->
-                        <a th:onclick="'javascript:checkBlock('+${article.id}+');'" class=" button alt small">Check</a>
-                        <div th:id="${article.id}+'check'" class="w3-modal">
-                            <div class="w3-modal-content">
-                                <div class="w3-container">
-                                    <span th:onclick="'javascript:checkClose('+${article.id}+');'" class="w3-button w3-display-topright">&times;</span>
+                <td th:text="${article.articleName}"></td>
+                <td th:text="${article.postTime}"></td>
+                <td th:text="${article.articleValue}"></td>
+                <td th:switch="${article.articleState}">
+                    <button  class="btn success" th:case="reviewFinish">審核完成</button>
+                    <button class="btn info"  th:case="reviewing">審稿中</button>
+                    <button class="btn warning"  th:case="assignUnfinished">分配未完成</button>
+                    <button class="btn danger"  th:case="assign">待回覆</button>
+                    <button class="btn default" th:case="notAssign">未指派</button>
+                <td th:switch="${article.articleState}">
+                    <!--                        <a th:onclick="document.getElementById(/*[[${article.id}]]*/+'check').style.display='block'" class=" button alt small">Check</a>-->
+                    <a th:onclick="'javascript:checkBlock('+${article.id}+');'" class=" button alt small">Check</a>
+                    <div th:id="${article.id}+'check'" class="w3-modal">
+                        <div class="w3-modal-content">
+                            <div class="w3-container">
+                                <span th:onclick="'javascript:checkClose('+${article.id}+');'" class="w3-button w3-display-topright">&times;</span>
 
-                                    <iframe th:replace="articleReviewTable::#articleReviewTable"></iframe>
-                                </div>
+                                <iframe th:replace="articleReviewTable::#articleReviewTable"></iframe>
                             </div>
                         </div>
+                    </div>
 
-                        <a th:if="${article.articleState} eq 'notAssign' or ${article.articleState} eq 'assignUnfinished'" th:onclick="'javascript:assignBlock('+${article.id}+');'" class=" button special small">Assign</a>
-<!--                        th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}"-->
-                        <div th:id="${article.id}+'assign'" class="w3-modal">
-                            <div class="w3-modal-content">
-                                <div class="w3-container">
-                                    <span th:onclick="'javascript:assignClose('+${article.id}+');'" class="w3-button w3-display-topright" >&times;</span>
+                    <a th:if="${article.articleState} eq 'notAssign' or ${article.articleState} eq 'assignUnfinished'" th:onclick="'javascript:assignBlock('+${article.id}+');'" class=" button special small">Assign</a>
+                    <!--                        th:href="@{assign(activityId=${activityManagementList.id},articleId=${article.id})}"-->
+                    <div th:id="${article.id}+'assign'" class="w3-modal">
+                        <div class="w3-modal-content">
+                            <div class="w3-container">
+                                <span th:onclick="'javascript:assignClose('+${article.id}+');'" class="w3-button w3-display-topright" >&times;</span>
 
-                                    <iframe th:replace="activityMember::#activityMember"></iframe>
-                                </div>
+                                <iframe th:replace="activityMember::#activityMember"></iframe>
                             </div>
                         </div>
+                    </div>
 
-                        <a th:if="${article.articleState} eq 'reviewing' or ${article.articleState} eq 'reviewFinish'"th:onclick="'javascript:finishBlock('+${article.id}+');'" class=" button small">Finish</a>
-                        <div th:id="${article.id}+'finish'" class="w3-modal">
-                            <div class="w3-modal-content" >
-                                <div class="w3-container"  >
-                                    <span th:onclick="'javascript:finishClose('+${article.id}+');'" class="w3-button w3-display-topright" >&times;</span>
+                    <a th:if="${article.articleState} eq 'reviewing' or ${article.articleState} eq 'reviewFinish'"th:onclick="'javascript:finishBlock('+${article.id}+');'" class=" button small">Finish</a>
+                    <div th:id="${article.id}+'finish'" class="w3-modal">
+                        <div class="w3-modal-content" >
+                            <div class="w3-container"  >
+                                <span th:onclick="'javascript:finishClose('+${article.id}+');'" class="w3-button w3-display-topright" >&times;</span>
 
-                                    <iframe th:replace="articleReviewFinishTable::#articleReviewFinishTable" style="border:none;width:100%;height:600px"></iframe>
-                                </div>
+                                <iframe th:replace="articleReviewFinishTable::#articleReviewFinishTable" style="border:none;width:100%;height:600px"></iframe>
                             </div>
                         </div>
+                    </div>
 
-                    </td>
+                </td>
                 </tr>
                 </tbody>
             </table>

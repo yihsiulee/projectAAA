@@ -8,6 +8,7 @@ import com.allpass.projectAAA.Model.ArticleReview;
 import com.allpass.projectAAA.Model.Member;
 import com.allpass.projectAAA.Service.*;
 import com.allpass.projectAAA.Web3jFunc.DeployCONTRACT;
+import com.allpass.projectAAA.Web3jFunc.ERC20Balance;
 import com.allpass.projectAAA.Web3jFunc.SmartCONTRACT;
 import com.allpass.projectAAA.util.Study;
 import okhttp3.OkHttpClient;
@@ -71,13 +72,80 @@ public class ActivityController {
     //活動功能頁面
     @RequestMapping(value = "")
     private String activityFuctionPage(
-            Model model
-    ){
-        return "activity";}
+            Model model,
+            Authentication auth
+    ) throws Exception {
+        if(auth!=null){
+            Member member=memberService.getMemberInfo(auth.getName());
+
+            BigInteger divide=new BigInteger("1000000000000000000");
+            ERC20Balance erc20Balance=new ERC20Balance();
+            Web3jService web3jService = new HttpService(RPC_URL);
+            Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+            EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+            Constellation constellation = new Constellation(service, web3j);
+            ContractGasProvider provider = new StaticGasProvider(
+                    BigInteger.ZERO,
+                    BigInteger.valueOf(1000000000L)
+            );
+            Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+            TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                    credentials,
+                    "",
+                    Collections.emptyList(),
+                    constellation,
+                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                    50);
+            double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+            model.addAttribute("isAuth",true);
+            model.addAttribute("tokenBalance",memberBalance);
+            model.addAttribute("memberName",member.getName());
+            return "qa";
+        }else{
+            model.addAttribute("isAuth",false);
+            model.addAttribute("tokenBalance","");
+            model.addAttribute("memberName","");
+        }
+        return "activity";
+    }
 
     //查看能參加活動
     @RequestMapping(value = "/list")
-    private String activityListPage(Model model){
+    private String activityListPage(
+            Model model,
+            Authentication auth
+    ) throws Exception {
+
+        if(auth!=null){
+            Member member=memberService.getMemberInfo(auth.getName());
+
+            BigInteger divide=new BigInteger("1000000000000000000");
+            ERC20Balance erc20Balance=new ERC20Balance();
+            Web3jService web3jService = new HttpService(RPC_URL);
+            Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+            EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+            Constellation constellation = new Constellation(service, web3j);
+            ContractGasProvider provider = new StaticGasProvider(
+                    BigInteger.ZERO,
+                    BigInteger.valueOf(1000000000L)
+            );
+            Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+            TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                    credentials,
+                    "",
+                    Collections.emptyList(),
+                    constellation,
+                    TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                    50);
+            double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+            model.addAttribute("isAuth",true);
+            model.addAttribute("tokenBalance",memberBalance);
+            model.addAttribute("memberName",member.getName());
+        }else{
+            model.addAttribute("isAuth",false);
+            model.addAttribute("tokenBalance","");
+            model.addAttribute("memberName","");
+        }
 
         List<Activity>activityList=activityService.getActivityList();
 //        activityList.forEach(item->System.out.println(item.getActivityName()));
@@ -85,9 +153,9 @@ public class ActivityController {
 //        List<String> activity_Study=new ArrayList<>();
         List<String> activity_Image = new ArrayList<>();
         for(Activity image:activityList) {
-                img.add(image.getActivityImg());
+            img.add(image.getActivityImg());
         }
-        img.forEach(i->System.out.println(i));
+//        img.forEach(i->System.out.println(i));
 
         //System.out.println(img);
 
@@ -150,10 +218,36 @@ public class ActivityController {
 
     //舉辦活動表單
     @RequestMapping(value = "/hold")
-    private String activityHoid(){
+    private String activityHoid(
+            Model model,
+            Authentication auth
+    ) throws Exception {
+        Member member=memberService.getMemberInfo(auth.getName());
+        BigInteger divide=new BigInteger("1000000000000000000");
+        ERC20Balance erc20Balance=new ERC20Balance();
+        Web3jService web3jService = new HttpService(RPC_URL);
+        Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+        EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+        Constellation constellation = new Constellation(service, web3j);
+        ContractGasProvider provider = new StaticGasProvider(
+                BigInteger.ZERO,
+                BigInteger.valueOf(1000000000L)
+        );
+        Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+        TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                credentials,
+                "",
+                Collections.emptyList(),
+                constellation,
+                TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                50);
+        double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+        model.addAttribute("tokenBalance",memberBalance);
+        model.addAttribute("memberName",member.getName());
+
         return "activityHold";
     }
-//    params = {"activityName", "activityContent", "activityStart", "activityEnd", "activityImg", "articleNumber", "participantNumber"}
+    //    params = {"activityName", "activityContent", "activityStart", "activityEnd", "activityImg", "articleNumber", "participantNumber"}
     //舉辦活動
     @PostMapping(value = "/hold")
     private String saveActivity(
@@ -212,7 +306,31 @@ public class ActivityController {
     private String activityManagementPage(
             Authentication auth,
             Model model
-    ){
+    ) throws Exception {
+
+        Member member=memberService.getMemberInfo(auth.getName());
+        BigInteger divide=new BigInteger("1000000000000000000");
+        ERC20Balance erc20Balance=new ERC20Balance();
+        Web3jService web3jService = new HttpService(RPC_URL);
+        Quorum web3j = new JsonRpc2_0Quorum(web3jService, 50, Async.defaultExecutorService());
+        EnclaveService service = new EnclaveService(URL, PORT, new OkHttpClient());
+        Constellation constellation = new Constellation(service, web3j);
+        ContractGasProvider provider = new StaticGasProvider(
+                BigInteger.ZERO,
+                BigInteger.valueOf(1000000000L)
+        );
+        Credentials credentials = Credentials.create(member.getBlockchainPrivateKey());
+        TransactionManager transactionManager = new QuorumTransactionManager(web3j,
+                credentials,
+                "",
+                Collections.emptyList(),
+                constellation,
+                TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH,
+                50);
+        double memberBalance=erc20Balance.mybalance(web3j,transactionManager,credentials.getAddress()).divide(divide).doubleValue();
+        model.addAttribute("tokenBalance",memberBalance);
+        model.addAttribute("memberName",member.getName());
+
         Long memberId = null;
         List<String> articleFileName=new ArrayList<>();
         if(auth.isAuthenticated()){
@@ -249,7 +367,7 @@ public class ActivityController {
                     if(!articleReviewList.isEmpty() && articleState.equals("reviewing")){
                         boolean isArticleReviewComplete=false;
                         boolean last=true;
-                            for(ArticleReview articleReview:articleReviewList) {
+                        for(ArticleReview articleReview:articleReviewList) {
 
                             if(articleReview.getReviewComplete() && last){
                                 isArticleReviewComplete=true;
@@ -284,10 +402,10 @@ public class ActivityController {
             @RequestParam("activityId")Long activityId,
             Model model
     ){
-            Activity activity=activityService.getActivityById(activityId);
-            model.addAttribute("articleId",articleId);
-            model.addAttribute("activity",activity);
-            return "activityManagement";
+        Activity activity=activityService.getActivityById(activityId);
+        model.addAttribute("articleId",articleId);
+        model.addAttribute("activity",activity);
+        return "activityManagement";
     }
 
     @PostMapping(value = "/assign")

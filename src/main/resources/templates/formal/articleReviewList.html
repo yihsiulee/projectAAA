@@ -20,6 +20,9 @@
 <!-- Header -->
 <header id="header">
     <h1><a href="/">Paper Review!</a></h1>
+    <a th:href="@{member/Info}" th:text="${memberName}"></a>
+    <a th:text="'PRV:'+${tokenBalance}"></a>
+    <a th:href="@{member/logout}">Logout</a>
     <a href="#nav">Menu</a>
 </header>
 
@@ -59,7 +62,7 @@
                 <tr>
                     <td th:text="${articleReviewList.getArticle().articleName}"></td>
                     <td th:text="${articleReviewList.getArticle().getActivity().ActivityName}"></td>
-                    <td th:text="${articleReviewList.getArticle().deadline}">{articleDeadline}</td>
+                    <td th:text="${articleReviewList.getArticle().deadline}"></td>
                     <td>
                         <a class="button special"th:href="@{post(articleReviewId=${articleReviewList.id})}">Review!</a>
                     </td>
@@ -67,7 +70,7 @@
                 </tbody>
             </table>
         </div>
-        </div>
+    </div>
 </section>
 
 <!-- Footer -->

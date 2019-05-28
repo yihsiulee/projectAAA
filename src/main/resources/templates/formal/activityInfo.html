@@ -6,49 +6,49 @@
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 
-    <div class="container" id="activityInfo">
-        <header class="major special">
-            <h2>活動資訊</h2>
-            <p></p>
-        </header>
+<div class="container" id="activityInfo">
+    <header class="major special">
+        <h2>活動資訊</h2>
+        <p></p>
+    </header>
 
-        <div>
-            <table class="alt">
+    <div>
+        <table class="alt">
 
-                <tbody>
+            <tbody>
 
 
-                <tr>
-                    <td>活動名稱</td>
-                    <td th:text="${activityList.activityName}"></td>
-                </tr>
-                <tr>
-                    <td>活動領域</td>
-                    <td th:text="${activityList.activityStudy}"></td>
-                </tr>
-                <tr>
-                    <td>活動日期</td>
-                    <td th:text="${activityList.activityTime}"></td>
-                </tr>
-                <tr>
-                    <td>活動主辦人</td>
-                    <td th:text="${activityList.activityOrganizer.name}"></td>
-                </tr>
-                <tr>
-                    <td>文章數量</td>
-                    <td th:text="${activityList.articleNumber}"></td>
-                </tr>
-                <tr>
-                    <td>活動人數</td>
-                    <td th:text="${activityList.limitedParticipants}"></td>
-                </tr>
-                <tr>
-                    <td>活動內容</td>
-                    <td th:text="${activityList.activityContent}"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+            <tr>
+                <td>活動名稱</td>
+                <td th:text="${activityList.activityName}"></td>
+            </tr>
+            <tr>
+                <td>活動領域</td>
+                <td th:text="${activityList.activityStudy}"></td>
+            </tr>
+            <tr>
+                <td>活動日期</td>
+                <td th:text="${activityList.activityTime}"></td>
+            </tr>
+            <tr>
+                <td>活動主辦人</td>
+                <td th:text="${activityList.activityOrganizer.name}"></td>
+            </tr>
+            <tr>
+                <td>文章數量</td>
+                <td th:text="${activityList.articleNumber}"></td>
+            </tr>
+            <tr>
+                <td>活動人數</td>
+                <td th:text="${activityList.limitedParticipants}"></td>
+            </tr>
+            <tr>
+                <td>活動內容</td>
+                <td th:text="${activityList.activityContent}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+</div>
 
 </html>

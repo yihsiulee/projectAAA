@@ -41,6 +41,10 @@
 <!-- Header -->
 <header id="header">
     <h1><a href="/">Paper Review!</a></h1>
+    <a th:unless="${isAuth}" th:href="@{member/login}">LogIn</a>
+    <a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${memberName}"></a>
+    <a th:if="${isAuth}"  th:text="'PRV:'+${tokenBalance}"></a>
+    <a th:if="${isAuth}"  th:href="@{member/logout}">Logout</a>
     <a href="#nav">Menu</a>
 </header>
 
@@ -95,7 +99,7 @@
             </div>
 
             <div class="column">
-<!--                (memberIdCardNumber=${memberIdCardNumber})-->
+                <!--                (memberIdCardNumber=${memberIdCardNumber})-->
                 <div class="card"><a th:href="@{activity/management}">
                     <h2>Acrtivity Management</h2>
                     <h2>活&nbsp;動&nbsp;管&nbsp;理</h2>

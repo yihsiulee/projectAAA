@@ -5,199 +5,202 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>Paper Review</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
-		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<link rel="stylesheet" type="text/css" th:href="@{/assets/css/dateRangePicker.css}"/>
-		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
-	</head>
-	<body>
+<head>
+	<title>Paper Review</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/dateRangePicker.css}"/>
+	<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
+</head>
+<body>
 
-	<!-- Header -->
-	<header id="header">
-		<h1><a href="/">Paper Review!</a></h1>
-		<a href="#nav">Menu</a>
-	</header>
-
-
-		<!-- Nav -->
-
-		<!-- Nav -->
-		<nav id="nav">
-			<ul class="links">
-				<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
-				<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
-				<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
-				<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
-				<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
-			</ul>
-		</nav>
+<!-- Header -->
+<header id="header">
+	<h1><a href="/">Paper Review!</a></h1>
+	<a th:href="@{member/Info}" th:text="${memberName}"></a>
+	<a th:text="'PRV:'+${tokenBalance}"></a>
+	<a th:href="@{member/logout}">Logout</a>
+	<a href="#nav">Menu</a>
+</header>
 
 
+<!-- Nav -->
 
-		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="container">
-
-					<header class="major special">
-						<h2>舉辦活動</h2>
-					</header>
-
-					<form action="/activity/hold" enctype="multipart/form-data" method="post">
-
-						<div class="table">
-							<table class="alt">
-								<thead>
-									<tr></tr>
-									<tr></tr>
-								</thead>
-								<tbody>
-									<tr><div class="6u 12u$">
-										<td>
-											<h4 style="text-align: center;"><a class="esstential">*</a>活動名稱：</h4>
-										</td>
-										<td colspan="3">
-											<input type="text" name="activityName" id="activityName" value="" placeholder="活動名稱" required/>
-										</td>
-									</div></tr>
-
-
-									<tr><div class="6u 12u$">
-										<td>
-											<h4 style="text-align: center;"><a class="esstential">*</a>活動內容：</h4>
-										</td>
-										<td colspan="3">
-											<textarea type="text" name="activityContent" id="activityContent" value="" placeholder="活動內容" rows="3" required></textarea>
-										</td>
-									</div></tr>
-
-
-									<tr><div class="6u 12u$">
-										<td>
-											<h4 style="text-align: center;"><a class="esstential">*</a>活動時間：</h4>
-										</td>
-										<td colspan="3">
-											<input type="text"  class="6u 12u$"name="dateRange" required/>
-
-										</td>
-									</div></tr>
-									<tr>
-										<td align="center"><h4><a class="esstential">*</a>領域:</h4></td>
-										<td colspan="3">
-											<div class="12u$">
-												<div class="select-wrapper">
-													<select name="activityStudy" id="activityStudy" required />
-													<option value="">-領域-</option>
-													<option value="0">醫學</option>
-													<option value="1">生科</option>
-													<option value="2">商科</option>
-													<option value="3">資訊</option>
-													<option value="4">工程</option>
-													<option value="5">社會科學</option>
-												</div>
-											</div>
-										</td>
-
-
-									</tr>
-
-
-									<tr><div class="6u 12u$">
-										<td>
-											<h4 style="text-align: center;"><a class="esstential">*</a>上傳圖片：</h4>
-										</td>
-										<td colspan="3">
-
-											<label for="file-uploads" class="button">
-												<i class="fa fa-file-text-o"></i>上傳圖片
-											</label>
-											<input id="file-uploads" style="display:none;" type="file" name="activityImg" required/>
-										</td>
-									</div></tr>
+<!-- Nav -->
+<nav id="nav">
+	<ul class="links">
+		<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+		<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
+		<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
+		<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
+		<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+	</ul>
+</nav>
 
 
 
-									<tr><div class="6u 12u$(xsmall)" >
-										<td>
-											<h4 style="text-align: center;"><a class="esstential">*</a>文章數量：</h4>
-										</td>
-										<td>
-											<input type="number" min="0" onchange="updateParticipantNumber(this.value)" name="articleNumber" id="articleNumber"placeholder="文章數量：" style="width: 80%" required/>
-										</td>
-										<td>
-											<h4 style="text-align: center;"><a class="esstential">*</a>參與人數：</h4>
-										</td>
-										<td>
-											<input type="number" name="participantNumber" id="participantNumber"placeholder="參與人數：" style="width: 80%" required/>
-										</td>
+<!-- Main -->
+<section id="main" class="wrapper">
+	<div class="container">
 
-									</div></tr>
-								</tbody>
-							</table>
+		<header class="major special">
+			<h2>舉辦活動</h2>
+		</header>
 
+		<form action="/activity/hold" enctype="multipart/form-data" method="post">
 
-						<br>
-						<div class="12u 12u$(xsmall)" style="text-align: right;">
-							<input type="reset" value="重新填寫" class="button alt">
-							<input type="submit" value="送出" class="button special">
-
-						</div>
-
-						</div>
-
-						</form>
+			<div class="table">
+				<table class="alt">
+					<thead>
+					<tr></tr>
+					<tr></tr>
+					</thead>
+					<tbody>
+					<tr><div class="6u 12u$">
+						<td>
+							<h4 style="text-align: center;"><a class="esstential">*</a>活動名稱：</h4>
+						</td>
+						<td colspan="3">
+							<input type="text" name="activityName" id="activityName" value="" placeholder="活動名稱" required/>
+						</td>
+					</div></tr>
 
 
+					<tr><div class="6u 12u$">
+						<td>
+							<h4 style="text-align: center;"><a class="esstential">*</a>活動內容：</h4>
+						</td>
+						<td colspan="3">
+							<textarea type="text" name="activityContent" id="activityContent" value="" placeholder="活動內容" rows="3" required></textarea>
+						</td>
+					</div></tr>
 
 
+					<tr><div class="6u 12u$">
+						<td>
+							<h4 style="text-align: center;"><a class="esstential">*</a>活動時間：</h4>
+						</td>
+						<td colspan="3">
+							<input type="text"  class="6u 12u$"name="dateRange" required/>
+
+						</td>
+					</div></tr>
+					<tr>
+						<td align="center"><h4><a class="esstential">*</a>領域:</h4></td>
+						<td colspan="3">
+							<div class="12u$">
+								<div class="select-wrapper">
+									<select name="activityStudy" id="activityStudy" required />
+									<option value="">-領域-</option>
+									<option value="0">醫學</option>
+									<option value="1">生科</option>
+									<option value="2">商科</option>
+									<option value="3">資訊</option>
+									<option value="4">工程</option>
+									<option value="5">社會科學</option>
+								</div>
+							</div>
+						</td>
+
+
+					</tr>
+
+
+					<tr><div class="6u 12u$">
+						<td>
+							<h4 style="text-align: center;"><a class="esstential">*</a>上傳圖片：</h4>
+						</td>
+						<td colspan="3">
+
+							<label for="file-uploads" class="button">
+								<i class="fa fa-file-text-o"></i>上傳圖片
+							</label>
+							<input id="file-uploads" style="display:none;" type="file" name="activityImg" required/>
+						</td>
+					</div></tr>
+
+
+
+					<tr><div class="6u 12u$(xsmall)" >
+						<td>
+							<h4 style="text-align: center;"><a class="esstential">*</a>文章數量：</h4>
+						</td>
+						<td>
+							<input type="number" min="0" onchange="updateParticipantNumber(this.value)" name="articleNumber" id="articleNumber"placeholder="文章數量：" style="width: 80%" required/>
+						</td>
+						<td>
+							<h4 style="text-align: center;"><a class="esstential">*</a>參與人數：</h4>
+						</td>
+						<td>
+							<input type="number" name="participantNumber" id="participantNumber"placeholder="參與人數：" style="width: 80%" required/>
+						</td>
+
+					</div></tr>
+					</tbody>
+				</table>
+
+
+				<br>
+				<div class="12u 12u$(xsmall)" style="text-align: right;">
+					<input type="reset" value="重新填寫" class="button alt">
+					<input type="submit" value="送出" class="button special">
 
 				</div>
-			</section>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-facebook">
-							<span class="label">Facebook</span>
-						</a></li>
-						<li><a href="#" class="icon fa-twitter">
-							<span class="label">Twitter</span>
-						</a></li>
-						<li><a href="#" class="icon fa-instagram">
-							<span class="label">Instagram</span>
-						</a></li>
-						<li><a href="#" class="icon fa-linkedin">
-							<span class="label">LinkedIn</span>
-						</a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled.</li>
-						<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
-						<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
-					</ul>
-				</div>
-			</footer>
-	</body>
+			</div>
+
+		</form>
 
 
-			<script th:src="@{/assets/js/jquery.min.js}"></script>
-			<script th:src="@{/assets/js/skel.min.js}"></script>
-			<script th:src="@{/assets/js/util.js}"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script th:src="@{/assets/js/main.js}"></script>
+
+
+
+	</div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<ul class="icons">
+			<li><a href="#" class="icon fa-facebook">
+				<span class="label">Facebook</span>
+			</a></li>
+			<li><a href="#" class="icon fa-twitter">
+				<span class="label">Twitter</span>
+			</a></li>
+			<li><a href="#" class="icon fa-instagram">
+				<span class="label">Instagram</span>
+			</a></li>
+			<li><a href="#" class="icon fa-linkedin">
+				<span class="label">LinkedIn</span>
+			</a></li>
+		</ul>
+		<ul class="copyright">
+			<li>&copy; Untitled.</li>
+			<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
+			<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+		</ul>
+	</div>
+</footer>
+</body>
+
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/skel.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script th:src="@{/assets/js/main.js}"></script>
 <!--	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"/>-->
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>
-	 <script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
-	 <script type="text/javascript" th:src="@{/assets/js/moment.min.js}"></script>
-	 <script type="text/javascript" th:src="@{/assets/js/daterangepicker.min.js}"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"/>
+<script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/moment.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/js/daterangepicker.min.js}"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script>
 		$(function() {
 			$('input[name="dateRange"]').daterangepicker({
 				opens: 'right',
@@ -211,12 +214,12 @@
 
 		});
 	</script>
-	<script>
+<script>
 	function updateParticipantNumber(value){
 		document.getElementById("participantNumber").value = value*4;
 	}
 	</script>
-	<script>
+<script>
 	// activityHold.html articlePost.html 檔案上傳
 		$('#file-uploads').change(function() {
 			var i = $(this).prev('label').clone();

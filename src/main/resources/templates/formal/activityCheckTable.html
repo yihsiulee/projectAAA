@@ -20,6 +20,9 @@
 <!-- Header -->
 <header id="header">
     <h1><a href="/">Paper Review!</a></h1>
+    <a th:href="@{member/Info}" th:text="${memberName}"></a>
+    <a th:text="'PRV:'+${tokenBalance}"></a>
+    <a th:href="@{member/logout}">Logout</a>
     <a href="#nav">Menu</a>
 </header>
 
@@ -45,85 +48,85 @@
         </header>
         <!-- start -->
         <div th:each="articleReview:${articleReview}">
-        <button class="accordion"th:text="${articleReview.article.activity.activityName}" ></button>
-        <div class="panel">
-            <header class="major special">
-                <h2>您收到一篇審文邀請</h2>
-                <h3>請登入網頁前往確認是否參與審文！</h3>
-                <div class="table-wrapp" style="width: 40%;margin-left:auto;margin-right: auto;" >
-                    <table class="alt" >
-                        <thead></thead>
-                        <tbody>
-                        <tr>
-                            <td align="center"><h4>活動名稱：</h4></td>
-                            <td th:text="${articleReview.article.activity.activityName}"></td>
-                        </tr>
-                        <tr>
-                            <td align="center"><h4>活動主辦人：</h4></td>
-                            <td th:text="${articleReview.article.activity.activityOrganizer.name}"></td>
-                        </tr>
-                        <tr>
-                            <td align="center"><h4>文章名稱：</h4></td>
-                            <td th:text="${articleReview.article.articleName}"></td>
-                        </tr>
-                        <tr>
-                            <td align="center"><h4>發表時間：</h4></td>
-                            <td th:text="${articleReview.article.postTime}"></td>
-                        </tr>
+            <button class="accordion"th:text="${articleReview.article.activity.activityName}" ></button>
+            <div class="panel">
+                <header class="major special">
+                    <h2>您收到一篇審文邀請</h2>
+                    <h3>請登入網頁前往確認是否參與審文！</h3>
+                    <div class="table-wrapp" style="width: 40%;margin-left:auto;margin-right: auto;" >
+                        <table class="alt" >
+                            <thead></thead>
+                            <tbody>
+                            <tr>
+                                <td align="center"><h4>活動名稱：</h4></td>
+                                <td th:text="${articleReview.article.activity.activityName}"></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><h4>活動主辦人：</h4></td>
+                                <td th:text="${articleReview.article.activity.activityOrganizer.name}"></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><h4>文章名稱：</h4></td>
+                                <td th:text="${articleReview.article.articleName}"></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><h4>發表時間：</h4></td>
+                                <td th:text="${articleReview.article.postTime}"></td>
+                            </tr>
 
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                         <div class="12u 12u$(xsmall)" style="text-align: right;">
                             <a class="button alt"  th:href="@{acceptTask(articleReviewId=${articleReview.id})}">確認</a>
                             <a class="button special" th:href="@{refuseTask(articleReviewId=${articleReview.id})}">拒絕</a>
                         </div>
-                </div>
-            </header>
+                    </div>
+                </header>
+
+            </div>
 
         </div>
 
-        </div>
-
-<!--        <button class="accordion">Section 2</button>-->
-<!--        <div class="panel">-->
-<!--            <header class="major special">-->
-<!--                <h2>您收到一篇審文邀請</h2>-->
-<!--                <h3>請登入網頁前往確認是否參與審文！</h3>-->
-<!--                <div class="table-wrapp" style="width:40%;margin-left:auto;margin-right: auto;">-->
-<!--                    <table class="alt"  >-->
-<!--                        <thead></thead>-->
-<!--                        <tbody >-->
-<!--                        <tr>-->
-<!--                            <td align="center"><h4>活動名稱：</h4></td>-->
-<!--                            <td th:text="${articleReview.article.activity.activityName}"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td align="center"><h4>活動主辦人：</h4></td>-->
-<!--                            <td th:text="${articleReview.article.activity.activityOrganizer.name}"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td align="center"><h4>文章名稱：</h4></td>-->
-<!--                            <td th:text="${articleReview.article.articleName}"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td align="center"><h4>發表時間：</h4></td>-->
-<!--                            <td th:text="${articleReview.article.postTime}"></td>-->
-<!--                        </tr>-->
+        <!--        <button class="accordion">Section 2</button>-->
+        <!--        <div class="panel">-->
+        <!--            <header class="major special">-->
+        <!--                <h2>您收到一篇審文邀請</h2>-->
+        <!--                <h3>請登入網頁前往確認是否參與審文！</h3>-->
+        <!--                <div class="table-wrapp" style="width:40%;margin-left:auto;margin-right: auto;">-->
+        <!--                    <table class="alt"  >-->
+        <!--                        <thead></thead>-->
+        <!--                        <tbody >-->
+        <!--                        <tr>-->
+        <!--                            <td align="center"><h4>活動名稱：</h4></td>-->
+        <!--                            <td th:text="${articleReview.article.activity.activityName}"></td>-->
+        <!--                        </tr>-->
+        <!--                        <tr>-->
+        <!--                            <td align="center"><h4>活動主辦人：</h4></td>-->
+        <!--                            <td th:text="${articleReview.article.activity.activityOrganizer.name}"></td>-->
+        <!--                        </tr>-->
+        <!--                        <tr>-->
+        <!--                            <td align="center"><h4>文章名稱：</h4></td>-->
+        <!--                            <td th:text="${articleReview.article.articleName}"></td>-->
+        <!--                        </tr>-->
+        <!--                        <tr>-->
+        <!--                            <td align="center"><h4>發表時間：</h4></td>-->
+        <!--                            <td th:text="${articleReview.article.postTime}"></td>-->
+        <!--                        </tr>-->
 
 
 
-<!--                        </tbody>-->
-<!--                    </table>-->
-<!--                    <form>-->
-<!--                        <div class="12u 12u$(xsmall)" style="text-align: right;">-->
-<!--                            <a class="button alt" th:href="@{/article}" >確認</a>-->
-<!--                            <a class="button special" th:href="@{articleReview/refuseTask(articleReviewId=${articleReview.id})}">拒絕</a>-->
+        <!--                        </tbody>-->
+        <!--                    </table>-->
+        <!--                    <form>-->
+        <!--                        <div class="12u 12u$(xsmall)" style="text-align: right;">-->
+        <!--                            <a class="button alt" th:href="@{/article}" >確認</a>-->
+        <!--                            <a class="button special" th:href="@{articleReview/refuseTask(articleReviewId=${articleReview.id})}">拒絕</a>-->
 
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
+        <!--                        </div>-->
+        <!--                    </form>-->
+        <!--                </div>-->
 
 
 

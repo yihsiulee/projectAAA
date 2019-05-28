@@ -8,75 +8,75 @@
 
 <!-- Main -->
 
-    <div id="activityMember" class="container">
+<div id="activityMember" class="container">
 
-        <header class="major special">
-            <h2>參與者</h2>
-            <p th:text="${activityManagementList.activityName}"></p>
-            <h4 th:if="${article.articleState} eq 'assignUnfinished'" th:text="'還有'+${article.articleReviewAssignNumber}+'名需要分配'"></h4>
-        </header>
-
-
+    <header class="major special">
+        <h2>參與者</h2>
+        <p th:text="${activityManagementList.activityName}"></p>
+        <h4 th:if="${article.articleState} eq 'assignUnfinished'" th:text="'還有'+${article.articleReviewAssignNumber}+'名需要分配'"></h4>
+    </header>
 
 
-        <form action="/activity/assign" method="post" >
-            <div class="table-wrapper" style="width:40%;margin-left: auto;margin-right: auto" >
-                <!-- <table class="alt" > -->
-                <input type="hidden" name="articleId" th:value="${article.id}" >
-                <input type="hidden" name="activityId" th:value="${activityManagementList.id}" >
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Assign</th>
-                        <th>Name</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr th:each="member:${activityManagementList.getActivityParticipants_Reviewer()}">
-                        <td style="width: 20%" >
-                            <label class="containerbox"><input type="checkbox" name="reviewMember" th:value="${member.idCardNumber}">
-                                <span class="checkmark"></span>
-                            </label>
-                        </td>
-                        <td th:text="${member.name}"></td>
-
-                    </tr>
-<!--                    <tr>-->
-<!--                        <td style="width: 20%" >-->
-<!--                            <label class="containerbox"><input type="checkbox" >-->
-<!--                                <span class="checkmark"></span>-->
-<!--                            </label>-->
-<!--                        </td>-->
-<!--                        <td>{activityparticipant}</td>-->
-
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td style="width: 20%" >-->
-<!--                            <label class="containerbox"><input type="checkbox" >-->
-<!--                                <span class="checkmark"></span>-->
-<!--                            </label>-->
-<!--                        </td>-->
-<!--                        <td>{activityparticipant}</td>-->
-
-<!--                    </tr>-->
 
 
-                    </tbody>
-                </table>
+    <form action="/activity/assign" method="post" >
+        <div class="table-wrapper" style="width:40%;margin-left: auto;margin-right: auto" >
+            <!-- <table class="alt" > -->
+            <input type="hidden" name="articleId" th:value="${article.id}" >
+            <input type="hidden" name="activityId" th:value="${activityManagementList.id}" >
+            <table>
+                <thead>
+                <tr>
+                    <th>Assign</th>
+                    <th>Name</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="member:${activityManagementList.getActivityParticipants_Reviewer()}">
+                    <td style="width: 20%" >
+                        <label class="containerbox"><input type="checkbox" name="reviewMember" th:value="${member.idCardNumber}">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td th:text="${member.name}"></td>
+
+                </tr>
+                <!--                    <tr>-->
+                <!--                        <td style="width: 20%" >-->
+                <!--                            <label class="containerbox"><input type="checkbox" >-->
+                <!--                                <span class="checkmark"></span>-->
+                <!--                            </label>-->
+                <!--                        </td>-->
+                <!--                        <td>{activityparticipant}</td>-->
+
+                <!--                    </tr>-->
+                <!--                    <tr>-->
+                <!--                        <td style="width: 20%" >-->
+                <!--                            <label class="containerbox"><input type="checkbox" >-->
+                <!--                                <span class="checkmark"></span>-->
+                <!--                            </label>-->
+                <!--                        </td>-->
+                <!--                        <td>{activityparticipant}</td>-->
+
+                <!--                    </tr>-->
 
 
-            </div>
+                </tbody>
+            </table>
 
-            <div class="12u 12u$(xsmall)" style="text-align: center;">
-                <input class="button alt" type="reset" value="重新填寫">
-                <input class="button special" type="submit" value="送出">
 
-            </div>
-        </form>
+        </div>
 
-    </div>
+        <div class="12u 12u$(xsmall)" style="text-align: center;">
+            <input class="button alt" type="reset" value="重新填寫">
+            <input class="button special" type="submit" value="送出">
+
+        </div>
+    </form>
+
+</div>
 
 
 

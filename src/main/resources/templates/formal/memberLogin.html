@@ -5,126 +5,178 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>Paper Review</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link  rel="stylesheet"   th:href="@{/assets/css/main.css}" />
-		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
-	</head>
-	<body>
+<head>
+	<title>Paper Review</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link  rel="stylesheet"   th:href="@{/assets/css/main.css}" />
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+	<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
+</head>
+<body>
 
-	<!-- Header -->
-	<header id="header">
-		<h1><a href="/">Paper Review!</a></h1>
-		<a href="#nav">Menu</a>
-	</header>
-
-
-	<!-- Nav -->
-		<nav id="nav">
-			<ul class="links">
-				<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
-				<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
-				<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
-				<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
-				<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
-			</ul>
-		</nav>
+<!-- Header -->
+<header id="header">
+	<h1><a href="/">Paper Review!</a></h1>
+	<a th:unless="${isAuth}" th:href="@{member/login}">LogIn</a>
+	<a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${memberName}"></a>
+	<a th:if="${isAuth}"  th:text="'PRV:'+${tokenBalance}"></a>
+	<a href="#nav">Menu</a>
+</header>
 
 
-		<!-- Main -->
-
-				<section id="main" class="wrapper">
-				<div class="container">
-
-					<header class="major special">
-						<h2>登入</h2>
-						<p>你的身分證＆密碼</p>
-					</header>
-
-
-						<!--<div class="row uniform 50%">-->
-						<div style="position: relative;left:35%">
-							<div th:if="${param.error}">
-								Invalid username and password.
-							</div>
-							<div th:if="${param.logout}">
-								You have been logged out.
-							</div>
-							<form th:action="@{/member/login}" method="post">
-								<div class="6u 12u$(xsmall)">
-									<li><h3>帳號（身分證字號）</h3></li>
-									<input type="text" name="username"  id="username" placeholder="帳號" style="width: 60%" />
-								</div>
-								<br>
-
-								<div class="6u 12u$(xsmall)" >
-									<li><h3>密碼</h3></li>
-									<input type="password" name="password" id="password"  placeholder="密碼" style="width: 60%" />
-								</div>
-								<br>
-								<div class="6u 12u$(xsmall)" >
-									<input type ="submit"  name="login-submit"
-										   id="login-submit" class="special" value="送出" />
-								</div>
-							</form>
-						</div>
-
-						<br><br>
+<!-- Nav -->
+<nav id="nav">
+	<ul class="links">
+		<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+		<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
+		<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
+		<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
+		<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+	</ul>
+</nav>
 
 
-							<div class="12u$" align="right"  >
-								<ul class="actions">
+<!-- Main -->
 
 
-									<li><input type="reset" value="忘記密碼"/></li>
+<section th:if="${isAuth}"  class="wrapper">
+	<div class="container">
 
-									<li>
-
-										<a href="/member/register"><input type ="submit" value="新創帳號" class="alt"/></a>
-									</li>
-								</ul>
-							</div>
+		<header class="major special">
+			<h2>登出</h2>
+		</header>
 
 
+		<!--<div class="row uniform 50%">-->
+		<div style="position: relative;left:35%">
+			<div th:if="${param.error}">
+				Invalid username and password.
+			</div>
+			<div th:if="${param.logout}">
+				You have been logged out.
+			</div>
+			<form th:action="@{/member/logout}" method="post">
 
-                </div>		</section>
-
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-facebook">
-							<span class="label">Facebook</span>
-						</a></li>
-						<li><a href="#" class="icon fa-twitter">
-							<span class="label">Twitter</span>
-						</a></li>
-						<li><a href="#" class="icon fa-instagram">
-							<span class="label">Instagram</span>
-						</a></li>
-						<li><a href="#" class="icon fa-linkedin">
-							<span class="label">LinkedIn</span>
-						</a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled.</li>
-						<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
-						<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
-					</ul>
+				<br>
+				<div class="6u 12u$(xsmall)" >
+					<input type ="submit"  name="login-submit"
+						   id="logout-submit" class="special" value="登出" />
 				</div>
-			</footer>
+			</form>
+		</div>
 
-		<!-- Scripts -->
-			<script th:src="@{/assets/js/jquery.min.js}"></script>
-			<script th:src="@{/assets/js/skel.min.js}"></script>
-			<script th:src="@{/assets/js/util.js}"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script th:src="@{/assets/js/main.js}"></script>
+		<br><br>
 
-	</body>
+
+		<div class="12u$" align="right"  >
+			<ul class="actions">
+
+
+				<li><input type="reset" value="忘記密碼"/></li>
+
+				<li>
+
+					<a href="/member/register"><input type ="submit" value="新創帳號" class="alt"/></a>
+				</li>
+			</ul>
+		</div>
+
+
+
+	</div>
+</section>
+
+<section th:unless="${isAuth}" id="main" class="wrapper">
+	<div class="container">
+
+		<header class="major special">
+			<h2>登入</h2>
+			<p>你的身分證＆密碼</p>
+		</header>
+
+
+		<!--<div class="row uniform 50%">-->
+		<div style="position: relative;left:35%">
+			<div th:if="${param.error}">
+				Invalid username and password.
+			</div>
+			<div th:if="${param.logout}">
+				You have been logged out.
+			</div>
+			<form th:action="@{/member/login}" method="post">
+				<div class="6u 12u$(xsmall)">
+					<li><h3>帳號（身分證字號）</h3></li>
+					<input type="text" name="username"  id="username" placeholder="帳號" style="width: 60%" />
+				</div>
+				<br>
+
+				<div class="6u 12u$(xsmall)" >
+					<li><h3>密碼</h3></li>
+					<input type="password" name="password" id="password"  placeholder="密碼" style="width: 60%" />
+				</div>
+				<br>
+				<div class="6u 12u$(xsmall)" >
+					<input type ="submit"  name="login-submit"
+						   id="login-submit" class="special" value="送出" />
+				</div>
+			</form>
+		</div>
+
+		<br><br>
+
+
+		<div class="12u$" align="right"  >
+			<ul class="actions">
+
+
+				<li><input type="reset" value="忘記密碼"/></li>
+
+				<li>
+
+					<a href="/member/register"><input type ="submit" value="新創帳號" class="alt"/></a>
+				</li>
+			</ul>
+		</div>
+
+
+
+	</div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<ul class="icons">
+			<li><a href="#" class="icon fa-facebook">
+				<span class="label">Facebook</span>
+			</a></li>
+			<li><a href="#" class="icon fa-twitter">
+				<span class="label">Twitter</span>
+			</a></li>
+			<li><a href="#" class="icon fa-instagram">
+				<span class="label">Instagram</span>
+			</a></li>
+			<li><a href="#" class="icon fa-linkedin">
+				<span class="label">LinkedIn</span>
+			</a></li>
+		</ul>
+		<ul class="copyright">
+			<li>&copy; Untitled.</li>
+			<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
+			<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+		</ul>
+	</div>
+</footer>
+
+<!-- Scripts -->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/skel.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script th:src="@{/assets/js/main.js}"></script>
+
+</body>
 </html>

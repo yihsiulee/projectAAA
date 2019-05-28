@@ -6,116 +6,120 @@
 -->
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-		<title>Paper Review</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
-		<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
-		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
-	</head>
-	<body>
+<head>
+	<title>Paper Review</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'/>
+	<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/assets/css/ie8.css}" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/assets/css/ie9.css}" /><![endif]-->
+</head>
+<body>
 
 
 
 
-	<!-- Header -->
-	<header id="header">
-		<h1><a href="/">Paper Review!</a></h1>
-		<a href="#nav">Menu</a>
-	</header>
+<!-- Header -->
+<header id="header">
+	<h1><a href="/">Paper Review!</a></h1>
+	<a th:unless="${isAuth}" th:href="@{member/login}">LogIn</a>
+	<a th:if="${isAuth}"  th:href="@{member/Info}" th:text="${memberName}"></a>
+	<a th:if="${isAuth}"  th:text="'PRV:'+${tokenBalance}"></a>
+	<a th:if="${isAuth}"  th:href="@{member/logout}">Logout</a>
+	<a href="#nav">Menu</a>
+</header>
 
 
 
 
-	<!-- Nav -->
-		<nav id="nav">
-			<ul class="links">
-				<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
-				<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
-				<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
-				<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
-				<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
-			</ul>
-		</nav>
+<!-- Nav -->
+<nav id="nav">
+	<ul class="links">
+		<li><a class="fa fa-home" href="/">&nbsp;&nbsp;Home</a></li>
+		<li><a class="fa fa-flag" href="/activity">&nbsp;&nbsp;Activity</a></li>
+		<li><a class="fa fa-file-text" href="/article">&nbsp;&nbsp;Article</a></li>
+		<li><a class="fa fa-users" href="/member/Info">&nbsp;&nbsp;Account</a></li>
+		<li><a class="fa fa-question-circle" href="/qa">&nbsp;&nbsp;Q&nbsp;&nbsp;&&nbsp;&nbsp;A</a></li>
+	</ul>
+</nav>
 
 
-		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="container">
+<!-- Main -->
+<section id="main" class="wrapper">
+	<div class="container">
 
-					<header class="major special">
-						<h2>Q&A常見問題集</h2>
-					</header>
-<!-- 動態版 -->
-					<div class="qa">
-						<p class="Question">論文幣是什麼</p>
-							<div class="Answer">
-						<p>論文幣（PRV）是Paper Review平台中的代幣，您可藉由審文或是購買獲得，亦可在活動中用以支付為您審稿的會員。</p>
-							</div>
-					</div>
+		<header class="major special">
+			<h2>Q&A常見問題集</h2>
+		</header>
+		<!-- 動態版 -->
+		<div class="qa">
+			<p class="Question">論文幣是什麼</p>
+			<div class="Answer">
+				<p>論文幣（PRV）是Paper Review平台中的代幣，您可藉由審文或是購買獲得，亦可在活動中用以支付為您審稿的會員。</p>
+			</div>
+		</div>
 
-					<div class="qa">
-						<p class="Question">我想參與審查paper，該怎麼做？</p>
-							<div class="Answer">
-						<p>>註冊一個帳號，提供關於您的學術經歷資料，驗證完成後系統就會根據您的專業領域派發待審paper給您。</p>
-							</div>
-					</div>
+		<div class="qa">
+			<p class="Question">我想參與審查paper，該怎麼做？</p>
+			<div class="Answer">
+				<p>>註冊一個帳號，提供關於您的學術經歷資料，驗證完成後系統就會根據您的專業領域派發待審paper給您。</p>
+			</div>
+		</div>
 
-					<div class="qa">
-						<p class="Question">我有待審的paper，我該怎麼加入？</p>
-							<div class="Answer">
-						<p>創建一個新帳號，確保有足夠的PRV以供支付審核所需費用，接下來就可以到activity上傳待審paper了。</p>
-							</div>
-					</div>
-					<div class="qa">
-						<p class="Question">我的論文有專利機密，會有外流風險嗎？</p>
-						<div class="Answer">
-							<p>您可以提高願意支付的token數量，讓您的論文審查指派排序向前移動。</p>
-						</div>
-					</div>
+		<div class="qa">
+			<p class="Question">我有待審的paper，我該怎麼加入？</p>
+			<div class="Answer">
+				<p>創建一個新帳號，確保有足夠的PRV以供支付審核所需費用，接下來就可以到activity上傳待審paper了。</p>
+			</div>
+		</div>
+		<div class="qa">
+			<p class="Question">我的論文有專利機密，會有外流風險嗎？</p>
+			<div class="Answer">
+				<p>您可以提高願意支付的token數量，讓您的論文審查指派排序向前移動。</p>
+			</div>
+		</div>
 
-				
-</div>
+
+	</div>
 </section>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-facebook">
-							<span class="label">Facebook</span>
-						</a></li>
-						<li><a href="#" class="icon fa-twitter">
-							<span class="label">Twitter</span>
-						</a></li>
-						<li><a href="#" class="icon fa-instagram">
-							<span class="label">Instagram</span>
-						</a></li>
-						<li><a href="#" class="icon fa-linkedin">
-							<span class="label">LinkedIn</span>
-						</a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled.</li>
-						<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
-						<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
-					</ul>
-				</div>
-			</footer>
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<ul class="icons">
+			<li><a href="#" class="icon fa-facebook">
+				<span class="label">Facebook</span>
+			</a></li>
+			<li><a href="#" class="icon fa-twitter">
+				<span class="label">Twitter</span>
+			</a></li>
+			<li><a href="#" class="icon fa-instagram">
+				<span class="label">Instagram</span>
+			</a></li>
+			<li><a href="#" class="icon fa-linkedin">
+				<span class="label">LinkedIn</span>
+			</a></li>
+		</ul>
+		<ul class="copyright">
+			<li>&copy; Untitled.</li>
+			<li>Images: <a href="http://unsplash.com">Unsplash</a>.</li>
+			<li>Design: <a href="http://templated.co">TEMPLATED</a>.</li>
+		</ul>
+	</div>
+</footer>
 
-		<!-- Scripts -->
-			<script th:src="@{/assets/js/jquery.min.js}"></script>
-			<script th:src="@{/assets/js/skel.min.js}"></script>
-			<script th:src="@{/assets/js/util.js}"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script th:src="@{/assets/js/main.js}"></script>
-			<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- Scripts -->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/skel.min.js}"></script>
+<script th:src="@{/assets/js/util.js}"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script th:src="@{/assets/js/main.js}"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 
-	<script>
+<script>
 		// qa.html
 		$("p.Question")
 				.css({cursor:"pointer"})
@@ -139,5 +143,5 @@
 		}
 	</script>
 
-	</body>
+</body>
 </html>

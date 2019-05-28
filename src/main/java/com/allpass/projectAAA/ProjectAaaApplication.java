@@ -114,7 +114,7 @@ public class ProjectAaaApplication  {
 
 
         List<Activity> activityList=new ArrayList<>();
-        activityService.getActivityList().stream().filter(i->i.getLimitedParticipants()!=0&&i.getArticleNumber()!=0).forEach(a->activityList.add(a));
+        activityService.getActivityList().stream().filter(i->i.getLimitedParticipants()!=0 || i.getArticleNumber()!=0).forEach(a->activityList.add(a));
         List<String> img = new ArrayList<>();
         List<String> activity_Image = new ArrayList<>();
         for(Activity image:activityList) {

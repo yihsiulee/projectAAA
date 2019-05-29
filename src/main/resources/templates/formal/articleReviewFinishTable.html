@@ -45,7 +45,7 @@
                 <td align="center" colspan="2"><h5>評論內容</h5></td>
                 <td align="center"><h5>功能</h5></td>
             </tr>
-            <tr th:each="articleReviews:${article.getArticleReviews()}">
+            <tr th:if="${articleReviews.reviewComplete}"th:each="articleReviews:${article.getArticleReviews()}">
                 <td th:unless="${articleReviews.reviewComplete}" th:text="${articleReviews.member.name}"></td>
                 <td th:unless="${articleReviews.reviewComplete}" colspan="2" th:text="${articleReviews.reviewText}"></td>
                 <td th:unless="${articleReviews.reviewComplete}">

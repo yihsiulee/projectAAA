@@ -94,7 +94,8 @@ public class ArticleReviewController {
         model.addAttribute("memberName",member.getName());
 
 
-        List<ArticleReview> articleReviewList=articleReviewService.getArticleReviewListByMember(memberService.getMemberInfo(auth.getName()));
+        List<ArticleReview> articleReviewList=new ArrayList<>();
+        articleReviewService.getArticleReviewListByMember(memberService.getMemberInfo(auth.getName())).stream().filter(i->i.getAcceptTask()==true).forEach(a->articleReviewList.add(a));
         articleReviewList.forEach(i->System.out.println(i.getArticle().getArticleName()));
         model.addAttribute("articleReviewList",articleReviewList);
         return "articleReviewList";
